@@ -7,11 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="generator" content="laravel - Open Source Content Management" />
     <title>@section('title')@setting('core::site-name')@show</title>
+
     @if(isset($alternate))
         @foreach($alternate as $alternateLocale=>$alternateSlug)
             <link rel="alternate" hreflang="{{$alternateLocale}}" href="{{url($alternateLocale.'/'.$alternateSlug)}}">
         @endforeach
     @endif
+
     <link rel="canonical" href="{{url()->current()}}" />
     <link rel="shortcut icon" href="{{ Theme::url('favicon.ico') }}">
 

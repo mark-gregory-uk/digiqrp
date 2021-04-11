@@ -1,15 +1,15 @@
-<nav class="navbar navbar-default @guest navbar-fixed-top @endguest" style="@auth margin-top: -52px @endauth">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ URL::to('/') }}">@setting('core::site-name')</a>
-        </div>
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-            @menu('main')
-        </div>
+
+<nav class="navigation" role="navigation">
+    <div class="navbar pull-left">
+        <a class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+    </div>
+    <div class="nav-collapse">
+        <ul class="nav menu nav-pills mod-list">
+            {!! Menu::get('Main') !!}
+        </ul>
     </div>
 </nav>

@@ -25,10 +25,6 @@ mix.copy(
   '../../public/fonts'
 );
 
-mix.copy(
-    'img',
-    '../../public/img'
-);
 
 /**
  * Publishing the assets

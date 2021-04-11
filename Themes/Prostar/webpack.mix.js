@@ -1,5 +1,5 @@
 let mix = require('laravel-mix').mix;
-const WebpackShellPlugin = require('webpack-shell-plugin');
+//const WebpackShellPlugin = require('webpack-shell-plugin');
 const themeInfo = require('./theme.json');
 
 /**
@@ -25,11 +25,16 @@ mix.copy(
   '../../public/fonts'
 );
 
+mix.copy(
+    'img',
+    '../../public/img'
+);
+
 /**
  * Publishing the assets
  */
-mix.webpackConfig({
-  plugins: [
-    new WebpackShellPlugin({onBuildEnd:['php ../../artisan stylist:publish ' + themeInfo.name]})
-  ]
-});
+//mix.webpackConfig({
+//  plugins: [
+//    new WebpackShellPlugin({onBuildEnd:['php ../../artisan stylist:publish ' + themeInfo.name]})
+//  ]
+//});

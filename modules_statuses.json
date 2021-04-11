@@ -8,5 +8,6 @@
     "Tag": true,
     "Translation": true,
     "User": true,
-    "Workshop": true
+    "Workshop": true,
+    "Logbook": true
 }

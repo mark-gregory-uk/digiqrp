@@ -4,6 +4,7 @@ namespace Modules\Page\Http\Controllers;
 
 use Illuminate\Contracts\Foundation\Application;
 use Modules\Core\Http\Controllers\BasePublicController;
+use Modules\Menu\Entities\Menu;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Page\Entities\Page;
 use Modules\Page\Repositories\PageRepository;
@@ -123,6 +124,9 @@ class PublicController extends BasePublicController
 
         return $alternate;
     }
+
+
+
 
     /**
      * Generates the systems site map

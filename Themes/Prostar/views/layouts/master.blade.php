@@ -12,7 +12,10 @@
             <div class="moduletable">
                 <div class="custom"  >
                     <p>
-                        <img src="{{ Theme::url('img/headers/keyboard-1385706_1280.jpg')}}" alt="" />
+                        @if ($page -> files()->count()>0)
+                           <img src="{{ $page -> files() -> where("zone", "image") -> first() -> path }}" alt="" />
+                        @endif
+
                     </p>
                 </div>
             </div>

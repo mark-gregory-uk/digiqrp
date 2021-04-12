@@ -4,6 +4,7 @@ namespace Modules\Logbook\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Modules\Logbook\Entities\Logbook;
 use Modules\Logbook\Http\Requests\CreateLogbookRequest;
 use Modules\Logbook\Http\Requests\UpdateLogbookRequest;
@@ -54,7 +55,9 @@ class LogbookController extends AdminBaseController
      */
     public function store(CreateLogbookRequest $request)
     {
-        $this->logbook->create($request->all());
+        $data = $request->all();
+        $data['owner_id'] = Auth::id();
+        $this->logbook->create($data);
 
         return redirect()->route('admin.logbook.logbook.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('logbook::logbooks.title.logbooks')]));

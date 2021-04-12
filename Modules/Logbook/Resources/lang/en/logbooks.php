@@ -6,7 +6,7 @@ return [
     'edit resource' => 'Edit logbooks',
     'destroy resource' => 'Destroy logbooks',
     'title' => [
-        'logbooks' => 'Logbook',
+        'logbooks' => 'Logbooks',
         'create logbook' => 'Create a logbook',
         'edit logbook' => 'Edit a logbook',
     ],
@@ -14,8 +14,13 @@ return [
         'create logbook' => 'Create a logbook',
     ],
     'table' => [
+        'title' => 'Title',
+        'owner' => 'Owner',
     ],
     'form' => [
+        'title' => 'Title',
+        'name' => 'Name',
+        'slug' => 'Slug',
     ],
     'messages' => [
     ],

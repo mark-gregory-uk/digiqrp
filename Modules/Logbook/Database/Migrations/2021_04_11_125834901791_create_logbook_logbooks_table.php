@@ -15,9 +15,10 @@ class CreateLogbookLogbooksTable extends Migration
         Schema::create('logbook__logbooks', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('owner_id')->unsigned();
+            $table->integer('owner_id')->unsigned()->nullable();
             $table->foreign('owner_id')->references('id')->on('users');
             $table->string('title')->nullable();
+            $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->timestamps();
         });

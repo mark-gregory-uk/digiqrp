@@ -40,18 +40,11 @@ class RegisterLogbookSidebar implements \Maatwebsite\Sidebar\SidebarExtender
             $group->item(trans('logbook::logbooks.title.logbooks'), function (Item $item) {
                 $item->icon('fa fa-book');
                 $item->weight(60);
+                $item->route('admin.logbook.logbook.index');
                 $item->authorize(
-                     /* append */
+                    $this->auth->hasAccess('logbook.logbooks.index')
                 );
-                $item->item(trans('logbook::logbooks.title.logbooks'), function (Item $item) {
-                    $item->icon('fa fa-list');
-                    $item->weight(0);
-                    $item->append('admin.logbook.logbook.create');
-                    $item->route('admin.logbook.logbook.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('logbook.logbooks.index')
-                    );
-                });
+
             });
         });
 

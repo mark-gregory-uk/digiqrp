@@ -29,6 +29,8 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
+                                <th>{{ trans('logbook::logbooks.table.title') }}</th>
+                                <th>{{ trans('logbook::logbooks.table.owner') }}</th>
                                 <th>{{ trans('core::core.table.created at') }}</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
@@ -37,6 +39,16 @@
                             <?php if (isset($logbooks)): ?>
                             <?php foreach ($logbooks as $logbook): ?>
                             <tr>
+                                <td>
+                                    <a href="{{ route('admin.logbook.logbook.edit', [$logbook->id]) }}">
+                                        {{ $logbook->title }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.logbook.logbook.edit', [$logbook->id]) }}">
+                                        {{ $logbook->owner() }}
+                                    </a>
+                                </td>
                                 <td>
                                     <a href="{{ route('admin.logbook.logbook.edit', [$logbook->id]) }}">
                                         {{ $logbook->created_at }}
@@ -52,12 +64,6 @@
                             <?php endforeach; ?>
                             <?php endif; ?>
                             </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
-                            </tr>
-                            </tfoot>
                         </table>
                         <!-- /.box-body -->
                     </div>

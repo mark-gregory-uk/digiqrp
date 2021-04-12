@@ -15,10 +15,9 @@ class CreateLogbookLogbookTranslationsTable extends Migration
         Schema::create('logbook__logbook_translations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            // Your translatable fields
-
             $table->integer('logbook_id')->unsigned();
             $table->string('locale')->index();
+            $table->string('title');
             $table->unique(['logbook_id', 'locale']);
             $table->foreign('logbook_id')->references('id')->on('logbook__logbooks')->onDelete('cascade');
         });

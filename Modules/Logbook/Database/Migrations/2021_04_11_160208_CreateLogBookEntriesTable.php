@@ -16,9 +16,9 @@ class CreateLogBookEntriesTable extends Migration
         Schema::create('logbook__entries', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('parent_id')->unsigned();
-            $table->foreign('parent_id')->references('id')->on('logbook__logbooks');
-            $table->string('call');
+            $table->integer('parent_id')->unsigned()->nullable();
+            $table->foreign('parent_id')->references('id')->on('logbook__logbooks')->onDelete('cascade');;
+            $table->string('call')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('street')->nullable();

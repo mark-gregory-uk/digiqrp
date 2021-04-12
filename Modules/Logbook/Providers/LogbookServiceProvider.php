@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\Core\Events\LoadingBackendTranslations;
+use Modules\Logbook\Console\ImportMacLogger;
 use Modules\Logbook\Listeners\RegisterLogbookSidebar;
 
 class LogbookServiceProvider extends ServiceProvider
@@ -28,8 +29,9 @@ class LogbookServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerBindings();
-        $this->app['events']->listen(BuildingSidebar::class, RegisterLogbookSidebar::class);
+        $this->registerCommands();
 
+        $this->app['events']->listen(BuildingSidebar::class, RegisterLogbookSidebar::class);
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
             $event->load('menu', Arr::dot(trans('logbook::logbooks')));
         });
@@ -40,7 +42,6 @@ class LogbookServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishConfig('logbook', 'permissions');
-
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 
@@ -68,8 +69,28 @@ class LogbookServiceProvider extends ServiceProvider
                 return new \Modules\Logbook\Repositories\Cache\CacheLogbookDecorator($repository);
             }
         );
-// add bindings
 
+    }
+
+    /**
+     * Register all commands for this module
+     */
+    private function registerCommands()
+    {
+        $this->registerRefreshCommand();
+    }
+
+
+    /**
+     * Register the MacLogger SQLite DB import Command
+     */
+    private function registerRefreshCommand()
+    {
+        $this->app->singleton('command.logbook.import', function ($app) {
+            return new ImportMacLogger($app['Modules\Logbook\Repositories\LogbookRepository']);
+        });
+
+        $this->commands('command.logbook.import');
     }
 
 

@@ -40,7 +40,7 @@
 
         <div id="aside" class="span3">
             <!-- Begin Right Sidebar -->
-            <div class="well ">
+            <div class="well">
                 <h3 class="page-header">Posts</h3>
                 <ul class="category-module mod-list">
                     <li>
@@ -93,9 +93,21 @@
             </div>
         </div>
     </div>
+        <div aria-label="Breadcrumbs" role="navigation">
+            <ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">
+                <li>
+                    You are here: &nbsp;
+                </li>
 
+                <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="active">
+					<span id="breadcrumb" itemprop="name"></span>
+                    <meta itemprop="position" content="1">
+                </li>
+            </ul>
+        </div>
     </div>
     </div>
+
 
     @include('partials.footer')
 
@@ -103,6 +115,13 @@
         {!! Setting::get('core::analytics-script') !!}
     <?php endif; ?>
     @stack('js-stack')
+
+    <script>
+        $(document).ready(function(){
+            val = $('.nav li.active').text()
+            $("#breadcrumb").text(val);
+        });
+    </script>
 
 </body>
 

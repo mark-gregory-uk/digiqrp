@@ -9,5 +9,6 @@
     "Translation": true,
     "User": true,
     "Workshop": true,
-    "Logbook": true
+    "Logbook": true,
+    "Blog": true
 }

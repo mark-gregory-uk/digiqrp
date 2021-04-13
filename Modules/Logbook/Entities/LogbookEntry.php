@@ -2,15 +2,12 @@
 
 namespace Modules\Logbook\Entities;
 
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
-use DateTimeInterface;
+use Illuminate\Database\Eloquent\Model;
 
 class LogbookEntry extends Model
 {
-
     protected $table = 'logbook__entries';
-
 
     protected $fillable = [
         'qso_start',
@@ -27,12 +24,12 @@ class LogbookEntry extends Model
         'band_rx',
         'band_tx',
         'payload',
-        'parent_id'
+        'parent_id',
     ];
-
 
     /**
      * The computed properties returned when model called for.
+     *
      * @var string[]
      */
     protected $appends = [
@@ -42,6 +39,7 @@ class LogbookEntry extends Model
 
     /**
      * Return the date as a formatted string.
+     *
      * @return string
      */
     public function getEndDateAttribute()
@@ -51,6 +49,7 @@ class LogbookEntry extends Model
 
     /**
      * Returns only the time component.
+     *
      * @return string
      */
     public function getEndTimeAttribute()
@@ -60,6 +59,7 @@ class LogbookEntry extends Model
 
     /**
      * Adds new values to key variables.
+     *
      * @param $response
      */
     public function addCallDetails($response)
@@ -77,11 +77,12 @@ class LogbookEntry extends Model
     }
 
     /**
-     * The logbook that own this item
+     * The logbook that own this item.
+     *
      * @return mixed
      */
-    public function Logbook(){
+    public function Logbook()
+    {
         return $this->belongsTo(Logbook::class);
     }
-
 }

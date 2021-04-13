@@ -2,12 +2,11 @@
 
 namespace Modules\Logbook\Providers;
 
-use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
-use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\Core\Events\LoadingBackendTranslations;
+use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Logbook\Console\ImportMacLogger;
 use Modules\Logbook\Listeners\RegisterLogbookSidebar;
 
@@ -35,14 +34,12 @@ class LogbookServiceProvider extends ServiceProvider
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
             $event->load('menu', Arr::dot(trans('logbook::logbooks')));
         });
-
-
     }
 
     public function boot()
     {
         $this->publishConfig('logbook', 'permissions');
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
@@ -52,7 +49,7 @@ class LogbookServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array();
+        return [];
     }
 
     private function registerBindings()
@@ -62,27 +59,25 @@ class LogbookServiceProvider extends ServiceProvider
             function () {
                 $repository = new \Modules\Logbook\Repositories\Eloquent\EloquentLogbookRepository(new \Modules\Logbook\Entities\Logbook());
 
-                if (! config('app.cache')) {
+                if (!config('app.cache')) {
                     return $repository;
                 }
 
                 return new \Modules\Logbook\Repositories\Cache\CacheLogbookDecorator($repository);
             }
         );
-
     }
 
     /**
-     * Register all commands for this module
+     * Register all commands for this module.
      */
     private function registerCommands()
     {
         $this->registerRefreshCommand();
     }
 
-
     /**
-     * Register the MacLogger SQLite DB import Command
+     * Register the MacLogger SQLite DB import Command.
      */
     private function registerRefreshCommand()
     {
@@ -92,6 +87,4 @@ class LogbookServiceProvider extends ServiceProvider
 
         $this->commands('command.logbook.import');
     }
-
-
 }

@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('logbook')->group(function() {
+Route::prefix('logbook')->group(function () {
     Route::get('/', 'LogbookController@index');
 });

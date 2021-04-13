@@ -27,7 +27,8 @@ class ThemeManager implements \Countable
     }
 
     /**
-     * @param  string     $name
+     * @param string $name
+     *
      * @return Theme|null
      */
     public function find($name)
@@ -38,11 +39,11 @@ class ThemeManager implements \Countable
             }
         }
 
-        return;
     }
 
     /**
-     * Return all available themes
+     * Return all available themes.
+     *
      * @return array
      */
     public function all()
@@ -65,7 +66,8 @@ class ThemeManager implements \Countable
     }
 
     /**
-     * Get only the public themes
+     * Get only the public themes.
+     *
      * @return array
      */
     public function allPublicThemes()
@@ -91,7 +93,8 @@ class ThemeManager implements \Countable
     }
 
     /**
-     * Get the theme directories
+     * Get the theme directories.
+     *
      * @return array
      */
     private function getDirectories()
@@ -100,13 +103,15 @@ class ThemeManager implements \Countable
     }
 
     /**
-     * Return the theme assets path
-     * @param  string $theme
+     * Return the theme assets path.
+     *
+     * @param string $theme
+     *
      * @return string
      */
     public function getAssetPath($theme)
     {
-        return public_path($this->getConfig()->get('themify.themes_assets_path') . '/' . $theme);
+        return public_path($this->getConfig()->get('themify.themes_assets_path').'/'.$theme);
     }
 
     /**
@@ -126,7 +131,7 @@ class ThemeManager implements \Countable
     }
 
     /**
-     * Counts all themes
+     * Counts all themes.
      */
     public function count()
     {
@@ -134,10 +139,13 @@ class ThemeManager implements \Countable
     }
 
     /**
-     * Returns the theme json file
+     * Returns the theme json file.
+     *
      * @param $theme
-     * @return string
+     *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     *
+     * @return string
      */
     private function getThemeJsonFile($theme)
     {
@@ -146,6 +154,7 @@ class ThemeManager implements \Countable
 
     /**
      * @param $themeJson
+     *
      * @return bool
      */
     private function isFrontendTheme($themeJson)

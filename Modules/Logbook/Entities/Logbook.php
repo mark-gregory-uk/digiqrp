@@ -22,23 +22,24 @@ class Logbook extends Model
     ];
 
     /**
-     * Recover the owner of the logbook
+     * Recover the owner of the logbook.
+     *
      * @return string
      */
-    public function Owner(){
+    public function Owner()
+    {
         $owner = User::find($this->owner_id);
 
-        return ( !empty($owner->callsign) ? $owner->callsign : $owner->first_name .' '.$owner->last_name);
+        return  !empty($owner->callsign) ? $owner->callsign : $owner->first_name.' '.$owner->last_name;
     }
-
 
     /**
-     * Recover the log book entries
+     * Recover the log book entries.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function entries(){
-        return $this->hasMany(LogbookEntry::class,'parent_id','id');
+    public function entries()
+    {
+        return $this->hasMany(LogbookEntry::class, 'parent_id', 'id');
     }
-
-
 }

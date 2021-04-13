@@ -2,7 +2,6 @@
 
 namespace Modules\Blog\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Blog\Entities\Post;
 use Modules\Blog\Http\Requests\CreatePostRequest;
@@ -49,7 +48,8 @@ class PostController extends AdminBaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  CreatePostRequest $request
+     * @param CreatePostRequest $request
+     *
      * @return Response
      */
     public function store(CreatePostRequest $request)
@@ -63,7 +63,8 @@ class PostController extends AdminBaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Post $post
+     * @param Post $post
+     *
      * @return Response
      */
     public function edit(Post $post)
@@ -74,8 +75,9 @@ class PostController extends AdminBaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  Post $post
-     * @param  UpdatePostRequest $request
+     * @param Post              $post
+     * @param UpdatePostRequest $request
+     *
      * @return Response
      */
     public function update(Post $post, UpdatePostRequest $request)
@@ -89,7 +91,8 @@ class PostController extends AdminBaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Post $post
+     * @param Post $post
+     *
      * @return Response
      */
     public function destroy(Post $post)

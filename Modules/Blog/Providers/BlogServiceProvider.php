@@ -2,13 +2,12 @@
 
 namespace Modules\Blog\Providers;
 
-use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
-use Modules\Core\Traits\CanPublishConfiguration;
+use Modules\Blog\Listeners\RegisterBlogSidebar;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\Core\Events\LoadingBackendTranslations;
-use Modules\Blog\Listeners\RegisterBlogSidebar;
+use Modules\Core\Traits\CanPublishConfiguration;
 
 class BlogServiceProvider extends ServiceProvider
 {
@@ -33,17 +32,14 @@ class BlogServiceProvider extends ServiceProvider
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
             $event->load('posts', Arr::dot(trans('blog::posts')));
             // append translations
-
         });
-
-
     }
 
     public function boot()
     {
         $this->publishConfig('blog', 'permissions');
 
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
@@ -53,7 +49,7 @@ class BlogServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array();
+        return [];
     }
 
     private function registerBindings()
@@ -63,16 +59,13 @@ class BlogServiceProvider extends ServiceProvider
             function () {
                 $repository = new \Modules\Blog\Repositories\Eloquent\EloquentPostRepository(new \Modules\Blog\Entities\Post());
 
-                if (! config('app.cache')) {
+                if (!config('app.cache')) {
                     return $repository;
                 }
 
                 return new \Modules\Blog\Repositories\Cache\CachePostDecorator($repository);
             }
         );
-// add bindings
-
+        // add bindings
     }
-
-
 }

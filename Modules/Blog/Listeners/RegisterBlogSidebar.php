@@ -32,6 +32,7 @@ class RegisterBlogSidebar implements \Maatwebsite\Sidebar\SidebarExtender
 
     /**
      * @param Menu $menu
+     *
      * @return Menu
      */
     public function extendWith(Menu $menu)
@@ -52,8 +53,7 @@ class RegisterBlogSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                         $this->auth->hasAccess('blog.posts.index')
                     );
                 });
-// append
-
+                // append
             });
         });
 

@@ -32,6 +32,7 @@ class RegisterLogbookSidebar implements \Maatwebsite\Sidebar\SidebarExtender
 
     /**
      * @param Menu $menu
+     *
      * @return Menu
      */
     public function extendWith(Menu $menu)
@@ -44,7 +45,6 @@ class RegisterLogbookSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                 $item->authorize(
                     $this->auth->hasAccess('logbook.logbooks.index')
                 );
-
             });
         });
 

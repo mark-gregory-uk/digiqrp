@@ -2,8 +2,8 @@
 
 namespace Modules\Logbook\Repositories\Cache;
 
-use Modules\Logbook\Repositories\LogbookRepository;
 use Modules\Core\Repositories\Cache\BaseCacheDecorator;
+use Modules\Logbook\Repositories\LogbookRepository;
 
 class CacheLogbookDecorator extends BaseCacheDecorator implements LogbookRepository
 {

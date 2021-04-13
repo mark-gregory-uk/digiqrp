@@ -10,7 +10,6 @@ class LogbookTranslation extends Model
     protected $table = 'logbook__logbook_translations';
 
     protected $fillable = [
-        'title'
+        'title',
     ];
-
 }

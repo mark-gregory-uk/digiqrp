@@ -2,14 +2,13 @@
 
 namespace Modules\Logbook\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Logbook\Entities\Logbook;
 use Modules\Logbook\Http\Requests\CreateLogbookRequest;
 use Modules\Logbook\Http\Requests\UpdateLogbookRequest;
 use Modules\Logbook\Repositories\LogbookRepository;
-use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
 class LogbookController extends AdminBaseController
 {
@@ -50,7 +49,8 @@ class LogbookController extends AdminBaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  CreateLogbookRequest $request
+     * @param CreateLogbookRequest $request
+     *
      * @return Response
      */
     public function store(CreateLogbookRequest $request)
@@ -66,7 +66,8 @@ class LogbookController extends AdminBaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Logbook $logbook
+     * @param Logbook $logbook
+     *
      * @return Response
      */
     public function edit(Logbook $logbook)
@@ -77,8 +78,9 @@ class LogbookController extends AdminBaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  Logbook $logbook
-     * @param  UpdateLogbookRequest $request
+     * @param Logbook              $logbook
+     * @param UpdateLogbookRequest $request
+     *
      * @return Response
      */
     public function update(Logbook $logbook, UpdateLogbookRequest $request)
@@ -92,7 +94,8 @@ class LogbookController extends AdminBaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Logbook $logbook
+     * @param Logbook $logbook
+     *
      * @return Response
      */
     public function destroy(Logbook $logbook)

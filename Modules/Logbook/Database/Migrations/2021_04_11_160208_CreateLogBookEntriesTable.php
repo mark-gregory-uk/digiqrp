@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateLogBookEntriesTable extends Migration
 {
@@ -17,7 +17,7 @@ class CreateLogBookEntriesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('parent_id')->unsigned()->nullable();
-            $table->foreign('parent_id')->references('id')->on('logbook__logbooks')->onDelete('cascade');;
+            $table->foreign('parent_id')->references('id')->on('logbook__logbooks')->onDelete('cascade');
             $table->string('call')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();

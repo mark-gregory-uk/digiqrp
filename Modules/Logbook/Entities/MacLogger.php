@@ -2,7 +2,6 @@
 
 namespace Modules\Logbook\Entities;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Maclogger extends Model

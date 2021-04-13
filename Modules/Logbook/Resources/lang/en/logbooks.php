@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'list resource' => 'List logbooks',
-    'create resource' => 'Create logbooks',
-    'edit resource' => 'Edit logbooks',
+    'list resource'    => 'List logbooks',
+    'create resource'  => 'Create logbooks',
+    'edit resource'    => 'Edit logbooks',
     'destroy resource' => 'Destroy logbooks',
-    'title' => [
-        'logbooks' => 'Logbooks',
+    'title'            => [
+        'logbooks'       => 'Logbooks',
         'create logbook' => 'Create a logbook',
-        'edit logbook' => 'Edit a logbook',
+        'edit logbook'   => 'Edit a logbook',
     ],
     'button' => [
         'create logbook' => 'Create a logbook',
@@ -19,8 +19,8 @@ return [
     ],
     'form' => [
         'title' => 'Title',
-        'name' => 'Name',
-        'slug' => 'Slug',
+        'name'  => 'Name',
+        'slug'  => 'Slug',
     ],
     'messages' => [
     ],

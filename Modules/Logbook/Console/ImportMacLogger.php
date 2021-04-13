@@ -3,11 +3,9 @@
 namespace Modules\Logbook\Console;
 
 use Illuminate\Console\Command;
-use Modules\Logbook\Entities\LogbookEntry;
-use Modules\Logbook\Entities\Maclogger;
 use Modules\Logbook\Entities\Logbook;
+use Modules\Logbook\Entities\Maclogger;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 
 class ImportMacLogger extends Command
 {
@@ -45,8 +43,8 @@ class ImportMacLogger extends Command
         // We need to recover the logbook and its owner
 
         $logbook = Logbook::with('entries')
-            ->where('owner_id','=',1)
-            ->where('slug','=','main')->first();
+            ->where('owner_id', '=', 1)
+            ->where('slug', '=', 'main')->first();
 
         $macLoggerRecords = Maclogger::all();
 
@@ -82,9 +80,6 @@ class ImportMacLogger extends Command
         }
         $bar->finish();
         $this->info(PHP_EOL);
-
-
-
     }
 
     /**

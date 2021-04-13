@@ -4,8 +4,10 @@
         <meta name="description" content="@setting('core::site-description')"/>
     @show
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
     <meta name="generator" content="laravel - Open Source Content Management" />
+    <meta name="theme-color" content="#ffffff">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@section('title')@setting('core::site-name')@show</title>
 
     @if(isset($alternate))
@@ -24,29 +26,7 @@
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-    <style>
-        h1, h2, h3, h4, h5, h6, .site-title {
-            font-family: 'Open Sans', sans-serif;
-        }
-        body.site {
-            border-top: 3px solid #0088cc;
-            background-color: #f4f6f7;
-        }
-        a {
-            color: #0088cc;
-        }
-        .nav-list > .active > a,
-        .nav-list > .active > a:hover,
-        .dropdown-menu li > a:hover,
-        .dropdown-menu .active > a,
-        .dropdown-menu .active > a:hover,
-        .nav-pills > .active > a,
-        .nav-pills > .active > a:hover,
-        .btn-primary {
-            background: #0088cc;
-        }
-        div.mod_search87 input[type="search"]{ width:auto; }
-    </style>
+   
 
     {!! Theme::script('js/all.js') !!}
     @yield('scripts')

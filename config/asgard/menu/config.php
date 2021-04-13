@@ -17,7 +17,7 @@ return [
     | Configure which Menu presenter will be used by default without
     | having to send it via the views
     */
-    'default_menu_presenter' => null,
+    'default_menu_presenter' => 'basicmenu',
 
     /*
     |--------------------------------------------------------------------------

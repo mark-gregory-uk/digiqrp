@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="ltr">
     @include('partials.head')
-<body class="site com_content view-category layout-blog no-task itemid-101">
+
+    <body class="site com_content view-category layout-blog no-task itemid-101">
+    <div class="body" id="top">
+    <div class="container">
     @include('partials.header')
 
     @include('partials.navigation')
@@ -37,12 +40,62 @@
 
         <div id="aside" class="span3">
             <!-- Begin Right Sidebar -->
-
+            <div class="well ">
+                <h3 class="page-header">Posts</h3>
+                <ul class="category-module mod-list">
+                    <li>
+                        <a class="mod-articles-category-title " href="/index.php/3-welcome-to-your-blog">Welcome to your blog</a>
+                    </li>
+                    <li>
+                        <a class="mod-articles-category-title " href="/index.php/4-about-your-home-page">About your home page</a>
+                    </li>
+                    <li>
+                        <a class="mod-articles-category-title " href="/index.php/5-your-modules">Your Modules</a>
+                    </li>
+                    <li>
+                        <a class="mod-articles-category-title " href="/index.php/6-your-template">Your Template</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="well "><h3 class="page-header">Most Read Posts</h3><ul class="mostread mod-list">
+                    <li itemscope="" itemtype="https://schema.org/Article">
+                        <a href="/index.php/3-welcome-to-your-blog" itemprop="url">
+			<span itemprop="name">
+				Welcome to your blog			</span>
+                        </a>
+                    </li>
+                    <li itemscope="" itemtype="https://schema.org/Article">
+                        <a href="/index.php/4-about-your-home-page" itemprop="url">
+			<span itemprop="name">
+				About your home page			</span>
+                        </a>
+                    </li>
+                    <li itemscope="" itemtype="https://schema.org/Article">
+                        <a href="/index.php/5-your-modules" itemprop="url">
+			<span itemprop="name">
+				Your Modules			</span>
+                        </a>
+                    </li>
+                    <li itemscope="" itemtype="https://schema.org/Article">
+                        <a href="/index.php/6-your-template" itemprop="url">
+			<span itemprop="name">
+				Your Template			</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <!-- End Right Sidebar -->
+            <div class="well ">
+                <a href="#?format=feed&amp;type=rss" class="syndicate-module">
+                    <img src="{{  asset('/img/system/livemarks.png') }}" alt="feed-image" />
+                    <span>My Blog</span>
+                </a>
+            </div>
         </div>
     </div>
 
-
+    </div>
+    </div>
 
     @include('partials.footer')
 
@@ -50,5 +103,7 @@
         {!! Setting::get('core::analytics-script') !!}
     <?php endif; ?>
     @stack('js-stack')
+
 </body>
+
 </html>

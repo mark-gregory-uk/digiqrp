@@ -7,9 +7,10 @@
             <span class="icon-bar"></span>
         </a>
     </div>
-    <div class="nav-collapse">
-        <ul class="nav menu nav-pills mod-list">
-            {!! Menu::get('Main') !!}
-        </ul>
+    <div class="nav-collapse" style="margin-bottom: -45px;">
+
+
+            {!! Menu::get('Main','App\Presenters\BasicMenuPresenter') !!}
+
     </div>
 </nav>

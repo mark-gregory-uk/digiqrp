@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Platform
 versions:
+    "3.4.1":
+        added:
+            - Support for webp images
     "3.4.0":
         changed:
             - Fixing corrupted fonts

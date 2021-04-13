@@ -91,6 +91,14 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'maclogger' => [
+            'driver' => 'sqlite',
+            'database' => env('DB_LOGGER_DATABASE', database_path('sqlite/MacLoggerDX.sql')),
+            'prefix' => '',
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+        ],
+
+
     ],
 
     /*

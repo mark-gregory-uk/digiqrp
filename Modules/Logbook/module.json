@@ -1,0 +1,16 @@
+{
+    "name": "Logbook",
+    "alias": "logbook",
+    "version": "1.0.0",
+	"description": "Provides a log book system",
+    "keywords": [],
+    "priority": 1,
+    "providers": [
+        "Modules\\Logbook\\Providers\\LogbookServiceProvider",
+        "Modules\\Logbook\\Providers\\EventServiceProvider",
+        "Modules\\Logbook\\Providers\\RouteServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

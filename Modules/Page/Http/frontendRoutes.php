@@ -13,3 +13,5 @@ $router->any('{uri}', [
     'as' => 'page',
     'middleware' => config('asgard.page.config.middleware'),
 ])->where('uri', '.*');
+
+Route::get('/sitemap', 'PublicController@sitemap')->name('sitemap');

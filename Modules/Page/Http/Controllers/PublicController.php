@@ -4,6 +4,7 @@ namespace Modules\Page\Http\Controllers;
 
 use Illuminate\Contracts\Foundation\Application;
 use Modules\Core\Http\Controllers\BasePublicController;
+use Modules\Menu\Entities\Menu;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Page\Entities\Page;
 use Modules\Page\Repositories\PageRepository;
@@ -122,5 +123,53 @@ class PublicController extends BasePublicController
         }
 
         return $alternate;
+    }
+
+
+
+
+    /**
+     * Generates the systems site map
+     * @return mixed
+     */
+    public function sitemap()
+    {
+        // create new sitemap object
+        $sitemap = App::make('sitemap');
+
+        // set cache key (string), duration in minutes (Carbon|Datetime|int), turn on/off (boolean)
+        // by default cache is disabled
+        $sitemap->setCache('laravel.sitemap', 60);
+
+        // check if there is cached sitemap and build new only if is not
+        if (! $sitemap->isCached()) {
+            // add item to the sitemap (url, date, priority, freq)
+            $sitemap->add(URL::to('/'), '2012-08-25T20:10:00+02:00', '1.0', 'daily');
+            $sitemap->add(URL::to('/logbook/index'), '2012-08-26T12:30:00+02:00', '0.9', 'weekly');
+
+            // get all posts from db, with image relations
+            $pages = \DB::table('pages')->orderBy('created_at', 'desc')->get();
+
+            // add every page to the sitemap
+            foreach ($pages as $page) {
+                $sitemap->add(URL::to('page /'.$page->slug), '2012-08-26T12:30:00+02:00', '0.9', 'weekly');
+            }
+
+            // add every post to the sitemap
+            $posts = \DB::table('posts')->orderBy('created_at', 'desc')->get();
+
+            foreach ($posts as $post) {
+                $sitemap->add(URL::to('post/'.$post->id), '2012-08-26T12:30:00+02:00', '0.9', 'daily');
+            }
+
+            $newsItems = \DB::table('news_items')->orderBy('created_at', 'desc')->get();
+
+            foreach ($newsItems as $news) {
+                $sitemap->add(URL::to('news/'.$news->id), '2012-08-26T12:30:00+02:00', '0.9', 'daily');
+            }
+        }
+
+        // show your sitemap (options: 'xml' (default), 'html', 'txt', 'ror-rss', 'ror-rdf')
+        return $sitemap->render('xml');
     }
 }

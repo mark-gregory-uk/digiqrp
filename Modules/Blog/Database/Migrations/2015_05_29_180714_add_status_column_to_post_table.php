@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateBlogPostsTable extends Migration
+class AddStatusColumnToPostTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,9 @@ class CreateBlogPostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('blog__posts', function (Blueprint $table) {
+        Schema::table('blog__posts', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
-            // Your fields
-            $table->timestamps();
+            $table->integer('status')->after('category_id')->default(1);
         });
     }
 
@@ -27,6 +25,8 @@ class CreateBlogPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blog__posts');
+        Schema::table('blog__posts', function (Blueprint $table) {
+            $table->dropColumn('status');
+        });
     }
 }

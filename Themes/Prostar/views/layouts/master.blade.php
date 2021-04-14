@@ -12,6 +12,7 @@
     <div class="row-fluid">
         <main id="content" role="main" class="span9">
             <!-- Begin Content -->
+            @if(! empty($page))
             <div class="moduletable">
                 <div class="custom"  >
                     <p>
@@ -22,17 +23,17 @@
                     </p>
                 </div>
             </div>
+        @endif
 
+        <!-- include('layouts.partials.prostar.breadcrumb') -->
 
-            <!-- include('layouts.partials.prostar.breadcrumb') -->
+        <div id="system-message-container"></div>
 
-            <div id="system-message-container"></div>
+        <div class="blog" itemscope itemtype="https://schema.org/Blog">
 
-            <div class="blog" itemscope itemtype="https://schema.org/Blog">
+            @yield('content')
 
-                @yield('content')
-
-            </div>
+        </div>
 
             <!-- End Content -->
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateBlogPostTranslationsTable extends Migration
+class CreatePostTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,10 +15,11 @@ class CreateBlogPostTranslationsTable extends Migration
         Schema::create('blog__post_translations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            // Your translatable fields
-
             $table->integer('post_id')->unsigned();
             $table->string('locale')->index();
+            $table->string('title');
+            $table->string('slug');
+            $table->text('content');
             $table->unique(['post_id', 'locale']);
             $table->foreign('post_id')->references('id')->on('blog__posts')->onDelete('cascade');
         });
@@ -31,9 +32,6 @@ class CreateBlogPostTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::table('blog__post_translations', function (Blueprint $table) {
-            $table->dropForeign(['post_id']);
-        });
-        Schema::dropIfExists('blog__post_translations');
+        Schema::drop('blog__post_translations');
     }
 }

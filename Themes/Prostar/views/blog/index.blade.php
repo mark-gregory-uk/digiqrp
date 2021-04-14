@@ -7,7 +7,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <h1>Blog</h1>
+            <h1>Our Blog</h1>
             <?php if (isset($posts)): ?>
             <ul>
                 <?php foreach ($posts as $post): ?>

@@ -13,7 +13,10 @@ class CreatePostRequest extends BaseFormRequest
 
     public function translationRules()
     {
-        return [];
+        return [
+            'title' => 'required',
+            'slug'  => "required|unique:blog__post_translations,slug,null,post_id,locale,$this->localeKey",
+        ];
     }
 
     public function authorize()
@@ -21,13 +24,12 @@ class CreatePostRequest extends BaseFormRequest
         return true;
     }
 
-    public function messages()
-    {
-        return [];
-    }
-
     public function translationMessages()
     {
-        return [];
+        return [
+            'title.required' => trans('blog::messages.title is required'),
+            'slug.required'  => trans('blog::messages.slug is required'),
+            'slug.unique'    => trans('blog::messages.slug is unique'),
+        ];
     }
 }

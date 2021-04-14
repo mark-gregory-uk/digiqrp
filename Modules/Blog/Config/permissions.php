@@ -2,11 +2,15 @@
 
 return [
     'blog.posts' => [
-        'index'   => 'blog::posts.list resource',
-        'create'  => 'blog::posts.create resource',
-        'edit'    => 'blog::posts.edit resource',
-        'destroy' => 'blog::posts.destroy resource',
+        'index'   => 'blog::post.list resource',
+        'create'  => 'blog::post.create resource',
+        'edit'    => 'blog::post.edit resource',
+        'destroy' => 'blog::post.destroy resource',
     ],
-    // append
-
+    'blog.categories' => [
+        'index'   => 'blog::category.list resource',
+        'create'  => 'blog::category.create resource',
+        'edit'    => 'blog::category.edit resource',
+        'destroy' => 'blog::category.destroy resource',
+    ],
 ];

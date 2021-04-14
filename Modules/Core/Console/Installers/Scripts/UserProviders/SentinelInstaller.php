@@ -49,7 +49,6 @@ class SentinelInstaller extends ProviderInstaller implements SetupScript
      */
     public function migrate()
     {
-
     }
 
     /**

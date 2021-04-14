@@ -15,7 +15,11 @@ use Modules\Tag\Traits\TaggableTrait;
 
 class Post extends Model implements TaggableInterface
 {
-    use Translatable, MediaRelation, PresentableTrait, NamespacedEntity, TaggableTrait;
+    use Translatable;
+    use MediaRelation;
+    use PresentableTrait;
+    use NamespacedEntity;
+    use TaggableTrait;
 
     public $translatedAttributes = ['title', 'slug', 'content'];
     protected $fillable = ['category_id', 'status', 'title', 'slug', 'content'];
@@ -32,7 +36,8 @@ class Post extends Model implements TaggableInterface
     }
 
     /**
-     * Get the thumbnail image for the current blog post
+     * Get the thumbnail image for the current blog post.
+     *
      * @return File|string
      */
     public function getThumbnailAttribute()
@@ -47,8 +52,10 @@ class Post extends Model implements TaggableInterface
     }
 
     /**
-     * Check if the post is in draft
+     * Check if the post is in draft.
+     *
      * @param Builder $query
+     *
      * @return Builder
      */
     public function scopeDraft(Builder $query)
@@ -57,8 +64,10 @@ class Post extends Model implements TaggableInterface
     }
 
     /**
-     * Check if the post is pending review
+     * Check if the post is pending review.
+     *
      * @param Builder $query
+     *
      * @return Builder
      */
     public function scopePending(Builder $query)
@@ -67,8 +76,10 @@ class Post extends Model implements TaggableInterface
     }
 
     /**
-     * Check if the post is published
+     * Check if the post is published.
+     *
      * @param Builder $query
+     *
      * @return Builder
      */
     public function scopePublished(Builder $query)
@@ -77,8 +88,10 @@ class Post extends Model implements TaggableInterface
     }
 
     /**
-     * Check if the post is unpublish
+     * Check if the post is unpublish.
+     *
      * @param Builder $query
+     *
      * @return Builder
      */
     public function scopeUnpublished(Builder $query)
@@ -89,21 +102,22 @@ class Post extends Model implements TaggableInterface
     /**
      * @param $method
      * @param $parameters
+     *
      * @return mixed
      */
     public function __call($method, $parameters)
     {
-        #i: Convert array to dot notation
+        //i: Convert array to dot notation
         $config = implode('.', ['asgard.blog.config.post.relations', $method]);
 
-        #i: Relation method resolver
+        //i: Relation method resolver
         if (config()->has($config)) {
             $function = config()->get($config);
 
             return $function($this);
         }
 
-        #i: No relation found, return the call to parent (Eloquent) to handle it.
+        //i: No relation found, return the call to parent (Eloquent) to handle it.
         return parent::__call($method, $parameters);
     }
 }

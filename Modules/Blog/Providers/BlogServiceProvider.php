@@ -2,20 +2,19 @@
 
 namespace Modules\Blog\Providers;
 
-use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 use Illuminate\Support\ServiceProvider;
 use Modules\Blog\Entities\Category;
 use Modules\Blog\Entities\Post;
+use Modules\Blog\Listeners\RegisterBlogSidebar;
 use Modules\Blog\Repositories\Cache\CacheCategoryDecorator;
 use Modules\Blog\Repositories\Cache\CachePostDecorator;
 use Modules\Blog\Repositories\CategoryRepository;
 use Modules\Blog\Repositories\Eloquent\EloquentCategoryRepository;
 use Modules\Blog\Repositories\Eloquent\EloquentPostRepository;
 use Modules\Blog\Repositories\PostRepository;
-use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\Core\Events\LoadingBackendTranslations;
-use Modules\Blog\Listeners\RegisterBlogSidebar;
+use Modules\Core\Traits\CanPublishConfiguration;
 
 class BlogServiceProvider extends ServiceProvider
 {
@@ -40,20 +39,17 @@ class BlogServiceProvider extends ServiceProvider
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
             // append translations
         });
-
-
     }
 
     public function boot()
     {
         $this->publishConfig('blog', 'permissions');
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
         $this->publishConfig('blog', 'config');
         $this->publishConfig('blog', 'permissions');
         $this->publishConfig('blog', 'settings');
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
         //$this->registerViewComposers();
-
     }
 
     /**
@@ -63,7 +59,7 @@ class BlogServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array();
+        return [];
     }
 
     private function registerBindings()
@@ -87,8 +83,6 @@ class BlogServiceProvider extends ServiceProvider
 
             return new CacheCategoryDecorator($repository);
         });
-
-
     }
 
     private function registerViewComposers()
@@ -103,6 +97,4 @@ class BlogServiceProvider extends ServiceProvider
             'blog::admin.posts.edit',
         ], \Modules\Core\Composers\CurrentUserViewComposer::class);
     }
-
-
 }

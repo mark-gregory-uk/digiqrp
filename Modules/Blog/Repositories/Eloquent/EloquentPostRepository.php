@@ -18,7 +18,8 @@ use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 class EloquentPostRepository extends EloquentBaseRepository implements PostRepository
 {
     /**
-     * @param  int    $id
+     * @param int $id
+     *
      * @return object
      */
     public function find($id)
@@ -35,9 +36,11 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
     }
 
     /**
-     * Update a resource
+     * Update a resource.
+     *
      * @param $post
-     * @param  array $data
+     * @param array $data
+     *
      * @return mixed
      */
     public function update($post, $data)
@@ -53,8 +56,10 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
     }
 
     /**
-     * Create a blog post
-     * @param  array $data
+     * Create a blog post.
+     *
+     * @param array $data
+     *
      * @return Post
      */
     public function create($data)
@@ -79,9 +84,10 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
     }
 
     /**
-     * Return all resources in the given language
+     * Return all resources in the given language.
      *
-     * @param  string                                   $lang
+     * @param string $lang
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function allTranslatedIn($lang)
@@ -93,8 +99,10 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
     }
 
     /**
-     * Return the latest x blog posts
+     * Return the latest x blog posts.
+     *
      * @param int $amount
+     *
      * @return Collection
      */
     public function latest($amount = 5)
@@ -103,8 +111,10 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
     }
 
     /**
-     * Get the previous post of the given post
+     * Get the previous post of the given post.
+     *
      * @param object $post
+     *
      * @return object
      */
     public function getPreviousOf($post)
@@ -114,8 +124,10 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
     }
 
     /**
-     * Get the next post of the given post
+     * Get the next post of the given post.
+     *
      * @param object $post
+     *
      * @return object
      */
     public function getNextOf($post)
@@ -125,9 +137,10 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
     }
 
     /**
-     * Find a resource by the given slug
+     * Find a resource by the given slug.
      *
-     * @param  string $slug
+     * @param string $slug
+     *
      * @return object
      */
     public function findBySlug($slug)

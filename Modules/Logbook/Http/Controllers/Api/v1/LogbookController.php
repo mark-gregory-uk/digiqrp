@@ -20,8 +20,12 @@ class LogbookController extends Controller
         if (in_array($request->method(), ['POST'])
             && $request->isJson()
         ) {
+            $logbook = Logbook::with('entries')
+                ->where('owner_id', '=', 1)
+                ->where('slug', '=', 'main')->first();
+
             $data = $request->json()->all();
-            $logEntry = Logbook::create($data);
+            $logEntry = $logbook->entries()->create($data);
 
             $response = \Modules\Logbook\Http\Controllers\LogbookController::hamQTH($logEntry->call);
 
@@ -37,6 +41,11 @@ class LogbookController extends Controller
         return null;
     }
 
+    /**
+     * Create a mac logger entry and lookup the
+     * callsign
+     * @param Request $request
+     */
     public function storeMacLogger(Request $request)
     {
         log::info('Called Store MacLogger');
@@ -46,8 +55,11 @@ class LogbookController extends Controller
         ) {
             $data = $request->json()->all();
             $entry = json_decode($data, true);
-            $logEntry = new Logbook();
-            $logEntry->save($entry);
+            $logbook = Logbook::with('entries')
+                ->where('owner_id', '=', 1)
+                ->where('slug', '=', 'main')->first();
+
+            $logEntry = $logbook->entries()->create($entry);
 
             $response = \Modules\Logbook\Http\Controllers\LogbookController::hamQTH($logEntry->call);
 

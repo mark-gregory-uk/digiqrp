@@ -92,6 +92,7 @@ task('cache-clean', function () {
 //    if ( askConfirmation( 'Are you sure you want to  clear system cache ?' ) ) {
     invoke('artisan:cache:clear');
     invoke('artisan:view:clear');
+    invoke('artisan:clear-compiled');
     invoke('artisan:config:cache');
 //    }
 })->desc('Clearing System Cache');

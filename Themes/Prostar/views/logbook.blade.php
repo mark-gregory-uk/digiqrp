@@ -54,8 +54,6 @@
                 <th>SST</th>
                 <th>Band</th>
                 <th>Country</th>
-                <th>Date</th>
-                <th>Time</th>
             </tr>
             </thead>
             <tbody>
@@ -80,8 +78,6 @@
                     {data: 'rst_sent', name: 'rst_sent'},
                     {data: 'band_tx', name: 'band_tx'},
                     {data: 'dxcc_country', name: 'dxcc_country'},
-                    {data: 'end_date', name: 'end_date',"searchable": false },
-                    {data: 'end_time', name: 'end_time',"searchable": false },
                 ]
             });
         });

@@ -58,7 +58,7 @@ class Imagy
      */
     public function get($path, $thumbnail, $forceCreate = false)
     {
-        if (!$this->isImage($path)) {
+        if (! $this->isImage($path)) {
             return;
         }
 
@@ -91,7 +91,7 @@ class Imagy
             $originalImage = $originalImage->path;
         }
 
-        if (!$this->isImage($originalImage)) {
+        if (! $this->isImage($originalImage)) {
             if ($originalImage instanceof MediaPath) {
                 return $originalImage->getUrl();
             }
@@ -111,7 +111,7 @@ class Imagy
      */
     public function createAll(MediaPath $path)
     {
-        if (!$this->isImage($path)) {
+        if (! $this->isImage($path)) {
             return;
         }
 
@@ -218,7 +218,7 @@ class Imagy
      */
     public function deleteAllFor(File $file)
     {
-        if (!$this->isImage($file->path)) {
+        if (! $this->isImage($file->path)) {
             return $this->filesystem->disk($this->getConfiguredFilesystem())->delete($this->getDestinationPath($file->path->getRelativeUrl()));
         }
 

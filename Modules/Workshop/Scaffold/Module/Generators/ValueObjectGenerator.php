@@ -13,7 +13,7 @@ class ValueObjectGenerator extends Generator
      */
     public function generate(array $valueObjects)
     {
-        if (!$this->finder->isDirectory($this->getModulesPath('ValueObjects'))) {
+        if (! $this->finder->isDirectory($this->getModulesPath('ValueObjects'))) {
             $this->finder->makeDirectory($this->getModulesPath('ValueObjects'));
         }
 

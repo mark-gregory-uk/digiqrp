@@ -75,7 +75,7 @@ class ConfigureAppUrl implements SetupScript
 
                 $str = false;
             }
-        } while (!$str);
+        } while (! $str);
 
         return $str;
     }

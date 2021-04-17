@@ -142,7 +142,7 @@ class SentinelAuthentication implements Authentication
      */
     public function hasAccess($permission): bool
     {
-        if (!Sentinel::check()) {
+        if (! Sentinel::check()) {
             return false;
         }
 

@@ -48,7 +48,7 @@ class ThemeManager implements \Countable
     public function all()
     {
         $themes = [];
-        if (!$this->getFinder()->isDirectory($this->path)) {
+        if (! $this->getFinder()->isDirectory($this->path)) {
             return $themes;
         }
 
@@ -72,7 +72,7 @@ class ThemeManager implements \Countable
     public function allPublicThemes()
     {
         $themes = [];
-        if (!$this->getFinder()->isDirectory($this->path)) {
+        if (! $this->getFinder()->isDirectory($this->path)) {
             return $themes;
         }
 

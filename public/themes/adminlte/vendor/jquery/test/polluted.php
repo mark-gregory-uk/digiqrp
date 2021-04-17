@@ -99,7 +99,7 @@
                 foreach ($data['versions'] as $ver) {
                     $i++;
                     echo "<label><input type='radio' name='$name' value='$ver' />$ver</label>";
-                    if (!($i % 4)) {
+                    if (! ($i % 4)) {
                         echo '<br />';
                     }
                 }

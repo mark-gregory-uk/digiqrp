@@ -70,7 +70,7 @@ class EnvFileWriter
      */
     public function write($vars)
     {
-        if (!empty($vars)) {
+        if (! empty($vars)) {
             $environmentFile = $this->finder->get($this->file);
 
             foreach ($vars as $key => $value) {

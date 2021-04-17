@@ -41,7 +41,7 @@ class Downloader
 
     public function download($package)
     {
-        if (!class_exists('ZipArchive')) {
+        if (! class_exists('ZipArchive')) {
             throw new RuntimeException('The Zip PHP extension is not installed. Please install it and try again.');
         }
 

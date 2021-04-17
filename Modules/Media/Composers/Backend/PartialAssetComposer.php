@@ -53,11 +53,11 @@ class PartialAssetComposer
         $css = config('asgard.media.assets.media-partial-required-assets.css');
         $js = config('asgard.media.assets.media-partial-required-assets.js');
 
-        if (!empty($css)) {
+        if (! empty($css)) {
             $this->assetPipeline->requireCss($css);
         }
 
-        if (!empty($js)) {
+        if (! empty($js)) {
             $this->assetPipeline->requireJs($js);
         }
     }

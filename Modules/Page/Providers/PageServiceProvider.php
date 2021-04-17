@@ -85,7 +85,7 @@ class PageServiceProvider extends ServiceProvider
         $this->app->bind(PageRepository::class, function () {
             $repository = new EloquentPageRepository(new Page());
 
-            if (!Config::get('app.cache')) {
+            if (! Config::get('app.cache')) {
                 return $repository;
             }
 

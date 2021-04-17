@@ -114,8 +114,8 @@ host('prod')
     ->set('git_tty', false)                         // [Optional] Allocate tty for git clone. Default value is false.
     ->set('ssh_type', 'native');                    // How we communicate with the host system
 
-host('dev')
-    ->hostname('192.168.0.5')
+host('stage')
+    ->hostname('stage.digiqrp.com')
     ->port(22)
     ->user('mag')
     ->identityFile('~/.ssh/id_rsa')
@@ -124,7 +124,7 @@ host('dev')
     ->set('use_relative_symlink', false)
     ->set('branch', 'develop')
     ->set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-interaction')
-    ->set('deploy_path', '/var/www/dev/hamcore')
+    ->set('deploy_path', '/var/www/digiqrp_dev')
     ->set('ssh_multiplexing', true)
     ->set('git_tty', false)                         // [Optional] Allocate tty for git clone. Default value is false.
     ->set('ssh_type', 'native');                    // How we communicate with the host system

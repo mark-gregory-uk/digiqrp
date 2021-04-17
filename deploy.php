@@ -9,9 +9,9 @@ set('repository', 'git@github.com:hamcore/digiqrp.git');  // The Repository in u
 set('keep_releases', 4);                                  // Number of releases to keep on hosts
 set('default_timeout', 1200);
 
-add('shared_files', ['.env']);                            // Shared files between deploys
-add('shared_dirs', ['storage', 'vendor', 'node_modules']);  // Shared dirs between deploys
-add('writable_dirs', ['storage', 'vendor', 'node_modules']);                        // Writable dirs by web server
+add('shared_files', ['.env']);                                  // Shared files between deploys
+add('shared_dirs', ['storage', 'vendor', 'node_modules']);      // Shared dirs between deploys
+add('writable_dirs', ['storage', 'vendor', 'node_modules']);    // Writable dirs by web server
 
 // **********************************************************************************
 // Task Definitions
@@ -92,7 +92,6 @@ task('cache-clean', function () {
 //    if ( askConfirmation( 'Are you sure you want to  clear system cache ?' ) ) {
     invoke('artisan:cache:clear');
     invoke('artisan:view:clear');
-    invoke('artisan:clear-compiled');
     invoke('artisan:config:cache');
 //    }
 })->desc('Clearing System Cache');

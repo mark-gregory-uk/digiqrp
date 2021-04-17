@@ -46,7 +46,7 @@
     </div>
 
     <div class="items-leading clearfix">
-        <table style="margin-left: 5px;margin-right: 7px;" class="table table-bordered table-striped data-table">
+        <table  class="table table-bordered table-striped data-table">
             <thead>
             <tr>
                 <th>Call</th>
@@ -68,6 +68,7 @@
             var table = $('.data-table').DataTable({
                 ordering: false,
                 processing: true,
+                responsive: true,
                 language: {
                     processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
                 },

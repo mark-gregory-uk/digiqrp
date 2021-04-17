@@ -65,7 +65,9 @@ class LogbookController extends Controller
 
     /**
      * Call to HamQTH for call-sign Data.
+     *
      * @param $callsign
+     *
      * @return mixed
      */
     public static function hamQTH($callsign)
@@ -83,5 +85,4 @@ class LogbookController extends Controller
 
         return json_decode($json, true);
     }
-
 }

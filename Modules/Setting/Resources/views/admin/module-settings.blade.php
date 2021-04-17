@@ -26,7 +26,7 @@
                 }
             </style>
     		<ul class="nav nav-list">
-    		  <?php foreach ($modulesWithSettings as $module => $settings): ?>
+    		  <?php foreach ($modulesWithSettings as $module => $settings) { ?>
                   <li>
                     <a href="{{ route('dashboard.module.settings', [$module]) }}"
                        class="{{ $module === $currentModule->getName() ? 'active' : '' }}">
@@ -34,12 +34,12 @@
                         <small class="badge pull-right bg-blue">{{ count($settings) }}</small>
                     </a>
                     </li>
-              <?php endforeach; ?>
+              <?php } ?>
     		</ul>
     	</div>
     </div>
     <div class="col-md-10">
-        <?php if ($translatableSettings): ?>
+        <?php if ($translatableSettings) { ?>
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">{{ trans('core::core.title.translatable fields') }}</h3>
@@ -49,18 +49,18 @@
                         @include('partials.form-tab-headers')
                         <div class="tab-content">
                             <?php $i = 0; ?>
-                            <?php foreach (LaravelLocalization::getSupportedLocales() as $locale => $language): ?>
+                            <?php foreach (LaravelLocalization::getSupportedLocales() as $locale => $language) { ?>
                                 <?php $i++; ?>
                                 <div class="tab-pane {{ App::getLocale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
                                     @include('setting::admin.partials.fields', ['settings' => $translatableSettings])
                                 </div>
-                            <?php endforeach; ?>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
             </div>
-        <?php endif; ?>
-        <?php if ($plainSettings): ?>
+        <?php } ?>
+        <?php if ($plainSettings) { ?>
         <div class="box box-primary">
             <div class="box-header">
                 <h3 class="box-title">{{ trans('core::core.title.non translatable fields') }}</h3>
@@ -69,7 +69,7 @@
                 @include('setting::admin.partials.fields', ['settings' => $plainSettings])
             </div>
         </div>
-        <?php endif; ?>
+        <?php } ?>
         <div class="box-footer">
             <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
             <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.setting.settings.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>

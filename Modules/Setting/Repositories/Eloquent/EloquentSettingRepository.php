@@ -260,7 +260,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
      */
     private function getConfigSettingName($settingName)
     {
-        list($module, $setting) = explode('::', $settingName);
+        [$module, $setting] = explode('::', $settingName);
 
         return "asgard.{$module}.settings.{$setting}";
     }

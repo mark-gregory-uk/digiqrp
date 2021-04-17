@@ -35,7 +35,7 @@ class ModuleScaffoldCommand extends Command
     public function handle()
     {
         $moduleName = $this->ask('Please enter the module name in the following format: vendor/name');
-        list($vendor, $name) = $this->separateVendorAndName($moduleName);
+        [$vendor, $name] = $this->separateVendorAndName($moduleName);
 
         $this->checkForModuleUniqueness($name);
 

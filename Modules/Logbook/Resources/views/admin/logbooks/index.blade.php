@@ -36,8 +36,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($logbooks)): ?>
-                            <?php foreach ($logbooks as $logbook): ?>
+                            <?php if (isset($logbooks)) { ?>
+                            <?php foreach ($logbooks as $logbook) { ?>
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.logbook.logbook.edit', [$logbook->id]) }}">
@@ -61,8 +61,8 @@
                                     </div>
                                 </td>
                             </tr>
-                            <?php endforeach; ?>
-                            <?php endif; ?>
+                            <?php } ?>
+                            <?php } ?>
                             </tbody>
                         </table>
                         <!-- /.box-body -->

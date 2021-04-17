@@ -1,17 +1,17 @@
 php:
-  preset: laravel
+  preset: recommended
   disabled:
     - unused_use
   finder:
     exclude:
-      - "Themes/Adminlte/assets"
-
+      - "Themes"
     not-name:
       - index.php
       - server.php
       - deploy.php
       - .env.prod
       - fontawesome-webfont.eot
+      - fontawesome-webfont.ttf
 
 #js:
 #  finder:

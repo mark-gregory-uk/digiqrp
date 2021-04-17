@@ -346,7 +346,7 @@ class CoreServiceProvider extends ServiceProvider
          * Usage: @set($variable, value).
          */
         Blade::directive('set', function ($expression) {
-            list($variable, $value) = $this->getArguments($expression);
+            [$variable, $value] = $this->getArguments($expression);
 
             return "<?php {$variable} = {$value}; ?>";
         });

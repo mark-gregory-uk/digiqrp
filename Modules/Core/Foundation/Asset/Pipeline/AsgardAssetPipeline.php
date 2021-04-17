@@ -110,8 +110,8 @@ class AsgardAssetPipeline implements AssetPipeline
     {
         $offset = $offset == 'before' ? 0 : 1;
 
-        list($dependencyArray, $collectionName) = $this->findDependenciesForKey($dependency);
-        list($key, $value) = $this->getLastKeyAndValueOf($dependencyArray);
+        [$dependencyArray, $collectionName] = $this->findDependenciesForKey($dependency);
+        [$key, $value] = $this->getLastKeyAndValueOf($dependencyArray);
 
         $pos = $this->getPositionInArray($dependency, $dependencyArray);
 

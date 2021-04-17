@@ -36,8 +36,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php if (isset($categories)): ?>
-                        <?php foreach ($categories as $category): ?>
+                    <?php if (isset($categories)) { ?>
+                        <?php foreach ($categories as $category) { ?>
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.blog.category.edit', [$category->id]) }}">
@@ -66,8 +66,8 @@
                                     </div>
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+                        <?php } ?>
+                    <?php } ?>
                     </tbody>
                     <tfoot>
                         <tr>

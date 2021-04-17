@@ -13,7 +13,7 @@ php:
       - fontawesome-webfont.eot
       - fontawesome-webfont.ttf
     not-path:
-      - "Themes/Adminlte/assets/vendor/*"
+      - Themes/Adminlte/assets/vendor
 #js:
 #  finder:
 #    not-name:

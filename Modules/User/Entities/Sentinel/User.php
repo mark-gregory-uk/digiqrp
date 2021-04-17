@@ -7,6 +7,7 @@ use Cartalyst\Sentinel\Users\EloquentUser;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Laracasts\Presenter\PresentableTrait;
+use Modules\Blog\Entities\Post;
 use Modules\User\Entities\UserInterface;
 use Modules\User\Entities\UserToken;
 use Modules\User\Presenters\UserPresenter;
@@ -132,4 +133,9 @@ class User extends EloquentUser implements UserInterface, AuthenticatableContrac
 
         return $permissions->hasAccess($permission);
     }
+
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
+
 }

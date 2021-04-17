@@ -28,7 +28,7 @@ class NestedFoldersCollection extends Collection
     public function nest()
     {
         $parentColumn = $this->parentColumn;
-        if (! $parentColumn) {
+        if (!$parentColumn) {
             return $this;
         }
         // Set id as keys.
@@ -36,7 +36,7 @@ class NestedFoldersCollection extends Collection
         $keysToDelete = [];
         // Add empty collection to each items.
         $collection = $this->each(function ($item) {
-            if (! $item->items) {
+            if (!$item->items) {
                 $item->items = app(BaseCollection::class);
             }
         });
@@ -165,10 +165,10 @@ class NestedFoldersCollection extends Collection
     public function anAncestorIsMissing($item)
     {
         $parentColumn = $this->parentColumn;
-        if (! $item->$parentColumn) {
+        if (!$item->$parentColumn) {
             return false;
         }
-        if (! $this->has($item->$parentColumn)) {
+        if (!$this->has($item->$parentColumn)) {
             return true;
         }
         $parent = $this[$item->$parentColumn];

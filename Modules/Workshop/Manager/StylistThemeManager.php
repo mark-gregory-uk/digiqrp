@@ -100,7 +100,7 @@ class StylistThemeManager implements ThemeManager
      */
     private function getChangelog($directory)
     {
-        if (! $this->finder->isFile($directory.'/changelog.yml')) {
+        if (!$this->finder->isFile($directory.'/changelog.yml')) {
             return [];
         }
 

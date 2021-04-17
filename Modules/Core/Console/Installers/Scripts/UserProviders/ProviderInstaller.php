@@ -70,7 +70,7 @@ abstract class ProviderInstaller implements SetupScript
             $this->command->callSilent('vendor:publish', ['--provider' => CoreServiceProvider::class]);
         }
 
-        if (! $this->checkIsInstalled()) {
+        if (!$this->checkIsInstalled()) {
             return $this->command->error('No user driver was installed. Please check the presence of a Service Provider');
         }
 
@@ -208,7 +208,7 @@ abstract class ProviderInstaller implements SetupScript
             if ($firstname == '') {
                 $this->command->error('First name is required');
             }
-        } while (! $firstname);
+        } while (!$firstname);
 
         return $firstname;
     }
@@ -223,7 +223,7 @@ abstract class ProviderInstaller implements SetupScript
             if ($lastname == '') {
                 $this->command->error('Last name is required');
             }
-        } while (! $lastname);
+        } while (!$lastname);
 
         return $lastname;
     }
@@ -238,7 +238,7 @@ abstract class ProviderInstaller implements SetupScript
             if ($email == '') {
                 $this->command->error('Email is required');
             }
-        } while (! $email);
+        } while (!$email);
 
         return $email;
     }
@@ -269,7 +269,7 @@ abstract class ProviderInstaller implements SetupScript
             if ($password == '') {
                 $this->command->error('Password is required');
             }
-        } while (! $password);
+        } while (!$password);
 
         return $password;
     }
@@ -284,7 +284,7 @@ abstract class ProviderInstaller implements SetupScript
             if ($passwordConfirmation == '') {
                 $this->command->error('Password confirmation is required');
             }
-        } while (! $passwordConfirmation);
+        } while (!$passwordConfirmation);
 
         return $passwordConfirmation;
     }

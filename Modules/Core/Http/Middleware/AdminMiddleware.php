@@ -52,7 +52,7 @@ class AdminMiddleware
     public function handle($request, \Closure $next)
     {
         // Check if the user is logged in
-        if (! $this->auth->check()) {
+        if (!$this->auth->check()) {
             if ($request->ajax()) {
                 return response('Unauthenticated.', Response::HTTP_UNAUTHORIZED);
             }
@@ -64,7 +64,7 @@ class AdminMiddleware
         }
 
         // Check if the user has access to the dashboard page
-        if (! $this->auth->hasAccess('dashboard.index')) {
+        if (!$this->auth->hasAccess('dashboard.index')) {
             // Show the insufficient permissions page
             return $this->application->abort(Response::HTTP_FORBIDDEN);
         }

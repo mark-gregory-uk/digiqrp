@@ -43,7 +43,7 @@ class PermissionMiddleware
         $entityName = $this->getEntityName($request, $segmentPosition);
         $permission = $this->getPermission($moduleName, $entityName, $actionMethod);
 
-        if (! $this->auth->hasAccess($permission)) {
+        if (!$this->auth->hasAccess($permission)) {
             return redirect()->back()->withError(trans('core::core.permission denied', ['permission' => $permission]));
         }
 

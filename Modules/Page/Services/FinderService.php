@@ -35,6 +35,6 @@ class FinderService
      */
     public function allFiles($directory, $hidden = false)
     {
-        return iterator_to_array($this->filesystem->ignoreDotFiles(! $hidden)->in($directory), false);
+        return iterator_to_array($this->filesystem->ignoreDotFiles(!$hidden)->in($directory), false);
     }
 }

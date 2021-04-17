@@ -84,7 +84,7 @@ class DashboardController extends AdminBaseController
     {
         $widget = $this->widget->findForUser($this->auth->id());
 
-        if (! $widget) {
+        if (!$widget) {
             return redirect()->route('dashboard.index')->with('warning', trans('dashboard::dashboard.reset not needed'));
         }
 
@@ -101,7 +101,7 @@ class DashboardController extends AdminBaseController
     private function bootWidgets(RepositoryInterface $modules)
     {
         foreach ($modules->allEnabled() as $module) {
-            if (! isset($module->widgets)) {
+            if (!isset($module->widgets)) {
                 continue;
             }
             foreach ($module->widgets as $widgetClass) {

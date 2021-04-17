@@ -6,7 +6,7 @@
     </a>
     <div class="clearfix"></div>
     <div class="jsThumbnailImageWrapper">
-        <?php if (isset($media) && ! $media->isEmpty()) { ?>
+        <?php if (isset($media) && !$media->isEmpty()) { ?>
             <?php $order_list = [] ?>
             <?php foreach ($media as $file) { ?>
                 <?php $order_list[$zone][] = $file->id; ?>

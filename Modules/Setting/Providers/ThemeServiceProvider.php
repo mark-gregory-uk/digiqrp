@@ -22,7 +22,7 @@ class ThemeServiceProvider extends ServiceProvider
      */
     private function setActiveTheme()
     {
-        if ($this->app->runningInConsole() || ! app('asgard.isInstalled')) {
+        if ($this->app->runningInConsole() || !app('asgard.isInstalled')) {
             return;
         }
 

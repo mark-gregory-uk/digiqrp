@@ -46,7 +46,7 @@ class Composer extends \Illuminate\Support\Composer
      */
     public function update($package = null)
     {
-        if (! is_null($package)) {
+        if (!is_null($package)) {
             $package = '"'.$package.'"';
         }
         $process = $this->getProcess();
@@ -63,7 +63,7 @@ class Composer extends \Illuminate\Support\Composer
      */
     public function install($package)
     {
-        if (! is_null($package)) {
+        if (!is_null($package)) {
             $package = '"'.$package.'"';
         }
         $process = $this->getProcess();
@@ -83,7 +83,7 @@ class Composer extends \Illuminate\Support\Composer
 
     public function remove($package)
     {
-        if (! is_null($package)) {
+        if (!is_null($package)) {
             $package = '"'.$package.'"';
         }
         $process = $this->getProcess();

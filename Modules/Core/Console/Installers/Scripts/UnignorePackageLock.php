@@ -20,7 +20,7 @@ class UnignorePackageLock implements SetupScript
     {
         $gitignorePath = base_path('.gitignore');
 
-        if (! $this->gitignoreContainsPackageLock($gitignorePath)) {
+        if (!$this->gitignoreContainsPackageLock($gitignorePath)) {
             return;
         }
 

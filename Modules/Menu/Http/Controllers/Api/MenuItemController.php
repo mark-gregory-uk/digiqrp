@@ -54,7 +54,7 @@ class MenuItemController extends Controller
     {
         $menuItem = $this->menuItem->find($request->get('menuitem'));
 
-        if (! $menuItem) {
+        if (!$menuItem) {
             return Response::json(['errors' => true]);
         }
 

@@ -84,7 +84,7 @@ class SettingServiceProvider extends ServiceProvider
         $this->app->bind(SettingRepository::class, function () {
             $repository = new EloquentSettingRepository(new Setting());
 
-            if (! config('app.cache')) {
+            if (!config('app.cache')) {
                 return $repository;
             }
 

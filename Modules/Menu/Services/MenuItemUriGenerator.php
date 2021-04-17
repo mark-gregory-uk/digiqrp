@@ -38,7 +38,7 @@ final class MenuItemUriGenerator
         $linkPathArray[] = $this->getPageSlug($pageId, $lang);
 
         if ($parentId !== '') {
-            $hasParentItem = ! (is_null($parentId)) ? true : false;
+            $hasParentItem = !(is_null($parentId)) ? true : false;
             while ($hasParentItem) {
                 $parentItemId = isset($parentItem) ? $parentItem->parent_id : $parentId;
                 $parentItem = $this->menuItem->find($parentItemId);
@@ -49,7 +49,7 @@ final class MenuItemUriGenerator
                     } else {
                         $linkPathArray[] = $this->getParentUri($parentItem, $linkPathArray);
                     }
-                    $hasParentItem = ! is_null($parentItem->parent_id) ? true : false;
+                    $hasParentItem = !is_null($parentItem->parent_id) ? true : false;
                 } else {
                     $hasParentItem = false;
                 }

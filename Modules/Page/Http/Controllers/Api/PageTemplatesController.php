@@ -116,6 +116,6 @@ class PageTemplatesController extends Controller
      */
     private function hasSubdirectory($relativePath)
     {
-        return ! empty($relativePath);
+        return !empty($relativePath);
     }
 }

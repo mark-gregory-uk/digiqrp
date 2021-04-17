@@ -70,7 +70,7 @@ class FileTranslationRepository implements FileTranslationRepositoryInterface
                     foreach ($glob as $file) {
                         $category = str_replace(["$path/", '.php', "{$locale}/"], '', $file);
                         $category = str_replace('/', '.', $category);
-                        $category = ! is_int($hint) ? "{$hint}::{$category}" : $category;
+                        $category = !is_int($hint) ? "{$hint}::{$category}" : $category;
 
                         $files[$locale][$category] = $file;
                     }

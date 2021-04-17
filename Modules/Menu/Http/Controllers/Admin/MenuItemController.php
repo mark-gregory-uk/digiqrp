@@ -99,7 +99,7 @@ class MenuItemController extends AdminBaseController
         $data = $request->all();
 
         foreach (LaravelLocalization::getSupportedLanguagesKeys() as $lang) {
-            if ($data['link_type'] === 'page' && ! empty($data['page_id'])) {
+            if ($data['link_type'] === 'page' && !empty($data['page_id'])) {
                 $data[$lang]['uri'] = $this->menuItemUriGenerator->generateUri($data['page_id'], $data['parent_id'], $lang);
             }
         }

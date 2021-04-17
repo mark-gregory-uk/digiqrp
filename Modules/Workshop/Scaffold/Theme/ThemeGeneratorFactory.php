@@ -19,7 +19,7 @@ class ThemeGeneratorFactory
     {
         $class = 'Modules\Workshop\Scaffold\Theme\FileTypes\\'.ucfirst($file);
 
-        if (! class_exists($class)) {
+        if (!class_exists($class)) {
             throw new FileTypeNotFoundException();
         }
 

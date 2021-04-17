@@ -2,7 +2,7 @@
 
 error_reporting(0);
 $callback = $_REQUEST['callback'];
-if (! $callback) {
+if (!$callback) {
     $callback = explode('?', end(explode('/', $_SERVER['REQUEST_URI'])));
     $callback = $callback[0];
 }

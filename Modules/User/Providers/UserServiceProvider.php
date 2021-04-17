@@ -138,7 +138,7 @@ class UserServiceProvider extends ServiceProvider
         $this->app->bind(UserTokenRepository::class, function () {
             $repository = new EloquentUserTokenRepository(new UserToken());
 
-            if (! config('app.cache')) {
+            if (!config('app.cache')) {
                 return $repository;
             }
 
@@ -157,7 +157,7 @@ class UserServiceProvider extends ServiceProvider
     {
         $driver = config('asgard.user.config.driver', 'Sentinel');
 
-        if (! isset($this->providers[$driver])) {
+        if (!isset($this->providers[$driver])) {
             throw new \Exception("Driver [{$driver}] does not exist");
         }
 

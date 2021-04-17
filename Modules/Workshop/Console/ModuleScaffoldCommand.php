@@ -59,7 +59,7 @@ class ModuleScaffoldCommand extends Command
 
         do {
             $entity = $this->ask('Enter entity name. Leaving option empty will continue script.', '<none>');
-            if (! empty($entity) && $entity !== '<none>') {
+            if (!empty($entity) && $entity !== '<none>') {
                 $this->entities[] = ucfirst($entity);
             }
         } while ($entity !== '<none>');
@@ -69,7 +69,7 @@ class ModuleScaffoldCommand extends Command
     {
         do {
             $valueObject = $this->ask('Enter value object name. Leaving option empty will continue script.', '<none>');
-            if (! empty($valueObject) && $valueObject !== '<none>') {
+            if (!empty($valueObject) && $valueObject !== '<none>') {
                 $this->valueObjects[] = ucfirst($valueObject);
             }
         } while ($valueObject !== '<none>');

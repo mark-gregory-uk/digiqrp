@@ -61,7 +61,7 @@ class TranslationsService
         $activeLocales = $this->getActiveLocales();
 
         foreach ($allFileTranslations as $locale => $value) {
-            if (! in_array($locale, $activeLocales)) {
+            if (!in_array($locale, $activeLocales)) {
                 unset($allFileTranslations[$locale]);
             }
         }

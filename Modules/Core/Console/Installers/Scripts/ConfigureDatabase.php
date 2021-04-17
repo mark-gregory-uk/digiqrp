@@ -52,7 +52,7 @@ class ConfigureDatabase implements SetupScript
 
         $vars = [];
 
-        while (! $connected) {
+        while (!$connected) {
             $vars['db_driver'] = $this->askDatabaseDriver();
             $vars['db_host'] = $this->askDatabaseHost();
             $vars['db_port'] = $this->askDatabasePort($vars['db_driver']);
@@ -114,7 +114,7 @@ class ConfigureDatabase implements SetupScript
             if ($name == '') {
                 $this->command->error('Database name is required');
             }
-        } while (! $name);
+        } while (!$name);
 
         return $name;
     }
@@ -131,7 +131,7 @@ class ConfigureDatabase implements SetupScript
             if ($user == '') {
                 $this->command->error('Database username is required');
             }
-        } while (! $user);
+        } while (!$user);
 
         return $user;
     }

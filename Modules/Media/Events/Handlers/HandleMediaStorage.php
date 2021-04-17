@@ -50,7 +50,7 @@ class HandleMediaStorage
         $postMedia = Arr::get($event->getSubmissionData(), 'medias_single', []);
 
         foreach ($postMedia as $zone => $fileId) {
-            if (! empty($fileId)) {
+            if (!empty($fileId)) {
                 $entity->filesByZone($zone)->sync([$fileId => ['imageable_type' => get_class($entity), 'zone' => $zone, 'order' => null]]);
             } else {
                 $entity->filesByZone($zone)->sync([]);

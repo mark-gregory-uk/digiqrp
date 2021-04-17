@@ -83,7 +83,7 @@ class SentinelUserRepository implements UserRepository
     {
         $user = $this->create((array) $data, $activated);
 
-        if (! empty($roles)) {
+        if (!empty($roles)) {
             $user->roles()->attach($roles);
         }
 
@@ -105,7 +105,7 @@ class SentinelUserRepository implements UserRepository
         $this->hashPassword($data);
         $user = $this->user->create((array) $data);
 
-        if (! empty($roles)) {
+        if (!empty($roles)) {
             $user->roles()->attach($roles);
         }
 
@@ -174,7 +174,7 @@ class SentinelUserRepository implements UserRepository
 
         event(new UserWasUpdated($user));
 
-        if (! empty($roles)) {
+        if (!empty($roles)) {
             $user->roles()->sync($roles);
         }
     }
@@ -283,11 +283,11 @@ class SentinelUserRepository implements UserRepository
      */
     private function checkForManualActivation($user, array &$data)
     {
-        if (Activation::completed($user) && ! $data['is_activated']) {
+        if (Activation::completed($user) && !$data['is_activated']) {
             return Activation::remove($user);
         }
 
-        if (! Activation::completed($user) && $data['is_activated']) {
+        if (!Activation::completed($user) && $data['is_activated']) {
             $activation = Activation::create($user);
 
             return Activation::complete($user, $activation->code);

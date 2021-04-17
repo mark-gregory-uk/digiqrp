@@ -2,7 +2,7 @@
   "_args": [
     [
       "admin-lte@2.4.2",
-      "/Users/nicolaswidart/Sites/Asguard/Platform/Themes/Adminlte"
+      "/Users/mag/Sites/Laravel/digiqrp/Themes/Adminlte"
     ]
   ],
   "_from": "admin-lte@2.4.2",
@@ -26,7 +26,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/admin-lte/-/admin-lte-2.4.2.tgz",
   "_spec": "2.4.2",
-  "_where": "/Users/nicolaswidart/Sites/Asguard/Platform/Themes/Adminlte",
+  "_where": "/Users/mag/Sites/Laravel/digiqrp/Themes/Adminlte",
   "bugs": {
     "url": "https://github.com/almasaeed2010/AdminLTE/issues"
   },

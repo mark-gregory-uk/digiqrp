@@ -11,6 +11,7 @@ php:
       - deploy.php
       - .env.prod
       - fontawesome-webfont.eot
+      - fontawesome-webfont.ttf
 
 #js:
 #  finder:

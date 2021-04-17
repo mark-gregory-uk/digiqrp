@@ -84,9 +84,9 @@
                         </a>
                     </li>
                 </ul>
-            </div>
+        </div>
             <!-- End Right Sidebar -->
-            <div class="well ">
+        <div class="well ">
                 <a href="#?format=feed&amp;type=rss" class="syndicate-module">
                     <img src="{{  asset('/img/system/livemarks.png') }}" alt="feed-image" />
                     <span>My Blog</span>
@@ -94,6 +94,7 @@
             </div>
         </div>
     </div>
+        <!-- Begin Breadcrumbs -->
         <div aria-label="Breadcrumbs" role="navigation">
             <ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">
                 <li>
@@ -106,6 +107,7 @@
                 </li>
             </ul>
         </div>
+        <!-- End Breadcrumbs -->
     </div>
     </div>
 
@@ -115,6 +117,7 @@
     <?php if (Setting::has('core::analytics-script')): ?>
         {!! Setting::get('core::analytics-script') !!}
     <?php endif; ?>
+
     @stack('js-stack')
 
     <script>

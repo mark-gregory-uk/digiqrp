@@ -3,7 +3,6 @@
 namespace Modules\Logbook\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Log;
 use Modules\Logbook\Entities\Logbook;
@@ -12,7 +11,9 @@ class LogbookController extends Controller
 {
     /**
      * Store a newly created resource in storage.
+     *
      * @param Request $request
+     *
      * @return |null
      */
     public function store(Request $request)
@@ -43,7 +44,8 @@ class LogbookController extends Controller
 
     /**
      * Create a mac logger entry and lookup the
-     * callsign
+     * callsign.
+     *
      * @param Request $request
      */
     public function storeMacLogger(Request $request)

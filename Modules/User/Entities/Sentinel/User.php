@@ -134,8 +134,8 @@ class User extends EloquentUser implements UserInterface, AuthenticatableContrac
         return $permissions->hasAccess($permission);
     }
 
-    public function posts(){
+    public function posts()
+    {
         return $this->hasMany(Post::class);
     }
-
 }

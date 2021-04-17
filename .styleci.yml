@@ -1,18 +1,13 @@
 php:
-  preset: recommended
+  preset: laravel
   disabled:
     - unused_use
   finder:
-    exclude:
-      - "Themes"
     not-name:
       - index.php
       - server.php
       - deploy.php
       - .env.prod
-      - fontawesome-webfont.eot
-      - fontawesome-webfont.ttf
-
 #js:
 #  finder:
 #    not-name:

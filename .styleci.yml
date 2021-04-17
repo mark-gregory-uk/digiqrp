@@ -8,6 +8,8 @@ php:
       - server.php
       - deploy.php
       - .env.prod
+      - fontawesome-webfont.eot
+      - fontawesome-webfont.ttf
     not-path:
       - "Themes/Adminlte/assets/vendor/*"
 #js:

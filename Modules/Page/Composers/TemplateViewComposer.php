@@ -115,6 +115,6 @@ class TemplateViewComposer
      */
     private function hasSubdirectory($relativePath)
     {
-        return !empty($relativePath);
+        return ! empty($relativePath);
     }
 }

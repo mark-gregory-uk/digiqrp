@@ -77,7 +77,7 @@ class TagServiceProvider extends ServiceProvider
         $this->app->bind(TagRepository::class, function () {
             $repository = new EloquentTagRepository(new Tag());
 
-            if (!config('app.cache')) {
+            if (! config('app.cache')) {
                 return $repository;
             }
 

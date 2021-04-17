@@ -55,12 +55,12 @@ class AssetPublisher
      */
     public function publish()
     {
-        if (!$this->finder->isDirectory($sourcePath = $this->getSourcePath())) {
+        if (! $this->finder->isDirectory($sourcePath = $this->getSourcePath())) {
             $message = "Source path does not exist : {$sourcePath}";
 
             throw new \InvalidArgumentException($message);
         }
-        if (!$this->finder->isDirectory($destinationPath = $this->getDestinationPath())) {
+        if (! $this->finder->isDirectory($destinationPath = $this->getDestinationPath())) {
             $this->finder->makeDirectory($destinationPath, 0775, true);
         }
         if ($this->finder->copyDirectory($sourcePath, $destinationPath)) {

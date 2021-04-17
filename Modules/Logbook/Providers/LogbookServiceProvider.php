@@ -59,7 +59,7 @@ class LogbookServiceProvider extends ServiceProvider
             function () {
                 $repository = new \Modules\Logbook\Repositories\Eloquent\EloquentLogbookRepository(new \Modules\Logbook\Entities\Logbook());
 
-                if (!config('app.cache')) {
+                if (! config('app.cache')) {
                     return $repository;
                 }
 

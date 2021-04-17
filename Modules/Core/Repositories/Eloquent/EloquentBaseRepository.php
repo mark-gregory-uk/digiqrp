@@ -200,7 +200,7 @@ abstract class EloquentBaseRepository implements BaseRepository
         if ($operator === null) {
             $operator = '=';
         } else {
-            list($value, $operator) = [$operator, $value];
+            [$value, $operator] = [$operator, $value];
         }
 
         return $this->model->where($field, $operator, $value);

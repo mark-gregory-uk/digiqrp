@@ -72,7 +72,7 @@ class Menuitem extends Model
      */
     public function setPageIdAttribute($value)
     {
-        $this->attributes['page_id'] = !empty($value) ? $value : null;
+        $this->attributes['page_id'] = ! empty($value) ? $value : null;
     }
 
     /**
@@ -82,6 +82,6 @@ class Menuitem extends Model
      */
     public function setParentIdAttribute($value)
     {
-        $this->attributes['parent_id'] = !empty($value) ? $value : null;
+        $this->attributes['parent_id'] = ! empty($value) ? $value : null;
     }
 }

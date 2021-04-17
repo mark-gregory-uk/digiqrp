@@ -14,9 +14,9 @@
     <?php $old = isset($post->translate($lang)->content) ? $post->translate($lang)->content : ''; ?>
     @editor('content', trans('blog::post.form.content'), old("$lang.content", $old), $lang)
 
-    <?php if (config('asgard.blog.config.post.partials.translatable.edit') !== []): ?>
-        <?php foreach (config('asgard.blog.config.post.partials.translatable.edit') as $partial): ?>
+    <?php if (config('asgard.blog.config.post.partials.translatable.edit') !== []) { ?>
+        <?php foreach (config('asgard.blog.config.post.partials.translatable.edit') as $partial) { ?>
         @include($partial)
-        <?php endforeach; ?>
-    <?php endif; ?>
+        <?php } ?>
+    <?php } ?>
 </div>

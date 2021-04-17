@@ -19,12 +19,12 @@
             @include('partials.form-tab-headers')
             <div class="tab-content">
                 <?php $i = 0; ?>
-                <?php foreach (LaravelLocalization::getSupportedLocales() as $locale => $language): ?>
+                <?php foreach (LaravelLocalization::getSupportedLocales() as $locale => $language) { ?>
                     <?php $i++; ?>
                     <div class="tab-pane {{ App::getLocale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
                         @include('blog::admin.categories.partials.create-fields', ['lang' => $locale])
                     </div>
-                <?php endforeach; ?>
+                <?php } ?>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
                     <button class="btn btn-default btn-flat" name="button" type="reset">{{ trans('core::core.button.reset') }}</button>

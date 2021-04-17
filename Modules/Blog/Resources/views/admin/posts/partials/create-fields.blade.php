@@ -12,9 +12,9 @@
 
     @editor('content', trans('blog::post.form.content'), old("{$lang}.content"), $lang)
 
-    <?php if (config('asgard.blog.config.post.partials.translatable.create') !== []): ?>
-        <?php foreach (config('asgard.blog.config.post.partials.translatable.create') as $partial): ?>
+    <?php if (config('asgard.blog.config.post.partials.translatable.create') !== []) { ?>
+        <?php foreach (config('asgard.blog.config.post.partials.translatable.create') as $partial) { ?>
         @include($partial)
-        <?php endforeach; ?>
-    <?php endif; ?>
+        <?php } ?>
+    <?php } ?>
 </div>

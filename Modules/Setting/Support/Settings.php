@@ -93,7 +93,7 @@ class Settings implements Setting
      */
     private function getDefaultFromConfigFor($name)
     {
-        list($module, $settingName) = explode('::', $name);
+        [$module, $settingName] = explode('::', $name);
 
         return config("asgard.$module.settings.$settingName.default", '');
     }

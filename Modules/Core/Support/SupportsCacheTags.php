@@ -11,6 +11,6 @@ trait SupportsCacheTags
      */
     public function cacheTagsAreSupported()
     {
-        return !in_array(config('cache.default'), ['file', 'database']);
+        return ! in_array(config('cache.default'), ['file', 'database']);
     }
 }

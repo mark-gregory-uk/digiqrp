@@ -75,7 +75,7 @@ class EntityGenerator extends Generator
      */
     private function generateRepositoriesFor($entity)
     {
-        if (!$this->finder->isDirectory($this->getModulesPath('Repositories/'.$this->entityType))) {
+        if (! $this->finder->isDirectory($this->getModulesPath('Repositories/'.$this->entityType))) {
             $this->finder->makeDirectory($this->getModulesPath('Repositories/'.$this->entityType));
         }
 
@@ -102,7 +102,7 @@ class EntityGenerator extends Generator
     private function generateControllerFor($entity)
     {
         $path = $this->getModulesPath('Http/Controllers/Admin');
-        if (!$this->finder->isDirectory($path)) {
+        if (! $this->finder->isDirectory($path)) {
             $this->finder->makeDirectory($path);
         }
         $this->writeFile(
@@ -119,7 +119,7 @@ class EntityGenerator extends Generator
     private function generateRequestsFor($entity)
     {
         $path = $this->getModulesPath('Http/Requests');
-        if (!$this->finder->isDirectory($path)) {
+        if (! $this->finder->isDirectory($path)) {
             $this->finder->makeDirectory($path);
         }
         $this->writeFile(
@@ -160,7 +160,7 @@ class EntityGenerator extends Generator
     {
         $lowerCaseEntity = Str::plural(strtolower($entity));
         $path = $this->getModulesPath('Resources/lang/en');
-        if (!$this->finder->isDirectory($path)) {
+        if (! $this->finder->isDirectory($path)) {
             $this->finder->makeDirectory($path);
         }
         $this->writeFile(

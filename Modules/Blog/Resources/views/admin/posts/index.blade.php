@@ -37,8 +37,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php if (isset($posts)): ?>
-                        <?php foreach ($posts as $post): ?>
+                    <?php if (isset($posts)) { ?>
+                        <?php foreach ($posts as $post) { ?>
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.blog.post.edit', [$post->id]) }}">
@@ -72,8 +72,8 @@
                                     </div>
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+                        <?php } ?>
+                    <?php } ?>
                     </tbody>
                     <tfoot>
                         <tr>

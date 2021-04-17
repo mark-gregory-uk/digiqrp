@@ -22,17 +22,17 @@
             @include('partials.form-tab-headers', ['fields' => ['title', 'slug']])
             <div class="tab-content">
                 <?php $i = 0; ?>
-                <?php foreach (LaravelLocalization::getSupportedLocales() as $locale => $language): ?>
+                <?php foreach (LaravelLocalization::getSupportedLocales() as $locale => $language) { ?>
                     <?php $i++; ?>
                     <div class="tab-pane {{ App::getLocale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
                         @include('blog::admin.posts.partials.create-fields', ['lang' => $locale])
                     </div>
-                <?php endforeach; ?>
-                <?php if (config('asgard.blog.config.post.partials.normal.create') !== []): ?>
-                    <?php foreach (config('asgard.blog.config.post.partials.normal.create') as $partial): ?>
+                <?php } ?>
+                <?php if (config('asgard.blog.config.post.partials.normal.create') !== []) { ?>
+                    <?php foreach (config('asgard.blog.config.post.partials.normal.create') as $partial) { ?>
                     @include($partial)
-                    <?php endforeach; ?>
-                <?php endif; ?>
+                    <?php } ?>
+                <?php } ?>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary btn-flat">{{ trans('blog::post.button.create post') }}</button>
                     <button class="btn btn-default btn-flat" name="button" type="reset">{{ trans('core::core.button.reset') }}</button>
@@ -47,17 +47,17 @@
                 <div class="form-group">
                     {!! Form::label("category", 'Category:') !!}
                     <select name="category_id" id="category" class="form-control">
-                        <?php foreach ($categories as $category): ?>
+                        <?php foreach ($categories as $category) { ?>
                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        <?php endforeach; ?>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="form-group">
                     {!! Form::label("status", 'Post status:') !!}
                     <select name="status" id="status" class="form-control">
-                        <?php foreach ($statuses as $id => $status): ?>
+                        <?php foreach ($statuses as $id => $status) { ?>
                         <option value="{{ $id }}" {{ old('status', 0) == $id ? 'selected' : '' }}>{{ $status }}</option>
-                        <?php endforeach; ?>
+                        <?php } ?>
                     </select>
                 </div>
                 @tags('asgardcms/post')

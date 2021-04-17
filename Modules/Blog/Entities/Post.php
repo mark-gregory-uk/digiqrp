@@ -12,6 +12,7 @@ use Modules\Media\Entities\File;
 use Modules\Media\Support\Traits\MediaRelation;
 use Modules\Tag\Contracts\TaggableInterface;
 use Modules\Tag\Traits\TaggableTrait;
+use Modules\User\Entities\Sentinel\User;
 
 class Post extends Model implements TaggableInterface
 {
@@ -33,6 +34,11 @@ class Post extends Model implements TaggableInterface
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(User::class);
     }
 
     /**

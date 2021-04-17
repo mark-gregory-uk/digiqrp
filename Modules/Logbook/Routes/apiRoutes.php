@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/logbook', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['prefix' => '/v1', 'namespace' => 'Modules\Logbook\Http\Controllers\Api\v1'], function () {
+    Route::post('logentry', 'LogbookController@store')->name('logentry');
+    Route::post('maclogger', 'LogbookController@storeMacLogger')->name('maclogger');
+});

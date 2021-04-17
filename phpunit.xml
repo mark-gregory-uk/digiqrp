@@ -12,6 +12,9 @@
     <testsuite name="Dashboard">
       <directory>./Modules/Dashboard/Tests/</directory>
     </testsuite>
+    <testsuite name="Blog">
+      <directory>./Modules/Blog/Tests/Unit/</directory>
+    </testsuite>
     <testsuite name="Media">
       <directory>./Modules/Media/Tests/</directory>
     </testsuite>

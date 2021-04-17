@@ -247,7 +247,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     public function plainModuleSettings($module)
     {
         return array_filter($this->moduleSettings($module), function ($setting) {
-            return !isset($setting['translatable']) || $setting['translatable'] === false;
+            return ! isset($setting['translatable']) || $setting['translatable'] === false;
         });
     }
 

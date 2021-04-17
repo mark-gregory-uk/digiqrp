@@ -60,7 +60,7 @@
     <div class="clearfix"></div>
     <div class="jsThumbnailImageWrapper">
         <?php $zoneVar = "{$zone}Files"  ?>
-        <?php if (isset($$zoneVar) && !$$zoneVar->isEmpty()) { ?>
+        <?php if (isset($$zoneVar) && ! $$zoneVar->isEmpty()) { ?>
             <?php foreach ($$zoneVar as $file) { ?>
                 <figure data-id="{{ $file->pivot->id }}">
                     <?php if ($file->media_type == 'image') { ?>

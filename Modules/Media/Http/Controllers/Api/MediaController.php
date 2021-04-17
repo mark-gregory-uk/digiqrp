@@ -219,7 +219,7 @@ class MediaController extends Controller
     {
         $imageableId = $request->get('imageableId');
         $deleted = DB::table('media__imageables')->whereId($imageableId)->delete();
-        if (!$deleted) {
+        if (! $deleted) {
             return response()->json([
                 'error'   => true,
                 'message' => 'The file was not found.',

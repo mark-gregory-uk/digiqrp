@@ -43,7 +43,7 @@ class PermissionManager
      */
     public function clean($permissions)
     {
-        if (!$permissions) {
+        if (! $permissions) {
             return [];
         }
         $cleanedPermissions = [];

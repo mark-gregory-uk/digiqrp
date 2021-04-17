@@ -20,7 +20,7 @@ class AsgardInstalledMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (!file_exists(base_path('.env')) || !Schema::hasTable('users')) {
+        if (! file_exists(base_path('.env')) || ! Schema::hasTable('users')) {
             throw new \Exception('Asgard is not yet installed');
         }
 

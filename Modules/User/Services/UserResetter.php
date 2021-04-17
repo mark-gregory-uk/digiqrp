@@ -62,7 +62,7 @@ class UserResetter
 
         $code = Arr::get($data, 'code');
         $password = Arr::get($data, 'password');
-        if (!$this->auth->completeResetPassword($user, $code, $password)) {
+        if (! $this->auth->completeResetPassword($user, $code, $password)) {
             throw new InvalidOrExpiredResetCode();
         }
 

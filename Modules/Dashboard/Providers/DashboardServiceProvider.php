@@ -36,7 +36,7 @@ class DashboardServiceProvider extends ServiceProvider
         $this->app->bind(WidgetRepository::class, function () {
             $repository = new EloquentWidgetRepository(new Widget());
 
-            if (!config('app.cache')) {
+            if (! config('app.cache')) {
                 return $repository;
             }
 

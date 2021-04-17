@@ -34,7 +34,7 @@ class ThemeScaffoldTest extends BaseTestCase
         parent::setUp();
         $this->finder = $this->app['files'];
         $this->scaffold = $this->app['asgard.theme.scaffold'];
-        if (!$this->finder->isDirectory(base_path('Themes'))) {
+        if (! $this->finder->isDirectory(base_path('Themes'))) {
             $this->finder->makeDirectory(base_path('Themes'));
         }
         $this->testThemeName = 'TestingTheme';

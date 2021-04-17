@@ -4,9 +4,7 @@ php:
     - unused_use
   finder:
     exclude:
-      - "Themes/Adminlte/assets"
-    not-path:
-      - "/Themes/Adminlte/assets"
+      - Themes
     not-name:
       - index.php
       - server.php

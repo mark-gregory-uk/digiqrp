@@ -1,8 +1,9 @@
 php:
-  preset: laravel
+  preset: recommended
   disabled:
     - unused_use
-  name: "*.php"
+  name:
+     - "*.php"
   finder:
     exclude:
       - "Themes"

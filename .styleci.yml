@@ -2,8 +2,6 @@ php:
   preset: recommended
   disabled:
     - unused_use
-  name:
-     - "*.php"
   finder:
     exclude:
       - "Themes"

@@ -2,6 +2,7 @@ php:
   preset: laravel
   disabled:
     - unused_use
+  name: "*.php"
   finder:
     exclude:
       - "Themes"

@@ -3,8 +3,6 @@ php:
   disabled:
     - unused_use
   finder:
-    exclude:
-      - Themes
     not-name:
       - index.php
       - server.php

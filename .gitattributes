@@ -7,3 +7,5 @@
 .php_cs export-ignore
 travis.sh export-ignore
 Themes/* export-ignore
+Themes/Adminlte/assets/vendor/font-awesome/fonts/fontawesome-webfont.eot export-ignore
+Themes/Adminlte/assets/vendor/font-awesome/fonts/fontawesome-webfont.ttf export-ignore

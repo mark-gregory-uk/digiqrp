@@ -1,0 +1,20 @@
+php:
+  preset: laravel
+  disabled:
+    - unused_use
+  finder:
+    exclude:
+      - "Themes/Adminlte/assets"
+
+    not-name:
+      - index.php
+      - server.php
+      - deploy.php
+      - .env.prod
+      - fontawesome-webfont.eot
+
+#js:
+#  finder:
+#    not-name:
+#      - webpack.mix.js
+#css: true

@@ -4,7 +4,8 @@ namespace Modules\Logbook\Console;
 
 use Illuminate\Console\Command;
 use Modules\Logbook\Entities\Logbook;
-use Modules\Logbook\Entities\Maclogger;
+
+use Modules\Logbook\Entities\MacLogger;
 use Symfony\Component\Console\Input\InputOption;
 
 class ImportMacLogger extends Command

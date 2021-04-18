@@ -4,7 +4,7 @@ namespace Modules\Logbook\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Maclogger extends Model
+class MacLogger extends Model
 {
     protected $connection = 'maclogger';
 

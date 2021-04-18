@@ -31,6 +31,30 @@
     {!! Theme::style('css/main.css') !!}
     @stack('css-stack')
 
+    <style>
+        h1, h2, h3, h4, h5, h6, .site-title {
+            font-family: 'Open Sans', sans-serif;
+        }
+        body.site {
+            border-top: 3px solid #0088cc;
+            background-color: #f4f6f7;
+        }
+        a {
+            color: #0088cc;
+        }
+        .nav-list > .active > a,
+        .nav-list > .active > a:hover,
+        .dropdown-menu li > a:hover,
+        .dropdown-menu .active > a,
+        .dropdown-menu .active > a:hover,
+        .nav-pills > .active > a,
+        .nav-pills > .active > a:hover,
+        .btn-primary {
+            background: #0088cc;
+        }
+        div.mod_search87 input[type="search"]{ width:auto; }
+    </style>
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
 
     <!-- <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">

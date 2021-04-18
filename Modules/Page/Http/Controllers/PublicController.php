@@ -67,14 +67,14 @@ class PublicController extends BasePublicController
     public function homepage()
     {
         $page = $this->page->findHomepage();
-
+        $latestPosts = $this->postRepository->latest();
         $this->throw404IfNotFound($page);
 
         $template = $this->getTemplateForPage($page);
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page'));
+        return view($template, compact('page','latestPosts'));
     }
 
     /**

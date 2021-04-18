@@ -50,8 +50,8 @@
             <thead>
             <tr>
                 <th>Call</th>
-                <th>Received</th>
-                <th>Sent</th>
+                <th>R-dB</th>
+                <th>S-dB</th>
                 <th>Band</th>
                 <th>Country</th>
             </tr>

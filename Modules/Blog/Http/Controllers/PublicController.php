@@ -29,7 +29,7 @@ class PublicController extends BasePublicController
     public function show($slug)
     {
         $post = $this->post->findBySlug($slug);
-
-        return view('blog.show', compact('post'));
+        $latestPosts = $this->post->latest();
+        return view('blog.show', compact('post','latestPosts'));
     }
 }

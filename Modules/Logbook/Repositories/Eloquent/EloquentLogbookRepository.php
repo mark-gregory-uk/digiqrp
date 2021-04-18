@@ -7,4 +7,7 @@ use Modules\Logbook\Repositories\LogbookRepository;
 
 class EloquentLogbookRepository extends EloquentBaseRepository implements LogbookRepository
 {
+
+
+
 }

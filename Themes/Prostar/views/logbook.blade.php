@@ -50,8 +50,8 @@
             <thead>
             <tr>
                 <th>Call</th>
-                <th>R-dB</th>
-                <th>S-dB</th>
+                <th>Rx</th>
+                <th>Tx</th>
                 <th>Band</th>
                 <th>Country</th>
             </tr>

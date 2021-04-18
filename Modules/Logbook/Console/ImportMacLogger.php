@@ -4,6 +4,7 @@ namespace Modules\Logbook\Console;
 
 use Illuminate\Console\Command;
 use Modules\Logbook\Entities\Logbook;
+
 use Modules\Logbook\Entities\Maclogger;
 use Symfony\Component\Console\Input\InputOption;
 

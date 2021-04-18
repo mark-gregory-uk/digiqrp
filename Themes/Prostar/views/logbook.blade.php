@@ -46,12 +46,12 @@
     </div>
 
     <div class="items-leading clearfix">
-        <table  class="table table-bordered table-striped data-table">
+        <table  class="table table-bordered table-striped data-table display responsive">
             <thead>
             <tr>
                 <th>Call</th>
-                <th>RST</th>
-                <th>SST</th>
+                <th>Received</th>
+                <th>Sent</th>
                 <th>Band</th>
                 <th>Country</th>
             </tr>
@@ -67,6 +67,7 @@
                 ordering: false,
                 processing: true,
                 responsive: true,
+                colReorder: true,
                 language: {
                     processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
                 },

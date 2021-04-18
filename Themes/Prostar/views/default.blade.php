@@ -11,6 +11,6 @@
 @section('content')
     <div class="row">
         <h1>{{ $page->title }}</h1>
-        <div class="page-body">{!! $page->body !!}</div>
+        <div style="margin-left: 10px;" class="page-body">{!! $page->body !!}</div>
     </div>
 @stop

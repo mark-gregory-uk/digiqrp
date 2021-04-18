@@ -12,11 +12,11 @@
 
     <title style="font-family: 'Open Sans', sans-serif;">@section('title')@setting('core::site-name')@show</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ Theme::url('/assets/icons/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ Theme::url('/assets/icons/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/assets/icons/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ Theme::url('/assets//icons/site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ Theme::url('/assets//icons/safari-pinned-tab.svg') }}" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ Theme::url('/icons/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ Theme::url('/icons/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ Theme::url('/icons/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ Theme::url('/icons/site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ Theme::url('/icons/safari-pinned-tab.svg') }}" color="#5bbad5">
 
 
     @if(isset($alternate))
@@ -31,10 +31,60 @@
     {!! Theme::style('css/main.css') !!}
     @stack('css-stack')
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <style>
+        h1, h2, h3, h4, h5, h6, .site-title {
+            font-family: 'Open Sans', sans-serif;
+        }
+        body.site {
+            border-top: 3px solid #0088cc;
+            background-color: #f4f6f7;
+        }
+        a {
+            color: #0088cc;
+        }
+        .nav-list > .active > a,
+        .nav-list > .active > a:hover,
+        .dropdown-menu li > a:hover,
+        .dropdown-menu .active > a,
+        .dropdown-menu .active > a:hover,
+        .nav-pills > .active > a,
+        .nav-pills > .active > a:hover,
+        .btn-primary {
+            background: #0088cc;
+        }
+        div.mod_search87 input[type="search"]{ width:auto; }
+    </style>
 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+
+    <!-- <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+    <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css" rel="stylesheet">
+
+    <style>
+        h1, h2, h3, h4, h5, h6, .site-title {
+            font-family: 'Open Sans', sans-serif;
+        }
+        body.site {
+            border-top: 3px solid #0088cc;
+            background-color: #f4f6f7;
+        }
+        a {
+            color: #0088cc;
+        }
+        .nav-list > .active > a,
+        .nav-list > .active > a:hover,
+        .dropdown-menu li > a:hover,
+        .dropdown-menu .active > a,
+        .dropdown-menu .active > a:hover,
+        .nav-pills > .active > a,
+        .nav-pills > .active > a:hover,
+        .btn-primary {
+            background: #0088cc;
+        }
+        div.mod_search87 input[type="search"]{ width:auto; }
+    </style>
 
     {!! Theme::script('js/all.js') !!}
     @yield('scripts')

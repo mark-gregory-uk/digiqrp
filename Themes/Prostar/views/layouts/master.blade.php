@@ -4,7 +4,7 @@
 
     <body class="site com_content view-category layout-blog no-task itemid-101">
     <div class="body" id="top">
-    <div class="container">
+        <div class="container">
     @include('partials.header')
 
     @include('partials.navigation')
@@ -110,7 +110,6 @@
         <!-- End Breadcrumbs -->
     </div>
     </div>
-
 
     @include('partials.footer')
 

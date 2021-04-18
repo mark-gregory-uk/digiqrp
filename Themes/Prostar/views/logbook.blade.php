@@ -39,6 +39,7 @@
 
 
 @section('content')
+    <div class="well">
     <div>
         <h3>Current Digital Mode Log Entries</h3>
         <p>These are live multi-band low power log entries for G4LCH using Xeigu G90 and multi-band vertical. </p>
@@ -50,8 +51,8 @@
             <thead>
             <tr>
                 <th>Call</th>
-                <th>RST</th>
-                <th>SST</th>
+                <th>Rx</th>
+                <th>Tx</th>
                 <th>Band</th>
                 <th>Country</th>
             </tr>
@@ -60,7 +61,7 @@
             </tbody>
         </table>
     </div>
-
+    </div>
     <script type="text/javascript">
         $(function () {
             var table = $('.data-table').DataTable({

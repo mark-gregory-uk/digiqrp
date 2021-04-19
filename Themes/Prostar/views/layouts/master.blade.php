@@ -42,7 +42,7 @@
         <div id="aside" class="span3">
             <!-- Begin Right Sidebar -->
             <div class="well">
-                <h3 class="page-header">Posts</h3>
+                <h3 class="page-header">Latest Posts</h3>
                 <ul class="category-module mod-list">
                     @foreach($latestPosts as $post)
                         <li>
@@ -52,20 +52,14 @@
                 </ul>
             </div>
             <div class="well ">
-                <h3 class="page-header">latest Stations</h3>
+                <h3 class="page-header">latest Contacts</h3>
                 <ul class="mostread mod-list">
-                    <li itemscope="" itemtype="https://schema.org/Article">
-                        <span itemprop="name">W3WAB 30m</span>
-                    </li>
-                    <li itemscope="" itemtype="https://schema.org/Article">
-                        <span itemprop="name">EA2AWW 20m</span>
-                    </li>
-                    <li itemscope="" itemtype="https://schema.org/Article">
-                        <span itemprop="name">9H3RTG 40m</span>
-                    </li>
-                    <li itemscope="" itemtype="https://schema.org/Article">
-                        <span itemprop="name">RT3EER 10m</span>
-                    </li>
+                    @foreach($latestContacts as $contact)
+                        <li itemscope="" itemtype="https://schema.org/Article">
+                            <span itemprop="name">{!! '<span>'.$contact->call.'</span><span>&nbsp;</span><span style="float:right;">'.$contact->band_rx.'</span>' !!}</span>
+                        </li>
+                    @endforeach
+
 
                 </ul>
         </div>
@@ -86,7 +80,7 @@
                 </li>
 
                 <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="active">
-					<span id="breadcrumb" itemprop="name"></span>
+					<span class="breadcrumb" id="breadcrumb" itemprop="name"></span>
                     <meta itemprop="position" content="1">
                 </li>
             </ul>

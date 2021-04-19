@@ -62,4 +62,7 @@ class EloquentTagRepository extends EloquentBaseRepository implements TagReposit
 
         return $this->create($data);
     }
+
+
+
 }

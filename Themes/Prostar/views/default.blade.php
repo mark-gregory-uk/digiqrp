@@ -9,7 +9,7 @@
 @stop
 @section('content')
     <div class="row">
-        <h1>{{ $page->title }}</h1>
-        <div style="margin-left: 10px;" class="page-body">{!! $page->body !!}</div>
+        <h1 style="margin-left: 10px;">{{ $page->title }}</h1>
+        <div style="margin-left: 25px;" class="page-body">{!! $page->body !!}</div>
     </div>
 @stop

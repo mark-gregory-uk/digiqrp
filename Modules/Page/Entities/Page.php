@@ -91,4 +91,6 @@ class Page extends Model implements TaggableInterface
 
         return $thumbnail;
     }
+
+    
 }

@@ -5,24 +5,19 @@
 @stop
 
 @section('content')
+
+    <script>
+        $(document).ready(function(){
+            val = "{!!  'Created By: '. $post->created_at->format('d-m-Y').' '.$post->author->full_name . ' '. $post->author->callsign !!}";
+            $(".breadcrumb").text(val);
+        });
+    </script>
+
     <div class="row">
         <div class="col-lg-12">
-        <span class="linkBack">
-            <a href="{{ URL::route($currentLocale . '.blog') }}"><i class="glyphicon glyphicon-chevron-left"></i> Back to post list</a>
-        </span>
-        <h1>{{ $post->title }}</h1>
-        <span class="date">{{ $post->created_at->format('d-m-Y') }}</span>
-
+        <h1 style="margin-left: 10px;">{{ $post->title }}</h1>
+        <div style="margin-left: 25px;">
         {!! $post->content !!}
-
-            <p>
-                <?php if ($previous = $post->present()->previous): ?>
-                    <a href="{{ route(locale() . '.blog.slug', [$previous->slug]) }}">Previous</a>
-                <?php endif; ?>
-                <?php if ($next = $post->present()->next): ?>
-                    <a href="{{ route(locale() . '.blog.slug', [$next->slug]) }}">Next</a>
-                <?php endif; ?>
-            </p>
-        </div>
     </div>
 @stop
+

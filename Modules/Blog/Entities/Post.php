@@ -126,4 +126,5 @@ class Post extends Model implements TaggableInterface
         //i: No relation found, return the call to parent (Eloquent) to handle it.
         return parent::__call($method, $parameters);
     }
+
 }

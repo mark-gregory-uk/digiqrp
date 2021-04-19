@@ -14,6 +14,7 @@ use Modules\Blog\Events\PostWasUpdated;
 use Modules\Blog\Repositories\Collection;
 use Modules\Blog\Repositories\PostRepository;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
+use Modules\User\Entities\Sentinel\User;
 
 class EloquentPostRepository extends EloquentBaseRepository implements PostRepository
 {
@@ -149,4 +150,6 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
             $q->where('slug', "$slug");
         })->with('translations')->whereStatus(Status::PUBLISHED)->firstOrFail();
     }
+
+
 }

@@ -42,47 +42,25 @@
         <div id="aside" class="span3">
             <!-- Begin Right Sidebar -->
             <div class="well">
-                <h3 class="page-header">Posts</h3>
+                <h3 class="page-header">Latest Posts</h3>
                 <ul class="category-module mod-list">
-                    <li>
-                        <a class="mod-articles-category-title " href="/index.php/3-welcome-to-your-blog">Welcome to your blog</a>
-                    </li>
-                    <li>
-                        <a class="mod-articles-category-title " href="/index.php/4-about-your-home-page">About your home page</a>
-                    </li>
-                    <li>
-                        <a class="mod-articles-category-title " href="/index.php/5-your-modules">Your Modules</a>
-                    </li>
-                    <li>
-                        <a class="mod-articles-category-title " href="/index.php/6-your-template">Your Template</a>
-                    </li>
+                    @foreach($latestPosts as $post)
+                        <li>
+                            <a class="mod-articles-category-title " href="{{ URL::route($currentLocale . '.blog.slug', [$post->slug]) }}">{{$post->title}}</a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
-            <div class="well "><h3 class="page-header">Most Read Posts</h3><ul class="mostread mod-list">
-                    <li itemscope="" itemtype="https://schema.org/Article">
-                        <a href="/index.php/3-welcome-to-your-blog" itemprop="url">
-			<span itemprop="name">
-				Welcome to your blog			</span>
-                        </a>
-                    </li>
-                    <li itemscope="" itemtype="https://schema.org/Article">
-                        <a href="/index.php/4-about-your-home-page" itemprop="url">
-			<span itemprop="name">
-				About your home page			</span>
-                        </a>
-                    </li>
-                    <li itemscope="" itemtype="https://schema.org/Article">
-                        <a href="/index.php/5-your-modules" itemprop="url">
-			<span itemprop="name">
-				Your Modules			</span>
-                        </a>
-                    </li>
-                    <li itemscope="" itemtype="https://schema.org/Article">
-                        <a href="/index.php/6-your-template" itemprop="url">
-			<span itemprop="name">
-				Your Template			</span>
-                        </a>
-                    </li>
+            <div class="well ">
+                <h3 class="page-header">latest Contacts</h3>
+                <ul class="mostread mod-list">
+                    @foreach($latestContacts as $contact)
+                        <li itemscope="" itemtype="https://schema.org/Article">
+                            <span itemprop="name">{!! '<span>'.$contact->call.'</span><span>&nbsp;</span><span style="float:right;">'.$contact->band_rx.'</span>' !!}</span>
+                        </li>
+                    @endforeach
+
+
                 </ul>
         </div>
             <!-- End Right Sidebar -->
@@ -102,7 +80,7 @@
                 </li>
 
                 <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="active">
-					<span id="breadcrumb" itemprop="name"></span>
+					<span class="breadcrumb" id="breadcrumb" itemprop="name"></span>
                     <meta itemprop="position" content="1">
                 </li>
             </ul>

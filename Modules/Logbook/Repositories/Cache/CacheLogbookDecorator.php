@@ -13,4 +13,9 @@ class CacheLogbookDecorator extends BaseCacheDecorator implements LogbookReposit
         $this->entityName = 'logbook.logbooks';
         $this->repository = $logbook;
     }
+
+    public function latestContacts()
+    {
+       return $this->repository->latestContacts();
+    }
 }

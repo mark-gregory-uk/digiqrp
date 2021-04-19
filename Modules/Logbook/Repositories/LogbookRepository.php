@@ -7,4 +7,6 @@ use Modules\Core\Repositories\BaseRepository;
 interface LogbookRepository extends BaseRepository
 {
 
+    public function latestContacts();
+
 }

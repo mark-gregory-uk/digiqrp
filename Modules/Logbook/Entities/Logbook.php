@@ -14,11 +14,14 @@ class Logbook extends Model
 
     public $translatedAttributes = ['title'];
 
+    protected $casts = ['default' => 'boolean'];
+
     protected $fillable = [
         'owner_id',
         'name',
         'slug',
         'title',
+        'default'
     ];
 
     /**
@@ -32,6 +35,15 @@ class Logbook extends Model
 
         return  ! empty($owner->callsign) ? $owner->callsign : $owner->first_name.' '.$owner->last_name;
     }
+
+    /**
+     * recover if the is the default loogbook for this user
+     * @return boolean
+     */
+    public function isDefault(){
+        return $this->default;
+    }
+
 
     /**
      * Recover the log book entries.

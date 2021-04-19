@@ -6,6 +6,8 @@ use Illuminate\Contracts\Foundation\Application;
 use Modules\Blog\Entities\Post;
 use Modules\Blog\Repositories\PostRepository;
 use Modules\Core\Http\Controllers\BasePublicController;
+use Modules\Logbook\Entities\Logbook;
+use Modules\Logbook\Repositories\LogbookRepository;
 use Modules\Menu\Entities\Menu;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Page\Entities\Page;
@@ -24,18 +26,25 @@ class PublicController extends BasePublicController
     private $postRepository;
 
     /**
+     * @var Logbook
+     */
+    private $logbookRepository;
+
+
+    /**
      * @var Application
      */
     private $app;
 
     private $disabledPage = false;
 
-    public function __construct(PageRepository $page, PostRepository  $postsRepository,Application $app)
+    public function __construct(PageRepository $page, PostRepository  $postsRepository,LogbookRepository $logBookRepository,Application $app)
     {
         parent::__construct();
         $this->page = $page;
         $this->app = $app;
         $this->postRepository = $postsRepository;
+        $this->logbookRepository = $logBookRepository;
     }
 
     /**
@@ -47,6 +56,8 @@ class PublicController extends BasePublicController
     {
         $page = $this->findPageForSlug($slug);
         $latestPosts = $this->postRepository->latest();
+        $latestContacts = $this->logbookRepository->latestContacts();
+
         $this->throw404IfNotFound($page);
 
         $currentTranslatedPage = $page->getTranslation(locale());
@@ -58,7 +69,7 @@ class PublicController extends BasePublicController
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page','latestPosts'));
+        return view($template, compact('page','latestPosts','latestContacts'));
     }
 
     /**
@@ -68,13 +79,15 @@ class PublicController extends BasePublicController
     {
         $page = $this->page->findHomepage();
         $latestPosts = $this->postRepository->latest();
+        $latestContacts = $this->logbookRepository->latestContacts();
+
         $this->throw404IfNotFound($page);
 
         $template = $this->getTemplateForPage($page);
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page','latestPosts'));
+        return view($template, compact('page','latestPosts','latestContacts'));
     }
 
     /**

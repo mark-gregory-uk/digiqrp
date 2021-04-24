@@ -38,20 +38,10 @@ $router->group(['prefix' =>'/logbook'], function (Router $router) {
         'middleware' => 'can:logbook.logbooks.destroy',
     ]);
 
-    //$router->get('logbook/upload', [
-    //    'as'         => 'admin.logbook.upload',
-    //    'uses'       => 'LogbookController@createForm',
-    //    //'middleware' => 'can:logbook.logbooks.create',
-    //]);
 
-    //$router->put('logbooks/upload', [
-    //    'as'         => 'admin.logbook.upload',
-    //    'uses'       => 'LogbookController@fileUpload',
-       // 'middleware' => 'can:logbook.logbooks.creare',
-    //]);
 
     Route::get('/upload-file', [\Modules\Logbook\Http\Controllers\Admin\LogbookController::class, 'createForm'])->name('logbook.upload');
-    Route::post('/upload-file', [\Modules\Logbook\Http\Controllers\Admin\LogbookController::class, 'fileUpload'])->name('logbook.upload');
+    Route::post('/upload-file', [\Modules\Logbook\Http\Controllers\Admin\LogbookController::class, 'fileUpload'])->name('logbook.uploadlog');
 
 
 

@@ -18,6 +18,9 @@
                     <a href="{{ route('admin.logbook.logbook.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
                         <i class="fa fa-pencil"></i> {{ trans('logbook::logbooks.button.create logbook') }}
                     </a>
+                    <a href="{{ route('logbook.upload') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
+                        <i class="fa fa-pencil"></i> {{ 'Upload Log File' }}
+                    </a>
                 </div>
             </div>
             <div class="box box-primary">

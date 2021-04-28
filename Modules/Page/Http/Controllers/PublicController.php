@@ -12,6 +12,9 @@ use Modules\Menu\Entities\Menu;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Page\Entities\Page;
 use Modules\Page\Repositories\PageRepository;
+use Modules\Solar\Entities\SolarData;
+use Modules\Solar\Repositories\SolarDataRepository;
+use Modules\Solar\Repositories\SolarDataRowRepository;
 
 class PublicController extends BasePublicController
 {
@@ -30,6 +33,10 @@ class PublicController extends BasePublicController
      */
     private $logbookRepository;
 
+    /**
+     * @var SolarDataRepository
+     */
+    private $solarReportsRepository;
 
     /**
      * @var Application
@@ -38,13 +45,14 @@ class PublicController extends BasePublicController
 
     private $disabledPage = false;
 
-    public function __construct(PageRepository $page, PostRepository  $postsRepository,LogbookRepository $logBookRepository,Application $app)
+    public function __construct(PageRepository $page, PostRepository  $postsRepository,LogbookRepository $logBookRepository,SolarDataRepository $solarDataRepository,Application $app)
     {
         parent::__construct();
         $this->page = $page;
         $this->app = $app;
         $this->postRepository = $postsRepository;
         $this->logbookRepository = $logBookRepository;
+        $this->solarReportsRepository = $solarDataRepository;
     }
 
     /**
@@ -80,14 +88,14 @@ class PublicController extends BasePublicController
         $page = $this->page->findHomepage();
         $latestPosts = $this->postRepository->latest();
         $latestContacts = $this->logbookRepository->latestContacts();
-
+        $latestSolarReports = $this->solarReportsRepository->latestReports();
         $this->throw404IfNotFound($page);
 
         $template = $this->getTemplateForPage($page);
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page','latestPosts','latestContacts'));
+        return view($template, compact('page','latestPosts','latestContacts','latestSolarReports'));
     }
 
     /**

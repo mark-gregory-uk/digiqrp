@@ -39,10 +39,9 @@ class NavigationViewComposer
     }
 
     /**
-     * Add a menu item to the menu.
-     *
+     * Add a menu item to the menu
      * @param MenuitemEntity $item
-     * @param Builder        $menu
+     * @param Builder $menu
      */
     public function addItemToMenu(MenuitemEntity $item, Builder $menu)
     {
@@ -59,10 +58,10 @@ class NavigationViewComposer
     }
 
     /**
-     * Add children to menu under the give name.
+     * Add children to menu under the give name
      *
-     * @param string           $name
-     * @param object           $children
+     * @param string $name
+     * @param object $children
      * @param Builder|MenuItem $menu
      */
     private function addChildrenToMenu($name, $children, $menu)
@@ -75,10 +74,10 @@ class NavigationViewComposer
     }
 
     /**
-     * Add children to the given menu recursively.
+     * Add children to the given menu recursively
      *
-     * @param MenuitemEntity $child
-     * @param MenuItem       $sub
+     * @param MenuitemEntity   $child
+     * @param MenuItem $sub
      */
     private function addSubItemToMenu(MenuitemEntity $child, MenuItem $sub)
     {
@@ -90,10 +89,9 @@ class NavigationViewComposer
     }
 
     /**
-     * Check if the given menu item has children.
+     * Check if the given menu item has children
      *
-     * @param object $item
-     *
+     * @param  object $item
      * @return bool
      */
     private function hasChildren($item)

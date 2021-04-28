@@ -7,7 +7,6 @@ trait CanGetSidebarClassForModule
     /**
      * @param string $module
      * @param string $default
-     *
      * @return string
      */
     public function getSidebarClassForModule($module, $default)

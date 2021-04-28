@@ -35,9 +35,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php if (isset($modules)) { ?>
+                        <?php if (isset($modules)): ?>
 
-                        <?php foreach ($modules as $module) { ?>
+                        <?php foreach ($modules as $module): ?>
 
                         <tr>
                             <td>
@@ -58,8 +58,8 @@
                                 </a>
                             </td>
                         </tr>
-                        <?php } ?>
-                        <?php } ?>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
                         </tbody>
                         <tfoot>
                         <tr>

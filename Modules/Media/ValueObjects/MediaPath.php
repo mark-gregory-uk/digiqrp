@@ -20,8 +20,7 @@ class MediaPath
     }
 
     /**
-     * Get the URL depending on configured disk.
-     *
+     * Get the URL depending on configured disk
      * @return string
      */
     public function getUrl()

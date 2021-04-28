@@ -43,9 +43,7 @@ class RolesController extends BaseUserModuleController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param UpdateRoleRequest $request
-     *
+     * @param  UpdateRoleRequest $request
      * @return Response
      */
     public function store(UpdateRoleRequest $request)
@@ -70,10 +68,8 @@ class RolesController extends BaseUserModuleController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param int               $id
-     * @param UpdateRoleRequest $request
-     *
+     * @param  int          $id
+     * @param  UpdateRoleRequest $request
      * @return Response
      */
     public function update($id, UpdateRoleRequest $request)
@@ -89,8 +85,7 @@ class RolesController extends BaseUserModuleController
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
+     * @param  int      $id
      * @return Response
      */
     public function destroy($id)

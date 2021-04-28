@@ -25,11 +25,10 @@ class Imagy
     private $manager;
 
     /**
-     * All the different images types where thumbnails should be created.
-     *
+     * All the different images types where thumbnails should be created
      * @var array
      */
-    private $imageExtensions = ['jpg', 'png', 'jpeg', 'gif', 'webp'];
+    private $imageExtensions = ['jpg', 'png', 'jpeg', 'gif'];
     /**
      * @var Factory
      */
@@ -37,7 +36,7 @@ class Imagy
 
     /**
      * @param ImageFactoryInterface $imageFactory
-     * @param ThumbnailManager      $manager
+     * @param ThumbnailManager $manager
      */
     public function __construct(ImageFactoryInterface $imageFactory, ThumbnailManager $manager)
     {
@@ -48,17 +47,15 @@ class Imagy
     }
 
     /**
-     * Get an image in the given thumbnail options.
-     *
-     * @param string $path
-     * @param string $thumbnail
-     * @param bool   $forceCreate
-     *
+     * Get an image in the given thumbnail options
+     * @param  string $path
+     * @param  string $thumbnail
+     * @param  bool   $forceCreate
      * @return string
      */
     public function get($path, $thumbnail, $forceCreate = false)
     {
-        if (! $this->isImage($path)) {
+        if (!$this->isImage($path)) {
             return;
         }
 
@@ -78,11 +75,9 @@ class Imagy
     }
 
     /**
-     * Return the thumbnail path.
-     *
-     * @param string|File $originalImage
-     * @param string      $thumbnail
-     *
+     * Return the thumbnail path
+     * @param  string|File $originalImage
+     * @param  string $thumbnail
      * @return string
      */
     public function getThumbnail($originalImage, $thumbnail)
@@ -91,7 +86,7 @@ class Imagy
             $originalImage = $originalImage->path;
         }
 
-        if (! $this->isImage($originalImage)) {
+        if (!$this->isImage($originalImage)) {
             if ($originalImage instanceof MediaPath) {
                 return $originalImage->getUrl();
             }
@@ -105,13 +100,12 @@ class Imagy
     }
 
     /**
-     * Create all thumbnails for the given image path.
-     *
+     * Create all thumbnails for the given image path
      * @param MediaPath $path
      */
     public function createAll(MediaPath $path)
     {
-        if (! $this->isImage($path)) {
+        if (!$this->isImage($path)) {
             return;
         }
 
@@ -130,26 +124,22 @@ class Imagy
     }
 
     /**
-     * Prepend the thumbnail name to filename.
-     *
+     * Prepend the thumbnail name to filename
      * @param $path
      * @param $thumbnail
-     *
      * @return mixed|string
      */
     private function newFilename($path, $thumbnail)
     {
         $filename = pathinfo($path, PATHINFO_FILENAME);
 
-        return $filename.'_'.$thumbnail.'.'.pathinfo($path, PATHINFO_EXTENSION);
+        return $filename . '_' . $thumbnail . '.' . pathinfo($path, PATHINFO_EXTENSION);
     }
 
     /**
-     * Return the already created file if it exists and force create is false.
-     *
-     * @param string $filename
-     * @param bool   $forceCreate
-     *
+     * Return the already created file if it exists and force create is false
+     * @param  string $filename
+     * @param  bool   $forceCreate
      * @return bool
      */
     private function returnCreatedFile($filename, $forceCreate)
@@ -158,8 +148,7 @@ class Imagy
     }
 
     /**
-     * Write the given image.
-     *
+     * Write the given image
      * @param string $filename
      * @param Stream $image
      */
@@ -169,7 +158,7 @@ class Imagy
         $resource = $image->detach();
         $config = [
             'visibility' => 'public',
-            'mimetype'   => \GuzzleHttp\Psr7\mimetype_from_filename($filename),
+            'mimetype' => \GuzzleHttp\Psr7\mimetype_from_filename($filename),
         ];
         if ($this->fileExists($filename)) {
             return $this->filesystem->disk($this->getConfiguredFilesystem())->updateStream($filename, $resource, $config);
@@ -178,9 +167,8 @@ class Imagy
     }
 
     /**
-     * Make a new image.
-     *
-     * @param MediaPath   $path
+     * Make a new image
+     * @param MediaPath      $path
      * @param string      $filename
      * @param string null $thumbnail
      */
@@ -197,10 +185,8 @@ class Imagy
     }
 
     /**
-     * Check if the given path is en image.
-     *
-     * @param string $path
-     *
+     * Check if the given path is en image
+     * @param  string $path
      * @return bool
      */
     public function isImage($path)
@@ -210,15 +196,13 @@ class Imagy
 
     /**
      * Delete all files on disk for the given file in storage
-     * This means the original and the thumbnails.
-     *
+     * This means the original and the thumbnails
      * @param $file
-     *
      * @return bool
      */
     public function deleteAllFor(File $file)
     {
-        if (! $this->isImage($file->path)) {
+        if (!$this->isImage($file->path)) {
             return $this->filesystem->disk($this->getConfiguredFilesystem())->delete($this->getDestinationPath($file->path->getRelativeUrl()));
         }
 
@@ -242,7 +226,6 @@ class Imagy
 
     /**
      * @param $filename
-     *
      * @return bool
      */
     private function fileExists($filename)
@@ -252,22 +235,20 @@ class Imagy
 
     /**
      * @param string $path
-     *
      * @return string
      */
     private function getDestinationPath($path)
     {
         if ($this->getConfiguredFilesystem() === 'local') {
-            return basename(public_path()).$path;
+            return basename(public_path()) . $path;
         }
 
         return $path;
     }
 
     /**
-     * @param MediaPath        $path
+     * @param MediaPath $path
      * @param Thumbnail|string $thumbnail
-     *
      * @return string
      */
     private function getFilenameFor(MediaPath $path, $thumbnail)
@@ -280,18 +261,17 @@ class Imagy
         $folders = str_replace($filename, '', $filenameWithoutPrefix);
 
         if ($filename === false) {
-            return config('asgard.media.config.files-path').$this->newFilename($path, $thumbnail);
+            return config('asgard.media.config.files-path') . $this->newFilename($path, $thumbnail);
         }
 
-        return config('asgard.media.config.files-path').$folders.$this->newFilename($path, $thumbnail);
+        return config('asgard.media.config.files-path') . $folders . $this->newFilename($path, $thumbnail);
     }
 
     /**
      * @param string $path
-     *
      * @return string
      */
-    private function removeConfigPrefix(string $path): string
+    private function removeConfigPrefix(string $path) : string
     {
         $configAssetPath = config('asgard.media.config.files-path');
 

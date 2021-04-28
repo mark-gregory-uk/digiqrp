@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\Core\Repositories\BaseRepository;
 
 /**
- * Class EloquentCoreRepository.
+ * Class EloquentCoreRepository
+ *
+ * @package Modules\Core\Repositories\Eloquent
  */
 abstract class EloquentBaseRepository implements BaseRepository
 {
@@ -51,7 +53,7 @@ abstract class EloquentBaseRepository implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function allWithBuilder(): Builder
+    public function allWithBuilder() : Builder
     {
         if (method_exists($this->model, 'translations')) {
             return $this->model->with('translations');
@@ -143,12 +145,10 @@ abstract class EloquentBaseRepository implements BaseRepository
     }
 
     /**
-     * Build Query to catch resources by an array of attributes and params.
-     *
-     * @param array       $attributes
-     * @param null|string $orderBy
-     * @param string      $sortOrder
-     *
+     * Build Query to catch resources by an array of attributes and params
+     * @param  array $attributes
+     * @param  null|string $orderBy
+     * @param  string $sortOrder
      * @return \Illuminate\Database\Eloquent\Builder
      */
     private function buildQueryByAttributes(array $attributes, $orderBy = null, $sortOrder = 'asc')
@@ -181,7 +181,7 @@ abstract class EloquentBaseRepository implements BaseRepository
             $query = $query->with('translations');
         }
 
-        return $query->whereIn('id', $ids)->get();
+        return $query->whereIn("id", $ids)->get();
     }
 
     /**
@@ -200,7 +200,7 @@ abstract class EloquentBaseRepository implements BaseRepository
         if ($operator === null) {
             $operator = '=';
         } else {
-            [$value, $operator] = [$operator, $value];
+            list($value, $operator) = [$operator, $value];
         }
 
         return $this->model->where($field, $operator, $value);
@@ -217,7 +217,7 @@ abstract class EloquentBaseRepository implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function whereIn(string $field, array $values): Builder
+    public function whereIn(string $field, array $values) : Builder
     {
         return $this->model->whereIn($field, $values);
     }

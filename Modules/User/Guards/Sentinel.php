@@ -10,7 +10,6 @@ class Sentinel implements LaravelGuard
 {
     /**
      * Determine if the current user is authenticated.
-     *
      * @return bool
      */
     public function check()
@@ -24,7 +23,6 @@ class Sentinel implements LaravelGuard
 
     /**
      * Determine if the current user is a guest.
-     *
      * @return bool
      */
     public function guest()
@@ -34,7 +32,6 @@ class Sentinel implements LaravelGuard
 
     /**
      * Get the currently authenticated user.
-     *
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
     public function user()
@@ -44,7 +41,6 @@ class Sentinel implements LaravelGuard
 
     /**
      * Get the ID for the currently authenticated user.
-     *
      * @return int|null
      */
     public function id()
@@ -58,9 +54,7 @@ class Sentinel implements LaravelGuard
 
     /**
      * Validate a user's credentials.
-     *
-     * @param array $credentials
-     *
+     * @param  array $credentials
      * @return bool
      */
     public function validate(array $credentials = [])
@@ -70,9 +64,7 @@ class Sentinel implements LaravelGuard
 
     /**
      * Set the current user.
-     *
-     * @param \Illuminate\Contracts\Auth\Authenticatable $user
-     *
+     * @param  \Illuminate\Contracts\Auth\Authenticatable $user
      * @return bool
      */
     public function setUser(Authenticatable $user)
@@ -82,9 +74,7 @@ class Sentinel implements LaravelGuard
 
     /**
      * Alias to set the current user.
-     *
-     * @param \Illuminate\Contracts\Auth\Authenticatable $user
-     *
+     * @param  \Illuminate\Contracts\Auth\Authenticatable $user
      * @return bool
      */
     public function login(Authenticatable $user)
@@ -94,8 +84,7 @@ class Sentinel implements LaravelGuard
 
     /**
      * @param array $credentials
-     * @param bool  $remember
-     *
+     * @param bool $remember
      * @return bool
      */
     public function attempt(array $credentials, $remember = false)
@@ -113,7 +102,6 @@ class Sentinel implements LaravelGuard
 
     /**
      * @param int $userId
-     *
      * @return bool
      */
     public function loginUsingId($userId)

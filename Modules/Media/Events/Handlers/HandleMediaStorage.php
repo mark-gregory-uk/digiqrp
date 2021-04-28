@@ -17,8 +17,7 @@ class HandleMediaStorage
     }
 
     /**
-     * Handle the request for the multi media partial.
-     *
+     * Handle the request for the multi media partial
      * @param StoringMedia $event
      */
     private function handleMultiMedia(StoringMedia $event)
@@ -40,8 +39,7 @@ class HandleMediaStorage
     }
 
     /**
-     * Handle the request to parse single media partials.
-     *
+     * Handle the request to parse single media partials
      * @param StoringMedia $event
      */
     private function handleSingleMedia(StoringMedia $event)
@@ -50,7 +48,7 @@ class HandleMediaStorage
         $postMedia = Arr::get($event->getSubmissionData(), 'medias_single', []);
 
         foreach ($postMedia as $zone => $fileId) {
-            if (! empty($fileId)) {
+            if (!empty($fileId)) {
                 $entity->filesByZone($zone)->sync([$fileId => ['imageable_type' => get_class($entity), 'zone' => $zone, 'order' => null]]);
             } else {
                 $entity->filesByZone($zone)->sync([]);
@@ -59,10 +57,8 @@ class HandleMediaStorage
     }
 
     /**
-     * Parse the orders input and return an array of file ids, in order.
-     *
+     * Parse the orders input and return an array of file ids, in order
      * @param array $attributes
-     *
      * @return array
      */
     private function getOrdersFrom(array $attributes)

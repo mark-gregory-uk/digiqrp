@@ -10,8 +10,7 @@ use Modules\User\Entities\UserInterface;
 
 class WelcomeEmail extends Mailable implements ShouldQueue
 {
-    use Queueable;
-    use SerializesModels;
+    use Queueable, SerializesModels;
 
     /**
      * @var UserInterface

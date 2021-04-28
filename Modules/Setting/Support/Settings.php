@@ -21,12 +21,10 @@ class Settings implements Setting
     }
 
     /**
-     * Getting the setting.
-     *
-     * @param string $name
-     * @param string $locale
-     * @param string $default
-     *
+     * Getting the setting
+     * @param  string $name
+     * @param  string   $locale
+     * @param  string   $default
      * @return mixed
      */
     public function get($name, $locale = null, $default = null)
@@ -56,8 +54,7 @@ class Settings implements Setting
     /**
      * Determine if the given configuration value exists.
      *
-     * @param string $name
-     *
+     * @param  string $name
      * @return bool
      */
     public function has($name)
@@ -70,15 +67,14 @@ class Settings implements Setting
     /**
      * Set a given configuration value.
      *
-     * @param string $key
-     * @param mixed  $value
-     *
+     * @param  string $key
+     * @param  mixed  $value
      * @return \Modules\Setting\Entities\Setting
      */
     public function set($key, $value)
     {
         return $this->setting->create([
-            'name'       => $key,
+            'name' => $key,
             'plainValue' => $value,
         ]);
     }
@@ -86,14 +82,12 @@ class Settings implements Setting
     /**
      * Get the default value from the settings configuration file,
      * for the given setting name.
-     *
      * @param string $name
-     *
      * @return string
      */
     private function getDefaultFromConfigFor($name)
     {
-        [$module, $settingName] = explode('::', $name);
+        list($module, $settingName) = explode('::', $name);
 
         return config("asgard.$module.settings.$settingName.default", '');
     }

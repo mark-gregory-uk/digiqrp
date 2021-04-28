@@ -32,7 +32,6 @@ class ThemesController extends AdminBaseController
 
     /**
      * @param Theme $theme
-     *
      * @return \Illuminate\View\View
      */
     public function show(Theme $theme)

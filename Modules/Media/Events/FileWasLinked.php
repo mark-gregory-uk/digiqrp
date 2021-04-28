@@ -11,14 +11,13 @@ class FileWasLinked
      */
     public $file;
     /**
-     * The entity that was linked to a file.
-     *
+     * The entity that was linked to a file
      * @var object
      */
     public $entity;
 
     /**
-     * @param File   $file
+     * @param File $file
      * @param object $entity
      */
     public function __construct(File $file, $entity)

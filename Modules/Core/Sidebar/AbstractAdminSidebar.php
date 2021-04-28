@@ -30,10 +30,8 @@ abstract class AbstractAdminSidebar implements SidebarExtender
     }
 
     /**
-     * Method used to define your sidebar menu groups and items.
-     *
+     * Method used to define your sidebar menu groups and items
      * @param Menu $menu
-     *
      * @return Menu
      */
     abstract public function extendWith(Menu $menu);

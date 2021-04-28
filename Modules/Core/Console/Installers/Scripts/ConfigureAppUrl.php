@@ -35,10 +35,8 @@ class ConfigureAppUrl implements SetupScript
     protected $command;
 
     /**
-     * Fire the install script.
-     *
-     * @param Command $command
-     *
+     * Fire the install script
+     * @param  Command $command
      * @return mixed
      */
     public function fire(Command $command)
@@ -59,7 +57,7 @@ class ConfigureAppUrl implements SetupScript
     }
 
     /**
-     * Ensure that the APP_URL is valid.
+     * Ensure that the APP_URL is valid
      *
      * e.g. http://localhost, http://192.168.0.10, https://www.example.com etc.
      *
@@ -75,7 +73,7 @@ class ConfigureAppUrl implements SetupScript
 
                 $str = false;
             }
-        } while (! $str);
+        } while (!$str);
 
         return $str;
     }

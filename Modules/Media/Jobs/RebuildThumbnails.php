@@ -9,8 +9,7 @@ use Illuminate\Support\Collection;
 
 class RebuildThumbnails implements ShouldQueue
 {
-    use InteractsWithQueue;
-    use SerializesModels;
+    use InteractsWithQueue, SerializesModels;
 
     /**
      * @var Collection
@@ -29,9 +28,9 @@ class RebuildThumbnails implements ShouldQueue
         foreach ($this->paths as $path) {
             try {
                 $imagy->createAll($path);
-                app('log')->info('Generating thumbnails for path: '.$path);
+                app('log')->info('Generating thumbnails for path: ' . $path);
             } catch (\Exception $e) {
-                app('log')->warning('File not found: '.$path);
+                app('log')->warning('File not found: ' . $path);
             }
         }
     }

@@ -18,8 +18,7 @@ final class MenuDirective
     }
 
     /**
-     * Extract the possible arguments as class properties.
-     *
+     * Extract the possible arguments as class properties
      * @param array $arguments
      */
     private function extractArguments(array $arguments)
@@ -30,8 +29,7 @@ final class MenuDirective
     }
 
     /**
-     * Prepare arguments and return menu.
-     *
+     * Prepare arguments and return menu
      * @return string|null
      */
     private function returnMenu()

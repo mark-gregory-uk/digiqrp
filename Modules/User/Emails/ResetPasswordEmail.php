@@ -10,8 +10,7 @@ use Modules\User\Entities\UserInterface;
 
 class ResetPasswordEmail extends Mailable implements ShouldQueue
 {
-    use Queueable;
-    use SerializesModels;
+    use Queueable, SerializesModels;
 
     /**
      * @var UserInterface

@@ -13,7 +13,6 @@ class UsherInstaller extends ProviderInstaller implements SetupScript
 
     /**
      * Check if the user driver is correctly registered.
-     *
      * @return bool
      */
     public function checkIsInstalled()
@@ -23,8 +22,7 @@ class UsherInstaller extends ProviderInstaller implements SetupScript
     }
 
     /**
-     * Not called.
-     *
+     * Not called
      * @return mixed
      */
     public function composer()
@@ -65,7 +63,7 @@ class UsherInstaller extends ProviderInstaller implements SetupScript
      */
     public function configure()
     {
-        $path = base_path('config/usher.php');
+        $path = base_path("config/usher.php");
 
         $config = $this->finder->get($path);
 
@@ -75,7 +73,7 @@ class UsherInstaller extends ProviderInstaller implements SetupScript
         $this->finder->put($path, $config);
 
         // Doctrine config
-        $path = base_path('config/doctrine.php');
+        $path = base_path("config/doctrine.php");
 
         $config = $this->finder->get($path);
 
@@ -103,7 +101,6 @@ class UsherInstaller extends ProviderInstaller implements SetupScript
 
     /**
      * @param $password
-     *
      * @return mixed
      */
     public function getHashedPassword($password)

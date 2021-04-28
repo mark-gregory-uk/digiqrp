@@ -9,7 +9,6 @@ class TranslationLoader extends FileLoader
 {
     /**
      * Get all Paths where Translations could be found.
-     *
      * @return array
      */
     public function paths()

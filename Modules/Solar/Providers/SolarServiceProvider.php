@@ -70,6 +70,19 @@ class SolarServiceProvider extends ServiceProvider
             }
         );
 
+        $this->app->bind(
+            'Modules\Solar\Repositories\SolarDataRowRepository',
+            function () {
+                $repository = new \Modules\Solar\Repositories\Eloquent\EloquentSolarDataRowRepository(new \Modules\Solar\Entities\SolarBandData());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Solar\Repositories\Cache\CacheSolarDataRowDecorator($repository);
+            }
+        );
+
     }
 
 }

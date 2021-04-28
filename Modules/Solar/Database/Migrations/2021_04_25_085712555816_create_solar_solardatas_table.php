@@ -12,15 +12,12 @@ class CreateSolarSolarDatasTable extends Migration
      */
     public function up()
     {
-        Schema::create('solar__solardatas', function (Blueprint $table) {
+        Schema::create('solar__reports', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('day')->nullable();
-            $table->string('night')->nullable();
-            $table->string('name')->nullable();
             $table->string('source')->nullable();
             $table->string('noise_level')->nullable();
-            $table->dateTime('last_updated')->nullable();
+            $table->string('last_updated')->nullable();
             $table->timestamps();
         });
     }

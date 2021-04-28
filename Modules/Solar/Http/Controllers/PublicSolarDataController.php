@@ -4,10 +4,11 @@ namespace Modules\Solar\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
+use Modules\Solar\Entities\SolarBandData;
 use Modules\Solar\Entities\SolarData;
 use Modules\Solar\Repositories\SolarDataRepository;
+use Modules\Solar\Repositories\SolarDataRowRepository;
 use SimpleXMLElement;
-
 
 class PublicSolarDataController extends Controller
 {
@@ -16,6 +17,19 @@ class PublicSolarDataController extends Controller
      */
     private $solardata;
 
+
+    /**
+     * @var SolarDataRowRepository
+     */
+    private $solarDataRowRepository;
+
+
+
+    public function __construct(SolarDataRowRepository $solarDataRowRepository)
+    {
+        //parent::__construct();
+        $this->solarDataRowRepository = $solarDataRowRepository;
+    }
 
     /**
      * Display a listing of the resource.
@@ -28,28 +42,55 @@ class PublicSolarDataController extends Controller
         $xmlobj = new SimpleXMLElement($xmlstr);
 
 
-        $solarData = [];
+        $data = [];
+        $data['source']=$xmlobj->source;
+        $data['last_updated']=$xmlobj->updated;
+        $data['noise_level']=$xmlobj->signalnoise;
 
-
-        $solarData['source']=$xmlobj->source;
-        $solarData['last_updated']=$xmlobj->updated;
-        $solarData['noise_level']=$xmlobj->signalnoise;
+        $solarData = new SolarData();
+        $solarData->source = (string)$xmlobj->solardata->source;
+        $solarData->noise_level = (string)$xmlobj->solardata->signalnoise;
+        $solarData->last_updated = (string)$xmlobj->solardata->updated;
+        $solarData->save();
 
         foreach ($xmlobj->solardata->calculatedconditions as $bands){
-            $bandsData = [];
+
             foreach ($bands as $band){
-                  array_push($bandsData,['name'=>(string)$band->attributes()->name,'time'=>(string)$band->attributes()->time,'condx'=>(string)$band[0]]);
-            }
 
+                $target = (string)$band->attributes()->name;
+                $existingRow = $this->solarDataRowRepository->where('name','=',$target)->where('solar_id','=',$solarData->id)->first();
 
+                if (! empty($existingRow)){
+                    if ((string)$band->attributes()->time == 'day'){
+                        $existingRow->day = (string)$band->attributes()->time;
+                        $existingRow->day_condx = (string)$band[0];
+                    }
+                    if ((string)$band->attributes()->time == 'night'){
+                        $existingRow->night = (string)$band->attributes()->time;
+                        $existingRow->night_condx = (string)$band[0];
+                    }
+
+                    $existingRow->save();
+                } else {
+                    $dataRow = new SolarBandData();
+                    $dataRow->name = (string)$band->attributes()->name;
+
+                    if ((string)$band->attributes()->time == 'day'){
+                        $dataRow->day = (string)$band->attributes()->time;
+                        $dataRow->day_condx = (string)$band[0];
+                    }
+                    if ((string)$band->attributes()->time == 'night'){
+                        $dataRow->night = (string)$band->attributes()->time;
+                        $dataRow->night_condx = (string)$band[0];
+                    }
+                    $dataRow->solar_id = $solarData->id;
+                    $dataRow->save();
+                }
+             }
         }
 
 
-        $newReport = new SolarData;
-        $newReport->save($solarData);
-
-
-        return view('solar::admin.solardatas.index', compact(''));
+        return view('solar::admin.solardatas.index', compact('solarData'));
     }
 
 }

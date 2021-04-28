@@ -10,5 +10,6 @@
     "User": true,
     "Workshop": true,
     "Logbook": true,
-    "Blog": true
+    "Blog": true,
+    "Solar": true
 }

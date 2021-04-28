@@ -65,7 +65,7 @@ class PublicController extends BasePublicController
         $page = $this->findPageForSlug($slug);
         $latestPosts = $this->postRepository->latest();
         $latestContacts = $this->logbookRepository->latestContacts();
-
+        $latestSolarReports = $this->solarReportsRepository->latestReports();
         $this->throw404IfNotFound($page);
 
         $currentTranslatedPage = $page->getTranslation(locale());
@@ -77,7 +77,7 @@ class PublicController extends BasePublicController
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page','latestPosts','latestContacts'));
+        return view($template, compact('page','latestPosts','latestContacts','latestSolarReports'));
     }
 
     /**

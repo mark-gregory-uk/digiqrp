@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\App;
 use Modules\Blog\Repositories\PostRepository;
 use Modules\Core\Http\Controllers\BasePublicController;
 use Modules\Logbook\Repositories\LogbookRepository;
+use Modules\Solar\Repositories\SolarDataRepository;
 
 class PublicController extends BasePublicController
 {
@@ -19,11 +20,18 @@ class PublicController extends BasePublicController
      */
     private $logRepository;
 
-    public function __construct(PostRepository $post, LogbookRepository $logRepository)
+    /**
+     * @var SolarDataRepository
+     */
+    private $solarReportsRepository;
+
+
+    public function __construct(PostRepository $post, LogbookRepository $logRepository,SolarDataRepository $solarDataRepository)
     {
         parent::__construct();
         $this->post = $post;
         $this->logRepository = $logRepository;
+        $this->solarReportsRepository = $solarDataRepository;
     }
 
     public function index()

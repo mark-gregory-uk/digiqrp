@@ -37,9 +37,9 @@ class RegisterSolarSidebar implements \Maatwebsite\Sidebar\SidebarExtender
     public function extendWith(Menu $menu)
     {
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
-            $group->item(trans('solar::solars.title.solars'), function (Item $item) {
+            $group->item(trans('solar::solardata.title.solar'), function (Item $item) {
                 $item->icon('fa fa-copy');
-                $item->weight(10);
+                $item->weight(60);
                 $item->authorize(
                      /* append */
                 );
@@ -48,11 +48,11 @@ class RegisterSolarSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                     $item->weight(0);
                     $item->append('admin.solar.solardata.create');
                     $item->route('admin.solar.solardata.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('solar.solardatas.index')
-                    );
+                    //$item->authorize(
+                    //    $this->auth->hasAccess('solar.solardatas.index')
+                    //);
                 });
-// append
+
 
             });
         });

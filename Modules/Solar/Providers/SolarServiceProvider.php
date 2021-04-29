@@ -3,6 +3,7 @@
 namespace Modules\Solar\Providers;
 
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
+use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Core\Events\BuildingSidebar;
@@ -30,7 +31,7 @@ class SolarServiceProvider extends ServiceProvider
         $this->app['events']->listen(BuildingSidebar::class, RegisterSolarSidebar::class);
 
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
-            $event->load('solardatas', array_dot(trans('solar::solardatas')));
+            $event->load('solardatas', Arr::dot(trans('solar::solardata')));
             // append translations
 
         });

@@ -31,7 +31,7 @@ class SolarServiceProvider extends ServiceProvider
         $this->app['events']->listen(BuildingSidebar::class, RegisterSolarSidebar::class);
 
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
-            $event->load('solars', Arr::dot(trans('solar::solars')));
+            $event->load('solar', Arr::dot(trans('solar::solars')));
             // append translations
 
         });

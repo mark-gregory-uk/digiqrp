@@ -63,7 +63,8 @@
 
                 </ul>
             </div>
-            <div class="well">
+            @if (! empty($latestSolarReports))
+                <div class="well">
                 <h3 class="page-header">Latest Solar Report </h3>
                 <ul class="category-module mod-list">
                     <li itemscope="" itemtype="https://schema.org/Article">
@@ -106,6 +107,7 @@
 
                 </ul>
             </div>
+            @endif
             <!-- End Right Sidebar -->
         <div class="well ">
                 <a href="#?format=feed&amp;type=rss" class="syndicate-module">

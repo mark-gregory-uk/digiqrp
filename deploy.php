@@ -82,8 +82,8 @@ task('npm:build', function () {
 
 task('migrate', function () {
     if (askConfirmation('Are you sure you want to run migrations?')) {
-        invoke('artisan:migrate:fresh');
-        invoke('artisan:db:seed');
+        invoke('artisan:migrate');
+        //invoke('artisan:db:seed');
     }
 })->desc('Migrating Database');
 
@@ -136,7 +136,7 @@ host('stage')
 after('success', 'deploy:permissions');
 after('deploy:failed', 'deploy:unlock');
 
-//after('deploy:permissions', 'migrate');
+after('deploy:permissions', 'migrate');
 
 after('deploy:permissions', 'cache-clean');
 

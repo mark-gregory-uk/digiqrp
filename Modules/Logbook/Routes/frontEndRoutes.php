@@ -12,5 +12,5 @@
 */
 
     Route::prefix('logbook')->group(function () {
-    Route::get('/', 'LogbookController@index');
-});
+        Route::get('/', 'LogbookController@index');
+    });

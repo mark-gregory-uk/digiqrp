@@ -32,6 +32,4 @@ interface PostRepository extends BaseRepository
      * @return object
      */
     public function getNextOf($post);
-
-
 }

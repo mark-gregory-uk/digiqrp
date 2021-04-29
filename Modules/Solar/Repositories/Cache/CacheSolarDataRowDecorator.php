@@ -2,9 +2,8 @@
 
 namespace Modules\Solar\Repositories\Cache;
 
-use Modules\Solar\Entities\SolarBandData;
-use Modules\Solar\Repositories\SolarDataRepository;
 use Modules\Core\Repositories\Cache\BaseCacheDecorator;
+use Modules\Solar\Entities\SolarBandData;
 use Modules\Solar\Repositories\SolarDataRowRepository;
 
 class CacheSolarDataRowDecorator extends BaseCacheDecorator implements SolarDataRowRepository

@@ -2,8 +2,8 @@
 
 namespace Modules\Solar\Repositories\Cache;
 
-use Modules\Solar\Repositories\SolarRepository;
 use Modules\Core\Repositories\Cache\BaseCacheDecorator;
+use Modules\Solar\Repositories\SolarRepository;
 
 class CacheSolarDecorator extends BaseCacheDecorator implements SolarRepository
 {
@@ -14,8 +14,8 @@ class CacheSolarDecorator extends BaseCacheDecorator implements SolarRepository
         $this->repository = $solar;
     }
 
-
-    public function latestReports(){
+    public function latestReports()
+    {
         $this->repository->latestReports();
     }
 }

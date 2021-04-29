@@ -3,12 +3,12 @@
 namespace Modules\Solar\Console;
 
 use Illuminate\Console\Command;
-use Modules\Solar\Entities\SolarBandData;
 use Modules\Solar\Entities\Solar;
+use Modules\Solar\Entities\SolarBandData;
 use Modules\Solar\Repositories\SolarDataRowRepository;
 use SimpleXMLElement;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 class PullSolarData extends Command
 {
@@ -41,7 +41,6 @@ class PullSolarData extends Command
         parent::__construct();
         $this->solarDataRowRepository = $solarDataRowRepository;
     }
-
 
     /**
      * Execute the console command.
@@ -83,20 +82,19 @@ class PullSolarData extends Command
 
         $solarData->save();
 
-        foreach ($xmlobj->solardata->calculatedconditions as $bands){
+        foreach ($xmlobj->solardata->calculatedconditions as $bands) {
             $bar = $this->output->createProgressBar(count($bands));
             $bar->start();
-            foreach ($bands as $band){
-
+            foreach ($bands as $band) {
                 $target = (string)$band->attributes()->name;
-                $existingRow = $this->solarDataRowRepository->where('name','=',$target)->where('solar_id','=',$solarData->id)->first();
+                $existingRow = $this->solarDataRowRepository->where('name', '=', $target)->where('solar_id', '=', $solarData->id)->first();
 
-                if (! empty($existingRow)){
-                    if ((string)$band->attributes()->time == 'day'){
+                if (! empty($existingRow)) {
+                    if ((string)$band->attributes()->time == 'day') {
                         $existingRow->day = (string)$band->attributes()->time;
                         $existingRow->day_condx = (string)$band[0];
                     }
-                    if ((string)$band->attributes()->time == 'night'){
+                    if ((string)$band->attributes()->time == 'night') {
                         $existingRow->night = (string)$band->attributes()->time;
                         $existingRow->night_condx = (string)$band[0];
                     }
@@ -106,11 +104,11 @@ class PullSolarData extends Command
                     $dataRow = new SolarBandData();
                     $dataRow->name = (string)$band->attributes()->name;
 
-                    if ((string)$band->attributes()->time == 'day'){
+                    if ((string)$band->attributes()->time == 'day') {
                         $dataRow->day = (string)$band->attributes()->time;
                         $dataRow->day_condx = (string)$band[0];
                     }
-                    if ((string)$band->attributes()->time == 'night'){
+                    if ((string)$band->attributes()->time == 'night') {
                         $dataRow->night = (string)$band->attributes()->time;
                         $dataRow->night_condx = (string)$band[0];
                     }
@@ -123,7 +121,8 @@ class PullSolarData extends Command
             $bar->finish();
         }
 
-        $this->info('Complete'.PHP_EOL);
+        $this->info('Complete' . PHP_EOL);
+
         return true;
     }
 

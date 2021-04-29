@@ -52,8 +52,7 @@ class RegisterSolarSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                         $this->auth->hasAccess('solar.solars.index')
                     );
                 });
-// append
-
+                // append
             });
         });
 

@@ -7,7 +7,6 @@ use Modules\User\Entities\Sentinel\User;
 
 class LogFile extends Model
 {
-
     protected $table = 'logbook__logfiles';
 
     public $translatedAttributes = [];
@@ -29,7 +28,6 @@ class LogFile extends Model
     {
         $owner = User::find($this->owner_id);
 
-        return  ! empty($owner->callsign) ? $owner->callsign : $owner->first_name.' '.$owner->last_name;
+        return  ! empty($owner->callsign) ? $owner->callsign : $owner->first_name . ' ' . $owner->last_name;
     }
-
 }

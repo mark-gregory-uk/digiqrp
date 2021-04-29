@@ -49,7 +49,7 @@ class ImportMacLogger extends Command
 
         $macLoggerRecords = Maclogger::all();
 
-        $this->info('Identified : '.count($macLoggerRecords).' Records');
+        $this->info('Identified : ' . count($macLoggerRecords) . ' Records');
         $bar = $this->output->createProgressBar(count($macLoggerRecords));
 
         $bar->start();

@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('solar')->group(function() {
+Route::prefix('solar')->group(function () {
     Route::get('/', 'SolarController@index');
 });

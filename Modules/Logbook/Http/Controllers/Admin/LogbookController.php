@@ -2,7 +2,6 @@
 
 namespace Modules\Logbook\Http\Controllers\Admin;
 
-
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -24,14 +23,12 @@ class LogbookController extends AdminBaseController
      */
     private $logbook;
 
-
     /**
      * @var Post
      */
     private $postRepository;
 
-
-    public function __construct(LogbookRepository $logbook,PostRepository  $postsRepository)
+    public function __construct(LogbookRepository $logbook, PostRepository  $postsRepository)
     {
         parent::__construct();
         $this->postRepository = $postsRepository;
@@ -124,45 +121,45 @@ class LogbookController extends AdminBaseController
      * Upload a logbook and import into database
      * @param Request $request
      */
-    public function logbookUploader(Request $request){
-
+    public function logbookUploader(Request $request)
+    {
     }
 
-    public function createForm(){
+    public function createForm()
+    {
         $latestPosts = $this->postRepository->latest();
         $latestContacts = $this->logbook->latestContacts();
 
-        return view('logbook::admin.logbooks.fileupload',compact('latestPosts','latestContacts'));
+        return view('logbook::admin.logbooks.fileupload', compact('latestPosts', 'latestContacts'));
     }
 
-    public function fileUpload(Request $req){
-
+    public function fileUpload(Request $req)
+    {
         $fileModel = new LogFile();
 
-        if($req->file()) {
+        if ($req->file()) {
             $originalFileName =  $req->file->getClientOriginalName();
-            $fileName = time().'_'.$originalFileName;
+            $fileName = time() . '_' . $originalFileName;
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
 
-            $fileModel->name = time().'_'.$req->file->getClientOriginalName();
+            $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();
 
-
-            if (Storage::exists('database/sqlite/'.$originalFileName)) {
-                Storage::delete('database/sqlite/'.$originalFileName);
+            if (Storage::exists('database/sqlite/' . $originalFileName)) {
+                Storage::delete('database/sqlite/' . $originalFileName);
             }
 
-            Storage::move('/storage/app/public/uploads/'.$fileModel->name,'database/sqlite/'.$originalFileName);
+            Storage::move('/storage/app/public/uploads/' . $fileModel->name, 'database/sqlite/' . $originalFileName);
 
-            if ($originalFileName == 'MacLoggerDX.sql'){
+            if ($originalFileName == 'MacLoggerDX.sql') {
                 $logbook = Logbook::with('entries')
                     ->where('owner_id', '=', 1)
                     ->where('slug', '=', 'main')->first();
 
                 $logEntries = $logbook->entries()->get();
 
-                foreach ($logEntries as $logEntry){
+                foreach ($logEntries as $logEntry) {
                     $logEntry->delete();
                 }
 
@@ -190,16 +187,14 @@ class LogbookController extends AdminBaseController
                     $logEntry->dxcc_id = $row->dxcc_id;
                     $logEntry->save();
                 }
-
             }
 
             return back()
-                ->with('success','Logfile has been uploaded and imported')
+                ->with('success', 'Logfile has been uploaded and imported')
                 ->with('file', $fileName);
         } else {
             return back()
-                ->with('errors','Logfile has not been uploaded.');
+                ->with('errors', 'Logfile has not been uploaded.');
         }
     }
-
 }

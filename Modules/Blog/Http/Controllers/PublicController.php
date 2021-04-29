@@ -25,8 +25,7 @@ class PublicController extends BasePublicController
      */
     private $solarReportsRepository;
 
-
-    public function __construct(PostRepository $post, LogbookRepository $logRepository,SolarDataRepository $solarDataRepository)
+    public function __construct(PostRepository $post, LogbookRepository $logRepository, SolarDataRepository $solarDataRepository)
     {
         parent::__construct();
         $this->post = $post;
@@ -40,7 +39,8 @@ class PublicController extends BasePublicController
         $latestPosts = $this->post->latest();
         $latestContacts = $this->logRepository->latestContacts();
         $latestSolarReports = $this->solarReportsRepository->latestReports();
-        return view('blog.index', compact('posts','latestPosts','latestContacts','latestSolarReports'));
+
+        return view('blog.index', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports'));
     }
 
     public function show($slug)
@@ -49,6 +49,7 @@ class PublicController extends BasePublicController
         $latestPosts = $this->post->latest();
         $latestContacts = $this->logRepository->latestContacts();
         $latestSolarReports = $this->solarReportsRepository->latestReports();
-        return view('blog.show', compact('post','latestPosts','latestContacts','latestSolarReports'));
+
+        return view('blog.show', compact('post', 'latestPosts', 'latestContacts', 'latestSolarReports'));
     }
 }

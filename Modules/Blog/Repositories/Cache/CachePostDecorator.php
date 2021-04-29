@@ -78,5 +78,4 @@ class CachePostDecorator extends BaseCacheDecorator implements PostRepository
                 }
             );
     }
-
 }

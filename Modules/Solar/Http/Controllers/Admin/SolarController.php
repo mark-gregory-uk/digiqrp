@@ -2,13 +2,12 @@
 
 namespace Modules\Solar\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Solar\Entities\Solar;
 use Modules\Solar\Http\Requests\CreateSolarRequest;
 use Modules\Solar\Http\Requests\UpdateSolarRequest;
 use Modules\Solar\Repositories\SolarRepository;
-use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
 class SolarController extends AdminBaseController
 {

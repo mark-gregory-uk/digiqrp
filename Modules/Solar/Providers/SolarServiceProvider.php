@@ -2,12 +2,11 @@
 
 namespace Modules\Solar\Providers;
 
-use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
-use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\Core\Events\LoadingBackendTranslations;
+use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Solar\Listeners\RegisterSolarSidebar;
 
 class SolarServiceProvider extends ServiceProvider
@@ -33,10 +32,7 @@ class SolarServiceProvider extends ServiceProvider
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
             $event->load('solar', Arr::dot(trans('solar::solars')));
             // append translations
-
         });
-
-
     }
 
     public function boot()
@@ -83,8 +79,5 @@ class SolarServiceProvider extends ServiceProvider
                 return new \Modules\Solar\Repositories\Cache\CacheSolarDataRowDecorator($repository);
             }
         );
-
     }
-
-
 }

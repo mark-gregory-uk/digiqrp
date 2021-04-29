@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class SolarBandData extends Model
 {
-
     protected $table = 'solar__banddata';
     public $translatedAttributes = [];
     protected $fillable = [
@@ -14,9 +13,6 @@ class SolarBandData extends Model
         'condx',
         'solar_id',
     ];
-
-
-
 
     /**
      * The Report that own this item.
@@ -27,5 +23,4 @@ class SolarBandData extends Model
     {
         return $this->belongsTo(Solar::class);
     }
-
 }

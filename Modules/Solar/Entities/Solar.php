@@ -37,7 +37,6 @@ class Solar extends Model
         'muf',
     ];
 
-
     public function reports()
     {
         return $this->hasMany(SolarBandData::class, 'solar_id', 'id');

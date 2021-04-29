@@ -12,9 +12,7 @@ use Modules\Menu\Entities\Menu;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Page\Entities\Page;
 use Modules\Page\Repositories\PageRepository;
-use Modules\Solar\Entities\Solar;
 use Modules\Solar\Repositories\SolarRepository;
-use Modules\Solar\Repositories\SolarDataRowRepository;
 
 class PublicController extends BasePublicController
 {
@@ -45,7 +43,7 @@ class PublicController extends BasePublicController
 
     private $disabledPage = false;
 
-    public function __construct(PageRepository $page, PostRepository  $postsRepository,LogbookRepository $logBookRepository,SolarRepository $solarRepository,Application $app)
+    public function __construct(PageRepository $page, PostRepository  $postsRepository, LogbookRepository $logBookRepository, SolarRepository $solarRepository, Application $app)
     {
         parent::__construct();
         $this->page = $page;
@@ -70,14 +68,14 @@ class PublicController extends BasePublicController
 
         $currentTranslatedPage = $page->getTranslation(locale());
         if ($slug !== $currentTranslatedPage->slug) {
-            return redirect()->to($currentTranslatedPage->locale.'/'.$currentTranslatedPage->slug, 301);
+            return redirect()->to($currentTranslatedPage->locale . '/' . $currentTranslatedPage->slug, 301);
         }
 
         $template = $this->getTemplateForPage($page);
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page','latestPosts','latestContacts','latestSolarReports'));
+        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports'));
     }
 
     /**
@@ -95,7 +93,7 @@ class PublicController extends BasePublicController
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page','latestPosts','latestContacts','latestSolarReports'));
+        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports'));
     }
 
     /**
@@ -186,20 +184,20 @@ class PublicController extends BasePublicController
 
             // add every page to the sitemap
             foreach ($pages as $page) {
-                $sitemap->add(URL::to('page /'.$page->slug), '2012-08-26T12:30:00+02:00', '0.9', 'weekly');
+                $sitemap->add(URL::to('page /' . $page->slug), '2012-08-26T12:30:00+02:00', '0.9', 'weekly');
             }
 
             // add every post to the sitemap
             $posts = \DB::table('posts')->orderBy('created_at', 'desc')->get();
 
             foreach ($posts as $post) {
-                $sitemap->add(URL::to('post/'.$post->id), '2012-08-26T12:30:00+02:00', '0.9', 'daily');
+                $sitemap->add(URL::to('post/' . $post->id), '2012-08-26T12:30:00+02:00', '0.9', 'daily');
             }
 
             $newsItems = \DB::table('news_items')->orderBy('created_at', 'desc')->get();
 
             foreach ($newsItems as $news) {
-                $sitemap->add(URL::to('news/'.$news->id), '2012-08-26T12:30:00+02:00', '0.9', 'daily');
+                $sitemap->add(URL::to('news/' . $news->id), '2012-08-26T12:30:00+02:00', '0.9', 'daily');
             }
         }
 

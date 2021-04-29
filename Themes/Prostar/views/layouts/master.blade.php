@@ -80,18 +80,18 @@
                         <table style="width:100%;margin-left: -17px;/* text-align: left; */display: inline-table;">
                             <thead>
                             <tr>
-                                <th style="text-align: left;">Band</th>
-                                <th style="text-align: left;">Day</th>
-                                <th style="text-align: left;">Night</th>
+                                <th style="text-align: left;font-size: 13px;!important;">Band</th>
+                                <th style="text-align: left;font-size: 13px;!important;">Day</th>
+                                <th style="text-align: left;font-size: 13px;!important;">Night</th>
                             </tr>
                             </thead>
                             <tbody>
 
                             @foreach($latestSolarReports->reports as $report)
                                 <tr>
-                                    <td >{{ $report->name }}</td>
-                                    <td style="color: {{ ($report->night_condx == 'Poor' ? 'red':($report->night_condx == 'Fair' ? 'darkorange':'green')) }}">{{ $report->day_condx }}</td>
-                                    <td style="color: {{ ($report->night_condx == 'Poor' ? 'red':($report->night_condx == 'Fair' ? 'darkorange':'green')) }}">{{ $report->night_condx }}</td>
+                                    <td style="font-size: 13px;!important;">{{ $report->name }}</td>
+                                    <td style="font-size: 13px;!important; color: {{ ($report->night_condx == 'Poor' ? 'red':($report->night_condx == 'Fair' ? 'darkorange':'green')) }}">{{ $report->day_condx }}</td>
+                                    <td style="font-size: 13px;!important; color: {{ ($report->night_condx == 'Poor' ? 'red':($report->night_condx == 'Fair' ? 'darkorange':'green')) }}">{{ $report->night_condx }}</td>
                                 </tr>
 
                             @endforeach

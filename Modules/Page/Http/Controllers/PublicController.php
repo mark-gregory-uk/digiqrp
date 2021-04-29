@@ -12,8 +12,8 @@ use Modules\Menu\Entities\Menu;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Page\Entities\Page;
 use Modules\Page\Repositories\PageRepository;
-use Modules\Solar\Entities\SolarData;
-use Modules\Solar\Repositories\SolarDataRepository;
+use Modules\Solar\Entities\Solar;
+use Modules\Solar\Repositories\SolarRepository;
 use Modules\Solar\Repositories\SolarDataRowRepository;
 
 class PublicController extends BasePublicController
@@ -34,7 +34,7 @@ class PublicController extends BasePublicController
     private $logbookRepository;
 
     /**
-     * @var SolarDataRepository
+     * @var SolarRepository
      */
     private $solarReportsRepository;
 
@@ -45,14 +45,14 @@ class PublicController extends BasePublicController
 
     private $disabledPage = false;
 
-    public function __construct(PageRepository $page, PostRepository  $postsRepository,LogbookRepository $logBookRepository,SolarDataRepository $solarDataRepository,Application $app)
+    public function __construct(PageRepository $page, PostRepository  $postsRepository,LogbookRepository $logBookRepository,SolarRepository $solarRepository,Application $app)
     {
         parent::__construct();
         $this->page = $page;
         $this->app = $app;
         $this->postRepository = $postsRepository;
         $this->logbookRepository = $logBookRepository;
-        $this->solarReportsRepository = $solarDataRepository;
+        $this->solarReportsRepository = $solarRepository;
     }
 
     /**

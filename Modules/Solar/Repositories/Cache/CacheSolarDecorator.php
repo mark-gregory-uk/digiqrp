@@ -13,4 +13,9 @@ class CacheSolarDecorator extends BaseCacheDecorator implements SolarRepository
         $this->entityName = 'solar.solars';
         $this->repository = $solar;
     }
+
+
+    public function latestReports(){
+        $this->repository->latestReports();
+    }
 }

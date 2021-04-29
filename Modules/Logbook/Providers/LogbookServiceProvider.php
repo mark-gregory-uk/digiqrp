@@ -39,6 +39,8 @@ class LogbookServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishConfig('logbook', 'permissions');
+        $this->publishConfig('logbook', 'settings');
+        $this->publishConfig('logbook', 'config');
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 

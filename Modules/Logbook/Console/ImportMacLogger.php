@@ -4,6 +4,7 @@ namespace Modules\Logbook\Console;
 
 use Illuminate\Console\Command;
 use Modules\Logbook\Entities\Logbook;
+use Modules\Logbook\Entities\LogbookCountry;
 use Modules\Logbook\Entities\LogbookEntry;
 use Modules\Logbook\Entities\MacLogger;
 use Modules\Setting\Contracts\Setting;
@@ -76,6 +77,7 @@ class ImportMacLogger extends Command
 
 
         $macLoggerRecords = Maclogger::all();
+        $countries = LogbookCountry::all();
 
         $this->info('Identified : ' . count($macLoggerRecords) . ' Records');
         $bar = $this->output->createProgressBar(count($macLoggerRecords));
@@ -103,6 +105,12 @@ class ImportMacLogger extends Command
             $logEntry->tx_frequency = $row->tx_frequency;
             $logEntry->rx_frequency = $row->rx_frequency;
             $logEntry->dxcc_id = $row->dxcc_id;
+
+            $country = $countries->firstWhere('name',$row->dxcc_country);
+
+            if (!empty($country)){
+                $logEntry->country_slug = $country->code;
+            }
 
             $distanceKM = (float)$this->distance($latitude,$longitude,$row->latitude,$row->longitude);
             if ($distanceKM > 0){

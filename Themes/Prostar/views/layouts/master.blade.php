@@ -60,7 +60,12 @@
                 <ul class="mostread mod-list">
                     @foreach($latestContacts as $contact)
                         <li itemscope="" itemtype="https://schema.org/Article">
-                            <span itemprop="name">{!! '<span>'.$contact->call.'</span><span>&nbsp;</span><span style="float:right;">'.$contact->band_rx.'</span>' !!}</span>
+                            <span itemprop="name">
+
+                                {!! '<span>'.$contact->call.'</span><span>&nbsp;</span><span style="float:right;">'.$contact->band_rx.'</span>' !!}</span>
+                            @if($contact->country_slug)
+                                <img src="{{ Theme::url('img/flags/png/'.$contact->country_slug.'.png') }}">
+                            @endif
                         </li>
                     @endforeach
 
@@ -74,7 +79,10 @@
                 <ul class="mostread mod-list">
                     @foreach($furthestContacts as $contact)
                         <li itemscope="" itemtype="https://schema.org/Article">
-                            <span itemprop="name">{!! '<span>'.$contact->call.'</span><span>&nbsp;</span><span style="float:right;">'.round($contact->distance_km).' Km</span>' !!}</span>
+                            @if($contact->country_slug)
+                                <img src="{{ Theme::url('img/flags/png/'.$contact->country_slug.'.png') }}">
+                            @endif
+                            <span itemprop="name">{!! '&nbsp;&nbsp;<span>'.$contact->call.'</span><span>&nbsp;</span><span style="float:right;">'.round($contact->distance_km).' Km</span>' !!}</>
                         </li>
                     @endforeach
 
@@ -97,7 +105,6 @@
                         <span itemprop="updated">{!! $latestSolarReports->updated_at !!}</span>
                     </li>
                     <div>
-
                         <table style="width:100%;margin-left: -17px;/* text-align: left; */display: inline-table;">
                             <thead>
                             <tr>
@@ -107,28 +114,22 @@
                             </tr>
                             </thead>
                             <tbody>
-
-                            @foreach($latestSolarReports->reports as $report)
-                                <tr>
-                                    <td style="font-size: 13px;!important;">{{ $report->name }}</td>
-                                    <td style="font-size: 13px;!important; color: {{ ($report->night_condx == 'Poor' ? 'red':($report->night_condx == 'Fair' ? 'darkorange':'green')) }}">{{ $report->day_condx }}</td>
-                                    <td style="font-size: 13px;!important; color: {{ ($report->night_condx == 'Poor' ? 'red':($report->night_condx == 'Fair' ? 'darkorange':'green')) }}">{{ $report->night_condx }}</td>
-                                </tr>
-
-                            @endforeach
-
-
-
+                                @foreach($latestSolarReports->reports as $report)
+                                    <tr>
+                                        <td style="font-size: 13px;!important;">{{ $report->name }}</td>
+                                        <td style="font-size: 13px;!important; color: {{ ($report->night_condx == 'Poor' ? 'red':($report->night_condx == 'Fair' ? 'darkorange':'green')) }}">{{ $report->day_condx }}</td>
+                                        <td style="font-size: 13px;!important; color: {{ ($report->night_condx == 'Poor' ? 'red':($report->night_condx == 'Fair' ? 'darkorange':'green')) }}">{{ $report->night_condx }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
-
-
                     </div>
 
                 </ul>
             </div>
             @endif
             <!-- End Right Sidebar -->
+
             @if(@setting('blog::show_feed'))
             <div class="well ">
                 <a href="#?format=feed&amp;type=rss" class="syndicate-module">

@@ -6,6 +6,19 @@
 
 @section('content')
 
+    @if(! empty($post))
+        <div class="moduletable">
+            <div class="custom"  >
+                <p>
+                    @if ($post -> files()->count()>0)
+                        <img src="{{ $post -> files() -> where("zone", "thumbnail") -> first() -> path }}" alt="" />
+                    @endif
+
+                </p>
+            </div>
+        </div>
+    @endif
+
     <script>
         $(document).ready(function(){
             val = "{!!  'Created By: '. $post->created_at->format('d-m-Y').' '.$post->author->full_name . ' '. $post->author->callsign !!}";

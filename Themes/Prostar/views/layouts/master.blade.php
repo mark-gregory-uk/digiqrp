@@ -61,11 +61,10 @@
                     @foreach($latestContacts as $contact)
                         <li itemscope="" itemtype="https://schema.org/Article">
                             <span itemprop="name">
-
-                                {!! '<span>'.$contact->call.'</span><span>&nbsp;</span><span style="float:right;">'.$contact->band_rx.'</span>' !!}</span>
                             @if($contact->country_slug)
-                                <img src="{{ Theme::url('img/flags/png/'.strtolower($contact->country_slug).'.png') }}">
+                                    <img src="{{ Theme::url('img/flags/png/'.strtolower($contact->country_slug).'.png') }}">
                             @endif
+                            {!! '<span>'.$contact->call.'</span><span>&nbsp;</span><span style="float:right;">'.$contact->band_rx.'</span>' !!}</span>
                         </li>
                     @endforeach
 

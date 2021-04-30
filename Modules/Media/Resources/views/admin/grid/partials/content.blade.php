@@ -61,7 +61,7 @@
                             <td>{{ $file->id }}</td>
                             <td>
                                 <?php if ($file->isImage()): ?>
-                                <img src="{{ Imagy::getThumbnail($file->path, 'smallThumb') }}" alt=""/>
+                                <img style="width: 200px;" src="{{ Imagy::getThumbnail($file->path, 'smallThumb') }}" alt=""/>
                                 <?php else: ?>
                                 <i class="fa {{ FileHelper::getFaIcon($file->media_type) }}" style="font-size: 20px;"></i>
                                 <?php endif; ?>

@@ -25,6 +25,8 @@ class LogbookEntry extends Model
         'band_tx',
         'payload',
         'parent_id',
+        'distance_km',
+        'distance_miles',
     ];
 
     /**

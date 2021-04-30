@@ -14,8 +14,8 @@ class AddDistanceField extends Migration
     public function up()
     {
         Schema::table('logbook__entries', function (Blueprint $table) {
-            $table->boolean('distance_km')->nullable();
-            $table->boolean('distance_miles')->nullable();
+            $table->float('distance_km')->nullable();
+            $table->float('distance_miles')->nullable();
         });
     }
 

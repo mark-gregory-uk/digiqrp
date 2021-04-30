@@ -39,9 +39,11 @@
 
         </main>
 
+
         <div id="aside" class="span3">
             <!-- Begin Right Sidebar -->
-            <div class="well">
+            @if (!empty($latestPosts))
+                <div class="well">
                 <h3 class="page-header">Latest Posts</h3>
                 <ul class="category-module mod-list">
                     @foreach($latestPosts as $post)
@@ -51,7 +53,9 @@
                     @endforeach
                 </ul>
             </div>
-            <div class="well ">
+            @endif
+            @if (!empty($latestContacts))
+                <div class="well ">
                 <h3 class="page-header">latest Contacts</h3>
                 <ul class="mostread mod-list">
                     @foreach($latestContacts as $contact)
@@ -63,6 +67,22 @@
 
                 </ul>
             </div>
+            @endif
+            @if (!empty($furthestContacts))
+                <div class="well ">
+                <h3 class="page-header">Longest Distance</h3>
+                <ul class="mostread mod-list">
+                    @foreach($furthestContacts as $contact)
+                        <li itemscope="" itemtype="https://schema.org/Article">
+                            <span itemprop="name">{!! '<span>'.$contact->call.'</span><span>&nbsp;</span><span style="float:right;">'.round($contact->distance_km).' Km</span>' !!}</span>
+                        </li>
+                    @endforeach
+
+
+                </ul>
+            </div>
+            @endif
+
             @if (! empty($latestSolarReports))
                 <div class="well">
                 <h3 class="page-header">Latest Solar Report </h3>
@@ -109,13 +129,17 @@
             </div>
             @endif
             <!-- End Right Sidebar -->
-        <div class="well ">
+            @if(@setting('blog::show_feed'))
+            <div class="well ">
                 <a href="#?format=feed&amp;type=rss" class="syndicate-module">
                     <img src="{{  asset('/img/system/livemarks.png') }}" alt="feed-image" />
                     <span>My Blog</span>
                 </a>
             </div>
-        </div>
+            @endif
+            </div>
+
+
     </div>
         <!-- Begin Breadcrumbs -->
         <div aria-label="Breadcrumbs" role="navigation">

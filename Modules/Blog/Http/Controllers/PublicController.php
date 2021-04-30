@@ -39,9 +39,10 @@ class PublicController extends BasePublicController
         $posts = $this->post->allTranslatedIn(App::getLocale());
         $latestPosts = $this->post->latest();
         $latestContacts = $this->logRepository->latestContacts();
+        $furthestContacts = $this->logRepository->longestContacts();
         $latestSolarReports = $this->solarReportsRepository->latestReports();
 
-        return view('blog.index', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports'));
+        return view('blog.index', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports','furthestContacts'));
     }
 
     public function show($slug)
@@ -49,8 +50,9 @@ class PublicController extends BasePublicController
         $post = $this->post->findBySlug($slug);
         $latestPosts = $this->post->latest();
         $latestContacts = $this->logRepository->latestContacts();
+        $furthestContacts = $this->logRepository->longestContacts();
         $latestSolarReports = $this->solarReportsRepository->latestReports();
 
-        return view('blog.show', compact('post', 'latestPosts', 'latestContacts', 'latestSolarReports'));
+        return view('blog.show', compact('post', 'latestPosts', 'latestContacts', 'latestSolarReports','furthestContacts'));
     }
 }

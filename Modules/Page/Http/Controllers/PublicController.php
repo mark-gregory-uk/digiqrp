@@ -63,6 +63,7 @@ class PublicController extends BasePublicController
         $page = $this->findPageForSlug($slug);
         $latestPosts = $this->postRepository->latest();
         $latestContacts = $this->logbookRepository->latestContacts();
+        $furthestContacts = $this->logbookRepository->longestContacts();
         $latestSolarReports = $this->solarReportsRepository->latestReports();
         $this->throw404IfNotFound($page);
 
@@ -75,7 +76,7 @@ class PublicController extends BasePublicController
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports'));
+        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports','furthestContacts'));
     }
 
     /**
@@ -86,6 +87,7 @@ class PublicController extends BasePublicController
         $page = $this->page->findHomepage();
         $latestPosts = $this->postRepository->latest();
         $latestContacts = $this->logbookRepository->latestContacts();
+        $furthestContacts = $this->logbookRepository->longestContacts();
         $latestSolarReports = $this->solarReportsRepository->latestReports();
         $this->throw404IfNotFound($page);
 
@@ -93,7 +95,7 @@ class PublicController extends BasePublicController
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports'));
+        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports','furthestContacts'));
     }
 
     /**

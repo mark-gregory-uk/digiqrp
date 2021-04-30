@@ -13,5 +13,4 @@ class LogbookCountry extends Model
         'code',
         'slug',
     ];
-
 }

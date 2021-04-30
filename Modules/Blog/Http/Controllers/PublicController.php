@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\App;
 use Modules\Blog\Repositories\PostRepository;
 use Modules\Core\Http\Controllers\BasePublicController;
 use Modules\Logbook\Repositories\LogbookRepository;
-use Modules\Solar\Repositories\SolarDataRowRepository;
 use Modules\Solar\Repositories\SolarRepository;
 
 class PublicController extends BasePublicController
@@ -42,7 +41,7 @@ class PublicController extends BasePublicController
         $furthestContacts = $this->logRepository->longestContacts();
         $latestSolarReports = $this->solarReportsRepository->latestReports();
 
-        return view('blog.index', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports','furthestContacts'));
+        return view('blog.index', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }
 
     public function show($slug)
@@ -53,6 +52,6 @@ class PublicController extends BasePublicController
         $furthestContacts = $this->logRepository->longestContacts();
         $latestSolarReports = $this->solarReportsRepository->latestReports();
 
-        return view('blog.show', compact('post', 'latestPosts', 'latestContacts', 'latestSolarReports','furthestContacts'));
+        return view('blog.show', compact('post', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }
 }

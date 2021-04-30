@@ -38,8 +38,6 @@ class ImportMacLogger extends Command
     public function __construct()
     {
         parent::__construct();
-
-
     }
 
     /**
@@ -58,8 +56,7 @@ class ImportMacLogger extends Command
             ->where('slug', '=', 'main')->first();
 
         // Purge All the existing entries please.
-        LogbookEntry::where('parent_id',$logbook->id)->delete();
-
+        LogbookEntry::where('parent_id', $logbook->id)->delete();
 
         $default_lat = 52.3848;
         $default_lng = 1.8215;
@@ -67,14 +64,13 @@ class ImportMacLogger extends Command
         $user_lat = $this->settings->get('logbook::latitude');
         $user_lng = $this->settings->get('logbook::longitude');
 
-        if ($user_lat & $user_lng){
+        if ($user_lat & $user_lng) {
             $latitude = $user_lat;
             $longitude = $user_lng;
         } else {
             $latitude = $default_lat;
             $longitude = $default_lng;
         }
-
 
         $macLoggerRecords = Maclogger::all();
         $countries = LogbookCountry::all();
@@ -85,7 +81,6 @@ class ImportMacLogger extends Command
         $bar->start();
 
         foreach ($macLoggerRecords as $row) {
-
             $logEntry = $logbook->entries()->create();
             $logEntry->call = $row->call;
             $logEntry->first_name = $row->first_name;
@@ -106,14 +101,14 @@ class ImportMacLogger extends Command
             $logEntry->rx_frequency = $row->rx_frequency;
             $logEntry->dxcc_id = $row->dxcc_id;
 
-            $country = $countries->firstWhere('name',$row->dxcc_country);
+            $country = $countries->firstWhere('name', $row->dxcc_country);
 
-            if (!empty($country)){
+            if (!empty($country)) {
                 $logEntry->country_slug = $country->code;
             }
 
-            $distanceKM = (float)$this->distance($latitude,$longitude,$row->latitude,$row->longitude);
-            if ($distanceKM > 0){
+            $distanceKM = (float)$this->distance($latitude, $longitude, $row->latitude, $row->longitude);
+            if ($distanceKM > 0) {
                 $distanceMiles = $distanceKM /  1.609;
                 $logEntry->distance_km = $distanceKM;
                 $logEntry->distance_miles = $distanceMiles;
@@ -156,11 +151,12 @@ class ImportMacLogger extends Command
      * @param $lon2
      * @return float|int
      */
-    private function distance($lat1, $lon1, $lat2, $lon2) {
+    private function distance($lat1, $lon1, $lat2, $lon2)
+    {
         $pi80 = M_PI / 180;
         $r = 6372.797; // mean radius of Earth in km
         $calculatedDistance = 0;
-        if ((float)$lat2 != 0 && (float)$lon2 != 0){
+        if ((float)$lat2 != 0 && (float)$lon2 != 0) {
             $lat1 *= $pi80;
             $lon1 *= $pi80;
             $lat2 *= $pi80;
@@ -174,5 +170,4 @@ class ImportMacLogger extends Command
 
         return $calculatedDistance;
     }
-
 }

@@ -76,7 +76,7 @@ class PublicController extends BasePublicController
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports','furthestContacts'));
+        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }
 
     /**
@@ -95,7 +95,7 @@ class PublicController extends BasePublicController
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports','furthestContacts'));
+        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }
 
     /**

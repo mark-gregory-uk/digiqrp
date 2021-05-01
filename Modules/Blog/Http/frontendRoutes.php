@@ -17,6 +17,8 @@ $router->group(['prefix' => 'blog'], function (Router $router) {
         'uses'       => 'PublicController@show',
         'middleware' => config('asgard.blog.config.middleware'),
     ]);
+
+
     $router->get('posts/category/{cat}', [
         'as'         => $locale . '.blog.category',
         'uses'       => 'PublicController@byCategory',

@@ -47,6 +47,8 @@ class PublicController extends BasePublicController
         return view('blog.index', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }
 
+
+
     public function show($slug)
     {
         $post = $this->post->findBySlug($slug);

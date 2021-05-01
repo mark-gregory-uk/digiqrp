@@ -2,6 +2,7 @@
 
 namespace Modules\Blog\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Auth;
 use Modules\Blog\Entities\Post;
 use Modules\Blog\Entities\Status;
 use Modules\Blog\Http\Requests\CreatePostRequest;
@@ -80,7 +81,8 @@ class PostController extends AdminBaseController
     public function store(CreatePostRequest $request)
     {
         $this->post->create($request->all());
-
+        $this->post->author = Auth::id();
+        $this->post->save();
         return redirect()->route('admin.blog.post.index')
             ->withSuccess(trans('blog::messages.post created'));
     }
@@ -113,7 +115,8 @@ class PostController extends AdminBaseController
     public function update(Post $post, UpdatePostRequest $request)
     {
         $this->post->update($post, $request->all());
-
+        $this->post->author = Auth::id();
+        $this->post->save();
         return redirect()->route('admin.blog.post.index')
             ->withSuccess(trans('blog::messages.post updated'));
     }

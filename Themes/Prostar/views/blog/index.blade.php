@@ -7,22 +7,28 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <h1>Our Blog</h1>
+            <h1 style="margin-left: 10px;">Our Blog</h1>
             <?php if (isset($posts)): ?>
-            <ul>
+            <ul style="margin-left: 40px;">
                 <?php foreach ($posts as $post): ?>
                     <li>
-                        <span class="date">{{ $post->created_at->format('d-m-Y') }}</span>
                         <h3><a href="{{ URL::route($currentLocale . '.blog.slug', [$post->slug]) }}">{{ $post->title }}</a></h3>
+                        @if(! empty($post))
+                            <div class="moduletable">
+                                <div class="custom"  >
+                                    <p>
+                                        @if ($post -> files()->count()>0)
+                                            <img style="width: 40%;" src="{{ $post -> files() -> where("zone", "thumbnail") -> first() -> path }}" alt="{{ $post->title }}" />
+                                        @endif
+
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
                     </li>
                     <div class="card-body d-flex flex-column align-items-start">
-                        <strong class="d-inline-block mb-2 text-primary">World</strong>
-                        <h3 class="mb-0">
-                            <a class="text-dark" href="#">Featured post</a>
-                        </h3>
-                        <div class="mb-1 text-muted">Nov 12</div>
-                        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#">Continue reading</a>
+                        <p class="card-text mb-auto">{!! \Illuminate\Support\Str::limit($post->content, 200, $end='...') !!}</p>
+                        <a href="{{ URL::route($currentLocale . '.blog.slug', [$post->slug]) }}">Continue reading</a>
                     </div>
                     <div class="clearfix"></div>
                 <?php endforeach; ?>

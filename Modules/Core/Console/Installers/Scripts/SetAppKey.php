@@ -23,10 +23,8 @@ class SetAppKey implements SetupScript
     }
 
     /**
-     * Fire the install script.
-     *
-     * @param Command $command
-     *
+     * Fire the install script
+     * @param  Command $command
      * @return mixed
      */
     public function fire(Command $command)
@@ -54,7 +52,7 @@ class SetAppKey implements SetupScript
      */
     protected function generateRandomKey()
     {
-        return 'base64:'.base64_encode(
+        return 'base64:' . base64_encode(
             Encrypter::generateKey(config('app.cipher'))
         );
     }
@@ -62,8 +60,7 @@ class SetAppKey implements SetupScript
     /**
      * Set the application key in the environment file.
      *
-     * @param string $key
-     *
+     * @param  string  $key
      * @return bool
      */
     protected function setKeyInEnvironmentFile($key)
@@ -82,15 +79,14 @@ class SetAppKey implements SetupScript
     /**
      * Write a new environment file with the given key.
      *
-     * @param string $key
-     *
+     * @param  string  $key
      * @return void
      */
     protected function writeNewEnvironmentFileWith($key)
     {
         file_put_contents(app()->environmentFilePath(), preg_replace(
             $this->keyReplacementPattern(),
-            'APP_KEY='.$key,
+            'APP_KEY=' . $key,
             file_get_contents(app()->environmentFilePath())
         ));
     }
@@ -102,7 +98,7 @@ class SetAppKey implements SetupScript
      */
     protected function keyReplacementPattern()
     {
-        $escaped = preg_quote('='.config('app.key'), '/');
+        $escaped = preg_quote('=' . config('app.key'), '/');
 
         return "/^APP_KEY{$escaped}/m";
     }

@@ -20,8 +20,7 @@ use Modules\Setting\Support\Settings;
 
 class SettingServiceProvider extends ServiceProvider
 {
-    use CanPublishConfiguration;
-    use CanGetSidebarClassForModule;
+    use CanPublishConfiguration, CanGetSidebarClassForModule;
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -66,7 +65,7 @@ class SettingServiceProvider extends ServiceProvider
         $this->publishConfig('setting', 'permissions');
         $this->publishConfig('setting', 'config');
         $this->registerBladeTags();
-        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 
     /**

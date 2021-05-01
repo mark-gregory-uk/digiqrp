@@ -7,8 +7,7 @@ use Illuminate\Queue\SerializesModels;
 
 class UserLoggedIn
 {
-    use Dispatchable;
-    use SerializesModels;
+    use Dispatchable, SerializesModels;
 
     public $user;
 

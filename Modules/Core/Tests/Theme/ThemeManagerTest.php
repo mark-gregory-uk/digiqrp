@@ -12,6 +12,9 @@ class ThemeManagerTest extends BaseTestCase
      */
     protected $repository;
 
+    /**
+     *
+     */
     public function setUp(): void
     {
         parent::setUp();
@@ -61,16 +64,16 @@ class ThemeManagerTest extends BaseTestCase
 
     private function getPath()
     {
-        return __DIR__.'/Fixture/Themes';
+        return __DIR__ . '/Fixture/Themes';
     }
 
     private function getEmptyThemesPath()
     {
-        return __DIR__.'/Fixture/EmptyThemes';
+        return __DIR__ . '/Fixture/EmptyThemes';
     }
 
     private function getFakePath()
     {
-        return __DIR__.'/Fixture/fakeFolder';
+        return __DIR__ . '/Fixture/fakeFolder';
     }
 }

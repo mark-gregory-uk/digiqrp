@@ -24,7 +24,6 @@ class MenuRenderer
     /**
      * @param $menuId
      * @param $menuItems
-     *
      * @return string
      */
     public function renderForMenu($menuId, $menuItems)
@@ -39,8 +38,7 @@ class MenuRenderer
     }
 
     /**
-     * Generate the html for the given items.
-     *
+     * Generate the html for the given items
      * @param $items
      */
     private function generateHtmlFor($items)
@@ -78,7 +76,6 @@ HTML;
 
     /**
      * @param $item
-     *
      * @return bool
      */
     private function hasChildren($item)

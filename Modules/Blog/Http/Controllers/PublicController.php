@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\App;
 use Modules\Blog\Repositories\PostRepository;
 use Modules\Core\Http\Controllers\BasePublicController;
 use Modules\Logbook\Repositories\LogbookRepository;
+use Modules\Solar\Repositories\SolarRepository;
 
 class PublicController extends BasePublicController
 {
@@ -19,11 +20,17 @@ class PublicController extends BasePublicController
      */
     private $logRepository;
 
-    public function __construct(PostRepository $post, LogbookRepository $logRepository)
+    /**
+     * @var SolarRepository
+     */
+    private $solarReportsRepository;
+
+    public function __construct(PostRepository $post, LogbookRepository $logRepository, SolarRepository $solarRepository)
     {
         parent::__construct();
         $this->post = $post;
         $this->logRepository = $logRepository;
+        $this->solarReportsRepository = $solarRepository;
     }
 
     public function index()
@@ -31,7 +38,10 @@ class PublicController extends BasePublicController
         $posts = $this->post->allTranslatedIn(App::getLocale());
         $latestPosts = $this->post->latest();
         $latestContacts = $this->logRepository->latestContacts();
-        return view('blog.index', compact('posts','latestPosts','latestContacts'));
+        $furthestContacts = $this->logRepository->longestContacts();
+        $latestSolarReports = $this->solarReportsRepository->latestReports();
+
+        return view('blog.index', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }
 
     public function show($slug)
@@ -39,6 +49,9 @@ class PublicController extends BasePublicController
         $post = $this->post->findBySlug($slug);
         $latestPosts = $this->post->latest();
         $latestContacts = $this->logRepository->latestContacts();
-        return view('blog.show', compact('post','latestPosts','latestContacts'));
+        $furthestContacts = $this->logRepository->longestContacts();
+        $latestSolarReports = $this->solarReportsRepository->latestReports();
+
+        return view('blog.show', compact('post', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }
 }

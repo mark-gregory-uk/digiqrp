@@ -19,7 +19,6 @@ class CollectingAssets
 
     /**
      * @param string $asset
-     *
      * @return AssetPipeline
      */
     public function requireJs($asset)
@@ -29,7 +28,6 @@ class CollectingAssets
 
     /**
      * @param string $asset
-     *
      * @return AssetPipeline
      */
     public function requireCss($asset)
@@ -38,10 +36,8 @@ class CollectingAssets
     }
 
     /**
-     * Match a single route.
-     *
+     * Match a single route
      * @param string|array $route
-     *
      * @return bool
      */
     public function onRoute($route)
@@ -52,10 +48,8 @@ class CollectingAssets
     }
 
     /**
-     * Match multiple routes.
-     *
+     * Match multiple routes
      * @param array $routes
-     *
      * @return bool
      */
     public function onRoutes(array $routes)

@@ -16,6 +16,9 @@ class AsgardAssetPipelineTest extends BaseTestCase
      */
     private $assetManager;
 
+    /**
+     *
+     */
     public function setUp(): void
     {
         parent::__construct();
@@ -99,9 +102,9 @@ class AsgardAssetPipelineTest extends BaseTestCase
         $jsAssets = $this->assetPipeline->allJs();
 
         $expected = [
-            'jquery'        => '/path/to/jquery.js',
+            'jquery' => '/path/to/jquery.js',
             'jquery_plugin' => '/path/to/jquery_plugin.js',
-            'mega_slider'   => '/path/to/mega_slider.js',
+            'mega_slider' => '/path/to/mega_slider.js',
             'jquery.iCheck' => '/path/to/jquery_iCheck.js',
         ];
         $this->assertEquals($expected, $jsAssets->toArray());
@@ -126,9 +129,9 @@ class AsgardAssetPipelineTest extends BaseTestCase
         $cssAssets = $this->assetPipeline->allCss();
 
         $expected = [
-            'bootstrap'      => '/path/to/bootstrap.css',
-            'main'           => '/path/to/main.css',
-            'iCheck'         => '/path/to/iCheck.css',
+            'bootstrap' => '/path/to/bootstrap.css',
+            'main' => '/path/to/main.css',
+            'iCheck' => '/path/to/iCheck.css',
             'datatables-css' => '/path/to/datatables.css',
         ];
         $this->assertEquals($expected, $cssAssets->toArray());
@@ -153,8 +156,8 @@ class AsgardAssetPipelineTest extends BaseTestCase
         $jsAssets = $this->assetPipeline->allJs();
 
         $expected = [
-            'jquery'        => '/path/to/jquery.js',
-            'mega_slider'   => '/path/to/mega_slider.js',
+            'jquery' => '/path/to/jquery.js',
+            'mega_slider' => '/path/to/mega_slider.js',
             'jquery_plugin' => '/path/to/jquery_plugin.js',
             'jquery.iCheck' => '/path/to/jquery_iCheck.js',
         ];
@@ -180,9 +183,9 @@ class AsgardAssetPipelineTest extends BaseTestCase
         $cssAssets = $this->assetPipeline->allCss();
 
         $expected = [
-            'bootstrap'      => '/path/to/bootstrap.css',
-            'main'           => '/path/to/main.css',
-            'iCheck'         => '/path/to/iCheck.css',
+            'bootstrap' => '/path/to/bootstrap.css',
+            'main' => '/path/to/main.css',
+            'iCheck' => '/path/to/iCheck.css',
             'datatables-css' => '/path/to/datatables.css',
         ];
         $this->assertEquals($expected, $cssAssets->toArray());
@@ -194,7 +197,7 @@ class AsgardAssetPipelineTest extends BaseTestCase
         $this->assetManager->addAssets([
             'jquery' => '/path/to/jquery.js',
             'plugin' => '/path/to/plugin.js',
-            'main'   => '/path/to/main.css',
+            'main' => '/path/to/main.css',
             'icheck' => '/path/to/icheck.css',
         ]);
 
@@ -211,7 +214,7 @@ class AsgardAssetPipelineTest extends BaseTestCase
         $jsAssets = $this->assetPipeline->allJs();
 
         $expectedCss = [
-            'main'   => '/path/to/main.css',
+            'main' => '/path/to/main.css',
             'icheck' => '/path/to/icheck.css',
         ];
         $expectedJs = [

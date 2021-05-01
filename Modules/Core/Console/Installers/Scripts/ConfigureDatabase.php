@@ -38,10 +38,8 @@ class ConfigureDatabase implements SetupScript
     protected $command;
 
     /**
-     * Fire the install script.
-     *
-     * @param Command $command
-     *
+     * Fire the install script
+     * @param  Command $command
      * @return mixed
      */
     public function fire(Command $command)
@@ -65,7 +63,7 @@ class ConfigureDatabase implements SetupScript
             if ($this->databaseConnectionIsValid()) {
                 $connected = true;
             } else {
-                $command->error('Please ensure your database credentials are valid.');
+                $command->error("Please ensure your database credentials are valid.");
             }
         }
 
@@ -99,7 +97,7 @@ class ConfigureDatabase implements SetupScript
      */
     protected function askDatabasePort($driver)
     {
-        $port = $this->command->ask('Enter your database port', $this->config['database.connections.'.$driver.'.port']);
+        $port = $this->command->ask('Enter your database port', $this->config['database.connections.' . $driver . '.port']);
 
         return $port;
     }
@@ -114,14 +112,13 @@ class ConfigureDatabase implements SetupScript
             if ($name == '') {
                 $this->command->error('Database name is required');
             }
-        } while (! $name);
+        } while (!$name);
 
         return $name;
     }
 
     /**
      * @param
-     *
      * @return string
      */
     protected function askDatabaseUsername()
@@ -131,14 +128,13 @@ class ConfigureDatabase implements SetupScript
             if ($user == '') {
                 $this->command->error('Database username is required');
             }
-        } while (! $user);
+        } while (!$user);
 
         return $user;
     }
 
     /**
      * @param
-     *
      * @return string
      */
     protected function askDatabasePassword()
@@ -156,19 +152,18 @@ class ConfigureDatabase implements SetupScript
         $driver = $vars['db_driver'];
 
         $this->config['database.default'] = $driver;
-        $this->config['database.connections.'.$driver.'.host'] = $vars['db_host'];
-        $this->config['database.connections.'.$driver.'.port'] = $vars['db_port'];
-        $this->config['database.connections.'.$driver.'.database'] = $vars['db_database'];
-        $this->config['database.connections.'.$driver.'.username'] = $vars['db_username'];
-        $this->config['database.connections.'.$driver.'.password'] = $vars['db_password'];
+        $this->config['database.connections.' . $driver . '.host'] = $vars['db_host'];
+        $this->config['database.connections.' . $driver . '.port'] = $vars['db_port'];
+        $this->config['database.connections.' . $driver . '.database'] = $vars['db_database'];
+        $this->config['database.connections.' . $driver . '.username'] = $vars['db_username'];
+        $this->config['database.connections.' . $driver . '.password'] = $vars['db_password'];
 
         app(DatabaseManager::class)->purge($driver);
-        app(ConnectionFactory::class)->make($this->config['database.connections.'.$driver], $driver);
+        app(ConnectionFactory::class)->make($this->config['database.connections.' . $driver], $driver);
     }
 
     /**
      * Is the database connection valid?
-     *
      * @return bool
      */
     protected function databaseConnectionIsValid()

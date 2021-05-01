@@ -8,8 +8,7 @@ use Modules\Media\Support\Traits\MediaRelation;
 
 class Setting extends Model
 {
-    use Translatable;
-    use MediaRelation;
+    use Translatable, MediaRelation;
 
     public $translatedAttributes = ['value', 'description'];
     protected $fillable = ['name', 'value', 'description', 'isTranslatable', 'plainValue'];

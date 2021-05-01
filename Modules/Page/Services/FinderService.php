@@ -14,7 +14,7 @@ class FinderService
     }
 
     /**
-     * @param array $excludes
+     * @param  array $excludes
      *
      * @return $this
      */
@@ -28,8 +28,8 @@ class FinderService
     /**
      * Get all of the files from the given directory (recursive).
      *
-     * @param string $directory
-     * @param bool   $hidden
+     * @param  string $directory
+     * @param  bool $hidden
      *
      * @return array
      */

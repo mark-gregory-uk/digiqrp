@@ -28,7 +28,6 @@ class AssetPublisher
 
     /**
      * @param $finder
-     *
      * @return $this
      */
     public function setFinder($finder)
@@ -40,7 +39,6 @@ class AssetPublisher
 
     /**
      * @param $repository
-     *
      * @return $this
      */
     public function setRepository($repository)
@@ -51,16 +49,15 @@ class AssetPublisher
     }
 
     /**
-     * Publish the assets.
+     * Publish the assets
      */
     public function publish()
     {
-        if (! $this->finder->isDirectory($sourcePath = $this->getSourcePath())) {
+        if (!$this->finder->isDirectory($sourcePath = $this->getSourcePath())) {
             $message = "Source path does not exist : {$sourcePath}";
-
             throw new \InvalidArgumentException($message);
         }
-        if (! $this->finder->isDirectory($destinationPath = $this->getDestinationPath())) {
+        if (!$this->finder->isDirectory($destinationPath = $this->getDestinationPath())) {
             $this->finder->makeDirectory($destinationPath, 0775, true);
         }
         if ($this->finder->copyDirectory($sourcePath, $destinationPath)) {
@@ -69,18 +66,16 @@ class AssetPublisher
     }
 
     /**
-     * Get the original source path.
-     *
+     * Get the original source path
      * @return string
      */
     public function getSourcePath()
     {
-        return $this->theme->getPath().'/assets';
+        return $this->theme->getPath() . '/assets';
     }
 
     /**
-     * Get the destination path.
-     *
+     * Get the destination path
      * @return string
      */
     public function getDestinationPath()

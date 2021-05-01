@@ -69,8 +69,7 @@ class UserController extends BaseUserModuleController
     /**
      * Store a newly created resource in storage.
      *
-     * @param CreateUserRequest $request
-     *
+     * @param  CreateUserRequest $request
      * @return Response
      */
     public function store(CreateUserRequest $request)
@@ -96,9 +95,8 @@ class UserController extends BaseUserModuleController
     /**
      * Update the specified resource in storage.
      *
-     * @param int               $id
-     * @param UpdateUserRequest $request
-     *
+     * @param  int               $id
+     * @param  UpdateUserRequest $request
      * @return Response
      */
     public function update($id, UpdateUserRequest $request)
@@ -119,8 +117,7 @@ class UserController extends BaseUserModuleController
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
+     * @param  int      $id
      * @return Response
      */
     public function destroy($id)

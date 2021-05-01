@@ -7,15 +7,13 @@ use Cartalyst\Sentinel\Users\EloquentUser;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Laracasts\Presenter\PresentableTrait;
-use Modules\Blog\Entities\Post;
 use Modules\User\Entities\UserInterface;
 use Modules\User\Entities\UserToken;
 use Modules\User\Presenters\UserPresenter;
 
 class User extends EloquentUser implements UserInterface, AuthenticatableContract
 {
-    use PresentableTrait;
-    use Authenticatable;
+    use PresentableTrait, Authenticatable;
 
     protected $fillable = [
         'email',
@@ -109,10 +107,10 @@ class User extends EloquentUser implements UserInterface, AuthenticatableContrac
 
     public function __call($method, $parameters)
     {
-        //i: Convert array to dot notation
+        #i: Convert array to dot notation
         $config = implode('.', ['asgard.user.config.relations', $method]);
 
-        //i: Relation method resolver
+        #i: Relation method resolver
         if (config()->has($config)) {
             $function = config()->get($config);
             $bound = $function->bindTo($this);
@@ -120,7 +118,7 @@ class User extends EloquentUser implements UserInterface, AuthenticatableContrac
             return $bound();
         }
 
-        //i: No relation found, return the call to parent (Eloquent) to handle it.
+        #i: No relation found, return the call to parent (Eloquent) to handle it.
         return parent::__call($method, $parameters);
     }
 
@@ -133,16 +131,4 @@ class User extends EloquentUser implements UserInterface, AuthenticatableContrac
 
         return $permissions->hasAccess($permission);
     }
-
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
-
-
-    public function getFullNameAttribute() {
-        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
-    }
-
-
 }

@@ -13,21 +13,18 @@ use Modules\Tag\Contracts\TaggableInterface;
 use Modules\Tag\Traits\TaggableTrait;
 
 /**
- * Class File.
- *
+ * Class File
+ * @package Modules\Media\Entities
  * @property \Modules\Media\ValueObjects\MediaPath path
  */
 class File extends Model implements TaggableInterface, Responsable
 {
-    use Translatable;
-    use NamespacedEntity;
-    use TaggableTrait;
+    use Translatable, NamespacedEntity, TaggableTrait;
     /**
-     * All the different images types where thumbnails should be created.
-     *
+     * All the different images types where thumbnails should be created
      * @var array
      */
-    private $imageExtensions = ['jpg', 'png', 'jpeg', 'gif', 'webp'];
+    private $imageExtensions = ['jpg', 'png', 'jpeg', 'gif','webp'];
 
     protected $table = 'media__files';
     public $translatedAttributes = ['description', 'alt_attribute', 'keywords'];
@@ -47,7 +44,7 @@ class File extends Model implements TaggableInterface, Responsable
         'folder_id',
     ];
     protected $appends = ['path_string', 'media_type'];
-    protected $casts = ['is_folder' => 'boolean'];
+    protected $casts = ['is_folder' => 'boolean',];
     protected static $entityNamespace = 'asgardcms/media';
 
     public function parent_folder()
@@ -91,9 +88,7 @@ class File extends Model implements TaggableInterface, Responsable
 
     /**
      * Create an HTTP response that represents the object.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function toResponse($request)

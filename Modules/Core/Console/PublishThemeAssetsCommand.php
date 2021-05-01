@@ -14,7 +14,7 @@ class PublishThemeAssetsCommand extends Command
     {
         $theme = $this->argument('theme', null);
 
-        if (! empty($theme)) {
+        if (!empty($theme)) {
             $this->call('stylist:publish', ['theme' => $this->argument('theme')]);
         } else {
             $this->call('stylist:publish');

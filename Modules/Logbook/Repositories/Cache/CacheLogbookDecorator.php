@@ -16,6 +16,6 @@ class CacheLogbookDecorator extends BaseCacheDecorator implements LogbookReposit
 
     public function latestContacts()
     {
-       return $this->repository->latestContacts();
+        return $this->repository->latestContacts();
     }
 }

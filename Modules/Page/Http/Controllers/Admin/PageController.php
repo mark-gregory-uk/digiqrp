@@ -40,8 +40,7 @@ class PageController extends AdminBaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param CreatePageRequest $request
-     *
+     * @param  CreatePageRequest $request
      * @return Response
      */
     public function store(CreatePageRequest $request)
@@ -56,7 +55,6 @@ class PageController extends AdminBaseController
      * Show the form for editing the specified resource.
      *
      * @param Page $page
-     *
      * @return Response
      */
     public function edit(Page $page)
@@ -67,9 +65,8 @@ class PageController extends AdminBaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param Page              $page
-     * @param UpdatePageRequest $request
-     *
+     * @param Page $page
+     * @param  UpdatePageRequest $request
      * @return Response
      */
     public function update(Page $page, UpdatePageRequest $request)
@@ -89,7 +86,6 @@ class PageController extends AdminBaseController
      * Remove the specified resource from storage.
      *
      * @param Page $page
-     *
      * @return Response
      */
     public function destroy(Page $page)

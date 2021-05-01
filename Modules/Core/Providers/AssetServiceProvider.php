@@ -12,7 +12,6 @@ class AssetServiceProvider extends ServiceProvider
 {
     /**
      * Register the service provider.
-     *
      * @return void
      */
     public function register()
@@ -21,7 +20,7 @@ class AssetServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bind classes related to assets.
+     * Bind classes related to assets
      */
     private function bindAssetClasses()
     {

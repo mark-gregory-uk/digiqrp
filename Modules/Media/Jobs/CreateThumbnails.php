@@ -9,8 +9,7 @@ use Modules\Media\ValueObjects\MediaPath;
 
 class CreateThumbnails implements ShouldQueue
 {
-    use InteractsWithQueue;
-    use SerializesModels;
+    use InteractsWithQueue, SerializesModels;
 
     /**
      * @var MediaPath
@@ -26,7 +25,7 @@ class CreateThumbnails implements ShouldQueue
     {
         $imagy = app('imagy');
 
-        app('log')->info('Generating thumbnails for path: '.$this->path);
+        app('log')->info('Generating thumbnails for path: ' . $this->path);
 
         $imagy->createAll($this->path);
     }

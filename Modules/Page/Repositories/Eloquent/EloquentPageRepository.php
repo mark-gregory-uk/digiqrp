@@ -32,8 +32,7 @@ class EloquentPageRepository extends EloquentBaseRepository implements PageRepos
     }
 
     /**
-     * Find the page set as homepage.
-     *
+     * Find the page set as homepage
      * @return object
      */
     public function findHomepage()
@@ -42,8 +41,7 @@ class EloquentPageRepository extends EloquentBaseRepository implements PageRepos
     }
 
     /**
-     * Count all records.
-     *
+     * Count all records
      * @return int
      */
     public function countAll()
@@ -52,8 +50,7 @@ class EloquentPageRepository extends EloquentBaseRepository implements PageRepos
     }
 
     /**
-     * @param mixed $data
-     *
+     * @param  mixed  $data
      * @return object
      */
     public function create($data)
@@ -74,8 +71,7 @@ class EloquentPageRepository extends EloquentBaseRepository implements PageRepos
 
     /**
      * @param $model
-     * @param array $data
-     *
+     * @param  array  $data
      * @return object
      */
     public function update($model, $data)
@@ -106,7 +102,6 @@ class EloquentPageRepository extends EloquentBaseRepository implements PageRepos
     /**
      * @param $slug
      * @param $locale
-     *
      * @return object
      */
     public function findBySlugInLocale($slug, $locale)
@@ -122,8 +117,7 @@ class EloquentPageRepository extends EloquentBaseRepository implements PageRepos
     }
 
     /**
-     * Set the current page set as homepage to 0.
-     *
+     * Set the current page set as homepage to 0
      * @param null $pageId
      */
     private function removeOtherHomepage($pageId = null)
@@ -141,10 +135,8 @@ class EloquentPageRepository extends EloquentBaseRepository implements PageRepos
     }
 
     /**
-     * Paginating, ordering and searching through pages for server side index table.
-     *
+     * Paginating, ordering and searching through pages for server side index table
      * @param Request $request
-     *
      * @return LengthAwarePaginator
      */
     public function serverPaginationFilteringFor(Request $request): LengthAwarePaginator
@@ -181,7 +173,6 @@ class EloquentPageRepository extends EloquentBaseRepository implements PageRepos
 
     /**
      * @param Page $page
-     *
      * @return mixed
      */
     public function markAsOnlineInAllLocales(Page $page)
@@ -196,7 +187,6 @@ class EloquentPageRepository extends EloquentBaseRepository implements PageRepos
 
     /**
      * @param Page $page
-     *
      * @return mixed
      */
     public function markAsOfflineInAllLocales(Page $page)
@@ -211,7 +201,6 @@ class EloquentPageRepository extends EloquentBaseRepository implements PageRepos
 
     /**
      * @param array $pageIds [int]
-     *
      * @return mixed
      */
     public function markMultipleAsOnlineInAllLocales(array $pageIds)
@@ -223,7 +212,6 @@ class EloquentPageRepository extends EloquentBaseRepository implements PageRepos
 
     /**
      * @param array $pageIds [int]
-     *
      * @return mixed
      */
     public function markMultipleAsOfflineInAllLocales(array $pageIds)

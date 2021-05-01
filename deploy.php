@@ -6,7 +6,7 @@ require 'recipe/laravel.php';
 
 set('application', 'G4LCH Larval 6 Digicore Blog Engine'); // The Application Title
 set('repository', 'git@github.com:hamcore/digiqrp.git');  // The Repository in use
-set('keep_releases', 4);                                  // Number of releases to keep on hosts
+set('keep_releases', 5);                                  // Number of releases to keep on hosts
 set('default_timeout', 1200);
 
 add('shared_files', ['.env']);                                  // Shared files between deploys
@@ -82,8 +82,8 @@ task('npm:build', function () {
 
 task('migrate', function () {
     if (askConfirmation('Are you sure you want to run migrations?')) {
-        invoke('artisan:migrate:fresh');
-        invoke('artisan:db:seed');
+        invoke('artisan:migrate');
+        //invoke('artisan:db:seed');
     }
 })->desc('Migrating Database');
 
@@ -136,7 +136,7 @@ host('stage')
 after('success', 'deploy:permissions');
 after('deploy:failed', 'deploy:unlock');
 
-//after('deploy:permissions', 'migrate');
+after('deploy:permissions', 'migrate');
 
 after('deploy:permissions', 'cache-clean');
 

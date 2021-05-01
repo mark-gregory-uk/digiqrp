@@ -35,8 +35,7 @@ use Modules\Tag\Repositories\TagManager;
 
 class MediaServiceProvider extends ServiceProvider
 {
-    use CanPublishConfiguration;
-    use CanGetSidebarClassForModule;
+    use CanPublishConfiguration, CanGetSidebarClassForModule;
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -97,7 +96,7 @@ class MediaServiceProvider extends ServiceProvider
         $this->registerThumbnails();
         $this->registerBladeTags();
 
-        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 
     /**
@@ -121,7 +120,7 @@ class MediaServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register all commands for this module.
+     * Register all commands for this module
      */
     private function registerCommands()
     {
@@ -129,7 +128,7 @@ class MediaServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the refresh thumbnails command.
+     * Register the refresh thumbnails command
      */
     private function registerRefreshCommand()
     {
@@ -144,8 +143,8 @@ class MediaServiceProvider extends ServiceProvider
     {
         $this->app[ThumbnailManager::class]->registerThumbnail('smallThumb', [
             'resize' => [
-                'width'    => 50,
-                'height'   => null,
+                'width' => 50,
+                'height' => null,
                 'callback' => function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
@@ -154,8 +153,8 @@ class MediaServiceProvider extends ServiceProvider
         ]);
         $this->app[ThumbnailManager::class]->registerThumbnail('mediumThumb', [
             'resize' => [
-                'width'    => 180,
-                'height'   => null,
+                'width' => 180,
+                'height' => null,
                 'callback' => function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();

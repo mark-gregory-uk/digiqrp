@@ -16,7 +16,7 @@ return [
     |--------------------------------------------------------------------------
     | Note: Trailing slash is required
     */
-    'files-path' => '/assets/media/',
+    'files-path' => '/storage/media/',
     /*
     |--------------------------------------------------------------------------
     | Specify all the allowed file extensions a user can upload on the server
@@ -29,7 +29,7 @@ return [
     | Defined in MB
     |--------------------------------------------------------------------------
     */
-    'max-file-size' => '5',
+    'max-file-size' => '500',
 
     /*
     |--------------------------------------------------------------------------

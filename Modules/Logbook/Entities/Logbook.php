@@ -21,7 +21,7 @@ class Logbook extends Model
         'name',
         'slug',
         'title',
-        'default'
+        'default',
     ];
 
     /**
@@ -33,17 +33,17 @@ class Logbook extends Model
     {
         $owner = User::find($this->owner_id);
 
-        return  ! empty($owner->callsign) ? $owner->callsign : $owner->first_name.' '.$owner->last_name;
+        return  ! empty($owner->callsign) ? $owner->callsign : $owner->first_name . ' ' . $owner->last_name;
     }
 
     /**
      * recover if the is the default loogbook for this user
      * @return boolean
      */
-    public function isDefault(){
+    public function isDefault()
+    {
         return $this->default;
     }
-
 
     /**
      * Recover the log book entries.

@@ -27,8 +27,7 @@ class Installer
     }
 
     /**
-     * @param array $scripts
-     *
+     * @param  array $scripts
      * @return $this
      */
     public function stack(array $scripts)
@@ -39,10 +38,8 @@ class Installer
     }
 
     /**
-     * Fire install scripts.
-     *
-     * @param Command $command
-     *
+     * Fire install scripts
+     * @param  Command $command
      * @return bool
      */
     public function install(Command $command)

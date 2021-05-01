@@ -17,10 +17,8 @@ class PackageInformation
     }
 
     /**
-     * Get the exact installed version for the specified package.
-     *
+     * Get the exact installed version for the specified package
      * @param string $packageName
-     *
      * @return string mixed
      */
     public function getPackageInfo($packageName)

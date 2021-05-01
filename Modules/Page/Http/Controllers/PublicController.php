@@ -12,6 +12,7 @@ use Modules\Menu\Entities\Menu;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Page\Entities\Page;
 use Modules\Page\Repositories\PageRepository;
+use Modules\Solar\Repositories\SolarRepository;
 
 class PublicController extends BasePublicController
 {
@@ -30,6 +31,10 @@ class PublicController extends BasePublicController
      */
     private $logbookRepository;
 
+    /**
+     * @var SolarRepository
+     */
+    private $solarReportsRepository;
 
     /**
      * @var Application
@@ -38,13 +43,14 @@ class PublicController extends BasePublicController
 
     private $disabledPage = false;
 
-    public function __construct(PageRepository $page, PostRepository  $postsRepository,LogbookRepository $logBookRepository,Application $app)
+    public function __construct(PageRepository $page, PostRepository  $postsRepository, LogbookRepository $logBookRepository, SolarRepository $solarRepository, Application $app)
     {
         parent::__construct();
         $this->page = $page;
         $this->app = $app;
         $this->postRepository = $postsRepository;
         $this->logbookRepository = $logBookRepository;
+        $this->solarReportsRepository = $solarRepository;
     }
 
     /**
@@ -57,19 +63,20 @@ class PublicController extends BasePublicController
         $page = $this->findPageForSlug($slug);
         $latestPosts = $this->postRepository->latest();
         $latestContacts = $this->logbookRepository->latestContacts();
-
+        $furthestContacts = $this->logbookRepository->longestContacts();
+        $latestSolarReports = $this->solarReportsRepository->latestReports();
         $this->throw404IfNotFound($page);
 
         $currentTranslatedPage = $page->getTranslation(locale());
         if ($slug !== $currentTranslatedPage->slug) {
-            return redirect()->to($currentTranslatedPage->locale.'/'.$currentTranslatedPage->slug, 301);
+            return redirect()->to($currentTranslatedPage->locale . '/' . $currentTranslatedPage->slug, 301);
         }
 
         $template = $this->getTemplateForPage($page);
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page','latestPosts','latestContacts'));
+        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }
 
     /**
@@ -80,14 +87,15 @@ class PublicController extends BasePublicController
         $page = $this->page->findHomepage();
         $latestPosts = $this->postRepository->latest();
         $latestContacts = $this->logbookRepository->latestContacts();
-
+        $furthestContacts = $this->logbookRepository->longestContacts();
+        $latestSolarReports = $this->solarReportsRepository->latestReports();
         $this->throw404IfNotFound($page);
 
         $template = $this->getTemplateForPage($page);
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page','latestPosts','latestContacts'));
+        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }
 
     /**
@@ -178,20 +186,20 @@ class PublicController extends BasePublicController
 
             // add every page to the sitemap
             foreach ($pages as $page) {
-                $sitemap->add(URL::to('page /'.$page->slug), '2012-08-26T12:30:00+02:00', '0.9', 'weekly');
+                $sitemap->add(URL::to('page /' . $page->slug), '2012-08-26T12:30:00+02:00', '0.9', 'weekly');
             }
 
             // add every post to the sitemap
             $posts = \DB::table('posts')->orderBy('created_at', 'desc')->get();
 
             foreach ($posts as $post) {
-                $sitemap->add(URL::to('post/'.$post->id), '2012-08-26T12:30:00+02:00', '0.9', 'daily');
+                $sitemap->add(URL::to('post/' . $post->id), '2012-08-26T12:30:00+02:00', '0.9', 'daily');
             }
 
             $newsItems = \DB::table('news_items')->orderBy('created_at', 'desc')->get();
 
             foreach ($newsItems as $news) {
-                $sitemap->add(URL::to('news/'.$news->id), '2012-08-26T12:30:00+02:00', '0.9', 'daily');
+                $sitemap->add(URL::to('news/' . $news->id), '2012-08-26T12:30:00+02:00', '0.9', 'daily');
             }
         }
 

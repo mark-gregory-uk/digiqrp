@@ -25,7 +25,6 @@ class Thumbnail
 
     /**
      * @param $thumbnailDefinition
-     *
      * @return static
      */
     public static function make($thumbnailDefinition)
@@ -36,10 +35,8 @@ class Thumbnail
     }
 
     /**
-     * Make multiple thumbnail classes with the given array.
-     *
+     * Make multiple thumbnail classes with the given array
      * @param array $thumbnailDefinitions
-     *
      * @return array
      */
     public static function makeMultiple(array $thumbnailDefinitions)
@@ -54,8 +51,7 @@ class Thumbnail
     }
 
     /**
-     * Return the thumbnail name.
-     *
+     * Return the thumbnail name
      * @return string
      */
     public function name()
@@ -72,8 +68,7 @@ class Thumbnail
     }
 
     /**
-     * Return the first width option found in the filters.
-     *
+     * Return the first width option found in the filters
      * @return int
      */
     public function width()
@@ -82,8 +77,7 @@ class Thumbnail
     }
 
     /**
-     * Return the first height option found in the filters.
-     *
+     * Return the first height option found in the filters
      * @return int
      */
     public function height()
@@ -92,20 +86,17 @@ class Thumbnail
     }
 
     /**
-     * Get the thumbnail size in format: width x height.
-     *
+     * Get the thumbnail size in format: width x height
      * @return string
      */
     public function size()
     {
-        return $this->width().'x'.$this->height();
+        return $this->width() . 'x' . $this->height();
     }
 
     /**
-     * Get the first found key in filters.
-     *
+     * Get the first found key in filters
      * @param string $key
-     *
      * @return int
      */
     private function getFirst($key)

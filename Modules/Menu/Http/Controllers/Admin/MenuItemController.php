@@ -80,7 +80,6 @@ class MenuItemController extends AdminBaseController
 
     /**
      * @param Menu, $menuItemId
-     *
      * @return array
      */
     private function getMenuSelect($menu)
@@ -89,9 +88,8 @@ class MenuItemController extends AdminBaseController
     }
 
     /**
-     * @param Menu                                    $menu
-     * @param \Illuminate\Foundation\Http\FormRequest $request
-     *
+     * @param  Menu $menu
+     * @param  \Illuminate\Foundation\Http\FormRequest $request
      * @return array
      */
     private function addMenuId(Menu $menu, FormRequest $request)

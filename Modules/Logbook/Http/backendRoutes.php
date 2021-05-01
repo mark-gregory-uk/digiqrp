@@ -37,5 +37,7 @@ $router->group(['prefix' =>'/logbook'], function (Router $router) {
         'uses'       => 'LogbookController@destroy',
         'middleware' => 'can:logbook.logbooks.destroy',
     ]);
-    // append
+
+    Route::get('/upload-file', [\Modules\Logbook\Http\Controllers\Admin\LogbookController::class, 'createForm'])->name('logbook.upload');
+    Route::post('/upload-file', [\Modules\Logbook\Http\Controllers\Admin\LogbookController::class, 'fileUpload'])->name('logbook.uploadlog');
 });

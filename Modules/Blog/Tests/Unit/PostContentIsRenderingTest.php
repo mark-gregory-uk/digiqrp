@@ -12,7 +12,7 @@ class PostContentIsRenderingTest extends BaseBlogTestCase
     public function it_can_change_final_content()
     {
         Event::listen(PostContentIsRendering::class, function (PostContentIsRendering $event) {
-            $event->setContent('<strong>'.$event->getOriginal().'</strong>');
+            $event->setContent('<strong>' . $event->getOriginal() . '</strong>');
         });
 
         $post = $this->post->create([

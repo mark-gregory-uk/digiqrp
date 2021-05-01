@@ -19,8 +19,7 @@ use Modules\Tag\Repositories\TagRepository;
 
 class TagServiceProvider extends ServiceProvider
 {
-    use CanPublishConfiguration;
-    use CanGetSidebarClassForModule;
+    use CanPublishConfiguration, CanGetSidebarClassForModule;
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -59,7 +58,7 @@ class TagServiceProvider extends ServiceProvider
         $this->publishConfig('tag', 'permissions');
         $this->publishConfig('tag', 'config');
         $this->registerBladeTags();
-        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 
     /**

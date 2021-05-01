@@ -10,11 +10,13 @@ use Modules\Blog\Entities\Post;
 use Modules\Blog\Repositories\PostRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Logbook\Entities\Logbook;
+use Modules\Logbook\Entities\LogbookCountry;
 use Modules\Logbook\Entities\LogFile;
 use Modules\Logbook\Entities\MacLogger;
 use Modules\Logbook\Http\Requests\CreateLogbookRequest;
 use Modules\Logbook\Http\Requests\UpdateLogbookRequest;
 use Modules\Logbook\Repositories\LogbookRepository;
+use Modules\Setting\Contracts\Setting;
 
 class LogbookController extends AdminBaseController
 {
@@ -27,6 +29,11 @@ class LogbookController extends AdminBaseController
      * @var Post
      */
     private $postRepository;
+
+    /**
+     * @var Setting
+     */
+    private $settings;
 
     public function __construct(LogbookRepository $logbook, PostRepository  $postsRepository)
     {
@@ -133,8 +140,25 @@ class LogbookController extends AdminBaseController
         return view('logbook::admin.logbooks.fileupload', compact('latestPosts', 'latestContacts'));
     }
 
-    public function fileUpload(Request $req)
+    public function fileUpload(Request $req,Setting $settings)
     {
+        $this->settings = $settings;
+        $default_lat = 52.3848;
+        $default_lng = 1.8215;
+        $countries = LogbookCountry::all();
+
+        $user_lat = $this->settings->get('logbook::latitude');
+        $user_lng = $this->settings->get('logbook::longitude');
+
+        if ($user_lat & $user_lng) {
+            $latitude = $user_lat;
+            $longitude = $user_lng;
+        } else {
+            $latitude = $default_lat;
+            $longitude = $default_lng;
+        }
+
+
         $fileModel = new LogFile();
 
         if ($req->file()) {
@@ -185,6 +209,18 @@ class LogbookController extends AdminBaseController
                     $logEntry->tx_frequency = $row->tx_frequency;
                     $logEntry->rx_frequency = $row->rx_frequency;
                     $logEntry->dxcc_id = $row->dxcc_id;
+                    $country = $countries->firstWhere('name', $row->dxcc_country);
+
+                    if (!empty($country)) {
+                        $logEntry->country_slug = $country->code;
+                    }
+
+                    $distanceKM = (float)$this->distance($latitude, $longitude, $row->latitude, $row->longitude);
+                    if ($distanceKM > 0) {
+                        $distanceMiles = $distanceKM /  1.609;
+                        $logEntry->distance_km = $distanceKM;
+                        $logEntry->distance_miles = $distanceMiles;
+                    }
                     $logEntry->save();
                 }
             }
@@ -197,4 +233,33 @@ class LogbookController extends AdminBaseController
                 ->with('errors', 'Logfile has not been uploaded.');
         }
     }
+
+    /**
+     * Calculate the as the crow flies distance in miles and kilometers
+     * @param $lat1
+     * @param $lon1
+     * @param $lat2
+     * @param $lon2
+     * @return float|int
+     */
+    private function distance($lat1, $lon1, $lat2, $lon2)
+    {
+        $pi80 = M_PI / 180;
+        $r = 6372.797; // mean radius of Earth in km
+        $calculatedDistance = 0;
+        if ((float)$lat2 != 0 && (float)$lon2 != 0) {
+            $lat1 *= $pi80;
+            $lon1 *= $pi80;
+            $lat2 *= $pi80;
+            $lon2 *= $pi80;
+            $dlat = $lat2 - $lat1;
+            $dlon = $lon2 - $lon1;
+            $a = sin($dlat / 2) * sin($dlat / 2) + cos($lat1) * cos($lat2) * sin($dlon / 2) * sin($dlon / 2);
+            $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+            $calculatedDistance = $r * $c;
+        }
+
+        return $calculatedDistance;
+    }
+
 }

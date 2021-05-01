@@ -107,7 +107,7 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
      */
     public function latest($amount = 5)
     {
-        return $this->model->whereStatus(Status::PUBLISHED)->orderBy('created_at', 'desc')->take($amount)->get();
+        return $this->model->whereStatus(Status::PUBLISHED)->orderBy('sort', 'asc')->take($amount)->get();
     }
 
     /**

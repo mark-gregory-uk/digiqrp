@@ -13,11 +13,13 @@ return [
         'title'  => 'Title',
         'slug'   => 'Slug',
         'status' => 'Status',
+        'sort'   => 'Sort Order',
     ],
     'form' => [
         'title'   => 'Title',
         'slug'    => 'Slug',
         'content' => 'Content',
+        'sort'    => 'Sort Order',
     ],
     'navigation' => [
         'back to index' => 'Back to posts index',

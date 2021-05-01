@@ -33,6 +33,7 @@
                             <th>{{ trans('blog::post.table.title') }}</th>
                             <th>{{ trans('blog::post.table.slug') }}</th>
                             <th>{{ trans('core::core.table.created at') }}</th>
+                            <th>{{ trans('blog::post.table.sort') }}</th>
                             <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                         </tr>
                     </thead>
@@ -61,6 +62,11 @@
                                     </a>
                                 </td>
                                 <td>
+                                    <a href="{{ route('admin.blog.post.edit', [$post->sort]) }}">
+                                        {{ $post->sort }}
+                                    </a>
+                                </td>
+                                <td>
                                     <a href="{{ route('admin.blog.post.edit', [$post->id]) }}">
                                         {{ $post->created_at }}
                                     </a>
@@ -75,16 +81,7 @@
                         <?php } ?>
                     <?php } ?>
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Id</th>
-                            <th>{{ trans('blog::post.table.status') }}</th>
-                            <th>{{ trans('blog::post.table.title') }}</th>
-                            <th>{{ trans('blog::post.table.slug') }}</th>
-                            <th>{{ trans('core::core.table.created at') }}</th>
-                            <th>{{ trans('core::core.table.actions') }}</th>
-                        </tr>
-                    </tfoot>
+
                 </table>
             <!-- /.box-body -->
             </div>

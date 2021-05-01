@@ -24,6 +24,8 @@ class EloquentLogbookRepository extends EloquentBaseRepository implements Logboo
         $user = 1;
         $defaultLogBook = $this->where('owner_id', $user)->where('default', true)->distinct('call')->first();
 
-        return  $defaultLogBook->entries()->orderBy('distance_km', 'desc')->take(5)->get();
+        $logEntries =  $defaultLogBook->entries()->orderBy('distance_km', 'desc')->take(5)->get();
+        $logEntries = $logEntries->unique('call');
+        return $logEntries;
     }
 }

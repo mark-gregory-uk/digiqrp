@@ -67,6 +67,9 @@
                 </div>
                 @tags('asgardcms/post', $post)
                 @mediaSingle('thumbnail', $post)
+                {!! Form::label("sort", trans('blog::post.form.sort')) !!}
+                {!! Form::number('sort',old('0', $post->sort) ) !!}
+                {!! $errors->first("sort", '<span class="help-block">:message</span>') !!}
             </div>
         </div>
     </div>

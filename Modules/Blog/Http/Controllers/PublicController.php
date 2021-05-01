@@ -2,7 +2,10 @@
 
 namespace Modules\Blog\Http\Controllers;
 
+use App\Http\Requests\Request;
 use Illuminate\Support\Facades\App;
+use Modules\Blog\Entities\Category;
+use Modules\Blog\Entities\CategoryTranslation;
 use Modules\Blog\Repositories\PostRepository;
 use Modules\Core\Http\Controllers\BasePublicController;
 use Modules\Logbook\Repositories\LogbookRepository;
@@ -54,4 +57,21 @@ class PublicController extends BasePublicController
 
         return view('blog.show', compact('post', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }
+
+    public function byCategory($cat)
+    {
+
+        $categoryTrans = CategoryTranslation::where('slug',$cat)->first();
+
+        $posts = $this->post->findByCategory($categoryTrans->category_id);
+
+        $latestPosts = $this->post->latest();
+        $latestContacts = $this->logRepository->latestContacts();
+        $furthestContacts = $this->logRepository->longestContacts();
+        $latestSolarReports = $this->solarReportsRepository->latestReports();
+
+        return view('blog.index', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
+    }
+
+
 }

@@ -149,4 +149,20 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
             $q->where('slug', "$slug");
         })->with('translations')->whereStatus(Status::PUBLISHED)->firstOrFail();
     }
+
+    /**
+     * Find a resource by the given category.
+     *
+     * @param string $slug
+     *
+     * @return object
+     */
+    public function findByCategory($category)
+    {
+        return $this->model->whereHas('translations', function (Builder $q) use ($category) {
+            $q->where('category_id', "$category");
+        })->with('translations')->get();
+    }
+
+
 }

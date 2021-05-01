@@ -80,9 +80,12 @@ class PostController extends AdminBaseController
      */
     public function store(CreatePostRequest $request)
     {
-        $this->post->create($request->all());
-        $this->post->author = Auth::id();
-        $this->post->save();
+
+        $data = $request->all();
+        $data['author_id']=Auth::id();
+
+        $this->post->create($data);
+
         return redirect()->route('admin.blog.post.index')
             ->withSuccess(trans('blog::messages.post created'));
     }
@@ -114,9 +117,9 @@ class PostController extends AdminBaseController
      */
     public function update(Post $post, UpdatePostRequest $request)
     {
-        $this->post->update($post, $request->all());
-        $this->post->author = Auth::id();
-        $this->post->save();
+        $data=$request->all();
+        $data['author_id']=Auth::id();
+        $this->post->update($post,$data );
         return redirect()->route('admin.blog.post.index')
             ->withSuccess(trans('blog::messages.post updated'));
     }

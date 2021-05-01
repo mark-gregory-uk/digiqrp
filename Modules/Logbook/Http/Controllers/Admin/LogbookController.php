@@ -146,11 +146,11 @@ class LogbookController extends AdminBaseController
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();
 
-            if (Storage::exists('database/sqlite/' . $originalFileName)) {
-                Storage::delete('database/sqlite/' . $originalFileName);
+            if (Storage::exists('storage/sqlite/' . $originalFileName)) {
+                Storage::delete('storage/sqlite/' . $originalFileName);
             }
 
-            Storage::move('/storage/app/public/uploads/' . $fileModel->name, 'database/sqlite/' . $originalFileName);
+            Storage::move('/storage/app/public/uploads/' . $fileModel->name, '/storage/sqlite/' . $originalFileName);
 
             if ($originalFileName == 'MacLoggerDX.sql') {
                 $logbook = Logbook::with('entries')

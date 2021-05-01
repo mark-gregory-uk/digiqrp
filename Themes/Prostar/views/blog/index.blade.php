@@ -27,7 +27,7 @@
                         @endif
                     </li>
                     <div class="card-body d-flex flex-column align-items-start">
-                        <p class="card-text mb-auto">{!! \Illuminate\Support\Str::limit($post->content, 120, $end='...') !!}</p>
+                        <p class="card-text mb-auto">{!! \Illuminate\Support\Str::limit($post->content, 200, $end='...') !!}</p>
                         <a href="{{ URL::route($currentLocale . '.blog.slug', [$post->slug]) }}">Continue reading</a>
                     </div>
                     <div class="clearfix"></div>

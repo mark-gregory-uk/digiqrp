@@ -70,7 +70,7 @@ class PublicController extends BasePublicController
         $furthestContacts = $this->logRepository->longestContacts();
         $latestSolarReports = $this->solarReportsRepository->latestReports();
 
-        return view('blog.index', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
+        return view('blog.category', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }
 
 

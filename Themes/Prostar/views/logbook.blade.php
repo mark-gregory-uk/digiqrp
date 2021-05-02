@@ -54,7 +54,9 @@
                 <th>Rx</th>
                 <th>Tx</th>
                 <th>Band</th>
-                <th>Country</th>
+                <th style="width: 1px;"></th>
+                <th>Date</th>
+                <th>Time</th>
             </tr>
             </thead>
             <tbody>
@@ -74,11 +76,31 @@
                 serverSide: true,
                 ajax: "{{ route('logbook.all') }}",
                 columns: [
-                    {data: 'call', name: 'call'},
-                    {data: 'rst_received', name: 'rst_received'},
-                    {data: 'rst_sent', name: 'rst_sent'},
-                    {data: 'band_tx', name: 'band_tx'},
-                    {data: 'dxcc_country', name: 'dxcc_country'},
+                    { data: 'call',
+                        name: 'call'
+                    },
+                    { data: 'rst_received',
+                        name: 'rst_received'
+                    },
+                    { data: 'rst_sent',
+                        name: 'rst_sent'
+                    },
+                    { data: 'band_tx',
+                        name: 'band_tx'
+                    },
+                    { data: 'payload',
+                        name: 'payload',"searchable": false,
+                        "orderable": false,
+                        render: function(data) {
+                            return '<img src="'+data+'">'
+                        },
+                    },
+                    { data: 'end_date',
+                        name: 'end_date',"searchable": false
+                    },
+                    { data: 'end_time',
+                        name: 'end_time',"searchable": false
+                    },
                 ]
             });
         });

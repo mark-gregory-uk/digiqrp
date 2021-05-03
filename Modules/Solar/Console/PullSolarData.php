@@ -13,12 +13,10 @@ use Symfony\Component\Console\Input\InputOption;
 
 class PullSolarData extends Command
 {
-
     /**
      * @var Setting
      */
     private $setting;
-
 
     /**
      * The name and signature of the console command.
@@ -44,7 +42,7 @@ class PullSolarData extends Command
      *
      * @return void
      */
-    public function __construct(Setting $setting,SolarDataRowRepository $solarDataRowRepository)
+    public function __construct(Setting $setting, SolarDataRowRepository $solarDataRowRepository)
     {
         parent::__construct();
         $this->setting = $setting;

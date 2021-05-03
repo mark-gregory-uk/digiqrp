@@ -40,61 +40,17 @@ task('build', function () {
     run('cd {{release_path}} && build');
 })->desc('Building Application');
 
-task('reload:php-fpm', function () {
-    $stage = input()->getArgument('stage');
-    if ($stage === 'dev') {
-        run('sudo /usr/sbin/service php7.4-fpm reload');
-    }
-    if ($stage === 'stage') {
-        run('sudo /usr/sbin/service php7.4-fpm reload');
-    }
-    if ($stage === 'prod') {
-        run('sudo /usr/sbin/service php7.4-fpm reload');
-    }
-});
-
-task('reload:nginx', function () {
-    run('sudo /usr/sbin/service nginx reload');
-})->desc('Reloading Nginx');
-
-task('reload:supervisor', function () {
-    run('sudo /usr/sbin/service supervisor reload');
-})->desc('Reloading Supervisor');
-
-// install npm
-task('npm:install', function () {
-    cd('{{release_path}}');
-    run('./provision/scripts/buildsys.sh');
-})->desc('Running NPM Install');
-
-task('npm-build-sys', function () {
-    if (askConfirmation('Are you sure you want to build assets ?')) {
-        invoke('npm:install');
-        invoke('npm:build');
-    }
-});
-
-// Build using laravel mix
-task('npm:build', function () {
-    cd('{{release_path}}');
-    run('./provision/scripts/refreshbuild.sh');
-})->desc('Reloading NPM');
 
 task('migrate', function () {
-    if (askConfirmation('Are you sure you want to run migrations?')) {
         invoke('artisan:migrate');
-        //invoke('artisan:db:seed');
-    }
 })->desc('Migrating Database');
 
 // if deploy to production, then ask to be sure
 task('cache-clean', function () {
-//    if ( askConfirmation( 'Are you sure you want to  clear system cache ?' ) ) {
-    invoke('artisan:cache:clear');
-    invoke('artisan:view:clear');
-    invoke('artisan:config:cache');
-//    }
-})->desc('Clearing System Cache');
+    run('{{bin/php}} {{release_path}}/artisan cache:clear');
+    run('{{bin/php}} {{release_path}}/artisan view:clear');
+    run('{{bin/php}} {{release_path}}/artisan config:clear');
+})->desc('Clearing System Config and Cache');
 
 // **********************************************************************************
 // Host Definitions
@@ -135,23 +91,6 @@ host('stage')
 
 after('success', 'deploy:permissions');
 after('deploy:failed', 'deploy:unlock');
-
 after('deploy:permissions', 'migrate');
+after('deploy', 'cache-clean');
 
-after('deploy:permissions', 'cache-clean');
-
-//after('deploy:permissions','npm-build-sys');
-
-// **********************************************************************************
-// Restart the web servers if needed so that they can pick up any routing changes
-// **********************************************************************************
-
-after('deploy', 'reload:php-fpm');
-after('deploy', 'reload:nginx');
-after('deploy', 'reload:supervisor');
-
-// **********************************************************************************
-// Restart the web servers after we have performed a rollback this is important
-// **********************************************************************************
-after('rollback', 'reload:php-fpm');
-after('rollback', 'reload:nginx');

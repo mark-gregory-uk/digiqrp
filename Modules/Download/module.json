@@ -1,0 +1,16 @@
+{
+    "name": "Download",
+    "alias": "download",
+    "version": "1.0.0",
+	"description": "",
+    "keywords": [],
+    "priority": 1,
+    "providers": [
+        "Modules\\Download\\Providers\\DownloadServiceProvider",
+        "Modules\\Download\\Providers\\EventServiceProvider",
+        "Modules\\Download\\Providers\\RouteServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

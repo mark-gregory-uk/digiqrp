@@ -2,13 +2,13 @@
     <meta charset="UTF-8">
 
     <meta name="description" content="@setting('core::site-description')"/>
+    <meta name="keywords" content="@setting('core::site-meta-keywords')"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="generator" content="laravel - Open Source Content Management" />
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="@setting('core::site-theme-color')"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
 
     <title style="font-family: 'Open Sans', sans-serif;">@section('title')@setting('core::site-name')@show</title>
 
@@ -57,8 +57,6 @@
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
 
-    <!-- <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
     <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css" rel="stylesheet">
 

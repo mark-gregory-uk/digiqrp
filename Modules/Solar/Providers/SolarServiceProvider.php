@@ -38,7 +38,8 @@ class SolarServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishConfig('solar', 'permissions');
-
+        $this->publishConfig('solar', 'settings');
+        $this->publishConfig('solar', 'config');
         $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 

@@ -1,0 +1,9 @@
+url: https://github.com/AsgardCms/Platform
+versions:
+    "1.2.0":
+        added:
+            - Added Settings for Pull URL
+    "1.1.0":
+        added:
+            - Initial Release
+            - Laravel 8 compatibility

@@ -3,6 +3,7 @@
 namespace Modules\Solar\Console;
 
 use Illuminate\Console\Command;
+use Modules\Setting\Contracts\Setting;
 use Modules\Solar\Entities\Solar;
 use Modules\Solar\Entities\SolarBandData;
 use Modules\Solar\Repositories\SolarDataRowRepository;
@@ -12,6 +13,13 @@ use Symfony\Component\Console\Input\InputOption;
 
 class PullSolarData extends Command
 {
+
+    /**
+     * @var Setting
+     */
+    private $setting;
+
+
     /**
      * The name and signature of the console command.
      *
@@ -36,9 +44,10 @@ class PullSolarData extends Command
      *
      * @return void
      */
-    public function __construct(SolarDataRowRepository $solarDataRowRepository)
+    public function __construct(Setting $setting,SolarDataRowRepository $solarDataRowRepository)
     {
         parent::__construct();
+        $this->setting = $setting;
         $this->solarDataRowRepository = $solarDataRowRepository;
     }
 
@@ -49,7 +58,7 @@ class PullSolarData extends Command
      */
     public function handle()
     {
-        $xmlstr = file_get_contents('http://www.hamqsl.com/solarxml.php');
+        $xmlstr = file_get_contents($this->setting->get('solar::target_url'));
         $xmlobj = new SimpleXMLElement($xmlstr);
 
         $this->info('Pulling Latest Solar Data');

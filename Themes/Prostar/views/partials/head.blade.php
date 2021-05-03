@@ -3,10 +3,11 @@
 
     <meta name="description" content="@setting('core::site-description')"/>
     <meta name="keywords" content="@setting('core::site-meta-keywords')"/>
+    <meta name="theme-color" content="@setting('core::site-theme-color')"/>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="generator" content="laravel - Open Source Content Management" />
-    <meta name="theme-color" content="@setting('core::site-theme-color')"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="msapplication-TileColor" content="#da532c">
 

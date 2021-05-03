@@ -3,6 +3,7 @@
 namespace Modules\Download\Providers;
 
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
+use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Core\Events\BuildingSidebar;
@@ -30,9 +31,7 @@ class DownloadServiceProvider extends ServiceProvider
         $this->app['events']->listen(BuildingSidebar::class, RegisterDownloadSidebar::class);
 
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
-            $event->load('downloads', array_dot(trans('download::downloads')));
-            // append translations
-
+            $event->load('downloads', Arr::dot(trans('download::downloads')));
         });
 
 
@@ -41,7 +40,6 @@ class DownloadServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishConfig('download', 'permissions');
-
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 

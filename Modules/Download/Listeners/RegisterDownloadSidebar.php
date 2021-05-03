@@ -36,26 +36,22 @@ class RegisterDownloadSidebar implements \Maatwebsite\Sidebar\SidebarExtender
      */
     public function extendWith(Menu $menu)
     {
+
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
             $group->item(trans('download::downloads.title.downloads'), function (Item $item) {
-                $item->icon('fa fa-copy');
-                $item->weight(10);
-                $item->authorize(
-                     /* append */
-                );
-                $item->item(trans('download::downloads.title.downloads'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.download.download.create');
-                    $item->route('admin.download.download.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('download.downloads.index')
-                    );
-                });
-// append
+                $item->icon('fa fa-download');
+                $item->weight(20);
 
+                $item->route('admin.download.download.index');
+                $item->authorize(
+                    $this->auth->hasAccess('download.downloads.index')
+                );
             });
         });
+
+
+
+
 
         return $menu;
     }

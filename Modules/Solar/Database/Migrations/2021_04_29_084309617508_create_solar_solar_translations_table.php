@@ -15,7 +15,6 @@ class CreateSolarSolarTranslationsTable extends Migration
         Schema::create('solar__reports_translations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            // Your translatable fields
             $table->integer('solar_id')->unsigned();
             $table->string('locale')->index();
             $table->unique(['solar_id', 'locale']);

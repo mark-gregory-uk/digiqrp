@@ -13,13 +13,6 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12">
-            <div class="row">
-                <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a href="{{ route('admin.solar.solar.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ trans('solar::solars.button.create solar') }}
-                    </a>
-                </div>
-            </div>
             <div class="box box-primary">
                 <div class="box-header">
                 </div>
@@ -29,14 +22,22 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
+                                <th>{{ trans('solar::solars.table.source') }}</th>
+                                <th>{{ trans('solar::solars.table.noise_level') }}</th>
+                                <th>{{ trans('solar::solars.table.solarwind') }}</th>
+                                <th>{{ trans('solar::solars.table.sunspots') }}</th>
                                 <th>{{ trans('core::core.table.created at') }}</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($solars)) { ?>
-                            <?php foreach ($solars as $solar) { ?>
+                            <?php if (isset($solarReports)) { ?>
+                            <?php foreach ($solarReports as $solar) { ?>
                             <tr>
+                                <td>{{ $solar->source }}</td>
+                                <td>{{ $solar->noise_level }}</td>
+                                <td>{{ $solar->solarwind }}</td>
+                                <td>{{ $solar->sunspots }}</td>
                                 <td>
                                     <a href="{{ route('admin.solar.solar.edit', [$solar->id]) }}">
                                         {{ $solar->created_at }}
@@ -52,12 +53,6 @@
                             <?php } ?>
                             <?php } ?>
                             </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
-                            </tr>
-                            </tfoot>
                         </table>
                         <!-- /.box-body -->
                     </div>
@@ -72,23 +67,8 @@
 @section('footer')
     <a data-toggle="modal" data-target="#keyboardShortcutsModal"><i class="fa fa-keyboard-o"></i></a> &nbsp;
 @stop
-@section('shortcuts')
-    <dl class="dl-horizontal">
-        <dt><code>c</code></dt>
-        <dd>{{ trans('solar::solars.title.create solar') }}</dd>
-    </dl>
-@stop
 
 @push('js-stack')
-    <script type="text/javascript">
-        $( document ).ready(function() {
-            $(document).keypressAction({
-                actions: [
-                    { key: 'c', route: "<?= route('admin.solar.solar.create') ?>" }
-                ]
-            });
-        });
-    </script>
     <?php $locale = locale(); ?>
     <script type="text/javascript">
         $(function () {

@@ -6,7 +6,7 @@ return [
     'edit resource' => 'Edit downloads',
     'destroy resource' => 'Destroy downloads',
     'title' => [
-        'downloads' => 'Download',
+        'downloads' => 'Downloads',
         'create download' => 'Create a download',
         'edit download' => 'Edit a download',
     ],

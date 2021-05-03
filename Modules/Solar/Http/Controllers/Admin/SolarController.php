@@ -22,7 +22,7 @@ class SolarController extends AdminBaseController
      */
     private $solarReportsRepository;
 
-    public function __construct(SolarDataRowRepository $solarReportsRepository,SolarRepository $solar)
+    public function __construct(SolarDataRowRepository $solarReportsRepository, SolarRepository $solar)
     {
         parent::__construct();
         $this->solarReportsRepository = $solarReportsRepository;
@@ -73,8 +73,9 @@ class SolarController extends AdminBaseController
      */
     public function edit(Solar $solar)
     {
-        $reports = $this->solarReportsRepository->where('solar_id',$solar->id)->get();
-        return view('solar::admin.solars.edit', compact('solar','reports'));
+        $reports = $this->solarReportsRepository->where('solar_id', $solar->id)->get();
+
+        return view('solar::admin.solars.edit', compact('solar', 'reports'));
     }
 
     /**

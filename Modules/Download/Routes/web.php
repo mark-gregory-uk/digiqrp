@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('download')->group(function() {
+Route::prefix('download')->group(function () {
     Route::get('/', 'DownloadController@index');
 });

@@ -36,7 +36,6 @@ class RegisterDownloadSidebar implements \Maatwebsite\Sidebar\SidebarExtender
      */
     public function extendWith(Menu $menu)
     {
-
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
             $group->item(trans('download::downloads.title.downloads'), function (Item $item) {
                 $item->icon('fa fa-download');
@@ -48,10 +47,6 @@ class RegisterDownloadSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                 );
             });
         });
-
-
-
-
 
         return $menu;
     }

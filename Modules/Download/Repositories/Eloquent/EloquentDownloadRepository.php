@@ -2,8 +2,8 @@
 
 namespace Modules\Download\Repositories\Eloquent;
 
-use Modules\Download\Repositories\DownloadRepository;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
+use Modules\Download\Repositories\DownloadRepository;
 
 class EloquentDownloadRepository extends EloquentBaseRepository implements DownloadRepository
 {

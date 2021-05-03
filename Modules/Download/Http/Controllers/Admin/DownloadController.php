@@ -4,11 +4,11 @@ namespace Modules\Download\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Download\Entities\Download;
 use Modules\Download\Http\Requests\CreateDownloadRequest;
 use Modules\Download\Http\Requests\UpdateDownloadRequest;
 use Modules\Download\Repositories\DownloadRepository;
-use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
 class DownloadController extends AdminBaseController
 {

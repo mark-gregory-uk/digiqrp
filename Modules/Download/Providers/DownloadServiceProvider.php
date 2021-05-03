@@ -5,9 +5,9 @@ namespace Modules\Download\Providers;
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
-use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\Core\Events\LoadingBackendTranslations;
+use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Download\Listeners\RegisterDownloadSidebar;
 
 class DownloadServiceProvider extends ServiceProvider
@@ -33,14 +33,12 @@ class DownloadServiceProvider extends ServiceProvider
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
             $event->load('downloads', Arr::dot(trans('download::downloads')));
         });
-
-
     }
 
     public function boot()
     {
         $this->publishConfig('download', 'permissions');
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
@@ -50,7 +48,7 @@ class DownloadServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array();
+        return [];
     }
 
     private function registerBindings()
@@ -67,8 +65,5 @@ class DownloadServiceProvider extends ServiceProvider
                 return new \Modules\Download\Repositories\Cache\CacheDownloadDecorator($repository);
             }
         );
-
     }
-
-
 }

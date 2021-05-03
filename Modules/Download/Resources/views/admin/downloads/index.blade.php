@@ -34,8 +34,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($downloads)): ?>
-                            <?php foreach ($downloads as $download): ?>
+                            <?php if (isset($downloads)) { ?>
+                            <?php foreach ($downloads as $download) { ?>
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.download.download.edit', [$download->id]) }}">
@@ -49,8 +49,8 @@
                                     </div>
                                 </td>
                             </tr>
-                            <?php endforeach; ?>
-                            <?php endif; ?>
+                            <?php } ?>
+                            <?php } ?>
                             </tbody>
                             <tfoot>
                             <tr>

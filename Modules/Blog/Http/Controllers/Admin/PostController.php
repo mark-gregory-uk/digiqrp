@@ -80,14 +80,13 @@ class PostController extends AdminBaseController
      */
     public function store(CreatePostRequest $request)
     {
-
         $data = $request->all();
-        $data['author_id']=Auth::id();
-        if (array_key_exists('category_only',$data)){
-            if ($data['category_only'] === 'on'){
+        $data['author_id'] = Auth::id();
+        if (array_key_exists('category_only', $data)) {
+            if ($data['category_only'] === 'on') {
                 $data['category_only'] = true;
             }
-        }else {
+        } else {
             $data['category_only'] = false;
         }
         $this->post->create($data);
@@ -123,18 +122,19 @@ class PostController extends AdminBaseController
      */
     public function update(Post $post, UpdatePostRequest $request)
     {
-        $data=$request->all();
-        $data['editor_id']=Auth::id();
+        $data = $request->all();
+        $data['editor_id'] = Auth::id();
 
-        if (array_key_exists('category_only',$data)){
-            if ($data['category_only'] === 'on'){
+        if (array_key_exists('category_only', $data)) {
+            if ($data['category_only'] === 'on') {
                 $data['category_only'] = true;
             }
-        }else {
+        } else {
             $data['category_only'] = false;
         }
 
-        $this->post->update($post,$data );
+        $this->post->update($post, $data);
+
         return redirect()->route('admin.blog.post.index')
             ->withSuccess(trans('blog::messages.post updated'));
     }

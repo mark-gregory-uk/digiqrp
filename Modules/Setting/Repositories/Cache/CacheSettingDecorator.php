@@ -15,7 +15,7 @@ class CacheSettingDecorator extends BaseCacheDecorator implements SettingReposit
     }
 
     /**
-     * Create or update the settings
+     * Create or update the settings.
      * @param $settings
      * @return mixed
      */
@@ -27,7 +27,7 @@ class CacheSettingDecorator extends BaseCacheDecorator implements SettingReposit
     }
 
     /**
-     * Find a setting by its name
+     * Find a setting by its name.
      * @param $settingName
      * @return mixed
      */
@@ -40,7 +40,7 @@ class CacheSettingDecorator extends BaseCacheDecorator implements SettingReposit
 
     /**
      * Return all modules that have settings
-     * with its settings
+     * with its settings.
      * @param  array|string $modules
      * @return array
      */
@@ -52,7 +52,7 @@ class CacheSettingDecorator extends BaseCacheDecorator implements SettingReposit
     }
 
     /**
-     * Return the saved module settings
+     * Return the saved module settings.
      * @param $module
      * @return mixed
      */
@@ -64,7 +64,7 @@ class CacheSettingDecorator extends BaseCacheDecorator implements SettingReposit
     }
 
     /**
-     * Find settings by module name
+     * Find settings by module name.
      * @param  string $module
      * @return mixed
      */
@@ -76,7 +76,7 @@ class CacheSettingDecorator extends BaseCacheDecorator implements SettingReposit
     }
 
     /**
-     * Find the given setting name for the given module
+     * Find the given setting name for the given module.
      * @param  string $settingName
      * @return mixed
      */
@@ -88,7 +88,7 @@ class CacheSettingDecorator extends BaseCacheDecorator implements SettingReposit
     }
 
     /**
-     * Return the translatable module settings
+     * Return the translatable module settings.
      * @param $module
      * @return array
      */
@@ -100,7 +100,7 @@ class CacheSettingDecorator extends BaseCacheDecorator implements SettingReposit
     }
 
     /**
-     * Return the non translatable module settings
+     * Return the non translatable module settings.
      * @param $module
      * @return array
      */

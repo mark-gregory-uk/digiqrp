@@ -36,7 +36,7 @@ class LogbookController extends Controller
                 $logEntry->save();
             }
 
-            Log::info('New Log Entry Created for ' . $logEntry->call);
+            Log::info('New Log Entry Created for '.$logEntry->call);
         }
 
         return null;
@@ -71,7 +71,7 @@ class LogbookController extends Controller
                 $logEntry->save();
             }
 
-            Log::info('New Log Entry Created for ' . $data['CALL']);
+            Log::info('New Log Entry Created for '.$data['CALL']);
         }
     }
 }

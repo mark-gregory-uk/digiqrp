@@ -41,7 +41,7 @@ class LogbookServiceProvider extends ServiceProvider
         $this->publishConfig('logbook', 'permissions');
         $this->publishConfig('logbook', 'settings');
         $this->publishConfig('logbook', 'config');
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**

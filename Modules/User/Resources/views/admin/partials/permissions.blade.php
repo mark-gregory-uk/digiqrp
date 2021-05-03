@@ -12,13 +12,13 @@
 <div class="box-body">
     <div class="row">
         <div class="col-md-12">
-            <?php foreach ($permissions as $name => $value): ?>
+            <?php foreach ($permissions as $name => $value) { ?>
                 <div class="row">
                     <div class="col-md-12">
                         <h3>{{ ucfirst($name) }}</h3>
                     </div>
                 </div>
-                <?php foreach ($value as $subPermissionTitle => $permissionActions): ?>
+                <?php foreach ($value as $subPermissionTitle => $permissionActions) { ?>
                     <div class="permissionGroup">
                         <div class="row">
                             <div class="col-md-6">
@@ -31,15 +31,15 @@
                             </div>
                         </div>
                         <div class="row">
-                            <?php foreach ($permissionActions as $permissionAction => $permissionLabel): ?>
+                            <?php foreach ($permissionActions as $permissionAction => $permissionLabel) { ?>
                                 <div class="col-md-12">
                                     @include('user::admin.partials.permission-part')
                                 </div>
-                            <?php endforeach; ?>
+                            <?php } ?>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            <?php endforeach; ?>
+                <?php } ?>
+            <?php } ?>
         </div>
     </div>
 </div>

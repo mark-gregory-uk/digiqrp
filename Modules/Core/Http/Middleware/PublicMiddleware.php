@@ -43,7 +43,7 @@ class PublicMiddleware
     }
 
     /**
-     * Checks if the given menu item is offline
+     * Checks if the given menu item is offline.
      * @param  object $item
      * @return bool
      */

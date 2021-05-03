@@ -29,7 +29,6 @@ class PullSolar extends Command
      */
     private $solarDataRowRepository;
 
-
     /**
      * Create a new command instance.
      *
@@ -53,49 +52,46 @@ class PullSolar extends Command
 
         $this->info('Pulling Latest Solar Data');
 
-
-
         $data = [];
-        $data['source']=$xmlobj->source;
-        $data['last_updated']=$xmlobj->updated;
-        $data['noise_level']=$xmlobj->signalnoise;
+        $data['source'] = $xmlobj->source;
+        $data['last_updated'] = $xmlobj->updated;
+        $data['noise_level'] = $xmlobj->signalnoise;
 
         $solarData = new SolarData();
-        $solarData->source = (string)$xmlobj->solardata->source;
-        $solarData->noise_level = (string)$xmlobj->solardata->signalnoise;
-        $solarData->last_updated = (string)$xmlobj->solardata->updated;
+        $solarData->source = (string) $xmlobj->solardata->source;
+        $solarData->noise_level = (string) $xmlobj->solardata->signalnoise;
+        $solarData->last_updated = (string) $xmlobj->solardata->updated;
         $solarData->save();
 
-        foreach ($xmlobj->solardata->calculatedconditions as $bands){
+        foreach ($xmlobj->solardata->calculatedconditions as $bands) {
             $bar = $this->output->createProgressBar(count($bands));
             $bar->start();
-            foreach ($bands as $band){
+            foreach ($bands as $band) {
+                $target = (string) $band->attributes()->name;
+                $existingRow = $this->solarDataRowRepository->where('name', '=', $target)->where('solar_id', '=', $solarData->id)->first();
 
-                $target = (string)$band->attributes()->name;
-                $existingRow = $this->solarDataRowRepository->where('name','=',$target)->where('solar_id','=',$solarData->id)->first();
-
-                if (! empty($existingRow)){
-                    if ((string)$band->attributes()->time == 'day'){
-                        $existingRow->day = (string)$band->attributes()->time;
-                        $existingRow->day_condx = (string)$band[0];
+                if (! empty($existingRow)) {
+                    if ((string) $band->attributes()->time == 'day') {
+                        $existingRow->day = (string) $band->attributes()->time;
+                        $existingRow->day_condx = (string) $band[0];
                     }
-                    if ((string)$band->attributes()->time == 'night'){
-                        $existingRow->night = (string)$band->attributes()->time;
-                        $existingRow->night_condx = (string)$band[0];
+                    if ((string) $band->attributes()->time == 'night') {
+                        $existingRow->night = (string) $band->attributes()->time;
+                        $existingRow->night_condx = (string) $band[0];
                     }
 
                     $existingRow->save();
                 } else {
                     $dataRow = new SolarBandData();
-                    $dataRow->name = (string)$band->attributes()->name;
+                    $dataRow->name = (string) $band->attributes()->name;
 
-                    if ((string)$band->attributes()->time == 'day'){
-                        $dataRow->day = (string)$band->attributes()->time;
-                        $dataRow->day_condx = (string)$band[0];
+                    if ((string) $band->attributes()->time == 'day') {
+                        $dataRow->day = (string) $band->attributes()->time;
+                        $dataRow->day_condx = (string) $band[0];
                     }
-                    if ((string)$band->attributes()->time == 'night'){
-                        $dataRow->night = (string)$band->attributes()->time;
-                        $dataRow->night_condx = (string)$band[0];
+                    if ((string) $band->attributes()->time == 'night') {
+                        $dataRow->night = (string) $band->attributes()->time;
+                        $dataRow->night_condx = (string) $band[0];
                     }
                     $dataRow->solar_id = $solarData->id;
                     $dataRow->save();
@@ -107,6 +103,7 @@ class PullSolar extends Command
         }
 
         $this->info('Complete'.PHP_EOL);
+
         return true;
     }
 }

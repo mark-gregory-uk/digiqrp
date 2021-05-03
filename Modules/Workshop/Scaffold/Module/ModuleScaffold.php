@@ -14,22 +14,22 @@ use Modules\Workshop\Scaffold\Module\Generators\ValueObjectGenerator;
 class ModuleScaffold
 {
     /**
-     * Contains the vendor name
+     * Contains the vendor name.
      * @var string
      */
     protected $vendor;
     /**
-     * Contains the Module name
+     * Contains the Module name.
      * @var string
      */
     protected $name;
     /**
-     * Contains an array of entities to generate
+     * Contains an array of entities to generate.
      * @var array
      */
     protected $entities;
     /**
-     * Contains an array of value objects to generate
+     * Contains an array of value objects to generate.
      * @var array
      */
     protected $valueObjects;
@@ -85,16 +85,13 @@ class ModuleScaffold
         $this->filesGenerator = $filesGenerator;
     }
 
-    /**
-     *
-     */
     public function scaffold()
     {
         if ($this->finder->isDirectory($this->getModulesPath())) {
             throw new ModuleExistsException();
         }
 
-        $this->artisan->call("module:make", ['name' => [$this->name]]);
+        $this->artisan->call('module:make', ['name' => [$this->name]]);
 
         $this->addDataToComposerFile();
         $this->removeUnneededFiles();
@@ -144,7 +141,7 @@ class ModuleScaffold
     }
 
     /**
-     * Set the entity type [Eloquent, Doctrine]
+     * Set the entity type [Eloquent, Doctrine].
      * @param  string $entityType
      * @return $this
      */
@@ -178,18 +175,18 @@ class ModuleScaffold
     }
 
     /**
-     * Return the current module path
+     * Return the current module path.
      * @param  string $path
      * @return string
      */
     private function getModulesPath($path = '')
     {
-        return $this->config->get('modules.paths.modules') . "/{$this->getName()}/$path";
+        return $this->config->get('modules.paths.modules')."/{$this->getName()}/$path";
     }
 
     /**
      * Rename the default vendor name 'pingpong-modules'
-     * by the input vendor name
+     * by the input vendor name.
      */
     private function renameVendorName()
     {
@@ -199,7 +196,7 @@ class ModuleScaffold
     }
 
     /**
-     * Remove the default generated view resources
+     * Remove the default generated view resources.
      */
     private function removeViewResources()
     {
@@ -209,7 +206,7 @@ class ModuleScaffold
     }
 
     /**
-     * Remove all unneeded files
+     * Remove all unneeded files.
      */
     private function removeUnneededFiles()
     {
@@ -234,7 +231,7 @@ class ModuleScaffold
     }
 
     /**
-     * Load the routing service provider
+     * Load the routing service provider.
      * @param string $content
      * @return string
      */
@@ -246,13 +243,13 @@ class ModuleScaffold
         "Modules\\\\{$this->name}\\\Providers\\\RouteServiceProvider"
 JSON;
 
-        $oldProvider = '"Modules\\\\' . $this->name . '\\\\Providers\\\\' . $this->name . 'ServiceProvider"';
+        $oldProvider = '"Modules\\\\'.$this->name.'\\\\Providers\\\\'.$this->name.'ServiceProvider"';
 
         return  str_replace($oldProvider, $newProviders, $content);
     }
 
     /**
-     * Set the module order to 1
+     * Set the module order to 1.
      * @param string $content
      * @return string
      */
@@ -262,17 +259,17 @@ JSON;
     }
 
     /**
-     * Set the module version to 1.0.0 by default
+     * Set the module version to 1.0.0 by default.
      * @param string $content
      * @return string
      */
     private function setModuleVersion($content)
     {
-        return str_replace("\"description\"", "\"version\": \"1.0.0\",\n\t\"description\"", $content);
+        return str_replace('"description"', "\"version\": \"1.0.0\",\n\t\"description\"", $content);
     }
 
     /**
-     * Add required folders
+     * Add required folders.
      */
     private function addFolders()
     {
@@ -285,7 +282,7 @@ JSON;
      * - a asgard/module type
      * - package requirements
      * - minimum stability
-     * - prefer stable
+     * - prefer stable.
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     private function addDataToComposerFile()
@@ -294,7 +291,7 @@ JSON;
 
         $name = ucfirst($this->name);
 
-        $search = <<<JSON
+        $search = <<<'JSON'
 "description": "",
 JSON;
         $replace = <<<JSON
@@ -324,18 +321,18 @@ JSON;
     }
 
     /**
-     * Adding the module name to the .gitignore file so that it can be committed
+     * Adding the module name to the .gitignore file so that it can be committed.
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     private function addModuleToIgnoredExceptions()
     {
         $modulePath = $this->config->get('modules.paths.modules');
 
-        if ($this->finder->exists($modulePath . '/.gitignore') === false) {
+        if ($this->finder->exists($modulePath.'/.gitignore') === false) {
             return;
         }
-        $moduleGitIgnore = $this->finder->get($modulePath . '/.gitignore');
-        $moduleGitIgnore .= '!' . $this->getName() . PHP_EOL;
-        $this->finder->put($modulePath . '/.gitignore', $moduleGitIgnore);
+        $moduleGitIgnore = $this->finder->get($modulePath.'/.gitignore');
+        $moduleGitIgnore .= '!'.$this->getName().PHP_EOL;
+        $this->finder->put($modulePath.'/.gitignore', $moduleGitIgnore);
     }
 }

@@ -44,11 +44,11 @@ class BlogServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishConfig('blog', 'permissions');
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
         $this->publishConfig('blog', 'config');
         $this->publishConfig('blog', 'permissions');
         $this->publishConfig('blog', 'settings');
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
         //$this->registerViewComposers();
     }
 

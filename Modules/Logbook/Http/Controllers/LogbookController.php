@@ -40,10 +40,9 @@ class LogbookController extends Controller
             $logbook = Logbook::where('owner_id', '=', 1)->first();
             $data = LogbookEntry::where('parent_id', '=', $logbook->id)->orderBy('qso_end', 'desc')->get();
 
-            foreach ($data as $d){
+            foreach ($data as $d) {
                 $d->payload = url('themes/prostar/img/flags/png/'.strtolower($d->country_slug).'.png');
             }
-
 
             return Datatables::of($data)
                 ->addIndexColumn()
@@ -80,7 +79,7 @@ class LogbookController extends Controller
     {
         $cURLConnection = curl_init();
 
-        curl_setopt($cURLConnection, CURLOPT_URL, 'https://www.hamqth.com/dxcc.php?callsign=' . $callsign);
+        curl_setopt($cURLConnection, CURLOPT_URL, 'https://www.hamqth.com/dxcc.php?callsign='.$callsign);
         curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
 
         $response = curl_exec($cURLConnection);

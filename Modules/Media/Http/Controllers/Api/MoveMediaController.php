@@ -53,7 +53,7 @@ class MoveMediaController extends Controller
      * @param int $failedMoves
      * @return string
      */
-    protected function getResponseMessage(int $failedMoves) : string
+    protected function getResponseMessage(int $failedMoves): string
     {
         if ($failedMoves > 0) {
             return trans('media::media.some files not moved');

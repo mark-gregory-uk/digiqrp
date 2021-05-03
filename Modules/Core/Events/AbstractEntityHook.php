@@ -5,12 +5,12 @@ namespace Modules\Core\Events;
 abstract class AbstractEntityHook
 {
     /**
-     * Contains the attributes which can be changed by other listeners
+     * Contains the attributes which can be changed by other listeners.
      * @var array
      */
     private $attributes;
     /**
-     * Contains the original attributes which cannot be changed
+     * Contains the original attributes which cannot be changed.
      * @var array
      */
     private $original;

@@ -32,8 +32,8 @@ class Post extends Model implements TaggableInterface
         'sort',
         'category_only',
         'author_id',
-        'editor_id'
-        ];
+        'editor_id',
+    ];
 
     protected $table = 'blog__posts';
     protected $presenter = PostPresenter::class;

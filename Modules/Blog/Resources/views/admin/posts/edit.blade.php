@@ -66,10 +66,16 @@
                     </select>
                 </div>
                 @tags('asgardcms/post', $post)
-                @mediaSingle('thumbnail', $post)
                 {!! Form::label("sort", trans('blog::post.form.sort')) !!}
                 {!! Form::number('sort',old('0', $post->sort) ) !!}
                 {!! $errors->first("sort", '<span class="help-block">:message</span>') !!}
+
+                {!! Form::label("category_only", trans('blog::post.form.category_only')) !!}
+                <input type="checkbox" name="category_only" {{ old('category_only', $post->category_only) ? 'checked="checked"' : '' }} />
+                {!! $errors->first("category_only", '<span class="help-block">:message</span>') !!}
+
+                @mediaSingle('thumbnail', $post)
+
             </div>
         </div>
     </div>

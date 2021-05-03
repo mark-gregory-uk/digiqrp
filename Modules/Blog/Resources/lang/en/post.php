@@ -20,6 +20,7 @@ return [
         'slug'    => 'Slug',
         'content' => 'Content',
         'sort'    => 'Sort Order',
+        'category_only' => 'Restrict to category',
     ],
     'navigation' => [
         'back to index' => 'Back to posts index',

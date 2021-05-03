@@ -2,6 +2,7 @@
 
 namespace Modules\Logbook\Http\Controllers;
 
+use FloatingPoint\Stylist\Theme\Theme;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -38,6 +39,10 @@ class LogbookController extends Controller
         if ($request->ajax()) {
             $logbook = Logbook::where('owner_id', '=', 1)->first();
             $data = LogbookEntry::where('parent_id', '=', $logbook->id)->orderBy('qso_end', 'desc')->get();
+
+            foreach ($data as $d) {
+                $d->payload = url('themes/prostar/img/flags/png/'.strtolower($d->country_slug).'.png');
+            }
 
             return Datatables::of($data)
                 ->addIndexColumn()

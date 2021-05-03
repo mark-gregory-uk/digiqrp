@@ -87,4 +87,9 @@ class LogbookEntry extends Model
     {
         return $this->belongsTo(Logbook::class);
     }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->attributes['image_url'] === 'none';
+    }
 }

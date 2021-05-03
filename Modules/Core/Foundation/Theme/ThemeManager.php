@@ -37,7 +37,6 @@ class ThemeManager implements \Countable
                 return $theme;
             }
         }
-
     }
 
     /**

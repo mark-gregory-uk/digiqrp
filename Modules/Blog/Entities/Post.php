@@ -23,11 +23,24 @@ class Post extends Model implements TaggableInterface
     use TaggableTrait;
 
     public $translatedAttributes = ['title', 'slug', 'content'];
-    protected $fillable = ['category_id', 'status', 'title', 'slug', 'content', 'sort'];
+
+    protected $fillable = [
+        'category_id',
+        'status',
+        'title',
+        'slug',
+        'content',
+        'sort',
+        'category_only',
+        'author_id',
+        'editor_id',
+    ];
+
     protected $table = 'blog__posts';
     protected $presenter = PostPresenter::class;
     protected $casts = [
         'status' => 'int',
+        'category_only' =>'boolean',
     ];
     protected static $entityNamespace = 'asgardcms/post';
 

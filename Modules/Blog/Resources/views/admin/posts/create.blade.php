@@ -61,10 +61,16 @@
                     </select>
                 </div>
                 @tags('asgardcms/post')
-                @mediaSingle('thumbnail')
+
                 {!! Form::label("sort", trans('blog::post.form.sort')) !!}
                 {!! Form::number('sort',0 ) !!}
                 {!! $errors->first("sort", '<span class="help-block">:message</span>') !!}
+                {!! Form::label("category_only", trans('blog::post.form.category_only')) !!}
+                {!! Form::checkbox('category_only',0 ) !!}
+                {!! $errors->first("category_only", '<span class="help-block">:message</span>') !!}
+
+                @mediaSingle('thumbnail')
+
             </div>
         </div>
     </div>

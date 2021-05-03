@@ -8,11 +8,7 @@
     <meta name="description" content="{{ $page->meta_description }}" />
 @stop
 
-<script>
-    window.setTimeout(function () {
-        window.location.reload();
-    }, 120000);
-</script>
+
 
 <style>
     table.dataTable >tbody td {
@@ -37,7 +33,6 @@
 
 </style>
 
-
 @section('content')
     <div class="well">
     <div>
@@ -46,15 +41,17 @@
         <br/>
     </div>
 
-    <div class="items-leading clearfix">
-        <table  class="table table-bordered table-striped data-table">
+    <div style="overflow-x:auto;">
+        <table  id="logbook" class="table table-striped table-bordered table-responsive table-condensed data-table responsive nowrap" width="100%!important">
             <thead>
             <tr>
                 <th>Call</th>
-                <th>Rx</th>
-                <th>Tx</th>
+                <th>RST</th>
+                <th>SST</th>
                 <th>Band</th>
-                <th>Country</th>
+                <th></th>
+                <th>Date</th>
+                <th>Time</th>
             </tr>
             </thead>
             <tbody>
@@ -63,22 +60,60 @@
     </div>
     </div>
     <script type="text/javascript">
+        window.onresize = function(){ location.reload(); }
         $(function () {
-            var table = $('.data-table').DataTable({
-                ordering: false,
+            var table = $('#logbook').DataTable({
+                ordering: true,
+                "order": [[ 4, "desc" ]],
                 processing: true,
-                responsive: true,
+                responsive: window.innerWidth < 700 ? true : false,
+                'columnDefs' : [
+                    { 'visible':window.innerWidth < 700 ? false : true, 'targets': [1,2,4,5] }
+                ],
                 language: {
                     processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
                 },
                 serverSide: true,
+
                 ajax: "{{ route('logbook.all') }}",
                 columns: [
-                    {data: 'call', name: 'call'},
-                    {data: 'rst_received', name: 'rst_received'},
-                    {data: 'rst_sent', name: 'rst_sent'},
-                    {data: 'band_tx', name: 'band_tx'},
-                    {data: 'dxcc_country', name: 'dxcc_country'},
+                    { data: 'call',
+                        name: 'call'
+                    },
+                    { data: 'rst_received',
+                        name: 'rst_received'
+                    },
+                    { data: 'rst_sent',
+                        name: 'rst_sent'
+
+                    },
+                    { data: 'band_tx',
+                        name: 'band_tx'
+                    },
+                    { data: 'payload',
+                        name: 'payload',
+                        "searchable": false,
+                        "orderable": false,
+                        render: function(data) {
+                            return '<img src="'+data+'">'
+                        },
+                    },
+                    { data: 'end_date',
+                        name: 'end_date',
+                        "searchable": true,
+                        "orderable": true,
+                    },
+                    { data: 'end_time',
+                        name: 'end_time',
+                        "searchable": false
+                    },
+                    {
+                        data: 'dxcc_country',
+                        name: 'dxcc_country',
+                               'searchable':true,
+                               'visible':false,
+                    },
+
                 ]
             });
         });

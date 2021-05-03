@@ -13,11 +13,11 @@
 
         @editor('body', trans('page::pages.body'), old("{$lang}.body"), $lang)
 
-        <?php if (config('asgard.page.config.partials.translatable.create') !== []): ?>
-            <?php foreach (config('asgard.page.config.partials.translatable.create') as $partial): ?>
+        <?php if (config('asgard.page.config.partials.translatable.create') !== []) { ?>
+            <?php foreach (config('asgard.page.config.partials.translatable.create') as $partial) { ?>
                 @include($partial)
-            <?php endforeach; ?>
-        <?php endif; ?>
+            <?php } ?>
+        <?php } ?>
     </div>
     <div class="box-group" id="accordion">
         <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->

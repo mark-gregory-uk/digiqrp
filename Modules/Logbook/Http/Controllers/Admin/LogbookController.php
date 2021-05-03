@@ -35,7 +35,7 @@ class LogbookController extends AdminBaseController
      */
     private $settings;
 
-    public function __construct(LogbookRepository $logbook, PostRepository  $postsRepository)
+    public function __construct(LogbookRepository $logbook, PostRepository $postsRepository)
     {
         parent::__construct();
         $this->postRepository = $postsRepository;
@@ -125,7 +125,7 @@ class LogbookController extends AdminBaseController
     }
 
     /**
-     * Upload a logbook and import into database
+     * Upload a logbook and import into database.
      * @param Request $request
      */
     public function logbookUploader(Request $request)
@@ -140,7 +140,7 @@ class LogbookController extends AdminBaseController
         return view('logbook::admin.logbooks.fileupload', compact('latestPosts', 'latestContacts'));
     }
 
-    public function fileUpload(Request $req,Setting $settings)
+    public function fileUpload(Request $req, Setting $settings)
     {
         $this->settings = $settings;
         $default_lat = 52.3848;
@@ -158,23 +158,22 @@ class LogbookController extends AdminBaseController
             $longitude = $default_lng;
         }
 
-
         $fileModel = new LogFile();
 
         if ($req->file()) {
-            $originalFileName =  $req->file->getClientOriginalName();
-            $fileName = time() . '_' . $originalFileName;
+            $originalFileName = $req->file->getClientOriginalName();
+            $fileName = time().'_'.$originalFileName;
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
 
-            $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
-            $fileModel->file_path = '/storage/' . $filePath;
+            $fileModel->name = time().'_'.$req->file->getClientOriginalName();
+            $fileModel->file_path = '/storage/'.$filePath;
             $fileModel->save();
 
-            if (Storage::exists('storage/sqlite/' . $originalFileName)) {
-                Storage::delete('storage/sqlite/' . $originalFileName);
+            if (Storage::exists('storage/sqlite/'.$originalFileName)) {
+                Storage::delete('storage/sqlite/'.$originalFileName);
             }
 
-            Storage::move('/storage/app/public/uploads/' . $fileModel->name, '/storage/sqlite/' . $originalFileName);
+            Storage::move('/storage/app/public/uploads/'.$fileModel->name, '/storage/sqlite/'.$originalFileName);
 
             if ($originalFileName == 'MacLoggerDX.sql') {
                 $logbook = Logbook::with('entries')
@@ -211,13 +210,13 @@ class LogbookController extends AdminBaseController
                     $logEntry->dxcc_id = $row->dxcc_id;
                     $country = $countries->firstWhere('name', $row->dxcc_country);
 
-                    if (!empty($country)) {
+                    if (! empty($country)) {
                         $logEntry->country_slug = $country->code;
                     }
 
-                    $distanceKM = (float)$this->distance($latitude, $longitude, $row->latitude, $row->longitude);
+                    $distanceKM = (float) $this->distance($latitude, $longitude, $row->latitude, $row->longitude);
                     if ($distanceKM > 0) {
-                        $distanceMiles = $distanceKM /  1.609;
+                        $distanceMiles = $distanceKM / 1.609;
                         $logEntry->distance_km = $distanceKM;
                         $logEntry->distance_miles = $distanceMiles;
                     }
@@ -235,7 +234,7 @@ class LogbookController extends AdminBaseController
     }
 
     /**
-     * Calculate the as the crow flies distance in miles and kilometers
+     * Calculate the as the crow flies distance in miles and kilometers.
      * @param $lat1
      * @param $lon1
      * @param $lat2
@@ -247,7 +246,7 @@ class LogbookController extends AdminBaseController
         $pi80 = M_PI / 180;
         $r = 6372.797; // mean radius of Earth in km
         $calculatedDistance = 0;
-        if ((float)$lat2 != 0 && (float)$lon2 != 0) {
+        if ((float) $lat2 != 0 && (float) $lon2 != 0) {
             $lat1 *= $pi80;
             $lon1 *= $pi80;
             $lat2 *= $pi80;
@@ -261,5 +260,4 @@ class LogbookController extends AdminBaseController
 
         return $calculatedDistance;
     }
-
 }

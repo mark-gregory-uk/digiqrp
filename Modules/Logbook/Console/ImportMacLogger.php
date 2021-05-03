@@ -75,7 +75,7 @@ class ImportMacLogger extends Command
         $macLoggerRecords = Maclogger::all();
         $countries = LogbookCountry::all();
 
-        $this->info('Identified : ' . count($macLoggerRecords) . ' Records');
+        $this->info('Identified : '.count($macLoggerRecords).' Records');
         $bar = $this->output->createProgressBar(count($macLoggerRecords));
 
         $bar->start();
@@ -103,13 +103,13 @@ class ImportMacLogger extends Command
 
             $country = $countries->firstWhere('name', $row->dxcc_country);
 
-            if (!empty($country)) {
+            if (! empty($country)) {
                 $logEntry->country_slug = $country->code;
             }
 
-            $distanceKM = (float)$this->distance($latitude, $longitude, $row->latitude, $row->longitude);
+            $distanceKM = (float) $this->distance($latitude, $longitude, $row->latitude, $row->longitude);
             if ($distanceKM > 0) {
-                $distanceMiles = $distanceKM /  1.609;
+                $distanceMiles = $distanceKM / 1.609;
                 $logEntry->distance_km = $distanceKM;
                 $logEntry->distance_miles = $distanceMiles;
             }
@@ -144,7 +144,7 @@ class ImportMacLogger extends Command
     }
 
     /**
-     * Calculate the as the crow flies distance in miles and kilometers
+     * Calculate the as the crow flies distance in miles and kilometers.
      * @param $lat1
      * @param $lon1
      * @param $lat2
@@ -156,7 +156,7 @@ class ImportMacLogger extends Command
         $pi80 = M_PI / 180;
         $r = 6372.797; // mean radius of Earth in km
         $calculatedDistance = 0;
-        if ((float)$lat2 != 0 && (float)$lon2 != 0) {
+        if ((float) $lat2 != 0 && (float) $lon2 != 0) {
             $lat1 *= $pi80;
             $lon1 *= $pi80;
             $lat2 *= $pi80;

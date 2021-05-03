@@ -8,7 +8,7 @@ use Modules\Logbook\Repositories\LogbookRepository;
 class EloquentLogbookRepository extends EloquentBaseRepository implements LogbookRepository
 {
     /**
-     * Recover the latest contacts for this user
+     * Recover the latest contacts for this user.
      * @return mixed
      */
     public function latestContacts()
@@ -24,8 +24,9 @@ class EloquentLogbookRepository extends EloquentBaseRepository implements Logboo
         $user = 1;
         $defaultLogBook = $this->where('owner_id', $user)->where('default', true)->distinct('call')->first();
 
-        $logEntries =  $defaultLogBook->entries()->orderBy('distance_km', 'desc')->take(5)->get();
+        $logEntries = $defaultLogBook->entries()->orderBy('distance_km', 'desc')->take(5)->get();
         $logEntries = $logEntries->unique('call');
+
         return $logEntries;
     }
 }

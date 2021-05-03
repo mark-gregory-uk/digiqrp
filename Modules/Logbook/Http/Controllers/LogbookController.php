@@ -74,7 +74,7 @@ class LogbookController extends Controller
     {
         $cURLConnection = curl_init();
 
-        curl_setopt($cURLConnection, CURLOPT_URL, 'https://www.hamqth.com/dxcc.php?callsign=' . $callsign);
+        curl_setopt($cURLConnection, CURLOPT_URL, 'https://www.hamqth.com/dxcc.php?callsign='.$callsign);
         curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
 
         $response = curl_exec($cURLConnection);

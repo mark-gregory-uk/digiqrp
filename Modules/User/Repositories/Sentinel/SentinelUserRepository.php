@@ -35,7 +35,7 @@ class SentinelUserRepository implements UserRepository
     }
 
     /**
-     * Returns all the users
+     * Returns all the users.
      * @return object
      */
     public function all()
@@ -44,7 +44,7 @@ class SentinelUserRepository implements UserRepository
     }
 
     /**
-     * Create a user resource
+     * Create a user resource.
      * @param  array $data
      * @param  bool $activated
      * @return mixed
@@ -68,7 +68,7 @@ class SentinelUserRepository implements UserRepository
     }
 
     /**
-     * Create a user and assign roles to it
+     * Create a user and assign roles to it.
      * @param  array $data
      * @param  array $roles
      * @param bool $activated
@@ -78,7 +78,7 @@ class SentinelUserRepository implements UserRepository
     {
         $user = $this->create((array) $data, $activated);
 
-        if (!empty($roles)) {
+        if (! empty($roles)) {
             $user->roles()->attach($roles);
         }
 
@@ -87,7 +87,7 @@ class SentinelUserRepository implements UserRepository
 
     /**
      * Create a user and assign roles to it
-     * But don't fire the user created event
+     * But don't fire the user created event.
      * @param array $data
      * @param array $roles
      * @param bool $activated
@@ -98,7 +98,7 @@ class SentinelUserRepository implements UserRepository
         $this->hashPassword($data);
         $user = $this->user->create((array) $data);
 
-        if (!empty($roles)) {
+        if (! empty($roles)) {
             $user->roles()->attach($roles);
         }
 
@@ -110,7 +110,7 @@ class SentinelUserRepository implements UserRepository
     }
 
     /**
-     * Find a user by its ID
+     * Find a user by its ID.
      * @param $id
      * @return mixed
      */
@@ -120,7 +120,7 @@ class SentinelUserRepository implements UserRepository
     }
 
     /**
-     * Update a user
+     * Update a user.
      * @param $user
      * @param $data
      * @return mixed
@@ -161,13 +161,13 @@ class SentinelUserRepository implements UserRepository
 
         event(new UserWasUpdated($user));
 
-        if (!empty($roles)) {
+        if (! empty($roles)) {
             $user->roles()->sync($roles);
         }
     }
 
     /**
-     * Deletes a user
+     * Deletes a user.
      * @param $id
      * @throws UserNotFoundException
      * @return mixed
@@ -182,7 +182,7 @@ class SentinelUserRepository implements UserRepository
     }
 
     /**
-     * Find a user by its credentials
+     * Find a user by its credentials.
      * @param  array $credentials
      * @return mixed
      */
@@ -192,7 +192,7 @@ class SentinelUserRepository implements UserRepository
     }
 
     /**
-     * Paginating, ordering and searching through pages for server side index table
+     * Paginating, ordering and searching through pages for server side index table.
      * @param Request $request
      * @return LengthAwarePaginator
      */
@@ -219,13 +219,13 @@ class SentinelUserRepository implements UserRepository
         return $roles->paginate($request->get('per_page', 10));
     }
 
-    public function allWithBuilder() : Builder
+    public function allWithBuilder(): Builder
     {
         return $this->user->newQuery();
     }
 
     /**
-     * Hash the password key
+     * Hash the password key.
      * @param array $data
      */
     private function hashPassword(array &$data)
@@ -235,7 +235,7 @@ class SentinelUserRepository implements UserRepository
 
     /**
      * Check if there is a new password given
-     * If not, unset the password field
+     * If not, unset the password field.
      * @param array $data
      */
     private function checkForNewPassword(array &$data)
@@ -254,17 +254,17 @@ class SentinelUserRepository implements UserRepository
     }
 
     /**
-     * Check and manually activate or remove activation for the user
+     * Check and manually activate or remove activation for the user.
      * @param $user
      * @param array $data
      */
     private function checkForManualActivation($user, array &$data)
     {
-        if (Activation::completed($user) && !$data['is_activated']) {
+        if (Activation::completed($user) && ! $data['is_activated']) {
             return Activation::remove($user);
         }
 
-        if (!Activation::completed($user) && $data['is_activated']) {
+        if (! Activation::completed($user) && $data['is_activated']) {
             $activation = Activation::create($user);
 
             return Activation::complete($user, $activation->code);
@@ -272,7 +272,7 @@ class SentinelUserRepository implements UserRepository
     }
 
     /**
-     * Activate a user automatically
+     * Activate a user automatically.
      *
      * @param $user
      */

@@ -7,6 +7,7 @@ use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Solar\Entities\Solar;
 use Modules\Solar\Http\Requests\CreateSolarRequest;
 use Modules\Solar\Http\Requests\UpdateSolarRequest;
+use Modules\Solar\Repositories\SolarDataRowRepository;
 use Modules\Solar\Repositories\SolarRepository;
 
 class SolarController extends AdminBaseController
@@ -16,10 +17,15 @@ class SolarController extends AdminBaseController
      */
     private $solar;
 
-    public function __construct(SolarRepository $solar)
+    /**
+     * @var SolarDataRowRepository
+     */
+    private $solarReportsRepository;
+
+    public function __construct(SolarDataRowRepository $solarReportsRepository, SolarRepository $solar)
     {
         parent::__construct();
-
+        $this->solarReportsRepository = $solarReportsRepository;
         $this->solar = $solar;
     }
 
@@ -67,7 +73,9 @@ class SolarController extends AdminBaseController
      */
     public function edit(Solar $solar)
     {
-        return view('solar::admin.solars.edit', compact('solar'));
+        $reports = $this->solarReportsRepository->where('solar_id', $solar->id)->get();
+
+        return view('solar::admin.solars.edit', compact('solar', 'reports'));
     }
 
     /**

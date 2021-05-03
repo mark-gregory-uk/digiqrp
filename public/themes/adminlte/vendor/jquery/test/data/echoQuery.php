@@ -1,1 +1,3 @@
-<?php echo $_SERVER['QUERY_STRING'];
+<?php
+
+echo $_SERVER['QUERY_STRING'];

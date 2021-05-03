@@ -36,6 +36,29 @@ task('deploy:permissions', function () {
     }
 })->desc('Set ownership and permissions');
 
+task('reload:php-fpm', function () {
+    $stage = input()->getArgument('stage');
+    if ($stage === 'dev') {
+        run('sudo /usr/sbin/service php7.4-fpm reload');
+    }
+    if ($stage === 'stage') {
+        run('sudo /usr/sbin/service php7.4-fpm reload');
+    }
+    if ($stage === 'prod') {
+        run('sudo /usr/sbin/service php7.4-fpm reload');
+    }
+});
+
+task('reload:nginx', function () {
+    run('sudo /usr/sbin/service nginx reload');
+})->desc('Reloading Nginx');
+
+
+task('reload:supervisor', function () {
+    run('sudo /usr/sbin/service supervisor reload');
+})->desc('Reloading Supervisor');
+
+
 task('build', function () {
     run('cd {{release_path}} && build');
 })->desc('Building Application');
@@ -93,4 +116,6 @@ after('success', 'deploy:permissions');
 after('deploy:failed', 'deploy:unlock');
 after('deploy:permissions', 'migrate');
 after('deploy', 'cache-clean');
-
+after('deploy', 'reload:php-fpm');
+after('deploy', 'reload:nginx');
+after('deploy', 'reload:supervisor');

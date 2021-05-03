@@ -39,7 +39,7 @@ class SolarServiceProvider extends ServiceProvider
     {
         $this->publishConfig('solar', 'permissions');
 
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
@@ -49,7 +49,7 @@ class SolarServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array();
+        return [];
     }
 
     private function registerBindings()

@@ -95,7 +95,7 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
         return $this->model->whereHas('translations', function (Builder $q) use ($lang) {
             $q->where('locale', "$lang");
             $q->where('title', '!=', '');
-            $q->where('category_only',false);
+            $q->where('category_only', false);
         })->with('translations')->whereStatus(Status::PUBLISHED)->orderBy('created_at', 'DESC')->get();
     }
 
@@ -108,7 +108,7 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
      */
     public function latest($amount = 5)
     {
-        return $this->model->whereStatus(Status::PUBLISHED)->where('category_only',false)->orderBy('sort', 'asc')->take($amount)->get();
+        return $this->model->whereStatus(Status::PUBLISHED)->where('category_only', false)->orderBy('sort', 'asc')->take($amount)->get();
     }
 
     /**
@@ -121,7 +121,7 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
     public function getPreviousOf($post)
     {
         return $this->model->where('created_at', '<', $post->created_at)
-            ->whereStatus(Status::PUBLISHED)->orderBy('created_at', 'desc')->where('category_only',false)->first();
+            ->whereStatus(Status::PUBLISHED)->orderBy('created_at', 'desc')->where('category_only', false)->first();
     }
 
     /**
@@ -134,7 +134,7 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
     public function getNextOf($post)
     {
         return $this->model->where('created_at', '>', $post->created_at)
-            ->whereStatus(Status::PUBLISHED)->where('category_only',false)->first();
+            ->whereStatus(Status::PUBLISHED)->where('category_only', false)->first();
     }
 
     /**
@@ -151,9 +151,6 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
         })->with('translations')->whereStatus(Status::PUBLISHED)->firstOrFail();
     }
 
-
-
-
     /**
      * Find a resource by the given category.
      *
@@ -164,8 +161,7 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
     public function findByCategory($category)
     {
         return $this->model->whereHas('translations', function (Builder $q) use ($category) {
-            $q->where('category_id', "$category")->where('category_only',true);
+            $q->where('category_id', "$category")->where('category_only', true);
         })->with('translations')->get();
     }
-
 }

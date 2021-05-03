@@ -96,7 +96,7 @@ class MediaServiceProvider extends ServiceProvider
         $this->registerThumbnails();
         $this->registerBladeTags();
 
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
@@ -120,7 +120,7 @@ class MediaServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register all commands for this module
+     * Register all commands for this module.
      */
     private function registerCommands()
     {
@@ -128,7 +128,7 @@ class MediaServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the refresh thumbnails command
+     * Register the refresh thumbnails command.
      */
     private function registerRefreshCommand()
     {

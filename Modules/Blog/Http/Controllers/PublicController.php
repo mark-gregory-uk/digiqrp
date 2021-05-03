@@ -47,8 +47,6 @@ class PublicController extends BasePublicController
         return view('blog.index', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }
 
-
-
     public function show($slug)
     {
         $post = $this->post->findBySlug($slug);
@@ -62,8 +60,7 @@ class PublicController extends BasePublicController
 
     public function byCategory($cat)
     {
-
-        $categoryTrans = CategoryTranslation::where('slug',$cat)->first();
+        $categoryTrans = CategoryTranslation::where('slug', $cat)->first();
 
         $posts = $this->post->findByCategory($categoryTrans->category_id);
 
@@ -74,6 +71,4 @@ class PublicController extends BasePublicController
 
         return view('blog.category', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }
-
-
 }

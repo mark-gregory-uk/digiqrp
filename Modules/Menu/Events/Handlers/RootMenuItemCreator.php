@@ -39,7 +39,7 @@ class RootMenuItemCreator
     }
 
     /**
-     * Return an array of enabled locales
+     * Return an array of enabled locales.
      * @return array
      */
     private function getEnabledLocales()

@@ -7,7 +7,7 @@ use Modules\Core\Repositories\BaseRepository;
 interface UserTokenRepository extends BaseRepository
 {
     /**
-     * Get all tokens for the given user
+     * Get all tokens for the given user.
      * @param int $userId
      * @return \Illuminate\Database\Eloquent\Collection
      */

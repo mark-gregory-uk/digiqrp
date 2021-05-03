@@ -34,8 +34,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($solars)): ?>
-                            <?php foreach ($solars as $solar): ?>
+                            <?php if (isset($solars)) { ?>
+                            <?php foreach ($solars as $solar) { ?>
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.solar.solar.edit', [$solar->id]) }}">
@@ -49,8 +49,8 @@
                                     </div>
                                 </td>
                             </tr>
-                            <?php endforeach; ?>
-                            <?php endif; ?>
+                            <?php } ?>
+                            <?php } ?>
                             </tbody>
                             <tfoot>
                             <tr>

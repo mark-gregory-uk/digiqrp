@@ -16,7 +16,7 @@ class SentinelInstaller extends ProviderInstaller implements SetupScript
     }
 
     /**
-     * Not called
+     * Not called.
      * @return mixed
      */
     public function composer()
@@ -47,7 +47,6 @@ class SentinelInstaller extends ProviderInstaller implements SetupScript
      */
     public function migrate()
     {
-        return;
     }
 
     /**

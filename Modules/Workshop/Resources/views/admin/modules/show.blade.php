@@ -81,7 +81,7 @@
             </div>
         </div>
     </div>
-    <?php if (!empty($changelog) && count($changelog['versions'])): ?>
+    <?php if (! empty($changelog) && count($changelog['versions'])) { ?>
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
@@ -97,7 +97,7 @@
             </div>
         </div>
     </div>
-    <?php endif; ?>
+    <?php } ?>
 @stop
 
 @push('js-stack')

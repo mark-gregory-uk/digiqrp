@@ -8,11 +8,7 @@
     <meta name="description" content="{{ $page->meta_description }}" />
 @stop
 
-<script>
-    window.setTimeout(function () {
-        window.location.reload();
-    }, 120000);
-</script>
+
 
 <style>
     table.dataTable >tbody td {

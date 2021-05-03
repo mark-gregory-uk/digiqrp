@@ -77,7 +77,7 @@ class StylistThemeManager implements ThemeManager
     }
 
     /**
-     * Get all theme directories
+     * Get all theme directories.
      * @return array
      */
     private function getDirectories()
@@ -94,11 +94,11 @@ class StylistThemeManager implements ThemeManager
      */
     private function getChangelog($directory)
     {
-        if (! $this->finder->isFile($directory . '/changelog.yml')) {
+        if (! $this->finder->isFile($directory.'/changelog.yml')) {
             return [];
         }
 
-        $yamlFile = $this->finder->get($directory . '/changelog.yml');
+        $yamlFile = $this->finder->get($directory.'/changelog.yml');
 
         $yamlParser = new Parser();
 
@@ -110,7 +110,7 @@ class StylistThemeManager implements ThemeManager
     }
 
     /**
-     * Limit the versions to the last 5
+     * Limit the versions to the last 5.
      * @param array $versions
      * @return array
      */
@@ -120,7 +120,7 @@ class StylistThemeManager implements ThemeManager
     }
 
     /**
-     * Check if the theme is active based on its type
+     * Check if the theme is active based on its type.
      * @param Theme $theme
      * @return bool
      */

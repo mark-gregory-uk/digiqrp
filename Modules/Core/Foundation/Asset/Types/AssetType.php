@@ -5,7 +5,7 @@ namespace Modules\Core\Foundation\Asset\Types;
 interface AssetType
 {
     /**
-     * Get the URL
+     * Get the URL.
      * @return string
      */
     public function url();

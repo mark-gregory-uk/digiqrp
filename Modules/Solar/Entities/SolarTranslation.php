@@ -8,5 +8,5 @@ class SolarTranslation extends Model
 {
     public $timestamps = false;
     protected $fillable = [];
-    protected $table = 'solar__solar_translations';
+    protected $table = 'solar__reports_translations';
 }

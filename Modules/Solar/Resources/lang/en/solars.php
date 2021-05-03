@@ -1,19 +1,23 @@
 <?php
 
 return [
-    'list resource' => 'List solars',
-    'create resource' => 'Create solars',
-    'edit resource' => 'Edit solars',
-    'destroy resource' => 'Destroy solars',
+    'list resource' => 'List solar reports',
+    'create resource' => 'Create solar report',
+    'edit resource' => 'Edit solar report',
+    'destroy resource' => 'Destroy solar report',
     'title' => [
-        'solars' => 'Solar',
-        'create solar' => 'Create a solar',
-        'edit solar' => 'Edit a solar',
+        'solars' => 'Solar Reports',
+        'create solar' => 'Create a solar report',
+        'edit solar' => 'Edit a solar report',
     ],
     'button' => [
-        'create solar' => 'Create a solar',
+        'create solar' => 'Create a solar report',
     ],
     'table' => [
+        'source' => 'Source',
+        'noise_level' => 'Noise Level',
+        'solarwind' => 'Solar Wind',
+        'sunspots' => 'Sunspots',
     ],
     'form' => [
     ],

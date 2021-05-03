@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDownloadDownloadsTable extends Migration
+class CreateDownloadLinksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +13,14 @@ class CreateDownloadDownloadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('download__downloads', function (Blueprint $table) {
+
+        Schema::create('download__downloadabales', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('filename');
-            $table->string('path');
-            $table->string('extension');
-            $table->string('mimetype');
-            $table->string('filesize');
-            $table->integer('folder_id')->unsigned();
+            $table->integer('file_id');
+            $table->integer('downloadable_id');
+            $table->string('downloadable_type');
+            $table->string('zone');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateDownloadDownloadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('download__downloads');
+        Schema::dropIfExists('download__downloadabales');
     }
 }

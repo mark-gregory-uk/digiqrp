@@ -164,5 +164,4 @@ class PublicController extends BasePublicController
 
         return $alternate;
     }
-
 }

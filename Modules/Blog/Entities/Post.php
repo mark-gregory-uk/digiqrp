@@ -23,6 +23,7 @@ class Post extends Model implements TaggableInterface
     use TaggableTrait;
 
     public $translatedAttributes = ['title', 'slug', 'content'];
+
     protected $fillable = [
         'category_id',
         'status',

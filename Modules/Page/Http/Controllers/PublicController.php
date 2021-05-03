@@ -3,6 +3,8 @@
 namespace Modules\Page\Http\Controllers;
 
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\URL;
 use Modules\Blog\Entities\Post;
 use Modules\Blog\Repositories\PostRepository;
 use Modules\Core\Http\Controllers\BasePublicController;
@@ -179,7 +181,7 @@ class PublicController extends BasePublicController
         if (! $sitemap->isCached()) {
             // add item to the sitemap (url, date, priority, freq)
             $sitemap->add(URL::to('/'), '2012-08-25T20:10:00+02:00', '1.0', 'daily');
-            $sitemap->add(URL::to('/logbook/index'), '2012-08-26T12:30:00+02:00', '0.9', 'weekly');
+            //$sitemap->add(URL::to('/logbook/index'), '2012-08-26T12:30:00+02:00', '0.9', 'weekly');
 
             // get all posts from db, with image relations
             $pages = \DB::table('pages')->orderBy('created_at', 'desc')->get();
@@ -196,11 +198,11 @@ class PublicController extends BasePublicController
                 $sitemap->add(URL::to('post/'.$post->id), '2012-08-26T12:30:00+02:00', '0.9', 'daily');
             }
 
-            $newsItems = \DB::table('news_items')->orderBy('created_at', 'desc')->get();
+            //$newsItems = \DB::table('news_items')->orderBy('created_at', 'desc')->get();
 
-            foreach ($newsItems as $news) {
-                $sitemap->add(URL::to('news/'.$news->id), '2012-08-26T12:30:00+02:00', '0.9', 'daily');
-            }
+            //foreach ($newsItems as $news) {
+            //    $sitemap->add(URL::to('news/'.$news->id), '2012-08-26T12:30:00+02:00', '0.9', 'daily');
+            //}
         }
 
         // show your sitemap (options: 'xml' (default), 'html', 'txt', 'ror-rss', 'ror-rdf')

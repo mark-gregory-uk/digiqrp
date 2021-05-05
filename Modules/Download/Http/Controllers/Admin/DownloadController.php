@@ -31,9 +31,9 @@ class DownloadController extends AdminBaseController
      */
     public function index()
     {
-        //$downloads = $this->download->all();
+        $downloads = $this->download->all();
 
-        return view('download::admin.downloads.index', compact(''));
+        return view('download::admin.downloads.index', compact('downloads'));
     }
 
     /**

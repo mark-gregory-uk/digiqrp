@@ -1,0 +1,16 @@
+{
+    "name": "Chitchat",
+    "alias": "chitchat",
+    "version": "1.0.0",
+	"description": "",
+    "keywords": [],
+    "priority": 1,
+    "providers": [
+        "Modules\\Chitchat\\Providers\\ChitchatServiceProvider",
+        "Modules\\Chitchat\\Providers\\EventServiceProvider",
+        "Modules\\Chitchat\\Providers\\RouteServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

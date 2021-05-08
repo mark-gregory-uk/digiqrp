@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('forum')->group(function() {
+Route::prefix('forum')->group(function () {
     Route::get('/', 'ForumController@index');
 });

@@ -4,9 +4,9 @@ namespace Modules\Forum\Providers;
 
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 use Illuminate\Support\ServiceProvider;
-use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\Core\Events\LoadingBackendTranslations;
+use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Forum\Listeners\RegisterForumSidebar;
 
 class ForumServiceProvider extends ServiceProvider
@@ -32,15 +32,13 @@ class ForumServiceProvider extends ServiceProvider
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
             // append translations
         });
-
-
     }
 
     public function boot()
     {
         $this->publishConfig('forum', 'permissions');
 
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
@@ -50,13 +48,11 @@ class ForumServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array();
+        return [];
     }
 
     private function registerBindings()
     {
-// add bindings
+        // add bindings
     }
-
-
 }

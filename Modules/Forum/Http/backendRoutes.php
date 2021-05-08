@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Routing\Router;
-/** @var Router $router */
 
+/** @var Router $router */
 $router->group(['prefix' =>'/forum'], function (Router $router) {
-// append
+    // append
 });

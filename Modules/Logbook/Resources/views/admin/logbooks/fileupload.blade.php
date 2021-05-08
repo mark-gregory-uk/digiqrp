@@ -15,7 +15,7 @@
         <div class="col-xs-12">
             <div class="row">
                 <div style="width: 85%;" class="container">
-                    <form action="{{route('logbook.upload')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('logbook.upload',['owner'=>Auth::id(),'logbook'=>$logbook->id]) }}" method="post" enctype="multipart/form-data">
                         <h3 class="text-center mb-5">Upload File in Laravel</h3>
                         @csrf
 

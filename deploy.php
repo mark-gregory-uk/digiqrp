@@ -10,8 +10,8 @@ set('keep_releases', 5);                                  // Number of releases 
 set('default_timeout', 1200);
 
 add('shared_files', ['.env']);                                  // Shared files between deploys
-add('shared_dirs', ['storage', 'vendor', 'node_modules']);      // Shared dirs between deploys
-add('writable_dirs', ['storage', 'vendor', 'node_modules']);    // Writable dirs by web server
+add('shared_dirs', ['storage', 'vendor', 'node_modules','Laravel']);      // Shared dirs between deploys
+add('writable_dirs', ['storage', 'vendor', 'node_modules'.'Laravel']);    // Writable dirs by web server
 
 // **********************************************************************************
 // Task Definitions

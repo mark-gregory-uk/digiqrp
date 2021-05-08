@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Chitchat\Listeners;
+namespace Modules\Forum\Listeners;
 
 use Maatwebsite\Sidebar\Group;
 use Maatwebsite\Sidebar\Item;
@@ -8,7 +8,7 @@ use Maatwebsite\Sidebar\Menu;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\User\Contracts\Authentication;
 
-class RegisterChitchatSidebar implements \Maatwebsite\Sidebar\SidebarExtender
+class RegisterForumSidebar implements \Maatwebsite\Sidebar\SidebarExtender
 {
     /**
      * @var Authentication

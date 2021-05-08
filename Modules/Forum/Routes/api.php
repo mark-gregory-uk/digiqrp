@@ -13,6 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/chitchat', function (Request $request) {
+Route::middleware('auth:api')->get('/forum', function (Request $request) {
     return $request->user();
 });

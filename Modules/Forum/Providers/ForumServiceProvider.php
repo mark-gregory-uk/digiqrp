@@ -1,15 +1,15 @@
 <?php
 
-namespace Modules\Chitchat\Providers;
+namespace Modules\Forum\Providers;
 
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\Core\Events\LoadingBackendTranslations;
-use Modules\Chitchat\Listeners\RegisterChitchatSidebar;
+use Modules\Forum\Listeners\RegisterForumSidebar;
 
-class ChitchatServiceProvider extends ServiceProvider
+class ForumServiceProvider extends ServiceProvider
 {
     use CanPublishConfiguration;
     /**
@@ -27,7 +27,7 @@ class ChitchatServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerBindings();
-        $this->app['events']->listen(BuildingSidebar::class, RegisterChitchatSidebar::class);
+        $this->app['events']->listen(BuildingSidebar::class, RegisterForumSidebar::class);
 
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
             // append translations
@@ -38,7 +38,7 @@ class ChitchatServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->publishConfig('chitchat', 'permissions');
+        $this->publishConfig('forum', 'permissions');
 
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }

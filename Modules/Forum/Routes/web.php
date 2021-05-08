@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('chitchat')->group(function() {
-    Route::get('/', 'ChitchatController@index');
+Route::prefix('forum')->group(function() {
+    Route::get('/', 'ForumController@index');
 });

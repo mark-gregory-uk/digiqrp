@@ -3,6 +3,6 @@
 use Illuminate\Routing\Router;
 /** @var Router $router */
 
-$router->group(['prefix' =>'/chitchat'], function (Router $router) {
+$router->group(['prefix' =>'/forum'], function (Router $router) {
 // append
 });

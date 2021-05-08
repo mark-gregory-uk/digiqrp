@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Chitchat\Database\Seeders;
+namespace Modules\Forum\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class ChitchatDatabaseSeeder extends Seeder
+class ForumDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.

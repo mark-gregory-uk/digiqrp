@@ -1,5 +1,5 @@
 {
-    "name": "hamcore/chitchat",
+    "name": "hamcore/forum",
     "description": "",
     "type": "asgard-module",
     "license": "MIT",
@@ -14,7 +14,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Modules\\Chitchat\\": ".",
+            "Modules\\Forum\\": ".",
             "Modules\\": "Modules/"
         }
     },
@@ -36,7 +36,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\Chitchat\\": ""
+            "Modules\\Forum\\": ""
         }
     }
 }

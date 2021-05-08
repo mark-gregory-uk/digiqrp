@@ -132,23 +132,23 @@ class LogbookController extends AdminBaseController
     {
     }
 
-    public function createForm($owner,$logbook)
+    public function createForm($owner, $logbook)
     {
         $latestPosts = $this->postRepository->latest();
         $latestContacts = $this->logbook->latestContacts();
 
-        return view('logbook::admin.logbooks.fileupload', compact('latestPosts', 'latestContacts','owner','logbook'));
+        return view('logbook::admin.logbooks.fileupload', compact('latestPosts', 'latestContacts', 'owner', 'logbook'));
     }
 
     /**
-     * Upload the logfile and process it
+     * Upload the logfile and process it.
      * @param Request $req
      * @param Setting $settings
      * @param $owner
      * @param $logbook
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function fileUpload(Request $req, Setting $settings,$owner,$logbook)
+    public function fileUpload(Request $req, Setting $settings, $owner, $logbook)
     {
         $this->settings = $settings;
         $default_lat = 52.3848;

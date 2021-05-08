@@ -15,6 +15,13 @@
     {!! Form::open(['route' => ['admin.logbook.logbook.update', $logbook->id], 'method' => 'put']) !!}
     <div class="row">
         <div class="col-md-12">
+            <div class="row">
+                <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
+                    <a href="{{ route('logbook.upload',['owner'=>Auth::id(),'logbook'=>$logbook->id]) }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
+                        <i class="fa fa-pencil"></i> {{ 'Upload Log File' }}
+                    </a>
+                </div>
+            </div>
             <div class="nav-tabs-custom">
                 @include('partials.form-tab-headers')
                 <div class="tab-content">

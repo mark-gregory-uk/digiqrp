@@ -132,15 +132,23 @@ class LogbookController extends AdminBaseController
     {
     }
 
-    public function createForm()
+    public function createForm($owner, $logbook)
     {
         $latestPosts = $this->postRepository->latest();
         $latestContacts = $this->logbook->latestContacts();
 
-        return view('logbook::admin.logbooks.fileupload', compact('latestPosts', 'latestContacts'));
+        return view('logbook::admin.logbooks.fileupload', compact('latestPosts', 'latestContacts', 'owner', 'logbook'));
     }
 
-    public function fileUpload(Request $req, Setting $settings)
+    /**
+     * Upload the logfile and process it.
+     * @param Request $req
+     * @param Setting $settings
+     * @param $owner
+     * @param $logbook
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function fileUpload(Request $req, Setting $settings, $owner, $logbook)
     {
         $this->settings = $settings;
         $default_lat = 52.3848;
@@ -177,8 +185,8 @@ class LogbookController extends AdminBaseController
 
             if ($originalFileName == 'MacLoggerDX.sql') {
                 $logbook = Logbook::with('entries')
-                    ->where('owner_id', '=', 1)
-                    ->where('slug', '=', 'main')->first();
+                    ->where('owner_id', '=', $owner)
+                    ->where('slug', '=', $logbook->slug)->first();
 
                 $logEntries = $logbook->entries()->get();
 

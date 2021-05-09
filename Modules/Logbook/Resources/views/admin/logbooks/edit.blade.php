@@ -52,7 +52,13 @@
         </div>
     </div>
     {!! Form::close() !!}
-
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+           @include('logbook::admin.logbooks.partials.logentries')
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('footer')
@@ -82,6 +88,24 @@
             $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
                 checkboxClass: 'icheckbox_flat-blue',
                 radioClass: 'iradio_flat-blue'
+            });
+        });
+        <?php $locale = locale(); ?>
+
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('.data-table').dataTable({
+                "paginate": true,
+                "lengthChange": true,
+                "filter": true,
+                "sort": true,
+                "info": true,
+                "autoWidth": true,
+                "order": [[ 0, "desc" ]],
+                "language": {
+                    "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
+                }
             });
         });
     </script>

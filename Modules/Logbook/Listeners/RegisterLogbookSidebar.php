@@ -37,7 +37,6 @@ class RegisterLogbookSidebar implements \Maatwebsite\Sidebar\SidebarExtender
      */
     public function extendWith(Menu $menu)
     {
-
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
             $group->item(trans('logbook::logbooks.title.logbooks'), function (Item $item) {
                 $item->icon('fa fa-book');
@@ -65,7 +64,6 @@ class RegisterLogbookSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                         $this->auth->hasAccess('logbook.countries.index')
                     );
                 });
-
             });
         });
 

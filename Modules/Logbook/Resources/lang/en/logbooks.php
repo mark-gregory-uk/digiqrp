@@ -7,11 +7,13 @@ return [
     'destroy resource' => 'Destroy logbooks',
     'title'            => [
         'logbooks'       => 'Logbooks',
+        'entries' => 'Logbook Entries',
         'create logbook' => 'Create a logbook',
         'edit logbook'   => 'Edit a logbook',
     ],
     'button' => [
         'create logbook' => 'Create a logbook',
+        'create country' => 'Create a country',
     ],
     'table' => [
         'title' => 'Title',

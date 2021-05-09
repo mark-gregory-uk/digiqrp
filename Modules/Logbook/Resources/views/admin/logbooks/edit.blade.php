@@ -17,48 +17,63 @@
     @include('logbook::admin.logbooks.modals.upload-logfile')
 
 
-    {!! Form::open(['route' => ['admin.logbook.logbook.update', $logbook->id], 'method' => 'put']) !!}
+    <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab_logbook" data-toggle="tab">Logbook</a></li>
+            <li class=""><a href="#tab_entries" data-toggle="tab">Entries</a></li>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab_logbook">
+                <div class="box-body">
 
-                    <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                        <a data-toggle="modal" data-target="#upload-logfile" class="btn btn-danger btn-flat" style="padding: 4px 10px;">
-                            <i class="fa fa-upload"></i>Upload Log File
-                        </a>
+                    {!! Form::open(['route' => ['admin.logbook.logbook.update', $logbook->id], 'method' => 'put','id' => 'logbook']) !!}
+                    @include('partials.form-tab-headers')
+                    <div class="tab-content">
+                        <?php $i = 0; ?>
+                        @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
+                            <?php $i++; ?>
+                            <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
+                                @include('logbook::admin.logbooks.partials.edit-fields', ['lang' => $locale])
+                            </div>
+                        @endforeach
+                        {!! Form::close() !!}
+
                     </div>
-
+                </div>
+                <div class="box-footer">
+                    <button type="button" onclick="submitform()" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
+                    <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.logbook.logbook.index')}}">
+                        <i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}
+                    </a>
                 </div>
             </div>
-            <div class="nav-tabs-custom">
-                @include('partials.form-tab-headers')
-                <div class="tab-content">
-                    <?php $i = 0; ?>
-                    @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
-                        <?php $i++; ?>
-                        <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
-                            @include('logbook::admin.logbooks.partials.edit-fields', ['lang' => $locale])
+            <div class="tab-pane" id="tab_entries">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
+
+                        <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
+                            <a data-toggle="modal" data-target="#upload-logfile" class="btn btn-danger btn-flat" style="padding: 4px 10px;">
+                                <i class="fa fa-upload"></i>Upload Log File
+                            </a>
                         </div>
-                    @endforeach
 
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
-                        <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.logbook.logbook.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                @include('logbook::admin.logbooks.partials.logentries')
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div> {{-- end nav-tabs-custom --}}
-        </div>
-    </div>
-    {!! Form::close() !!}
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-           @include('logbook::admin.logbooks.partials.logentries')
             </div>
         </div>
     </div>
+
+
 @stop
 
 @section('footer')
@@ -81,6 +96,9 @@
                 ]
             });
         });
+        function submitform() {
+            document.getElementById("logbook").submit();
+        }
     </script>
     <script>
         $( document ).ready(function() {

@@ -37,14 +37,35 @@ class RegisterLogbookSidebar implements \Maatwebsite\Sidebar\SidebarExtender
      */
     public function extendWith(Menu $menu)
     {
+
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
             $group->item(trans('logbook::logbooks.title.logbooks'), function (Item $item) {
                 $item->icon('fa fa-book');
                 $item->weight(60);
-                $item->route('admin.logbook.logbook.index');
                 $item->authorize(
+                    (
                     $this->auth->hasAccess('logbook.logbooks.index')
+                    )
                 );
+
+                $item->item(trans('logbook::logbooks.title.entries'), function (Item $item) {
+                    $item->icon('fa fa-book');
+                    $item->weight(1);
+                    $item->route('admin.logbook.logbook.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('logbook.logbooks.index')
+                    );
+                });
+
+                $item->item(trans('Countries'), function (Item $item) {
+                    $item->icon('fa fa-globe');
+                    $item->weight(2);
+                    $item->route('admin.logbook.countries.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('logbook.countries.index')
+                    );
+                });
+
             });
         });
 

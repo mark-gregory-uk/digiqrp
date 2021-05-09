@@ -3,6 +3,8 @@
         <thead>
         <tr>
             <th>Call</th>
+            <th>QSO Start</th>
+            <th>QSO End</th>
             <th>Country</th>
             <th>Slug</th>
             <th>Created</th>
@@ -16,6 +18,16 @@
             <td>
                 <a href="{{ route('admin.logbook.logbook.edit', [$entry->id]) }}">
                     {{ $entry->call }}
+                </a>
+            </td>
+            <td>
+                <a href="{{ route('admin.logbook.logbook.edit', [$entry->id]) }}">
+                    {{ $entry->qso_start }}
+                </a>
+            </td>
+            <td>
+                <a href="{{ route('admin.logbook.logbook.edit', [$entry->id]) }}">
+                    {{ $entry->qso_end }}
                 </a>
             </td>
             <td>

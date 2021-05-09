@@ -39,7 +39,7 @@ $router->group(['prefix' =>'/logbook'], function (Router $router) {
     ]);
     $router->get('countries', [
         'as'         => 'admin.logbook.countries.index',
-        'uses'       => 'LogbookCountryController@index',
+        'uses'       => 'LogBookCountryController@index',
         'middleware' => 'can:logbook.countries.index',
     ]);
 

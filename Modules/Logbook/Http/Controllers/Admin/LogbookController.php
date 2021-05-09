@@ -186,9 +186,10 @@ class LogbookController extends AdminBaseController
             Storage::move('/storage/app/public/uploads/'.$fileModel->name, '/storage/sqlite/'.$originalFileName);
 
             if ($originalFileName == 'MacLoggerDX.sql') {
+
                 $logbook = Logbook::with('entries')
                     ->where('owner_id', '=', $owner)
-                    ->where('slug', '=', $logbook->slug)->first();
+                    ->where('slug', '=', 'main')->first();
 
                 $logEntries = $logbook->entries()->get();
 

@@ -11,15 +11,25 @@
     </ol>
 @stop
 
+
 @section('content')
+
+    @include('logbook::admin.logbooks.modals.upload-logfile')
+
+
     {!! Form::open(['route' => ['admin.logbook.logbook.update', $logbook->id], 'method' => 'put']) !!}
+
     <div class="row">
         <div class="col-md-12">
             <div class="row">
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a href="{{ route('logbook.upload',['owner'=>Auth::id(),'logbook'=>$logbook->id]) }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ 'Upload Log File' }}
-                    </a>
+
+                    <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
+                        <a data-toggle="modal" data-target="#upload-logfile" class="btn btn-danger btn-flat" style="padding: 4px 10px;">
+                            <i class="fa fa-upload"></i>Upload Log File
+                        </a>
+                    </div>
+
                 </div>
             </div>
             <div class="nav-tabs-custom">
@@ -42,6 +52,7 @@
         </div>
     </div>
     {!! Form::close() !!}
+
 @stop
 
 @section('footer')
@@ -53,6 +64,7 @@
         <dd>{{ trans('core::core.back to index') }}</dd>
     </dl>
 @stop
+
 
 @push('js-stack')
     <script type="text/javascript">
@@ -66,6 +78,7 @@
     </script>
     <script>
         $( document ).ready(function() {
+            $('#upload-logfile').modal('hide');
             $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
                 checkboxClass: 'icheckbox_flat-blue',
                 radioClass: 'iradio_flat-blue'
@@ -73,3 +86,5 @@
         });
     </script>
 @endpush
+
+

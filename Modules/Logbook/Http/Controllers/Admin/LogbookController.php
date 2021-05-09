@@ -137,7 +137,9 @@ class LogbookController extends AdminBaseController
         $latestPosts = $this->postRepository->latest();
         $latestContacts = $this->logbook->latestContacts();
 
-        return view('logbook::admin.logbooks.fileupload', compact('latestPosts', 'latestContacts', 'owner', 'logbook'));
+        //return view('logbook::admin.logbooks.fileupload', compact('latestPosts', 'latestContacts', 'owner', 'logbook'));
+
+        return view('logbook::admin.logbooks.fileupload_dialog',compact('owner','logbook'));
     }
 
     /**

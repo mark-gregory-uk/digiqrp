@@ -137,7 +137,9 @@ class LogbookController extends AdminBaseController
         $latestPosts = $this->postRepository->latest();
         $latestContacts = $this->logbook->latestContacts();
 
-        return view('logbook::admin.logbooks.fileupload', compact('latestPosts', 'latestContacts', 'owner', 'logbook'));
+        //return view('logbook::admin.logbooks.fileupload', compact('latestPosts', 'latestContacts', 'owner', 'logbook'));
+
+        return view('logbook::admin.logbooks.fileupload_dialog', compact('owner', 'logbook'));
     }
 
     /**
@@ -186,7 +188,7 @@ class LogbookController extends AdminBaseController
             if ($originalFileName == 'MacLoggerDX.sql') {
                 $logbook = Logbook::with('entries')
                     ->where('owner_id', '=', $owner)
-                    ->where('slug', '=', $logbook->slug)->first();
+                    ->where('slug', '=', 'main')->first();
 
                 $logEntries = $logbook->entries()->get();
 

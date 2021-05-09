@@ -139,7 +139,7 @@ class LogbookController extends AdminBaseController
 
         //return view('logbook::admin.logbooks.fileupload', compact('latestPosts', 'latestContacts', 'owner', 'logbook'));
 
-        return view('logbook::admin.logbooks.fileupload_dialog',compact('owner','logbook'));
+        return view('logbook::admin.logbooks.fileupload_dialog', compact('owner', 'logbook'));
     }
 
     /**
@@ -186,7 +186,6 @@ class LogbookController extends AdminBaseController
             Storage::move('/storage/app/public/uploads/'.$fileModel->name, '/storage/sqlite/'.$originalFileName);
 
             if ($originalFileName == 'MacLoggerDX.sql') {
-
                 $logbook = Logbook::with('entries')
                     ->where('owner_id', '=', $owner)
                     ->where('slug', '=', 'main')->first();

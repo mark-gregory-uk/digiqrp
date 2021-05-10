@@ -48,27 +48,27 @@ $router->group(['prefix' =>'/logbook'], function (Router $router) {
 
     $router->get('countries/create', [
         'as'         => 'admin.logbook.countries.create',
-        'uses'       => 'LogbookCountryController@create',
+        'uses'       => 'LogBookCountryController@create',
         'middleware' => 'can:logbook.logbooks.create',
     ]);
     $router->post('countries', [
         'as'         => 'admin.logbook.countries.store',
-        'uses'       => 'LogbookCountryController@store',
+        'uses'       => 'LogBookCountryController@store',
         'middleware' => 'can:logbook.countries.create',
     ]);
     $router->get('countries/{logbookCountry}/edit', [
         'as'         => 'admin.logbook.country.edit',
-        'uses'       => 'LogbookCountryController@edit',
+        'uses'       => 'LogBookCountryController@edit',
         'middleware' => 'can:logbook.countries.edit',
     ]);
     $router->put('countries/{logbookCountry}', [
         'as'         => 'admin.logbook.countries.update',
-        'uses'       => 'LogbookCountryController@update',
+        'uses'       => 'LogBookCountryController@update',
         'middleware' => 'can:logbook.countries.edit',
     ]);
     $router->delete('countries/{logbookCountry}', [
         'as'         => 'admin.logbook.country.destroy',
-        'uses'       => 'LogbookCountryController@destroy',
+        'uses'       => 'LogBookCountryController@destroy',
         'middleware' => 'can:logbook.countries.destroy',
     ]);
 

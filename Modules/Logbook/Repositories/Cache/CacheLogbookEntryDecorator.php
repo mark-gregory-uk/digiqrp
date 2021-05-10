@@ -13,6 +13,4 @@ class CacheLogbookEntryDecorator extends BaseCacheDecorator implements LogbookEn
         $this->entityName = 'logbook.entry';
         $this->repository = $logbookEntryRepository;
     }
-
-
 }

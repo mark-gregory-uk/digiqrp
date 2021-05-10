@@ -95,8 +95,6 @@ class LogbookServiceProvider extends ServiceProvider
                 return new \Modules\Logbook\Repositories\Cache\CacheLogbookEntryDecorator($repository);
             }
         );
-
-
     }
 
     /**

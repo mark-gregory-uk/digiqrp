@@ -13,8 +13,6 @@ use Modules\Logbook\Repositories\LogbookEntryRepository;
 
 class LogBookEntryController extends AdminBaseController
 {
-
-
     /**
      * @var LogbookEntryRepository
      */
@@ -35,7 +33,6 @@ class LogBookEntryController extends AdminBaseController
         return view('logbook::admin.logentries.edit', compact('entry'));
     }
 
-
     /**
      * Update the specified resource in storage.
      *
@@ -44,14 +41,11 @@ class LogBookEntryController extends AdminBaseController
      *
      * @return Response
      */
-    public function update( LogbookEntry $entry, UpdateLogbookEntryRequest $request)
+    public function update(LogbookEntry $entry, UpdateLogbookEntryRequest $request)
     {
         $this->logbookEntryRepository->update($entry, $request->all());
 
         return redirect()->back()
             ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('logbook::entry.title.entry')]));
     }
-
-
-
 }

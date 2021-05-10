@@ -38,7 +38,6 @@ $router->group(['prefix' =>'/logbook'], function (Router $router) {
         'middleware' => 'can:logbook.logbooks.destroy',
     ]);
 
-
     $router->get('entry/{entry}/edit', [
         'as'         => 'admin.logbook.entry.edit',
         'uses'       => 'LogBookEntryController@edit',
@@ -84,11 +83,7 @@ $router->group(['prefix' =>'/logbook'], function (Router $router) {
         'middleware' => 'can:logbook.countries.destroy',
     ]);
 
-
     // Logentries
-
-
-
 
     Route::get('/upload-file/{owner}/{logbook}', [\Modules\Logbook\Http\Controllers\Admin\LogbookController::class, 'createForm'])->name('logbook.upload');
     Route::post('/upload-file/{owner}/{logbook}', [\Modules\Logbook\Http\Controllers\Admin\LogbookController::class, 'fileUpload'])->name('logbook.uploadlog');

@@ -15,7 +15,6 @@ use Modules\Logbook\Repositories\LogbookCountryRepository;
 
 class LogBookCountryController extends AdminBaseController
 {
-
     /**
      * @var LogbookCountryRepository
      */
@@ -26,7 +25,6 @@ class LogBookCountryController extends AdminBaseController
         parent::__construct();
         $this->logbookCountryRepository = $logbookCountryRepository;
     }
-
 
     /**
      * Display a listing of the resource.
@@ -39,7 +37,6 @@ class LogBookCountryController extends AdminBaseController
 
         return view('logbook::admin.countries.index', compact('countries'));
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -95,8 +92,6 @@ class LogBookCountryController extends AdminBaseController
             ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('logbook::countries.title.country')]));
     }
 
-
-
     /**
      * Remove the specified resource from storage.
      *
@@ -106,11 +101,9 @@ class LogBookCountryController extends AdminBaseController
      */
     public function destroy(LogbookCountry $logbookCountry)
     {
-
         $this->logbookCountryRepository->destroy($logbookCountry);
+
         return redirect()->route('admin.logbook.countries.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('logbook::countries.title.country')]));
     }
-
-
 }

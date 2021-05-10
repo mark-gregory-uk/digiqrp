@@ -37,11 +37,41 @@ $router->group(['prefix' =>'/logbook'], function (Router $router) {
         'uses'       => 'LogbookController@destroy',
         'middleware' => 'can:logbook.logbooks.destroy',
     ]);
+
+    // Countries
+
     $router->get('countries', [
         'as'         => 'admin.logbook.countries.index',
         'uses'       => 'LogBookCountryController@index',
         'middleware' => 'can:logbook.countries.index',
     ]);
+
+    $router->get('countries/create', [
+        'as'         => 'admin.logbook.countries.create',
+        'uses'       => 'LogbookCountryController@create',
+        'middleware' => 'can:logbook.logbooks.create',
+    ]);
+    $router->post('countries', [
+        'as'         => 'admin.logbook.countries.store',
+        'uses'       => 'LogbookCountryController@store',
+        'middleware' => 'can:logbook.countries.create',
+    ]);
+    $router->get('countries/{logbookCountry}/edit', [
+        'as'         => 'admin.logbook.country.edit',
+        'uses'       => 'LogbookCountryController@edit',
+        'middleware' => 'can:logbook.countries.edit',
+    ]);
+    $router->put('countries/{logbookCountry}', [
+        'as'         => 'admin.logbook.countries.update',
+        'uses'       => 'LogbookCountryController@update',
+        'middleware' => 'can:logbook.countries.edit',
+    ]);
+    $router->delete('countries/{logbookCountry}', [
+        'as'         => 'admin.logbook.country.destroy',
+        'uses'       => 'LogbookCountryController@destroy',
+        'middleware' => 'can:logbook.countries.destroy',
+    ]);
+
 
     Route::get('/upload-file/{owner}/{logbook}', [\Modules\Logbook\Http\Controllers\Admin\LogbookController::class, 'createForm'])->name('logbook.upload');
     Route::post('/upload-file/{owner}/{logbook}', [\Modules\Logbook\Http\Controllers\Admin\LogbookController::class, 'fileUpload'])->name('logbook.uploadlog');

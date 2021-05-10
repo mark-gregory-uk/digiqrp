@@ -33,6 +33,7 @@ class LogbookServiceProvider extends ServiceProvider
         $this->app['events']->listen(BuildingSidebar::class, RegisterLogbookSidebar::class);
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
             $event->load('menu', Arr::dot(trans('logbook::logbooks')));
+            $event->load('menu', Arr::dot(trans('logbook::countries')));
         });
     }
 
@@ -68,6 +69,20 @@ class LogbookServiceProvider extends ServiceProvider
                 return new \Modules\Logbook\Repositories\Cache\CacheLogbookDecorator($repository);
             }
         );
+
+        $this->app->bind(
+            'Modules\Logbook\Repositories\LogbookCountryRepository',
+            function () {
+                $repository = new \Modules\Logbook\Repositories\Eloquent\EloquentLogbookCountryRepository(new \Modules\Logbook\Entities\LogbookCountry());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Logbook\Repositories\Cache\CacheLogbookCountryDecorator($repository);
+            }
+        );
+
     }
 
     /**

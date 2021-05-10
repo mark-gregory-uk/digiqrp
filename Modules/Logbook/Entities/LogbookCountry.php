@@ -12,5 +12,7 @@ class LogbookCountry extends Model
         'name',
         'code',
         'slug',
+        'created_at',
+        'updated_at',
     ];
 }

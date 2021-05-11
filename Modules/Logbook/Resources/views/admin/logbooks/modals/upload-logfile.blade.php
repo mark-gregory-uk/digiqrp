@@ -26,7 +26,7 @@
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">
                                 {{ 'Cancel' }}
                             </button>
-                            <input class="btn btn-primary" type="submit" value="Ok" />
+                            <input class="btn btn-primary" type="submit" value="Upload" />
                         </div>
                     </div>
                 </div>

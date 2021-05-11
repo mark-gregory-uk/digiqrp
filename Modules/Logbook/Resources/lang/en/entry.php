@@ -19,6 +19,7 @@ return [
         'call' => 'Callsign',
         'dxcc_country'  => 'Country',
         'country_slug'  => 'Code',
+        'mode' => 'Mode',
     ],
     'messages' => [
     ],

@@ -46,9 +46,9 @@
             <thead>
             <tr>
                 <th>Call</th>
-                <th>RST</th>
-                <th>SST</th>
-                <th>Band</th>
+                <th style="width: 24px;">RST</th>
+                <th style="width: 24px;">Mode</th>
+                <th style="width: 24px;">Band</th>
                 <th></th>
                 <th>Date</th>
                 <th>Time</th>
@@ -83,8 +83,8 @@
                     { data: 'rst_received',
                         name: 'rst_received'
                     },
-                    { data: 'rst_sent',
-                        name: 'rst_sent'
+                    { data: 'mode',
+                        name: 'mode'
 
                     },
                     { data: 'band_tx',

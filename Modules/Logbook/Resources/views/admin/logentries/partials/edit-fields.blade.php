@@ -20,5 +20,11 @@
         {!! $errors->first("{$lang}.country_slug", '<span class="help-block">:message</span>') !!}
     </div>
 
+    <div class='form-group{{ $errors->has("{$lang}.mode") ? ' has-error' : '' }}'>
+        {!! Form::label("{$lang}[mode]", trans('logbook::entry.form.mode')) !!}
+        {!! Form::text("mode", $entry->mode, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('page::pages.slug')]) !!}
+        {!! $errors->first("{$lang}.mode", '<span class="help-block">:message</span>') !!}
+    </div>
+
     </p>
 </div>

@@ -5,9 +5,9 @@ server {
     listen 80;
     listen [::]:80 default_server ipv6only=on;
 
-    listen 443 ssl;
-    ssl_certificate      /etc/ssl/certs/server.crt;
-    ssl_certificate_key  /etc/ssl/private/server.key;
+    #listen 443 ssl;
+    #ssl_certificate      /etc/ssl/certs/server.crt;
+    #ssl_certificate_key  /etc/ssl/private/server.key;
 
 
     root /var/www/html/public;
@@ -25,7 +25,7 @@ server {
     }
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
     }
     location ~ /\.ht {
         deny all;

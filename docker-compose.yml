@@ -6,11 +6,10 @@ services:
     image: asgardcms/app:latest
     ports:
       - 80:80
-      - 443:443
     volumes:
       - .:/var/www/html:cached
     networks:
-      - asgard_net
+      - digiqrp_net
   redis:
     build:
       context: ./docker/redis
@@ -18,7 +17,7 @@ services:
     volumes:
       - redisdata:/data
     networks:
-      - asgard_net
+      - digiqrp_net
 
   mysql:
     build:
@@ -28,13 +27,13 @@ services:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: asgardcms
+      MYSQL_DATABASE: digiqrp
       MYSQL_USER: homestead
       MYSQL_PASSWORD: secret
     volumes:
       - mysqldata:/var/lib/mysql
     networks:
-      - asgard_net
+      - digiqrp_net
 
   node:
     build:
@@ -49,7 +48,7 @@ services:
       BLACKFIRE_SERVER_ID:
       BLACKFIRE_SERVER_TOKEN:
     networks:
-    - asgard_net
+    - digiqrp_net
 
 volumes:
   redisdata:
@@ -58,5 +57,5 @@ volumes:
     driver: local
 
 networks:
-  asgard_net:
+  digiqrp_net:
     driver: bridge

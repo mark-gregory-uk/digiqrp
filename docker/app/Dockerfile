@@ -18,18 +18,18 @@ RUN add-apt-repository ppa:nginx/stable \
         nginx \
         git \
         unzip \
-        php7.3-fpm \
-        php7.3-cli \
-        php7.3-xdebug \
-        php7.3-pdo \
-        php7.3-pdo-mysql \
-        php7.3-sqlite3 \
-        php7.3-xml \
-        php7.3-mbstring \
-        php7.3-tokenizer \
-        php7.3-zip \
-        php7.3-gd \
-        php7.3-curl \
+        php7.4-fpm \
+        php7.4-cli \
+        php7.4-xdebug \
+        php7.4-pdo \
+        php7.4-pdo-mysql \
+        php7.4-sqlite3 \
+        php7.4-xml \
+        php7.4-mbstring \
+        php7.4-tokenizer \
+        php7.4-zip \
+        php7.4-gd \
+        php7.4-curl \
         curl \
     && mkdir /run/php \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
@@ -45,29 +45,29 @@ RUN add-apt-repository ppa:nginx/stable \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY default /etc/nginx/sites-enabled/default
-COPY php.ini /etc/php/7.3/fpm/php.ini
-COPY php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
+COPY php.ini /etc/php/7.4/fpm/php.ini
+COPY php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-COPY laravel.ini /etc/php/7.3/fpm/conf.d/laravel.ini
+COPY laravel.ini /etc/php/7.4/fpm/conf.d/laravel.ini
 #COPY disabled-xdebug.ini /etc/php/7.1/mods-available/xdebug.ini
-COPY enabled-xdebug.ini /etc/php/7.3/mods-available/xdebug.ini
+COPY enabled-xdebug.ini /etc/php/7.4/mods-available/xdebug.ini
 
-RUN /etc/init.d/php7.3-fpm restart
+RUN /etc/init.d/php7.4-fpm restart
 
-RUN mkdir /tmp/certgen
-WORKDIR /tmp/certgen
-RUN openssl genrsa -des3 -passout pass:x -out server.pass.key 2048 \
-    && openssl rsa -passin pass:x -in server.pass.key -out server.key \
-    && rm server.pass.key \
-    && openssl req -new -key server.key -out server.csr -subj "/CN=asgardcms.com" \
-    && openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt \
-    && cp server.crt /etc/ssl/certs/ \
-    && cp server.key /etc/ssl/private/ \
-    && rm -rf /tmp/certgen
+#RUN mkdir /tmp/certgen
+#WORKDIR /tmp/certgen
+#RUN openssl genrsa -des3 -passout pass:x -out server.pass.key 2048 \
+#    && openssl rsa -passin pass:x -in server.pass.key -out server.key \
+#    && rm server.pass.key \
+#    && openssl req -new -key server.key -out server.csr -subj "/CN=digiqrp.vm" \
+#    && openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt \
+#    && cp server.crt /etc/ssl/certs/ \
+#    && cp server.key /etc/ssl/private/ \
+#    && rm -rf /tmp/certgen
 
 EXPOSE 80
-EXPOSE 443
+#EXPOSE 443
 
 WORKDIR /var/www/html
 

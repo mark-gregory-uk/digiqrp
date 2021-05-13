@@ -17,6 +17,8 @@ services:
     image: asgardcms/redis:latest
     volumes:
       - redisdata:/data
+    ports:
+      - "6379:6379"
     networks:
       - digiqrp_net
 

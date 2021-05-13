@@ -25,6 +25,8 @@ RUN add-apt-repository ppa:nginx/stable \
         php7.4-pdo-mysql \
         php7.4-sqlite3 \
         php7.4-xml \
+        php7.4-redis \
+        php7.4-memcached \
         php7.4-mbstring \
         php7.4-tokenizer \
         php7.4-zip \

@@ -8,6 +8,7 @@ services:
       - 80:80
     volumes:
       - .:/var/www/html:cached
+      - ./xdebug-local.ini:/usr/local/etc/php/conf.d/xdebug-
     networks:
       - digiqrp_net
   redis:

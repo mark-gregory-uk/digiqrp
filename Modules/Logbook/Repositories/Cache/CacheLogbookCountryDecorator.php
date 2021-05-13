@@ -13,6 +13,4 @@ class CacheLogbookCountryDecorator extends BaseCacheDecorator implements Logbook
         $this->entityName = 'logbook.countries';
         $this->repository = $logbookCountry;
     }
-
-
 }

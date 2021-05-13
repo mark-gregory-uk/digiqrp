@@ -52,8 +52,8 @@ COPY php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 COPY laravel.ini /etc/php/7.4/fpm/conf.d/laravel.ini
-#COPY disabled-xdebug.ini /etc/php/7.1/mods-available/xdebug.ini
-COPY enabled-xdebug.ini /etc/php/7.4/mods-available/xdebug.ini
+COPY disabled-xdebug.ini /etc/php/7.1/mods-available/xdebug.ini
+#COPY enabled-xdebug.ini /etc/php/7.4/mods-available/xdebug.ini
 
 RUN /etc/init.d/php7.4-fpm restart
 

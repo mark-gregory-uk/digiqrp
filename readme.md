@@ -15,3 +15,4 @@ Join the conversation on Slack [![Slack](http://slack.asgardcms.com/badge.svg)](
 ## License
 
 The AsgardCMS is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+

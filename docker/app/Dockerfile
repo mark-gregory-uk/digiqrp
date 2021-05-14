@@ -57,19 +57,19 @@ COPY enabled-xdebug.ini /etc/php/7.4/mods-available/xdebug.ini
 
 RUN /etc/init.d/php7.4-fpm restart
 
-#RUN mkdir /tmp/certgen
-#WORKDIR /tmp/certgen
-#RUN openssl genrsa -des3 -passout pass:x -out server.pass.key 2048 \
-#    && openssl rsa -passin pass:x -in server.pass.key -out server.key \
-#    && rm server.pass.key \
-#    && openssl req -new -key server.key -out server.csr -subj "/CN=digiqrp.vm" \
-#    && openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt \
-#    && cp server.crt /etc/ssl/certs/ \
-#    && cp server.key /etc/ssl/private/ \
-#    && rm -rf /tmp/certgen
+RUN mkdir /tmp/certgen
+WORKDIR /tmp/certgen
+RUN openssl genrsa -des3 -passout pass:x -out server.pass.key 2048 \
+    && openssl rsa -passin pass:x -in server.pass.key -out server.key \
+    && rm server.pass.key \
+    && openssl req -new -key server.key -out server.csr -subj "/CN=digiqrp.vm" \
+    && openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt \
+    && cp server.crt /etc/ssl/certs/ \
+    && cp server.key /etc/ssl/private/ \
+    && rm -rf /tmp/certgen
 
 EXPOSE 80
-#EXPOSE 443
+EXPOSE 443
 
 WORKDIR /var/www/html
 

@@ -5,9 +5,9 @@ server {
     listen 80;
     listen [::]:80 default_server ipv6only=on;
 
-    #listen 443 ssl;
-    #ssl_certificate      /etc/ssl/certs/server.crt;
-    #ssl_certificate_key  /etc/ssl/private/server.key;
+    listen 443 ssl;
+    ssl_certificate      /etc/ssl/certs/server.crt;
+    ssl_certificate_key  /etc/ssl/private/server.key;
 
 
     root /var/www/html/public;

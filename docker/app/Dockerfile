@@ -46,26 +46,42 @@ RUN add-apt-repository ppa:nginx/stable \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY default /etc/nginx/sites-enabled/default
+COPY /nginx/default /etc/nginx/sites-enabled/default
 COPY php.ini /etc/php/7.4/fpm/php.ini
 COPY php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 COPY laravel.ini /etc/php/7.4/fpm/conf.d/laravel.ini
-#COPY disabled-xdebug.ini /etc/php/7.1/mods-available/xdebug.ini
-COPY enabled-xdebug.ini /etc/php/7.4/mods-available/xdebug.ini
-
+COPY disabled-xdebug.ini /etc/php/7.1/mods-available/xdebug.ini
+#COPY enabled-xdebug.ini /etc/php/7.4/mods-available/xdebug.ini
 RUN /etc/init.d/php7.4-fpm restart
 
 RUN mkdir /tmp/certgen
+COPY ssl.conf /tmp/certgen
 WORKDIR /tmp/certgen
-RUN openssl genrsa -des3 -passout pass:x -out server.pass.key 2048 \
-    && openssl rsa -passin pass:x -in server.pass.key -out server.key \
-    && rm server.pass.key \
-    && openssl req -new -key server.key -out server.csr -subj "/CN=digiqrp.vm" \
-    && openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt \
-    && cp server.crt /etc/ssl/certs/ \
-    && cp server.key /etc/ssl/private/ \
+
+# Generate a new key
+RUN openssl genrsa -out server.key 4096
+
+# generate the CSR
+RUN openssl req -new -sha256 -out server.csr -key server.key -config ssl.conf
+
+# use this to view the certificate
+#RUN openssl req -text -noout -in /tmp/certgen/server.csr
+
+# Generate the key and copy this to where you want it
+# and the remove the /tmp/certreq directory as generation is complete
+
+RUN openssl x509 -req \
+    -sha256 \
+    -days 3650 \
+    -in server.csr \
+    -signkey server.key \
+    -out server.crt \
+    -extensions req_ext \
+    -extfile ssl.conf \
+    && cp /tmp/certgen/server.crt /etc/ssl/certs/ \
+    && cp /tmp/certgen/server.key /etc/ssl/private/ \
     && rm -rf /tmp/certgen
 
 EXPOSE 80

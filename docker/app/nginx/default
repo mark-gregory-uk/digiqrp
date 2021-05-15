@@ -4,11 +4,14 @@ server {
 
     listen 80;
     listen [::]:80 default_server ipv6only=on;
-
     listen 443 ssl;
+
     ssl_certificate      /etc/ssl/certs/server.crt;
     ssl_certificate_key  /etc/ssl/private/server.key;
 
+    ssl_prefer_server_ciphers on;
+    ssl_protocols SSLv2 SSLv3 TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
 
     root /var/www/html/public;
     index index.php index.html index.htm;

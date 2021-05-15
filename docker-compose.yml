@@ -34,7 +34,7 @@ services:
       MYSQL_USER: homestead
       MYSQL_PASSWORD: secret
     volumes:
-      - mysqldata:/var/lib/mysql
+      - ./docker/db:/var/lib/mysql
     networks:
       - digiqrp_net
 

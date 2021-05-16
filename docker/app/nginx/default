@@ -2,8 +2,6 @@ server {
     error_log /dev/stdout info;
     access_log /dev/stdout;
 
-    listen 80;
-    listen [::]:80 default_server ipv6only=on;
     listen 443 ssl;
 
     ssl_certificate      /etc/ssl/certs/server.crt;
@@ -34,4 +32,11 @@ server {
         deny all;
     }
     client_max_body_size 20M;
+}
+
+server {
+    server_name *.vm digiqrp.vm;
+    listen 80;
+    listen [::]:80 default_server ipv6only=on;
+    return 301 https://$host$request_uri$is_args$args;
 }

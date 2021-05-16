@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+o#!/usr/bin/env bash
 
 COMPOSE="docker-compose"
 

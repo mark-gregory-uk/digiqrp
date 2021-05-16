@@ -10,15 +10,17 @@ services:
     volumes:
       - .:/var/www/html:cached
     networks:
-      - asgard_net
-  redis:
-    build:
-      context: ./docker/redis
-    image: asgardcms/redis:latest
-    volumes:
-      - redisdata:/data
-    networks:
-      - asgard_net
+      - digiqrp_net
+  #redis:
+  #  build:
+  #    context: ./docker/redis
+  #  image: asgardcms/redis:latest
+  #  volumes:
+  #    - redisdata:/data
+  #  ports:
+  #    - "6379:6379"
+  #  networks:
+  #    - digiqrp_net
 
   mysql:
     build:
@@ -28,13 +30,13 @@ services:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: asgardcms
+      MYSQL_DATABASE: digiqrp
       MYSQL_USER: homestead
       MYSQL_PASSWORD: secret
     volumes:
-      - mysqldata:/var/lib/mysql
+      - ./docker/db:/var/lib/mysql
     networks:
-      - asgard_net
+      - digiqrp_net
 
   node:
     build:
@@ -43,20 +45,27 @@ services:
     volumes:
       - .:/var/www/html
 
-  blackfire:
-    image: blackfire/blackfire
-    environment:
-      BLACKFIRE_SERVER_ID:
-      BLACKFIRE_SERVER_TOKEN:
-    networks:
-    - asgard_net
+  #blackfire:
+  #  image: blackfire/blackfire
+  #  environment:
+  #    BLACKFIRE_SERVER_ID:
+  #    BLACKFIRE_SERVER_TOKEN:
+  #  networks:
+  #  - digiqrp_net
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: myapp-mailhog
+    ports:
+      - "8003:1025"
+      - "8100:8025"
 
 volumes:
-  redisdata:
-    driver: local
+  #redisdata:
+  #  driver: local
   mysqldata:
     driver: local
 
 networks:
-  asgard_net:
+  digiqrp_net:
     driver: bridge

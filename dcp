@@ -5,6 +5,10 @@ COMPOSE="docker-compose"
 if [ $# -gt 0 ]; then
     if [ "$1" == "up" ]; then
         $COMPOSE up -d
+    elif [ "$1" == "halt" ]; then
+        $COMPOSE stop
+    elif [ "$1" == "build" ]; then
+        $COMPOSE build
     elif [ "$1" == "reload" ] || [ "$1" == "restart" ] || [ "$1" == "rs" ] || [ "$1" == "rl" ]; then
         $COMPOSE down && $COMPOSE up -d
     elif [ "$1" == "artisan" ] || [ "$1" == "art" ] || [ "$1" == "a" ]; then

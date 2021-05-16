@@ -83,6 +83,18 @@ class LogbookServiceProvider extends ServiceProvider
             }
         );
 
+        $this->app->bind(
+            'Modules\Logbook\Repositories\LogbookEntryRepository',
+            function () {
+                $repository = new \Modules\Logbook\Repositories\Eloquent\EloquentLogbookEntryRepository(new \Modules\Logbook\Entities\LogbookEntry());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Logbook\Repositories\Cache\CacheLogbookEntryDecorator($repository);
+            }
+        );
     }
 
     /**

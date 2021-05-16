@@ -27,6 +27,10 @@ class LogbookEntry extends Model
         'parent_id',
         'distance_km',
         'distance_miles',
+        'created_at',
+        'updated_at',
+        'country_slug',
+        'dxcc_country',
     ];
 
     /**

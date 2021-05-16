@@ -215,6 +215,7 @@ class LogbookController extends AdminBaseController
                     $logEntry->lat = $row->latitude;
                     $logEntry->lng = $row->longitude;
                     $logEntry->power = $row->power;
+                    $logEntry->mode = $row->mode;
                     $logEntry->tx_frequency = $row->tx_frequency;
                     $logEntry->rx_frequency = $row->rx_frequency;
                     $logEntry->dxcc_id = $row->dxcc_id;

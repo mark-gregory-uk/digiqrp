@@ -11,16 +11,16 @@ services:
       - .:/var/www/html:cached
     networks:
       - digiqrp_net
-  redis:
-    build:
-      context: ./docker/redis
-    image: asgardcms/redis:latest
-    volumes:
-      - redisdata:/data
-    ports:
-      - "6379:6379"
-    networks:
-      - digiqrp_net
+  #redis:
+  #  build:
+  #    context: ./docker/redis
+  #  image: asgardcms/redis:latest
+  #  volumes:
+  #    - redisdata:/data
+  #  ports:
+  #    - "6379:6379"
+  #  networks:
+  #    - digiqrp_net
 
   mysql:
     build:
@@ -45,13 +45,13 @@ services:
     volumes:
       - .:/var/www/html
 
-  blackfire:
-    image: blackfire/blackfire
-    environment:
-      BLACKFIRE_SERVER_ID:
-      BLACKFIRE_SERVER_TOKEN:
-    networks:
-    - digiqrp_net
+  #blackfire:
+  #  image: blackfire/blackfire
+  #  environment:
+  #    BLACKFIRE_SERVER_ID:
+  #    BLACKFIRE_SERVER_TOKEN:
+  #  networks:
+  #  - digiqrp_net
 
   mailhog:
     image: mailhog/mailhog:latest
@@ -61,8 +61,8 @@ services:
       - "8100:8025"
 
 volumes:
-  redisdata:
-    driver: local
+  #redisdata:
+  #  driver: local
   mysqldata:
     driver: local
 

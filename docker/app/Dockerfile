@@ -54,7 +54,6 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY laravel.ini /etc/php/7.4/fpm/conf.d/laravel.ini
 COPY disabled-xdebug.ini /etc/php/7.1/mods-available/xdebug.ini
 #COPY enabled-xdebug.ini /etc/php/7.4/mods-available/xdebug.ini
-RUN /etc/init.d/php7.4-fpm restart
 
 RUN mkdir /tmp/certgen
 COPY ssl.conf /tmp/certgen
@@ -82,7 +81,9 @@ RUN openssl x509 -req \
     -extfile ssl.conf \
     && cp /tmp/certgen/server.crt /etc/ssl/certs/ \
     && cp /tmp/certgen/server.key /etc/ssl/private/ \
-    && rm -rf /tmp/certgen
+    && rm -rf /tmp/certgen \
+
+RUN /etc/init.d/php7.4-fpm restart
 
 EXPOSE 80
 EXPOSE 443

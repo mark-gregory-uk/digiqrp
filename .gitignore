@@ -14,6 +14,5 @@ yarn.lock
 .idea
 /public/sitemap.xml
 /storage/backups/
-/xdebug-local.ini/
 /docker/db/
 .DS_Store

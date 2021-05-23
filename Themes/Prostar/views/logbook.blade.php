@@ -46,10 +46,10 @@
             <thead>
             <tr>
                 <th>Call</th>
-                <th style="width: 24px;">RST</th>
-                <th style="width: 24px;">Mode</th>
-                <th style="width: 24px;">Band</th>
-                <th></th>
+                <th>RST</th>
+                <th>Mode</th>
+                <th>Band</th>
+                <th>&nbsp;</th>
                 <th>Date</th>
                 <th>Time</th>
             </tr>
@@ -60,15 +60,15 @@
     </div>
     </div>
     <script type="text/javascript">
-        window.onresize = function(){ location.reload(); }
+        //window.onresize = function(){ location.reload(); }
         $(function () {
             var table = $('#logbook').DataTable({
                 ordering: true,
-                "order": [[ 4, "desc" ]],
+                'order': [[ 4, "desc" ]],
                 processing: true,
                 responsive: window.innerWidth < 700 ? true : false,
                 'columnDefs' : [
-                    { 'visible':window.innerWidth < 700 ? false : true, 'targets': [1,2,4,5] }
+                    { 'visible':window.innerWidth < 700 ? false : true, 'targets': [1,2,3] }
                 ],
                 language: {
                     processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
@@ -78,7 +78,9 @@
                 ajax: "{{ route('logbook.all') }}",
                 columns: [
                     { data: 'call',
-                        name: 'call'
+                        name: 'call',
+                        "searchable": true,
+                        "orderable": false,
                     },
                     { data: 'rst_received',
                         name: 'rst_received'
@@ -107,12 +109,7 @@
                         name: 'end_time',
                         "searchable": false
                     },
-                    {
-                        data: 'dxcc_country',
-                        name: 'dxcc_country',
-                               'searchable':true,
-                               'visible':false,
-                    },
+
 
                 ]
             });

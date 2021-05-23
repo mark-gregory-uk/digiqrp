@@ -16,3 +16,4 @@ yarn.lock
 /storage/backups/
 /xdebug-local.ini/
 /docker/db/
+.DS_Store

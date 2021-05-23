@@ -6,6 +6,8 @@ server {
     listen [::]:80 default_server ipv6only=on;
     listen 443 ssl;
 
+    client_max_body_size 20M;
+
     ssl_certificate      /etc/ssl/certs/server.crt;
     ssl_certificate_key  /etc/ssl/private/server.key;
 
@@ -33,5 +35,5 @@ server {
     location ~ /\.ht {
         deny all;
     }
-    client_max_body_size 20M;
+
 }

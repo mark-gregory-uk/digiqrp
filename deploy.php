@@ -26,13 +26,13 @@ task('deploy:permissions', function () {
 
     if ('prod' === $stage) {
         desc('Deploying Project Production');
-        run("cp {{deploy_path}}/releases/{$releases[0]}/provision/environment/.env.prod {{deploy_path}}/releases/{$releases[0]}/.env");
+        run("cp {{deploy_path}}/releases/{$releases[0]}/env/.env.prod {{deploy_path}}/releases/{$releases[0]}/.env");
     } elseif ('dev' === $stage) {
         desc('Deploying Project Develop ..');
-        run("cp {{deploy_path}}/releases/{$releases[0]}/provision/environment/.env.dev {{deploy_path}}/releases/{$releases[0]}/.env");
+        run("cp {{deploy_path}}/releases/{$releases[0]}/env/.env.dev {{deploy_path}}/releases/{$releases[0]}/.env");
     } else {
         desc('Deploying Project Stage ....');
-        run("cp {{deploy_path}}/releases/{$releases[0]}/provision/environment/.env.stage {{deploy_path}}/releases/{$releases[0]}/.env");
+        run("cp {{deploy_path}}/releases/{$releases[0]}/env/.env.stage {{deploy_path}}/releases/{$releases[0]}/.env");
     }
 })->desc('Set ownership and permissions');
 

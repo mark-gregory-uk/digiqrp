@@ -1,1 +1,0 @@
-### Homestead & Vagrant install notes

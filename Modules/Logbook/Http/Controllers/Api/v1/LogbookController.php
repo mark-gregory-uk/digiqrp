@@ -50,8 +50,10 @@ class LogbookController extends Controller
         $data = LogbookEntry::where('parent_id', '=', $logbook->id)->orderBy('qso_end', 'desc')->get();
 
         foreach ($data as $d) {
-$rr=10;
+            array_push($logEntries,$d);
         }
+
+        return response()->json( [$logEntries] );
 
     }
 

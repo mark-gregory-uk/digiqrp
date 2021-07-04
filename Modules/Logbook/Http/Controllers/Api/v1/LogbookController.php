@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Log;
 use Modules\Logbook\Entities\Logbook;
+use Modules\Logbook\Entities\LogbookEntry;
 
 class LogbookController extends Controller
 {
@@ -40,6 +41,18 @@ class LogbookController extends Controller
         }
 
         return null;
+    }
+
+
+    public function getLogEntries(){
+        $logEntries = [];
+        $logbook = Logbook::where('owner_id', '=', 1)->first();
+        $data = LogbookEntry::where('parent_id', '=', $logbook->id)->orderBy('qso_end', 'desc')->get();
+
+        foreach ($data as $d) {
+$rr=10;
+        }
+
     }
 
     /**

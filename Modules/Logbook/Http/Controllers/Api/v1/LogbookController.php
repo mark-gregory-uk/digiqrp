@@ -44,6 +44,11 @@ class LogbookController extends Controller
     }
 
 
+    /**
+     * Get all logentries for a given user / logbook
+     * this is useful for debugging
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getLogEntries(){
         $logEntries = [];
         $logbook = Logbook::where('owner_id', '=', 1)->first();
@@ -56,6 +61,29 @@ class LogbookController extends Controller
         return response()->json( [$logEntries] );
 
     }
+
+
+    /**
+     * Sync the logbook entries with OSX application
+     * need to add authentication to this call.
+     * @param Request $request
+     */
+    public function syncLogEntries(Request $request){
+
+        if (in_array($request->method(), ['POST'])
+            && $request->isJson()
+        ) {
+            $logbook = Logbook::where('owner_id', '=', 1)->first();
+            $logbookEntries = LogbookEntry::where('parent_id', '=', $logbook->id)->orderBy('qso_end', 'desc')->get();
+
+            // need to design this piece were we are syncing whole database.
+
+            foreach ($logbookEntries as $entry) {
+            }
+
+        }
+    }
+
 
     /**
      * Create a mac logger entry and lookup the

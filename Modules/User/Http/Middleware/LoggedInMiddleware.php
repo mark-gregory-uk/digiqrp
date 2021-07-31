@@ -5,7 +5,9 @@ namespace Modules\User\Http\Middleware;
 use Modules\User\Contracts\Authentication;
 
 /**
- * Class LoggedInMiddleware.
+ * Class LoggedInMiddleware
+ * @package Modules\User\Http\Middleware
+ * Middleware to make sure affected routes need a logged in user
  */
 class LoggedInMiddleware
 {

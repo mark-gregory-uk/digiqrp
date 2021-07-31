@@ -35,8 +35,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php if (isset($tags)) { ?>
-                        <?php foreach ($tags as $tag) { ?>
+                        <?php if (isset($tags)): ?>
+                        <?php foreach ($tags as $tag): ?>
                         <tr>
                             <td>
                                 <a href="{{ route('admin.tag.tag.edit', [$tag->id]) }}">
@@ -60,8 +60,8 @@
                                 </div>
                             </td>
                         </tr>
-                        <?php } ?>
-                        <?php } ?>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
                         </tbody>
                     </table>
                     <!-- /.box-body -->

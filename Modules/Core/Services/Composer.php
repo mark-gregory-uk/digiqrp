@@ -19,9 +19,9 @@ class Composer extends \Illuminate\Support\Composer
     {
         $this->output = function ($type, $buffer) use ($command) {
             if (Process::ERR === $type) {
-                $command->info(trim('[ERR] > '.$buffer));
+                $command->info(trim('[ERR] > ' . $buffer));
             } else {
-                $command->info(trim('> '.$buffer));
+                $command->info(trim('> ' . $buffer));
             }
         };
     }
@@ -44,11 +44,11 @@ class Composer extends \Illuminate\Support\Composer
      */
     public function update($package = null)
     {
-        if (! is_null($package)) {
-            $package = '"'.$package.'"';
+        if (!is_null($package)) {
+            $package = '"' . $package . '"';
         }
         $process = $this->getProcess();
-        $process->setCommandLine(trim($this->findComposer().' update '.$package));
+        $process->setCommandLine(trim($this->findComposer() . ' update ' . $package));
         $process->run($this->output);
     }
 
@@ -60,11 +60,11 @@ class Composer extends \Illuminate\Support\Composer
      */
     public function install($package)
     {
-        if (! is_null($package)) {
-            $package = '"'.$package.'"';
+        if (!is_null($package)) {
+            $package = '"' . $package . '"';
         }
         $process = $this->getProcess();
-        $process->setCommandLine(trim($this->findComposer().' require '.$package));
+        $process->setCommandLine(trim($this->findComposer() . ' require ' . $package));
         $process->run($this->output);
     }
 
@@ -74,17 +74,17 @@ class Composer extends \Illuminate\Support\Composer
     public function dumpAutoload()
     {
         $process = $this->getProcess();
-        $process->setCommandLine(trim($this->findComposer().' dump-autoload -o'));
+        $process->setCommandLine(trim($this->findComposer() . ' dump-autoload -o'));
         $process->run($this->output);
     }
 
     public function remove($package)
     {
-        if (! is_null($package)) {
-            $package = '"'.$package.'"';
+        if (!is_null($package)) {
+            $package = '"' . $package . '"';
         }
         $process = $this->getProcess();
-        $process->setCommandLine(trim($this->findComposer().' remove '.$package));
+        $process->setCommandLine(trim($this->findComposer() . ' remove ' . $package));
         $process->run($this->output);
     }
 }

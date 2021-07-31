@@ -12,19 +12,9 @@ return [
         'translatable' => true,
     ],
     'site-description' => [
-        'description' => 'Site Meta Description',
+        'description' => 'core::settings.site-description',
         'view' => 'textarea',
         'translatable' => true,
-    ],
-    'site-meta-keywords' => [
-        'description' => 'Site Meta Keywords',
-        'view' => 'textarea',
-        'translatable' => true,
-    ],
-    'site-theme-color' => [
-        'description' => 'Theme Colour',
-        'view' => 'text',
-        'translatable' => false,
     ],
     'template' => [
         'description' => 'core::settings.template',

@@ -144,7 +144,7 @@ final class FileMoverTest extends MediaTestCase
         $this->assertEquals('/assets/media/my-file.jpg', $fileTwo->path->getRelativeUrl());
     }
 
-    private function makeRootFolder(): File
+    private function makeRootFolder() : File
     {
         return new File([
             'id' => 0,

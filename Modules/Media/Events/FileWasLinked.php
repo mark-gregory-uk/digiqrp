@@ -11,7 +11,7 @@ class FileWasLinked
      */
     public $file;
     /**
-     * The entity that was linked to a file.
+     * The entity that was linked to a file
      * @var object
      */
     public $entity;

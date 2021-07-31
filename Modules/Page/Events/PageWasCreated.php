@@ -23,7 +23,7 @@ class PageWasCreated implements StoringMedia
     }
 
     /**
-     * Return the entity.
+     * Return the entity
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function getEntity()
@@ -32,7 +32,7 @@ class PageWasCreated implements StoringMedia
     }
 
     /**
-     * Return the ALL data sent.
+     * Return the ALL data sent
      * @return array
      */
     public function getSubmissionData()

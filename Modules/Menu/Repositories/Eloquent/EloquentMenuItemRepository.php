@@ -35,7 +35,7 @@ class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuI
     }
 
     /**
-     * Get online root elements.
+     * Get online root elements
      *
      * @param  int    $menuId
      * @return object
@@ -49,7 +49,7 @@ class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuI
     }
 
     /**
-     * Get all root elements.
+     * Get all root elements
      *
      * @param  int    $menuId
      * @return object
@@ -60,9 +60,9 @@ class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuI
     }
 
     /**
-     * Get Items to build routes.
+     * Get Items to build routes
      *
-     * @return array
+     * @return Array
      */
     public function getForRoutes()
     {
@@ -93,7 +93,7 @@ class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuI
     }
 
     /**
-     * Get the root menu item for the given menu id.
+     * Get the root menu item for the given menu id
      *
      * @param  int    $menuId
      * @return object
@@ -104,7 +104,7 @@ class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuI
     }
 
     /**
-     * Return a complete tree for the given menu id.
+     * Return a complete tree for the given menu id
      *
      * @param  int    $menuId
      * @return object

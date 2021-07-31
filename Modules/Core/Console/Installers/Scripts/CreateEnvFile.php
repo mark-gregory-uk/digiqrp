@@ -28,7 +28,7 @@ class CreateEnvFile implements SetupScript
     protected $command;
 
     /**
-     * Fire the install script.
+     * Fire the install script
      * @param  Command $command
      * @return mixed
      */

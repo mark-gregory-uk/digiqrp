@@ -38,7 +38,7 @@ class MenuRenderer
     }
 
     /**
-     * Generate the html for the given items.
+     * Generate the html for the given items
      * @param $items
      */
     private function generateHtmlFor($items)

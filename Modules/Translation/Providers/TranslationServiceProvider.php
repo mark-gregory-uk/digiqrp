@@ -68,7 +68,7 @@ class TranslationServiceProvider extends ServiceProvider
         $this->publishConfig('translation', 'permissions');
 
         $this->registerValidators();
-        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
         if ($this->app->runningInConsole() === true) {
             return;

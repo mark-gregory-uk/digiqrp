@@ -21,7 +21,7 @@ class SentryInstaller extends ProviderInstaller implements SetupScript
     }
 
     /**
-     * Not called.
+     * Not called
      * @return mixed
      */
     public function composer()

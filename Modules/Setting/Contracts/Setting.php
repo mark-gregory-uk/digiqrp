@@ -13,7 +13,7 @@ interface Setting
     public function has($key);
 
     /**
-     * Get the specified configuration value in the given language.
+     * Get the specified configuration value in the given language
      *
      * @param  string $key
      * @param  string $locale

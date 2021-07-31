@@ -33,7 +33,7 @@ class MenuOrdener
     }
 
     /**
-     * Order recursively the menu items.
+     * Order recursively the menu items
      * @param int   $position
      * @param array $item
      */
@@ -69,7 +69,7 @@ class MenuOrdener
     }
 
     /**
-     * Save the given position on the menu item.
+     * Save the given position on the menu item
      * @param object $menuItem
      * @param int    $position
      */
@@ -79,7 +79,7 @@ class MenuOrdener
     }
 
     /**
-     * Check if the item has children.
+     * Check if the item has children
      *
      * @param  array $item
      * @return bool
@@ -90,7 +90,7 @@ class MenuOrdener
     }
 
     /**
-     * Set the given parent id on the given menu item.
+     * Set the given parent id on the given menu item
      *
      * @param object $item
      * @param int    $parent_id
@@ -101,7 +101,7 @@ class MenuOrdener
     }
 
     /**
-     * Convert the object to array.
+     * Convert the object to array
      * @param $data
      * @return array
      */

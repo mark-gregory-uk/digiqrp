@@ -55,7 +55,7 @@ abstract class BaseCacheDecorator implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function allWithBuilder(): Builder
+    public function allWithBuilder() : Builder
     {
         return $this->remember(function () {
             return $this->repository->allWithBuilder();
@@ -190,7 +190,7 @@ abstract class BaseCacheDecorator implements BaseRepository
 
     /**
      * Generate a cache key with the called method name and its arguments
-     * If a key is provided, use that instead.
+     * If a key is provided, use that instead
      * @param null|string $key
      * @return string
      */
@@ -222,7 +222,7 @@ abstract class BaseCacheDecorator implements BaseRepository
     /**
      * @inheritdoc
      */
-    public function whereIn(string $field, array $values): Builder
+    public function whereIn(string $field, array $values) : Builder
     {
         return $this->repository->whereIn($field, $values);
     }

@@ -107,10 +107,10 @@ class User extends EloquentUser implements UserInterface, AuthenticatableContrac
 
     public function __call($method, $parameters)
     {
-        //i: Convert array to dot notation
+        #i: Convert array to dot notation
         $config = implode('.', ['asgard.user.config.relations', $method]);
 
-        //i: Relation method resolver
+        #i: Relation method resolver
         if (config()->has($config)) {
             $function = config()->get($config);
             $bound = $function->bindTo($this);
@@ -118,7 +118,7 @@ class User extends EloquentUser implements UserInterface, AuthenticatableContrac
             return $bound();
         }
 
-        //i: No relation found, return the call to parent (Eloquent) to handle it.
+        #i: No relation found, return the call to parent (Eloquent) to handle it.
         return parent::__call($method, $parameters);
     }
 

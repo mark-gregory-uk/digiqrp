@@ -85,9 +85,9 @@ class NestedFoldersCollection extends Collection
         $indentChars = $indentChars ?: $this->indentChars;
         foreach ($collection as $item) {
             if ($parent_string) {
-                $item_string = ($parent_string === true) ? $item->$column : $parent_string.$indentChars.$item->$column;
+                $item_string = ($parent_string === true) ? $item->$column : $parent_string . $indentChars . $item->$column;
             } else {
-                $item_string = str_repeat($indentChars, $level).$item->$column;
+                $item_string = str_repeat($indentChars, $level) . $item->$column;
             }
             $flattened[$item->id] = $item_string;
             if ($item->items) {

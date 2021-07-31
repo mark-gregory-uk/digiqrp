@@ -38,7 +38,7 @@ class MediaController extends AdminBaseController
         $this->thumbnailsManager = $thumbnailsManager;
     }
 
-    public function index(): \Illuminate\View\View
+    public function index() : \Illuminate\View\View
     {
         $config = $this->config->get('asgard.media.config');
 

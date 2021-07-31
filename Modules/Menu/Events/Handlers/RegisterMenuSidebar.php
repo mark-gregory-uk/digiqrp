@@ -10,16 +10,16 @@ use Modules\Core\Sidebar\AbstractAdminSidebar;
 class RegisterMenuSidebar extends AbstractAdminSidebar
 {
     /**
-     * Method used to define your sidebar menu groups and items.
+     * Method used to define your sidebar menu groups and items
      * @param Menu $menu
      * @return Menu
      */
     public function extendWith(Menu $menu)
     {
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
-            $group->weight(10);
+            $group->weight(90);
             $group->item(trans('menu::menu.title'), function (Item $item) {
-                $item->weight(1);
+                $item->weight(30);
                 $item->icon('fa fa-bars');
                 $item->route('admin.menu.menu.index');
                 $item->authorize(

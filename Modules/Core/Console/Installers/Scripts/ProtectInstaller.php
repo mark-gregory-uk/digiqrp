@@ -23,7 +23,7 @@ class ProtectInstaller implements SetupScript
     }
 
     /**
-     * Fire the install script.
+     * Fire the install script
      * @param  Command   $command
      * @return mixed
      * @throws Exception

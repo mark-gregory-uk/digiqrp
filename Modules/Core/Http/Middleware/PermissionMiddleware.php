@@ -35,14 +35,14 @@ class PermissionMiddleware
     public function handle(Request $request, \Closure $next)
     {
         $action = $this->route->getActionName();
-        $actionMethod = substr($action, strpos($action, "@") + 1);
+        $actionMethod = substr($action, strpos($action, '@') + 1);
 
         $segmentPosition = $this->getSegmentPosition($request);
         $moduleName = $this->getModuleName($request, $segmentPosition);
         $entityName = $this->getEntityName($request, $segmentPosition);
         $permission = $this->getPermission($moduleName, $entityName, $actionMethod);
 
-        if (!$this->auth->hasAccess($permission)) {
+        if (! $this->auth->hasAccess($permission)) {
             return redirect()->back()->withError(trans('core::core.permission denied', ['permission' => $permission]));
         }
 
@@ -50,7 +50,7 @@ class PermissionMiddleware
     }
 
     /**
-     * Get the correct segment position based on the locale or not
+     * Get the correct segment position based on the locale or not.
      *
      * @param $request
      * @return mixed
@@ -60,7 +60,7 @@ class PermissionMiddleware
         $segmentPosition = config('laravellocalization.hideDefaultLocaleInURL', false) ? 3 : 4;
 
         if ($request->segment($segmentPosition) == config('asgard.core.core.admin-prefix')) {
-            return ++ $segmentPosition;
+            return ++$segmentPosition;
         }
 
         return $segmentPosition;
@@ -74,7 +74,7 @@ class PermissionMiddleware
      */
     private function getPermission($moduleName, $entityName, $actionMethod)
     {
-        return ltrim($moduleName . '.' . $entityName . '.' . $actionMethod, '.');
+        return ltrim($moduleName.'.'.$entityName.'.'.$actionMethod, '.');
     }
 
     /**

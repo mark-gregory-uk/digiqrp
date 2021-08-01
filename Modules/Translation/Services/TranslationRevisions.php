@@ -33,7 +33,7 @@ class TranslationRevisions
         $translation = $translation->translate($locale);
 
         if ($translation === null) {
-            return response()->json(['<tr><td>' . trans('translation::translations.No Revisions yet') . '</td></tr>']);
+            return response()->json(['<tr><td>'.trans('translation::translations.No Revisions yet').'</td></tr>']);
         }
 
         return response()->json(

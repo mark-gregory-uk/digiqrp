@@ -48,7 +48,7 @@ class DownloadModuleCommand extends Command
 
         $composer = $this->findComposer();
         $commands = [
-            $composer . ' dump-autoload',
+            $composer.' dump-autoload',
         ];
         if ($this->option('migrations') === true || $this->option('demo') === true) {
             $commands[] = "php artisan module:migrate $name";
@@ -113,8 +113,8 @@ class DownloadModuleCommand extends Command
      */
     protected function findComposer()
     {
-        if (file_exists(getcwd() . '/composer.phar')) {
-            return '"' . PHP_BINARY . '" composer.phar';
+        if (file_exists(getcwd().'/composer.phar')) {
+            return '"'.PHP_BINARY.'" composer.phar';
         }
 
         return 'composer';

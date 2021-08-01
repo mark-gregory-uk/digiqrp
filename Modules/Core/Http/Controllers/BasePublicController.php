@@ -23,7 +23,7 @@ abstract class BasePublicController extends Controller
     }
 
     /**
-     * Add alternate URLs to main array and inject it to the page
+     * Add alternate URLs to main array and inject it to the page.
      *
      * @param array $alternateUrls
      * @return void

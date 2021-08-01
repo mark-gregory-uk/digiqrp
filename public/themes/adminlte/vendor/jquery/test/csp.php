@@ -1,6 +1,6 @@
 <?php
-	header("X-Content-Security-Policy: default-src localhost 'self';");
-	header("X-WebKit-CSP: script-src 'self'; style-src 'self' 'unsafe-inline'");
+    header("X-Content-Security-Policy: default-src localhost 'self';");
+    header("X-WebKit-CSP: script-src 'self'; style-src 'self' 'unsafe-inline'");
 ?>
 <!DOCTYPE html>
 <html>

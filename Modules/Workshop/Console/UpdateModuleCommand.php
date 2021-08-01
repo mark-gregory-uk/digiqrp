@@ -31,7 +31,7 @@ class UpdateModuleCommand extends Command
     }
 
     /**
-     * Make the full package name for the given module name
+     * Make the full package name for the given module name.
      * @param string $module
      * @return string
      */

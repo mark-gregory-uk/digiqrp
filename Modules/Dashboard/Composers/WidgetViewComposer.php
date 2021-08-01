@@ -20,7 +20,7 @@ class WidgetViewComposer
     }
 
     /**
-     * Add the html of the widget view to the given widget name
+     * Add the html of the widget view to the given widget name.
      * @param string $name
      * @param string $view
      * @return $this
@@ -33,7 +33,7 @@ class WidgetViewComposer
     }
 
     /**
-     * Add widget options to the given widget name
+     * Add widget options to the given widget name.
      * @param $name
      * @param array $options
      * @return $this
@@ -46,7 +46,7 @@ class WidgetViewComposer
     }
 
     /**
-     * Set the widget name
+     * Set the widget name.
      * @param string $name
      * @return $this
      */

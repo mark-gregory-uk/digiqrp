@@ -7,7 +7,7 @@ use Modules\Core\Repositories\BaseRepository;
 interface MenuItemRepository extends BaseRepository
 {
     /**
-     * Get online root elements
+     * Get online root elements.
      *
      * @param  int    $menuId
      * @return object
@@ -15,7 +15,7 @@ interface MenuItemRepository extends BaseRepository
     public function rootsForMenu($menuId);
 
     /**
-     * Get all root elements
+     * Get all root elements.
      *
      * @param  int    $menuId
      * @return object
@@ -23,20 +23,20 @@ interface MenuItemRepository extends BaseRepository
     public function allRootsForMenu($menuId);
 
     /**
-     * Get the menu items ready for routes
+     * Get the menu items ready for routes.
      * @return mixed
      */
     public function getForRoutes();
 
     /**
-     * Get the root menu item for the given menu id
+     * Get the root menu item for the given menu id.
      * @param  int    $menuId
      * @return object
      */
     public function getRootForMenu($menuId);
 
     /**
-     * Return a complete tree for the given menu id
+     * Return a complete tree for the given menu id.
      *
      * @param  int    $menuId
      * @return object

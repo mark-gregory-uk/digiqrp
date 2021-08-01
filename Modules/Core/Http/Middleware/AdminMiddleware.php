@@ -51,7 +51,7 @@ class AdminMiddleware
     public function handle($request, \Closure $next)
     {
         // Check if the user is logged in
-        if (!$this->auth->check()) {
+        if (! $this->auth->check()) {
             if ($request->ajax()) {
                 return response('Unauthenticated.', Response::HTTP_UNAUTHORIZED);
             }

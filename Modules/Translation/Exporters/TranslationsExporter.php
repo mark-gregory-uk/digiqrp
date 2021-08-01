@@ -32,12 +32,12 @@ class TranslationsExporter
     }
 
     /**
-     * Get the filename
+     * Get the filename.
      * @return string
      */
     public function getFileName()
     {
-        return $this->filename . time() . '.csv';
+        return $this->filename.time().'.csv';
     }
 
     /**

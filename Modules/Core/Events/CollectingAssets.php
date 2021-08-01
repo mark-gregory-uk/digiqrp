@@ -36,7 +36,7 @@ class CollectingAssets
     }
 
     /**
-     * Match a single route
+     * Match a single route.
      * @param string|array $route
      * @return bool
      */
@@ -48,7 +48,7 @@ class CollectingAssets
     }
 
     /**
-     * Match multiple routes
+     * Match multiple routes.
      * @param array $routes
      * @return bool
      */

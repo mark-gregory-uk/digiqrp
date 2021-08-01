@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 interface FileRepository extends BaseRepository
 {
     /**
-     * Create a file row from the given file
+     * Create a file row from the given file.
      * @param  UploadedFile $file
      * @param int $parentId
      * @return mixed
@@ -19,7 +19,7 @@ interface FileRepository extends BaseRepository
     public function createFromFile(UploadedFile $file, int $parentId = 0);
 
     /**
-     * Find a file for the entity by zone
+     * Find a file for the entity by zone.
      * @param string $zone
      * @param object $entity
      * @return object
@@ -27,7 +27,7 @@ interface FileRepository extends BaseRepository
     public function findFileByZoneForEntity($zone, $entity);
 
     /**
-     * Find multiple files for the given zone and entity
+     * Find multiple files for the given zone and entity.
      * @param string $zone
      * @param object $entity
      * @return object
@@ -44,11 +44,11 @@ interface FileRepository extends BaseRepository
      * @param int $folderId
      * @return Collection
      */
-    public function allChildrenOf(int $folderId) : Collection;
+    public function allChildrenOf(int $folderId): Collection;
 
     public function findForVirtualPath(string $path);
 
-    public function allForGrid() : Collection;
+    public function allForGrid(): Collection;
 
-    public function move(File $file, File $destination) : File;
+    public function move(File $file, File $destination): File;
 }

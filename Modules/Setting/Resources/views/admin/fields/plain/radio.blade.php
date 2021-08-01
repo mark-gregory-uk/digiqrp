@@ -1,5 +1,5 @@
 <div class="checkbox">
-    <?php foreach ($moduleInfo['options'] as $value => $optionName): ?>
+    <?php foreach ($moduleInfo['options'] as $value => $optionName) { ?>
         <label for="{{ $optionName }}">
                 <input id="{{ $optionName }}"
                         name="{{ $settingName }}"
@@ -9,5 +9,5 @@
                         value="{{ $value }}" />
                 {{ trans($optionName) }}
         </label>
-    <?php endforeach; ?>
+    <?php } ?>
 </div>

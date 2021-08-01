@@ -31,9 +31,6 @@ abstract class BaseMenuTest extends TestCase
      */
     protected $menuItem;
 
-    /**
-     *
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -43,7 +40,7 @@ abstract class BaseMenuTest extends TestCase
         $this->menu = app(MenuRepository::class);
         $this->menuItem = app(MenuItemRepository::class);
         app(SettingRepository::class)->createOrUpdate([
-            'core::locales' => ['en', 'fr',],
+            'core::locales' => ['en', 'fr'],
         ]);
     }
 
@@ -72,7 +69,7 @@ abstract class BaseMenuTest extends TestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        $app['path.base'] = __DIR__ . '/..';
+        $app['path.base'] = __DIR__.'/..';
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite', [
             'driver' => 'sqlite',
@@ -125,7 +122,7 @@ abstract class BaseMenuTest extends TestCase
     }
 
     /**
-     * Create a menu item for the given menu and position
+     * Create a menu item for the given menu and position.
      *
      * @param  int    $menuId
      * @param  int    $position

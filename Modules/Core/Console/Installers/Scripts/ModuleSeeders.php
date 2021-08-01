@@ -16,7 +16,7 @@ class ModuleSeeders implements SetupScript
     ];
 
     /**
-     * Fire the install script
+     * Fire the install script.
      * @param  Command $command
      * @return mixed
      */

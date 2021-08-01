@@ -50,7 +50,7 @@ class Downloader
 
         $this->output->writeln("<info>Downloading Module [{$this->package} {$this->tagName}{$this->branchName}]</info>");
 
-        $directory = config('modules.paths.modules') . '/' . $this->extractPackageNameFrom($package);
+        $directory = config('modules.paths.modules').'/'.$this->extractPackageNameFrom($package);
 
         if ($this->finder->isDirectory($directory) === true) {
             $this->output->writeln("<error>The folder [Modules/{$this->extractPackageNameFrom($package)}] already exists.</error>");
@@ -81,7 +81,7 @@ class Downloader
         $archive->open($zipFile);
         $archive->extractTo($modulesPath);
 
-        $original = $modulesPath . '/' . $archive->getNameIndex(0);
+        $original = $modulesPath.'/'.$archive->getNameIndex(0);
 
         $this->finder->move($original, $directory);
         $archive->close();
@@ -131,7 +131,7 @@ class Downloader
      */
     protected function makeFilename()
     {
-        return getcwd() . '/asgardcms_' . md5(time() . uniqid()) . '.zip';
+        return getcwd().'/asgardcms_'.md5(time().uniqid()).'.zip';
     }
 
     private function getLatestVersionUrl()

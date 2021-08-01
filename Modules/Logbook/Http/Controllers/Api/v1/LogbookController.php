@@ -43,33 +43,31 @@ class LogbookController extends Controller
         return null;
     }
 
-
     /**
      * Get all logentries for a given user / logbook
-     * this is useful for debugging
+     * this is useful for debugging.
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getLogEntries(){
+    public function getLogEntries()
+    {
         $logEntries = [];
         $logbook = Logbook::where('owner_id', '=', 1)->first();
         $data = LogbookEntry::where('parent_id', '=', $logbook->id)->orderBy('qso_end', 'desc')->get();
 
         foreach ($data as $d) {
-            array_push($logEntries,$d);
+            array_push($logEntries, $d);
         }
 
-        return response()->json( [$logEntries] );
-
+        return response()->json([$logEntries]);
     }
-
 
     /**
      * Sync the logbook entries with OSX application
      * need to add authentication to this call.
      * @param Request $request
      */
-    public function syncLogEntries(Request $request){
-
+    public function syncLogEntries(Request $request)
+    {
         if (in_array($request->method(), ['POST'])
             && $request->isJson()
         ) {
@@ -80,10 +78,8 @@ class LogbookController extends Controller
 
             foreach ($logbookEntries as $entry) {
             }
-
         }
     }
-
 
     /**
      * Create a mac logger entry and lookup the

@@ -27,7 +27,7 @@ class UserResetter
     }
 
     /**
-     * Start the reset password process for given credentials (email)
+     * Start the reset password process for given credentials (email).
      * @param array $credentials
      * @throws UserNotFoundException
      */
@@ -41,7 +41,7 @@ class UserResetter
     }
 
     /**
-     * Finish the reset process
+     * Finish the reset process.
      * @param array $data
      * @return mixed
      * @throws InvalidOrExpiredResetCode

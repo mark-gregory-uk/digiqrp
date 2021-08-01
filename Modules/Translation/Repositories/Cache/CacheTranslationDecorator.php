@@ -67,7 +67,7 @@ class CacheTranslationDecorator extends BaseCacheDecorator implements Translatio
     }
 
     /**
-     * Update the given translation key with the given data
+     * Update the given translation key with the given data.
      * @param string $key
      * @param array $data
      * @return mixed
@@ -80,7 +80,7 @@ class CacheTranslationDecorator extends BaseCacheDecorator implements Translatio
     }
 
     /**
-     * Set the given value on the given TranslationTranslation
+     * Set the given value on the given TranslationTranslation.
      * @param TranslationTranslation $translationTranslation
      * @param string $value
      * @return void
@@ -93,13 +93,13 @@ class CacheTranslationDecorator extends BaseCacheDecorator implements Translatio
     }
 
     /**
-     * Clean a Cache Key so it is safe for use
+     * Clean a Cache Key so it is safe for use.
      * @param string $key   Potentially unsafe key
      * @return string
      */
     protected function cleanKey($key)
     {
-        return str_replace(" ", "--", $key);
+        return str_replace(' ', '--', $key);
     }
 
     public function getTranslationsForGroupAndNamespace($locale, $group, $namespace)

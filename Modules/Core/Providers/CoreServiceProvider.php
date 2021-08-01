@@ -125,7 +125,7 @@ class CoreServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the console commands
+     * Register the console commands.
      */
     private function registerCommands()
     {
@@ -163,7 +163,7 @@ class CoreServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the modules aliases
+     * Register the modules aliases.
      */
     private function registerModuleResourceNamespaces()
     {
@@ -186,7 +186,7 @@ class CoreServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the view namespaces for the modules
+     * Register the view namespaces for the modules.
      * @param Module $module
      * @param array $themes
      */
@@ -197,31 +197,31 @@ class CoreServiceProvider extends ServiceProvider
 
         if (is_core_module($moduleName)) {
             $configFile = 'config';
-            $configKey = 'asgard.' . $moduleName . '.' . $configFile;
+            $configKey = 'asgard.'.$moduleName.'.'.$configFile;
 
-            $this->mergeConfigFrom($module->getExtraPath('Config' . DIRECTORY_SEPARATOR . $configFile . '.php'), $configKey);
-            $moduleConfig = $this->app['config']->get($configKey . '.useViewNamespaces');
+            $this->mergeConfigFrom($module->getExtraPath('Config'.DIRECTORY_SEPARATOR.$configFile.'.php'), $configKey);
+            $moduleConfig = $this->app['config']->get($configKey.'.useViewNamespaces');
 
             if (count($themes) > 0) {
                 if ($themes['backend'] !== null && Arr::get($moduleConfig, 'backend-theme') === true) {
-                    $hints[] = $themes['backend'] . '/views/modules/' . $moduleName;
+                    $hints[] = $themes['backend'].'/views/modules/'.$moduleName;
                 }
                 if ($themes['frontend'] !== null && Arr::get($moduleConfig, 'frontend-theme') === true) {
-                    $hints[] = $themes['frontend'] . '/views/modules/' . $moduleName;
+                    $hints[] = $themes['frontend'].'/views/modules/'.$moduleName;
                 }
             }
             if (Arr::get($moduleConfig, 'resources') === true) {
-                $hints[] = base_path('resources/views/asgard/' . $moduleName);
+                $hints[] = base_path('resources/views/asgard/'.$moduleName);
             }
         }
 
-        $hints[] = $module->getPath() . '/Resources/views';
+        $hints[] = $module->getPath().'/Resources/views';
 
         $this->app['view']->addNamespace($moduleName, $hints);
     }
 
     /**
-     * Register the language namespaces for the modules
+     * Register the language namespaces for the modules.
      * @param Module $module
      */
     protected function registerLanguageNamespace(Module $module)
@@ -241,7 +241,7 @@ class CoreServiceProvider extends ServiceProvider
             return $this->loadTranslationsFrom($this->getCentralisedTranslationPath($module), $moduleName);
         }
 
-        return $this->loadTranslationsFrom($module->getPath() . '/Resources/lang', $moduleName);
+        return $this->loadTranslationsFrom($module->getPath().'/Resources/lang', $moduleName);
     }
 
     /**
@@ -257,7 +257,7 @@ class CoreServiceProvider extends ServiceProvider
     /**
      * Set the locale configuration for
      * - laravel localization
-     * - laravel translatable
+     * - laravel translatable.
      */
     private function setLocalesConfigurations()
     {
@@ -311,19 +311,19 @@ class CoreServiceProvider extends ServiceProvider
     }
 
     /**
-     * Get the absolute path to the Centralised Translations for a Module (via the Translations module)
+     * Get the absolute path to the Centralised Translations for a Module (via the Translations module).
      * @param Module $module
      * @return string
      */
     private function getCentralisedTranslationPath(Module $module)
     {
-        $path = config('modules.paths.modules') . '/Translation';
+        $path = config('modules.paths.modules').'/Translation';
 
-        return $path . "/Resources/lang/{$module->getLowerName()}";
+        return $path."/Resources/lang/{$module->getLowerName()}";
     }
 
     /**
-     * List of Custom Blade Directives
+     * List of Custom Blade Directives.
      */
     public function bladeDirectives()
     {
@@ -333,10 +333,10 @@ class CoreServiceProvider extends ServiceProvider
 
         /**
          * Set variable.
-         * Usage: @set($variable, value)
+         * Usage: @set($variable, value).
          */
         Blade::directive('set', function ($expression) {
-            list($variable, $value) = $this->getArguments($expression);
+            [$variable, $value] = $this->getArguments($expression);
 
             return "<?php {$variable} = {$value}; ?>";
         });
@@ -347,7 +347,7 @@ class CoreServiceProvider extends ServiceProvider
     }
 
     /**
-     * Checks if the current url matches the configured backend uri
+     * Checks if the current url matches the configured backend uri.
      * @return bool
      */
     private function onBackend()

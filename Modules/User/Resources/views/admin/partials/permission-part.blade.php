@@ -8,9 +8,9 @@
         </div>
     </div>
     <div class="col-sm-9">
-        <?php if (isset($model)): ?>
+        <?php if (isset($model)) { ?>
             <?php $current = current_permission_value($model, $subPermissionTitle, $permissionAction); ?>
-        <?php endif; ?>
+        <?php } ?>
         <label class="radio-inline" for="{{ $subPermissionTitle. '.' . $permissionAction }}_allow">
             <input type="radio" value="1" id="{{ $subPermissionTitle. '.' . $permissionAction }}_allow" name="permissions[{{ $subPermissionTitle. '.' . $permissionAction }}]"
                 {{ isset($current) && $current === 1 ? 'checked' : '' }} class="flat-blue jsAllow">

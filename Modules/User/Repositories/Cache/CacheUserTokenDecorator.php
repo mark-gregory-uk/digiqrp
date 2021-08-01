@@ -20,7 +20,7 @@ class CacheUserTokenDecorator extends BaseCacheDecorator implements UserTokenRep
     }
 
     /**
-     * Get all tokens for the given user
+     * Get all tokens for the given user.
      * @param int $userId
      * @return \Illuminate\Database\Eloquent\Collection
      */

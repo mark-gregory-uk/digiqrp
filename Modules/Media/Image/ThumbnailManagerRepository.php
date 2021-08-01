@@ -15,7 +15,7 @@ class ThumbnailManagerRepository implements ThumbnailManager
     }
 
     /**
-     * Return all registered thumbnails
+     * Return all registered thumbnails.
      * @return array
      */
     public function all()
@@ -24,7 +24,7 @@ class ThumbnailManagerRepository implements ThumbnailManager
     }
 
     /**
-     * Find the filters for the given thumbnail
+     * Find the filters for the given thumbnail.
      * @param $thumbnail
      * @return array
      */

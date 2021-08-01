@@ -42,7 +42,7 @@ interface TaggableInterface
     public function scopeWithTag(Builder $query, $tags, string $type = 'slug'): Builder;
 
     /**
-     * Define the eloquent morphMany relationship
+     * Define the eloquent morphMany relationship.
      */
     public function tags(): MorphToMany;
 

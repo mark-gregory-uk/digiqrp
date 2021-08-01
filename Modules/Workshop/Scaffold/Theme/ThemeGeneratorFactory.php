@@ -15,7 +15,7 @@ class ThemeGeneratorFactory
      */
     public function make($file, array $options)
     {
-        $class = 'Modules\Workshop\Scaffold\Theme\FileTypes\\' . ucfirst($file);
+        $class = 'Modules\Workshop\Scaffold\Theme\FileTypes\\'.ucfirst($file);
 
         if (! class_exists($class)) {
             throw new FileTypeNotFoundException();

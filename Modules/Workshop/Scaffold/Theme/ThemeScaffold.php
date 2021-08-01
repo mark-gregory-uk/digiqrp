@@ -24,7 +24,7 @@ class ThemeScaffold
     /**
      * Options array containing:
      *  - name
-     *  - type
+     *  - type.
      * @var array
      */
     protected $options;
@@ -105,7 +105,7 @@ class ThemeScaffold
     }
 
     /**
-     * Set the files array on the class
+     * Set the files array on the class.
      * @param array $files
      */
     public function setFiles(array $files)
@@ -114,18 +114,18 @@ class ThemeScaffold
     }
 
     /**
-     * Adding the theme name to the .gitignore file so that it can be committed
+     * Adding the theme name to the .gitignore file so that it can be committed.
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     private function addThemeToIgnoredExceptions()
     {
         $themePath = config('asgard.core.core.themes_path');
 
-        if ($this->finder->exists($themePath . '/.gitignore') === false) {
+        if ($this->finder->exists($themePath.'/.gitignore') === false) {
             return;
         }
-        $moduleGitIgnore = $this->finder->get($themePath . '/.gitignore');
-        $moduleGitIgnore .= '!' . $this->options['name'] . PHP_EOL;
-        $this->finder->put($themePath . '/.gitignore', $moduleGitIgnore);
+        $moduleGitIgnore = $this->finder->get($themePath.'/.gitignore');
+        $moduleGitIgnore .= '!'.$this->options['name'].PHP_EOL;
+        $this->finder->put($themePath.'/.gitignore', $moduleGitIgnore);
     }
 }

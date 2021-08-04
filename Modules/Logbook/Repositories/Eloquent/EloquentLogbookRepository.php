@@ -33,12 +33,12 @@ class EloquentLogbookRepository extends EloquentBaseRepository implements Logboo
      * @param Integer $maxCount
      * @return mixed
      */
-    public function longestContacts()
+    public function longestContacts($maxCount=null)
     {
         $user = 1;
         $defaultLogBook = $this->where('owner_id', $user)->where('default', true)->distinct('call')->first();
-        $maxCount = 8;
-        $logEntries = $defaultLogBook->entries()->orderBy('distance_km', 'desc')->take(($maxCount >0 ? $maxCount : 6))->get();
+
+        $logEntries = $defaultLogBook->entries()->orderBy('distance_km', 'desc')->take(($maxCount >0 ? $maxCount : 3))->get();
         $logEntries = $logEntries->unique('call');
 
         return $logEntries;

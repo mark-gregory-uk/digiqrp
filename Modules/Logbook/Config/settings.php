@@ -11,7 +11,7 @@ return [
         'view'         => 'text',
         'translatable' => true,
     ],
-    'longestCount' => [
+    'maxcount' => [
         'description'  => 'Maximum number of longest contacts returned',
         'view'         => 'number',
         'translatable' => false,

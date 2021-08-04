@@ -12,6 +12,7 @@ use Modules\Menu\Entities\Menu;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Page\Entities\Page;
 use Modules\Page\Repositories\PageRepository;
+use Modules\Setting\Repositories\SettingRepository;
 use Modules\Solar\Repositories\SolarRepository;
 
 class PublicController extends BasePublicController
@@ -41,9 +42,11 @@ class PublicController extends BasePublicController
      */
     private $app;
 
+    private $setting;
+
     private $disabledPage = false;
 
-    public function __construct(PageRepository $page, PostRepository $postsRepository, LogbookRepository $logBookRepository, SolarRepository $solarRepository, Application $app)
+    public function __construct(PageRepository $page, PostRepository $postsRepository, LogbookRepository $logBookRepository, SolarRepository $solarRepository, Application $app,SettingRepository $setting)
     {
         parent::__construct();
         $this->page = $page;
@@ -51,6 +54,7 @@ class PublicController extends BasePublicController
         $this->postRepository = $postsRepository;
         $this->logbookRepository = $logBookRepository;
         $this->solarReportsRepository = $solarRepository;
+        $this->setting=$setting;
     }
 
     /**
@@ -60,10 +64,13 @@ class PublicController extends BasePublicController
      */
     public function uri($slug)
     {
+
+        $maxCount = (int)$this->setting->get('logbook::maxcount')->plainValue;
+
         $page = $this->findPageForSlug($slug);
         $latestPosts = $this->postRepository->latest();
         $latestContacts = $this->logbookRepository->latestContacts();
-        $furthestContacts = $this->logbookRepository->longestContacts();
+        $furthestContacts = $this->logbookRepository->longestContacts($maxCount);
         $latestSolarReports = $this->solarReportsRepository->latestReports();
         $this->throw404IfNotFound($page);
 

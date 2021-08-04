@@ -9,6 +9,7 @@ use Modules\Blog\Entities\CategoryTranslation;
 use Modules\Blog\Repositories\PostRepository;
 use Modules\Core\Http\Controllers\BasePublicController;
 use Modules\Logbook\Repositories\LogbookRepository;
+use Modules\Setting\Repositories\SettingRepository;
 use Modules\Solar\Repositories\SolarRepository;
 
 class PublicController extends BasePublicController
@@ -23,17 +24,22 @@ class PublicController extends BasePublicController
      */
     private $logRepository;
 
+    private $setting;
+    private $maxCount;
+
     /**
      * @var SolarRepository
      */
     private $solarReportsRepository;
 
-    public function __construct(PostRepository $post, LogbookRepository $logRepository, SolarRepository $solarRepository)
+    public function __construct(PostRepository $post, LogbookRepository $logRepository, SolarRepository $solarRepository,SettingRepository $setting)
     {
         parent::__construct();
         $this->post = $post;
         $this->logRepository = $logRepository;
         $this->solarReportsRepository = $solarRepository;
+        $this->setting=$setting;
+        $this->maxCount = (int)$this->setting->get('logbook::maxcount')->plainValue;
     }
 
     public function index()
@@ -41,7 +47,7 @@ class PublicController extends BasePublicController
         $posts = $this->post->allTranslatedIn(App::getLocale());
         $latestPosts = $this->post->latest();
         $latestContacts = $this->logRepository->latestContacts();
-        $furthestContacts = $this->logRepository->longestContacts();
+        $furthestContacts = $this->logRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
 
         return view('blog.index', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
@@ -52,7 +58,7 @@ class PublicController extends BasePublicController
         $post = $this->post->findBySlug($slug);
         $latestPosts = $this->post->latest();
         $latestContacts = $this->logRepository->latestContacts();
-        $furthestContacts = $this->logRepository->longestContacts();
+        $furthestContacts = $this->logRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
 
         return view('blog.show', compact('post', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
@@ -66,7 +72,7 @@ class PublicController extends BasePublicController
 
         $latestPosts = $this->post->latest();
         $latestContacts = $this->logRepository->latestContacts();
-        $furthestContacts = $this->logRepository->longestContacts();
+        $furthestContacts = $this->logRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
 
         return view('blog.category', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));

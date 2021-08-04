@@ -11,5 +11,10 @@ return [
         'view'         => 'text',
         'translatable' => true,
     ],
+    'maxcount' => [
+        'description'  => 'Maximum number of longest contacts returned',
+        'view'         => 'number',
+        'translatable' => false,
+    ],
 
 ];

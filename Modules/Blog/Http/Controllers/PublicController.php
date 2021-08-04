@@ -26,6 +26,7 @@ class PublicController extends BasePublicController
 
     private $setting;
     private $maxCount;
+    private $maxContacts;
 
     /**
      * @var SolarRepository
@@ -40,13 +41,14 @@ class PublicController extends BasePublicController
         $this->solarReportsRepository = $solarRepository;
         $this->setting=$setting;
         $this->maxCount = (int)$this->setting->get('logbook::maxcount')->plainValue;
+        $this->maxContacts = (int)$this->setting->get('logbook::maxcontacts')->plainValue;
     }
 
     public function index()
     {
         $posts = $this->post->allTranslatedIn(App::getLocale());
         $latestPosts = $this->post->latest();
-        $latestContacts = $this->logRepository->latestContacts();
+        $latestContacts = $this->logRepository->latestContacts(($this->maxContacts > 0 ? $this->maxContacts : 4));
         $furthestContacts = $this->logRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
 
@@ -57,7 +59,7 @@ class PublicController extends BasePublicController
     {
         $post = $this->post->findBySlug($slug);
         $latestPosts = $this->post->latest();
-        $latestContacts = $this->logRepository->latestContacts();
+        $latestContacts = $this->logRepository->latestContacts(($this->maxContacts > 0 ? $this->maxContacts : 4));
         $furthestContacts = $this->logRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
 
@@ -71,7 +73,7 @@ class PublicController extends BasePublicController
         $posts = $this->post->findByCategory($categoryTrans->category_id);
 
         $latestPosts = $this->post->latest();
-        $latestContacts = $this->logRepository->latestContacts();
+        $latestContacts = $this->logRepository->latestContacts(($this->maxContacts > 0 ? $this->maxContacts : 4));
         $furthestContacts = $this->logRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
 

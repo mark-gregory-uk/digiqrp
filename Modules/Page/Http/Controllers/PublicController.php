@@ -43,6 +43,8 @@ class PublicController extends BasePublicController
     private $app;
 
     private $setting;
+    private $maxCount;
+    private $maxContacts;
 
     private $disabledPage = false;
 
@@ -55,6 +57,8 @@ class PublicController extends BasePublicController
         $this->logbookRepository = $logBookRepository;
         $this->solarReportsRepository = $solarRepository;
         $this->setting=$setting;
+        $this->maxCount = (int)$this->setting->get('logbook::maxcount')->plainValue;
+        $this->maxContacts = (int)$this->setting->get('logbook::maxcontacts')->plainValue;
     }
 
     /**
@@ -65,12 +69,10 @@ class PublicController extends BasePublicController
     public function uri($slug)
     {
 
-        $maxCount = (int)$this->setting->get('logbook::maxcount')->plainValue;
-
         $page = $this->findPageForSlug($slug);
         $latestPosts = $this->postRepository->latest();
-        $latestContacts = $this->logbookRepository->latestContacts();
-        $furthestContacts = $this->logbookRepository->longestContacts($maxCount);
+        $latestContacts = $this->logbookRepository->latestContacts(($this->maxContacts > 0 ? $this->maxCount : 4));
+        $furthestContacts = $this->logbookRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
         $this->throw404IfNotFound($page);
 
@@ -93,8 +95,8 @@ class PublicController extends BasePublicController
     {
         $page = $this->page->findHomepage();
         $latestPosts = $this->postRepository->latest();
-        $latestContacts = $this->logbookRepository->latestContacts();
-        $furthestContacts = $this->logbookRepository->longestContacts();
+        $latestContacts = $this->logbookRepository->latestContacts(($this->maxContacts > 0 ? $this->maxContacts : 4));
+        $furthestContacts = $this->logbookRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
         $this->throw404IfNotFound($page);
 

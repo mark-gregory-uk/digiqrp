@@ -7,7 +7,7 @@ return [
         'translatable' => true,
     ],
     'longitude'  => [
-        'description'  => 'Default Latutude',
+        'description'  => 'Default Longitude',
         'view'         => 'text',
         'translatable' => true,
     ],

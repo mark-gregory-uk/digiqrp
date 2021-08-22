@@ -7,32 +7,32 @@
         <div class="body" id="top">
             <div class="container">
                 @include('partials.header')
-
+                <p>&copy; 2020-2021 DigiQRP &amp; G4LCH&nbsp;&nbsp;
+                    <span style="margin-right: -4px;font-size: 11px;font-weight: bold;background-color:  #555555; color:whitesmoke;border-top-left-radius: 3px;border-bottom-left-radius: 4px;padding-left: 3px;padding-right: 3px;padding-top: 3px;padding-bottom: 3px;">Version</span>
+                    <span style="font-size: 11px;font-weight: bold;background-color:#6ec83f; color:whitesmoke;border-top-right-radius: 4px;border-bottom-right-radius: 4px;padding: 3px;" >{{Version::nocommit()}}</span>
+                    @include('cookieConsent::index')
+                </p>
                 @include('partials.navigation')
 
                 <div class="row-fluid">
-            <main id="content" role="main" class="span9">
-                <!-- Begin Content -->
+                    <main id="content" role="main" class="span9">
+                    <!-- Begin Content -->
                     @include('partials.header-image')
-
                     <!-- include('layouts.partials.prostar.breadcrumb') -->
 
-                <div id="system-message-container">
-                   @include('partials.system-messages')
-                </div>
+                    <div id="system-message-container">
+                       @include('partials.system-messages')
+                    </div>
 
-                <!-- Begin Breadcrumbs -->
-                @include('partials.bread-crumb')
-                <!-- End Breadcrumbs -->
+                    <!-- Begin Breadcrumbs -->
+                    @include('partials.bread-crumb')
+                    <!-- End Breadcrumbs -->
 
-                <div class="blog" itemscope itemtype="https://schema.org/Blog">
-
-                    @yield('content')
-
-                </div>
+                    <div class="blog" itemscope itemtype="https://schema.org/Blog">
+                        @yield('content')
+                    </div>
                 <!-- End Content -->
             </main>
-
             <div id="aside" class="span3">
                 <!-- Begin Right Sidebar -->
                 @include('partials.latest-posts')
@@ -42,8 +42,9 @@
                 @include('partials.blog-feed')
                 <!-- End Right Sidebar -->
             </div>
+             <div>@include('partials.footer')</div>
         </div>
-        <div> @include('partials.footer') </div>
+
         <?php if (Setting::has('core::analytics-script')): ?>
             {!! Setting::get('core::analytics-script') !!}
         <?php endif; ?>
@@ -51,6 +52,7 @@
         @stack('js-stack')
 
        @include('partials.footer-scripts')
-</body>
+
+    </body>
 
 </html>

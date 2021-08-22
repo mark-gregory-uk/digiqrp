@@ -2,15 +2,6 @@
     <div class="well">
         <h3 class="page-header">Latest Solar Report </h3>
         <ul class="category-module mod-list">
-            <li itemscope="" itemtype="https://schema.org/Article">
-                <span itemprop="source">{!! 'Source: '.$latestSolarReports->source !!}</span>
-            </li>
-            <li itemscope="" itemtype="https://schema.org/Article">
-                <span itemprop="noise">{!! 'Noise Level: '.$latestSolarReports->noise_level !!}</span>
-            </li>
-            <li itemscope="" itemtype="https://schema.org/Article">
-                <span itemprop="updated">{!! $latestSolarReports->updated_at !!}</span>
-            </li>
             <div>
                 <table style="width:100%;margin-left: -17px;/* text-align: left; */display: inline-table;">
                     <thead>
@@ -31,7 +22,8 @@
                     </tbody>
                 </table>
             </div>
-
         </ul>
+        <h3 class="page-header">Geomagnatic Field</h3>
+        <p>{{$latestSolarReports->geomagfield}}</p>
     </div>
 @endif

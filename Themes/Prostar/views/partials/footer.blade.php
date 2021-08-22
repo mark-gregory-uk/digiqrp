@@ -1,5 +1,5 @@
 <footer class="footer" role="contentinfo">
-    <div class="container">
+    <div style="width: 96%;" class="container">
         <hr />
         <p class="pull-right">
             <a href="#top" id="back-top">Back to Top</a>

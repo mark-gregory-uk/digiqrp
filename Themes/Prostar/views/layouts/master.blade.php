@@ -21,6 +21,10 @@
                    @include('partials.system-messages')
                 </div>
 
+                <!-- Begin Breadcrumbs -->
+                @include('partials.bread-crumb')
+                <!-- End Breadcrumbs -->
+
                 <div class="blog" itemscope itemtype="https://schema.org/Blog">
 
                     @yield('content')
@@ -38,16 +42,8 @@
                 @include('partials.blog-feed')
                 <!-- End Right Sidebar -->
             </div>
-
         </div>
-                <!-- Begin Breadcrumbs -->
-                @include('partials.bread-crumb')
-                <!-- End Breadcrumbs -->
-            </div>
-        </div>
-
-        @include('partials.footer')
-
+        <div> @include('partials.footer') </div>
         <?php if (Setting::has('core::analytics-script')): ?>
             {!! Setting::get('core::analytics-script') !!}
         <?php endif; ?>

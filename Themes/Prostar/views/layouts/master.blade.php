@@ -18,7 +18,6 @@
                     <main id="content" role="main" class="span9">
                     <!-- Begin Content -->
                     @include('partials.header-image')
-                    <!-- include('layouts.partials.prostar.breadcrumb') -->
 
                     <div id="system-message-container">
                        @include('partials.system-messages')

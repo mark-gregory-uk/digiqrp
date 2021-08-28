@@ -54,7 +54,7 @@ class LogbookController extends Controller
                 $logEntry->comments = $record['comment'];
                 $logEntry->grid = $record['gridsquare'];
                 $logEntry->mode = $record['mode'];
-
+                $logEntry->payload =  $request->get('payload');
                 $startDate = $this->formatDate($record['qso_date']);
                 $startTime = $this->formatTime($record['time_on']);
                 $endDate = $this->formatDate($record['qso_date_off']);

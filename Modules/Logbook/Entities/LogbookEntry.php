@@ -98,12 +98,12 @@ class LogbookEntry extends Model
         $this->lat = $response['dxcc']['lat'];
         $this->lng = $response['dxcc']['lng'];
         $this->itu = $response['dxcc']['itu'];
+
         if ($slug =  DB::table('logbook__countries')->where('name', $response['dxcc']['name'])->value('code')){
             $this->country_slug = $slug;
         } else {
             $this->country_slug = $response['dxcc']['continent'];
         }
-
 
         $distanceKM = (float) $this->distance($latitude, $longitude, $this->lat, $this->lng);
         if ($distanceKM > 0) {

@@ -40,7 +40,7 @@
 
     <div class='form-group{{ $errors->has("{$lang}.payload") ? ' has-error' : '' }}'>
         {!! Form::label("{$lang}[payload]", trans('logbook::entry.title.payload')) !!}
-        {!! Form::text("mode", $entry->payload, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('logbook::entry.form.payload')]) !!}
+        {!! Form::text("payload", $entry->payload, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('logbook::entry.form.payload')]) !!}
         {!! $errors->first("{$lang}.payload", '<span class="help-block">:message</span>') !!}
     </div>
     </p>

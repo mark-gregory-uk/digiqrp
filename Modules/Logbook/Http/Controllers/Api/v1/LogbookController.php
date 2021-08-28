@@ -79,8 +79,8 @@ class LogbookController extends Controller
                 $qsoEnd = strtotime($endDate .' '. $endTime);
 
 
-                $logEntry->qso_start = date('Y/m/d H:i:s', $qsoStart);
-                $logEntry->qso_end = date('Y/m/d H:i:s', $qsoEnd);
+                $logEntry->qso_start = gmdate('Y/m/d H:i:s', $qsoStart);
+                $logEntry->qso_end = gmdate('Y/m/d H:i:s', $qsoEnd);
 
                 $response = \Modules\Logbook\Http\Controllers\LogbookController::hamQTH($logEntry->call);
 

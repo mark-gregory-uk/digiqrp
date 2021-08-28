@@ -4,6 +4,7 @@ namespace Modules\Logbook\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use DateTime;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Log;
 use Modules\Logbook\Entities\Logbook;
@@ -33,30 +34,6 @@ class LogbookController extends Controller
                     return response()->json(['data' => 'nok', 'state' => 'error']);
                 };
 
-                /*
-                 *  'qso_start',
-        'qso_end',
-        'call',
-        'grid',
-        'mode',
-        'tx_frequency',
-        'rx_frequency',
-        'rst_received',
-        'rst_sent',
-        'power',
-        'comments',
-        'band_rx',
-        'band_tx',
-        'payload',
-        'parent_id',
-        'distance_km',
-        'distance_miles',
-        'created_at',
-        'updated_at',
-        'country_slug',
-        'dxcc_country',
-                 */
-
                 $data = array();
                 $logEntry = $logbook->entries()->create();
                 $logEntry->call = $record['call'];
@@ -70,17 +47,17 @@ class LogbookController extends Controller
                 $logEntry->grid = $record['gridsquare'];
                 $logEntry->mode = $record['mode'];
 
-                $startDate = date("Y-m-d", strtotime($record['qso_date']));
-                $startTime = date('m:h:s',strtotime($record['time_on']));
-                $qsoStart = strtotime($startDate .' '. $startTime);
+                $timestart =$record['qso_date'].$record['time_on'];
+                $timeEnd =  $record['qso_date_off'].$record['time_off'];
 
-                $endDate = date("Y-m-d", strtotime($record['qso_date_off']));
-                $endTime = date('m:h:s',strtotime($record['time_off']));
-                $qsoEnd = strtotime($endDate .' '. $endTime);
+                $dtStart = DateTime::createFromFormat("YmdHis", $timestart);
+                $dtStart->setTimezone(new DateTimeZone('Europe/London'));
+                $dtEnd = DateTime::createFromFormat("YmdHis", $timeEnd);
+                $dtEnd->setTimezone(new DateTimeZone('Europe/London'));
 
 
-                $logEntry->qso_start = gmdate('Y/m/d H:i:s', $qsoStart);
-                $logEntry->qso_end = gmdate('Y/m/d H:i:s', $qsoEnd);
+                $logEntry->qso_start = $dtStart;
+                $logEntry->qso_end = $dtEnd ; //gmdate('Y/m/d H:i:s', $qsoEnd);
 
                 $response = \Modules\Logbook\Http\Controllers\LogbookController::hamQTH($logEntry->call);
 

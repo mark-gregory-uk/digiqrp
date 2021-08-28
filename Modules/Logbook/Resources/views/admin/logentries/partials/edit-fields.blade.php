@@ -28,7 +28,7 @@
 
     <div class='form-group{{ $errors->has("{$lang}.rst_received") ? ' has-error' : '' }}'>
         {!! Form::label("{$lang}[rst_received]", trans('logbook::entry.title.rst_received')) !!}
-        {!! Form::text("rt_received", $entry->rst_received, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('logbook::entry.form.rst_received')]) !!}
+        {!! Form::text("rst_received", $entry->rst_received, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('logbook::entry.form.rst_received')]) !!}
         {!! $errors->first("{$lang}.rst_received", '<span class="help-block">:message</span>') !!}
     </div>
 

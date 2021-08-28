@@ -4,10 +4,16 @@ namespace Modules\Logbook\Entities;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Setting\Contracts\Setting;
 
 class LogbookEntry extends Model
 {
     protected $table = 'logbook__entries';
+
+    /**
+     * @var Setting
+     */
+    private $settings;
 
     protected $fillable = [
         'qso_start',
@@ -68,13 +74,38 @@ class LogbookEntry extends Model
      *
      * @param $response
      */
-    public function addCallDetails($response)
+    public function addCallDetails(Setting $settings,$response)
     {
+
+        $this->settings = $settings;
+        $default_lat = 52.3848;
+        $default_lng = 1.8215;
+        $countries = LogbookCountry::all();
+
+        $user_lat = $this->settings->get('logbook::latitude');
+        $user_lng = $this->settings->get('logbook::longitude');
+
+        if ($user_lat & $user_lng) {
+            $latitude = $user_lat;
+            $longitude = $user_lng;
+        } else {
+            $latitude = $default_lat;
+            $longitude = $default_lng;
+        }
+
         $this->dxcc_country = $response['dxcc']['name'];
         $this->lat = $response['dxcc']['lat'];
         $this->lng = $response['dxcc']['lng'];
         $this->itu = $response['dxcc']['itu'];
         $this->country_slug = $response['dxcc']['continent'];
+
+        $distanceKM = (float) $this->distance($latitude, $longitude, $this->lat, $this->lng);
+        if ($distanceKM > 0) {
+            $distanceMiles = $distanceKM / 1.609;
+            $this->distance_km = $distanceKM;
+            $this->distance_miles = $distanceMiles;
+        }
+
         $this->save();
     }
 
@@ -92,4 +123,34 @@ class LogbookEntry extends Model
     {
         return $this->attributes['image_url'] === 'none';
     }
+
+    /**
+     * Calculate the as the crow flies distance in miles and kilometers.
+     * @param $lat1
+     * @param $lon1
+     * @param $lat2
+     * @param $lon2
+     * @return float|int
+     */
+    private function distance($lat1, $lon1, $lat2, $lon2)
+    {
+        $pi80 = M_PI / 180;
+        $r = 6372.797; // mean radius of Earth in km
+        $calculatedDistance = 0;
+        if ((float) $lat2 != 0 && (float) $lon2 != 0) {
+            $lat1 *= $pi80;
+            $lon1 *= $pi80;
+            $lat2 *= $pi80;
+            $lon2 *= $pi80;
+            $dlat = $lat2 - $lat1;
+            $dlon = $lon2 - $lon1;
+            $a = sin($dlat / 2) * sin($dlat / 2) + cos($lat1) * cos($lat2) * sin($dlon / 2) * sin($dlon / 2);
+            $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+            $calculatedDistance = $r * $c;
+        }
+
+        return $calculatedDistance;
+    }
+
+
 }

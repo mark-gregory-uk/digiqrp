@@ -10,13 +10,21 @@ use Log;
 use Modules\Logbook\Entities\Logbook;
 use Modules\Logbook\Entities\LogbookEntry;
 use Modules\Logbook\Libraries\ADIF_Parser;
+use Modules\Setting\Contracts\Setting;
 
 class LogbookController extends Controller
 {
 
+    /**
+     * @var Setting
+     */
+    private $settings;
 
-    public function processADIF(Request $request)
+    public function processADIF(Request $request,Setting $settings)
     {
+
+        $this->settings = $settings;
+
         if (in_array($request->method(), ['POST'])){
 
             $logbook = Logbook::with('entries')
@@ -59,7 +67,7 @@ class LogbookController extends Controller
                 $response = \Modules\Logbook\Http\Controllers\LogbookController::hamQTH($logEntry->call);
 
                 if ($response['dxcc']['adif'] != '0') {
-                    $logEntry->addCallDetails($response);
+                    $logEntry->addCallDetails($this->settings,$response);
                 } else {
                     $logEntry->save();
                 }

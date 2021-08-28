@@ -14,7 +14,7 @@ class AddLogentryPayload extends Migration
     public function up()
     {
         Schema::table('logbook__entries', function (Blueprint $table) {
-            $table->string('source')->nullable();
+            $table->dropColumn('source');
         });
     }
 

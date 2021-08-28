@@ -26,13 +26,13 @@ class LogbookController extends Controller
         $this->settings = $settings;
 
         if (in_array($request->method(), ['POST'])){
-
+            $payload = $request->get('payload');
             $logbook = Logbook::with('entries')
                 ->where('owner_id', '=', 1)
                 ->where('slug', '=', 'main')->first();
 
             $preabmle = '<adif_ver:5>3.1.1 <created_timestamp:15>20210518 124425 <programid:6>WSJT-X <programversion:5>2.3.0 <eoh>';
-            $inData = $preabmle . ' ' . $request->get('payload');
+            $inData = $preabmle . ' ' . $payload;
             $p = new ADIF_Parser;
             $p->feed($inData);
             $p->initialize();
@@ -54,7 +54,7 @@ class LogbookController extends Controller
                 $logEntry->comments = $record['comment'];
                 $logEntry->grid = $record['gridsquare'];
                 $logEntry->mode = $record['mode'];
-                $logEntry->source =  $request->get('payload');
+                $logEntry->payload = $payload;
                 $startDate = $this->formatDate($record['qso_date']);
                 $startTime = $this->formatTime($record['time_on']);
                 $endDate = $this->formatDate($record['qso_date_off']);

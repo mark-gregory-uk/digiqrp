@@ -55,14 +55,14 @@ class LogbookController extends Controller
                 $logEntry->grid = $record['gridsquare'];
                 $logEntry->mode = $record['mode'];
 
-                $timeStart =$record['qso_date'].$record['time_on'];
-                $timeEnd =  $record['qso_date_off'].$record['time_off'];
+                $startDate = $this->formatDate($record['qso_date']);
+                $startTime = $this->formatTime($record['time_on']);
+                $endDate = $this->formatDate($record['qso_date_off']);
+                $endTime = $this->formatTime($record['time_off']);
 
-                $dtEnd = DateTime::createFromFormat("YmdHis", $timeStart);
-                $dtStart = DateTime::createFromFormat("YmdHis", $timeEnd);
 
-                $logEntry->qso_start = $dtStart->format('Y-m-d h:m');;
-                $logEntry->qso_end = $dtEnd->format('Y-m-d h:s');
+                $logEntry->qso_start = $startDate .' '. $startTime;
+                $logEntry->qso_end = $endDate .' '. $endTime;
 
                 $response = \Modules\Logbook\Http\Controllers\LogbookController::hamQTH($logEntry->call);
 
@@ -182,7 +182,19 @@ class LogbookController extends Controller
         }
     }
 
+    private function formatDate($date){
+        $year = substr($date,0,4);
+        $month = substr($date,4,2);
+        $day = substr($date,6,6);
+        return $year.'-'.$month.'-'.$day;
+    }
 
+    private function formatTime($time){
+        $hour = substr($time,0,2);
+        $minutes = substr($time,2,2);
+        $seconds = substr($time,4,4);
+        return $hour.':'.$minutes.':'.$seconds;
+    }
 
 
 

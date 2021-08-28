@@ -21,10 +21,14 @@
     </div>
 
     <div class='form-group{{ $errors->has("{$lang}.mode") ? ' has-error' : '' }}'>
-        {!! Form::label("{$lang}[mode]", trans('logbook::entry.form.mode')) !!}
-        {!! Form::text("mode", $entry->mode, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('page::pages.slug')]) !!}
+        {!! Form::label("{$lang}[mode]", trans('logbook::entry.title.mode')) !!}
+        {!! Form::text("mode", $entry->mode, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('logbook::entry.form.mode')]) !!}
         {!! $errors->first("{$lang}.mode", '<span class="help-block">:message</span>') !!}
     </div>
-
+    <div class='form-group{{ $errors->has("{$lang}.payload") ? ' has-error' : '' }}'>
+        {!! Form::label("{$lang}[payload]", trans('logbook::entry.title.payload')) !!}
+        {!! Form::text("mode", $entry->payload, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('logbook::entry.form.payload')]) !!}
+        {!! $errors->first("{$lang}.payload", '<span class="help-block">:message</span>') !!}
+    </div>
     </p>
 </div>

@@ -25,6 +25,19 @@
         {!! Form::text("mode", $entry->mode, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('logbook::entry.form.mode')]) !!}
         {!! $errors->first("{$lang}.mode", '<span class="help-block">:message</span>') !!}
     </div>
+
+    <div class='form-group{{ $errors->has("{$lang}.rst_received") ? ' has-error' : '' }}'>
+        {!! Form::label("{$lang}[mode]", trans('logbook::entry.title.rst_received')) !!}
+        {!! Form::text("mode", $entry->rst_received, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('logbook::entry.form.rst_received')]) !!}
+        {!! $errors->first("{$lang}.rst_received", '<span class="help-block">:message</span>') !!}
+    </div>
+
+    <div class='form-group{{ $errors->has("{$lang}.rst_sent") ? ' has-error' : '' }}'>
+        {!! Form::label("{$lang}[mode]", trans('logbook::entry.title.rst_sent')) !!}
+        {!! Form::text("mode", $entry->rst_received, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('logbook::entry.form.rst_sent')]) !!}
+        {!! $errors->first("{$lang}.rst_sent", '<span class="help-block">:message</span>') !!}
+    </div>
+
     <div class='form-group{{ $errors->has("{$lang}.payload") ? ' has-error' : '' }}'>
         {!! Form::label("{$lang}[payload]", trans('logbook::entry.title.payload')) !!}
         {!! Form::text("mode", $entry->payload, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('logbook::entry.form.payload')]) !!}

@@ -13,6 +13,8 @@ return [
         'entry' => 'Entry updated',
         'payload' => 'Payload',
         'mode' => 'Mode',
+        'rst_received' => 'RST Received',
+        'rst_sent' => 'RST Sent',
     ],
     'button' => [
         'create entry' => 'Create a log entry',
@@ -23,6 +25,8 @@ return [
         'country_slug'  => 'Code',
         'mode' => 'Mode',
         'payload' => 'Enter Payload',
+        'rst_received' => 'Enter RST Received',
+        'rst_sent' => 'Enter RST Sent',
     ],
     'messages' => [
     ],

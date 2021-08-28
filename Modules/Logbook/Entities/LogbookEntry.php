@@ -71,14 +71,10 @@ class LogbookEntry extends Model
     public function addCallDetails($response)
     {
         $this->dxcc_country = $response['dxcc']['name'];
-        $this->utc = $response['dxcc']['utc'];
-        $this->adif = $response['dxcc']['adif'];
         $this->lat = $response['dxcc']['lat'];
         $this->lng = $response['dxcc']['lng'];
-        $this->waz = $response['dxcc']['waz'];
         $this->itu = $response['dxcc']['itu'];
-        $this->continent = $response['dxcc']['continent'];
-        $this->country_details = $response['dxcc']['details'];
+        $this->country_slug = $response['dxcc']['continent'];
         $this->save();
     }
 

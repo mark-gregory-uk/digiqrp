@@ -14,7 +14,8 @@
     "autoload-dev": {
         "psr-4": {
             "Modules\\Logbook\\": ".",
-            "Modules\\": "Modules/"
+            "Modules\\": "Modules/",
+            "Libraries\\": "Libraries/"
         }
     },
     "minimum-stability": "stable",

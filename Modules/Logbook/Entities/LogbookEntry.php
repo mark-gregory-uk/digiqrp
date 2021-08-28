@@ -4,6 +4,7 @@ namespace Modules\Logbook\Entities;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Modules\Setting\Contracts\Setting;
 
 class LogbookEntry extends Model
@@ -97,7 +98,12 @@ class LogbookEntry extends Model
         $this->lat = $response['dxcc']['lat'];
         $this->lng = $response['dxcc']['lng'];
         $this->itu = $response['dxcc']['itu'];
-        $this->country_slug = $response['dxcc']['continent'];
+        if ($slug =  DB::table('logbook__countries')->where('name', $response['dxcc']['name'])->value('code')){
+            $this->country_slug = $slug;
+        } else {
+            $this->country_slug = $response['dxcc']['continent'];
+        }
+
 
         $distanceKM = (float) $this->distance($latitude, $longitude, $this->lat, $this->lng);
         if ($distanceKM > 0) {

@@ -47,17 +47,14 @@ class LogbookController extends Controller
                 $logEntry->grid = $record['gridsquare'];
                 $logEntry->mode = $record['mode'];
 
-                $timestart =$record['qso_date'].$record['time_on'];
+                $timeStart =$record['qso_date'].$record['time_on'];
                 $timeEnd =  $record['qso_date_off'].$record['time_off'];
 
-                $dtStart = DateTime::createFromFormat("YmdHis", $timestart);
-                $dtStart->setTimezone(new DateTimeZone('Europe/London'));
-                $dtEnd = DateTime::createFromFormat("YmdHis", $timeEnd);
-                $dtEnd->setTimezone(new DateTimeZone('Europe/London'));
+                $dtEnd = DateTime::createFromFormat("YmdHis", $timeStart);
+                $dtStart = DateTime::createFromFormat("YmdHis", $timeEnd);
 
-
-                $logEntry->qso_start = $dtStart;
-                $logEntry->qso_end = $dtEnd ; //gmdate('Y/m/d H:i:s', $qsoEnd);
+                $logEntry->qso_start = $dtStart->format('Y-m-d h:m');;
+                $logEntry->qso_end = $dtEnd->format('Y-m-d h:s');
 
                 $response = \Modules\Logbook\Http\Controllers\LogbookController::hamQTH($logEntry->call);
 

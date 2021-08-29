@@ -13,13 +13,25 @@
 
 
 @section('content')
+
+    @include('logbook::admin.logbooks.modals.upload-logfile')
+
+
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
+
             <li class="active"><a href="#tab_logbook" data-toggle="tab">Logbook</a></li>
             <li class=""><a href="#tab_entries" data-toggle="tab">Entries</a></li>
+
         </ul>
         <div class="tab-content">
-
+            <div class="row">
+                <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
+                    <a data-toggle="modal" data-target="#upload-logfile" class="btn btn-success btn-rounded" style="padding: 4px 10px;">
+                        <i class="fa fa-upload"></i>Upload Log File
+                    </a>
+                </div>
+            </div>
             <div class="tab-pane active" id="tab_logbook">
                 <div class="box-body">
 
@@ -30,7 +42,7 @@
                         @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
                             <?php $i++; ?>
                             <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
-                                @include('logbook::admin.logbooks.partials.edit-fields', ['lang' => $locale])
+                                @include('logbook::admin.logbooks.partials.view-fields', ['lang' => $locale])
                             </div>
                         @endforeach
                         {!! Form::close() !!}
@@ -38,8 +50,8 @@
                     </div>
                 </div>
                 <div class="box-footer">
-                    <button type="button" onclick="submitform()" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
-                    <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.logbook.logbook.index')}}">
+                    <button type="button" class="btn btn-primary btn-rounded" onclick="location.href='{{ route('admin.logbook.logbook.edit',[$logbook->id]) }}'">{{ trans('logbook::logbooks.button.edit') }}</button>
+                    <a class="btn btn-danger pull-right btn-rounded" href="{{ route('admin.logbook.logbook.index')}}">
                         <i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}
                     </a>
                 </div>

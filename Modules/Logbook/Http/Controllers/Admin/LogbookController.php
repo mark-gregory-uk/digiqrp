@@ -94,6 +94,18 @@ class LogbookController extends AdminBaseController
     }
 
     /**
+     * Show the form for viewing the specified resource.
+     *
+     * @param Logbook $logbook
+     * @return Response
+     */
+    public function view(Logbook $logbook)
+    {
+        return view('logbook::admin.logbooks.view', compact('logbook'));
+    }
+
+
+    /**
      * Update the specified resource in storage.
      *
      * @param Logbook              $logbook

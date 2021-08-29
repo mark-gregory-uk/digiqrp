@@ -27,6 +27,11 @@ $router->group(['prefix' =>'/logbook'], function (Router $router) {
         'uses'       => 'LogbookController@edit',
         'middleware' => 'can:logbook.logbooks.edit',
     ]);
+    $router->get('logbooks/{logbook}/view', [
+        'as'         => 'admin.logbook.logbook.view',
+        'uses'       => 'LogbookController@view',
+        'middleware' => 'can:logbook.logbooks.view',
+    ]);
     $router->put('logbooks/{logbook}', [
         'as'         => 'admin.logbook.logbook.update',
         'uses'       => 'LogbookController@update',

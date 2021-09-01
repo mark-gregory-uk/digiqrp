@@ -1,6 +1,6 @@
 @if (!empty($latestContacts))
     <div class="well ">
-        <h3 class="page-header">latest HF Contacts</h3>
+        <h3 class="page-header">Latest Contacts</h3>
         <ul class="mostread mod-list">
             @foreach($latestContacts as $contact)
                 <li itemscope="" itemtype="https://schema.org/Article">

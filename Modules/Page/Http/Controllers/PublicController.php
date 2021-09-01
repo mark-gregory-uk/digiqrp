@@ -74,7 +74,7 @@ class PublicController extends BasePublicController
         $latestContacts = $this->logbookRepository->latestContacts(($this->maxContacts > 0 ? $this->maxCount : 4));
         $furthestContacts = $this->logbookRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
-        $totalContacts =  $latestContacts = $this->logbookRepository->totalContacts();
+        $contacts = $this->logbookRepository->totalContacts();
         $this->throw404IfNotFound($page);
 
         $currentTranslatedPage = $page->getTranslation(locale());
@@ -86,7 +86,7 @@ class PublicController extends BasePublicController
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts','totalContacts'));
+        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts','contacts'));
     }
 
     /**
@@ -95,18 +95,19 @@ class PublicController extends BasePublicController
     public function homepage()
     {
         $page = $this->page->findHomepage();
+        $contacts  = $this->logbookRepository->totalContacts();
         $latestPosts = $this->postRepository->latest();
         $latestContacts = $this->logbookRepository->latestContacts(($this->maxContacts > 0 ? $this->maxContacts : 4));
         $furthestContacts = $this->logbookRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
-        $totalContacts =  $latestContacts = $this->logbookRepository->totalContacts();
+
         $this->throw404IfNotFound($page);
 
         $template = $this->getTemplateForPage($page);
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts','totalContacts'));
+        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts','contacts'));
     }
 
     /**

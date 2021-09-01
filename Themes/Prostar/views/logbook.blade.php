@@ -36,6 +36,7 @@
 @section('content')
     <div class="well">
     <div>
+        <h3>Current Digital Mode Log Entries ({{ count($totalContacts) }})</h3>
         {!! $page->body !!}
         <br/>
     </div>

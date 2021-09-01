@@ -15,6 +15,18 @@ class EloquentLogbookRepository extends EloquentBaseRepository implements Logboo
 
 
 
+    /**
+     * Recover the latest contacts for this user.
+     * @return mixed
+     */
+    public function totalContacts($maxContacts=null)
+    {
+        $user = 1;
+        $defaultLogBook = $this->where('owner_id', $user)->where('default', true)->first();
+
+        return  $defaultLogBook->entries()->orderBy('qso_start', 'desc')->get();
+    }
+
 
     /**
      * Recover the latest contacts for this user.

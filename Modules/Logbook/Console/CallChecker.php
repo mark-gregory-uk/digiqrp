@@ -4,11 +4,15 @@ namespace Modules\Logbook\Console;
 
 use Illuminate\Console\Command;
 use Modules\Logbook\Http\Controllers\LogbookController;
+use Modules\Setting\Support\Settings;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
 class CallChecker extends Command
 {
+
+    private $settings;
+
     /**
      * The name and signature of the console command.
      *
@@ -28,8 +32,9 @@ class CallChecker extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct( Settings $settings)
     {
+        $this->settings = $settings;
         parent::__construct();
     }
 
@@ -40,6 +45,9 @@ class CallChecker extends Command
      */
     public function handle()
     {
+
+        $user_lat = $this->settings->get('logbook::latitude');
+        $user_lng = $this->settings->get('logbook::longitude');
 
         $callSign = $this->ask('Enter station callsign');
         $response = LogbookController::hamQTH($callSign);

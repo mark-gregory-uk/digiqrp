@@ -6,13 +6,13 @@ namespace Modules\Logbook\Libraries;
 
 use Illuminate\Support\Facades\Log;
 use Modules\Logbook\Entities\Logbook;
+use Modules\Setting\Support\Settings;
 use Modules\Logbook\Http\Controllers\LogbookController;
-use Modules\Setting\Contracts\Setting;
 
 class UDPServer extends Common
 {
     /**
-     * @var Setting
+     * @var Settings
      */
     private $settings;
 
@@ -22,8 +22,15 @@ class UDPServer extends Common
 
     }
 
-    public function listener( bool $debug = false)
+    /**
+     * Start the UDP Listener
+     * @param Settings $settings
+     * @param bool $debug
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function listener( Settings $settings,bool $debug = false)
     {
+        $this->settings = $settings;
         while (1) {
             $r = socket_recvfrom($this->socket, $buf, 512, 0, $remote_ip, $remote_port);
 
@@ -71,7 +78,7 @@ class UDPServer extends Common
                 $response = LogbookController::hamQTH($logEntry->call);
 
                 if ($response['dxcc']['adif'] != '0') {
-                    $logEntry->addCallNewDetails($response);
+                    $logEntry->addCallDetails($this->settings,$response);
                 } else {
                     $logEntry->save();
                 }
@@ -80,6 +87,11 @@ class UDPServer extends Common
         }
     }
 
+    /**
+     * Format a date string for MySQL
+     * @param $date
+     * @return string
+     */
     private function formatDate($date){
         $year = substr($date,0,4);
         $month = substr($date,4,2);
@@ -87,6 +99,11 @@ class UDPServer extends Common
         return $year.'-'.$month.'-'.$day;
     }
 
+    /**
+     * Format a time string for mysql
+     * @param $time
+     * @return string
+     */
     private function formatTime($time){
         $hour = substr($time,0,2);
         $minutes = substr($time,2,2);

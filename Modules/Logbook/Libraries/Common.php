@@ -20,9 +20,9 @@ class Common
     {
 
         $this->version = '1.1.0';
-        $this->port= 2333; //2237; //$_ENV['WSJTX_PORT'];
+        $this->port = 2333;
 
-        $this->address = '127.0.0.1';
+        $this->address = '0.0.0.0';
 
         error_reporting(~E_WARNING); // Reduce errors
 

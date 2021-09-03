@@ -115,6 +115,45 @@ class LogbookEntry extends Model
         $this->save();
     }
 
+
+    /**
+     * Adds new values to key variables.
+     *
+     * @param $response
+     */
+    public function addCallNewDetails($response)
+    {
+
+
+        $default_lat = 52.3848;
+        $default_lng = 1.8215;
+        $countries = LogbookCountry::all();
+
+        $latitude = $default_lat;
+        $longitude = $default_lng;
+
+        $this->dxcc_country = $response['dxcc']['name'];
+        $this->lat = $response['dxcc']['lat'];
+        $this->lng = $response['dxcc']['lng'];
+        $this->itu = $response['dxcc']['itu'];
+
+        if ($slug =  DB::table('logbook__countries')->where('name', $response['dxcc']['name'])->value('code')){
+            $this->country_slug = $slug;
+        } else {
+            $this->country_slug = $response['dxcc']['continent'];
+        }
+
+        $distanceKM = (float) $this->distance($latitude, $longitude, $this->lat, $this->lng);
+        if ($distanceKM > 0) {
+            $distanceMiles = $distanceKM / 1.609;
+            $this->distance_km = $distanceKM;
+            $this->distance_miles = $distanceMiles;
+        }
+
+        $this->save();
+    }
+
+
     /**
      * The logbook that own this item.
      *

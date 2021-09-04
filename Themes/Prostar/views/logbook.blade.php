@@ -52,7 +52,7 @@
                 <th>Band</th>
                 <th>&nbsp;</th>
                 <th>Date</th>
-                <th>Time</th>
+
             </tr>
             </thead>
         </table>
@@ -140,10 +140,7 @@
                         "searchable": true,
                         "orderable": true,
                     },
-                    { data: 'end_time',
-                        name: 'end_time',
-                        "searchable": false
-                    },
+
                 ]
             });
 

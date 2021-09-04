@@ -150,7 +150,7 @@ class LogbookController extends Controller
      */
     public function stats(Request $request)
     {
-        if ($request->ajax()) {
+        if (!$request->ajax()) {
             $logbook = Logbook::where('owner_id', '=', 1)->first();
 
             $counts = LogbookEntry::where('parent_id', '=', $logbook->id)

@@ -73,12 +73,21 @@
             // `d` is the original data object for the row
             return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
                 '<tr>'+
+                '<td>Call:</td>'+
+                '<td>'+d.call+'</td>'+
+                '</tr>'+
+                '<tr>'+
                 '<td>Country:</td>'+
                 '<td>'+d.dxcc_country+'</td>'+
                 '</tr>'+
                 '<tr>'+
+                '<td>Date:</td>'+
+                '<td>'+d.qso_end+'</td>'+
+                '</tr>'+
+                '<tr>'+
                 '<td>Received RST:</td>'+
                 '<td>'+d.rst_received+'</td>'+
+                '</tr>'+
                 '<tr>'+
                 '<td>Sent RST:</td>'+
                 '<td>'+d.rst_sent+'</td>'+
@@ -92,7 +101,7 @@
                 '</tr>'+
                 '<tr>'+
                 '<td>Distance:</td>'+
-                '<td>'+d.distance_km+'&nbsp;km</td>'+
+                '<td>'+d.distance_km+'&nbsp;km &nbsp;'+d.distance_miles+'&nbsp;miles</td>'+
                 '</tr>'+
                 '</table>';
         }

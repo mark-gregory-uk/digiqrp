@@ -111,7 +111,7 @@
                 'order': [[ 5, "desc" ]],
                 responsive: window.innerWidth < 700 ? true : false,
                 'columnDefs' : [
-                    { 'visible':window.innerWidth < 700 ? false : true, 'targets': [1,2] }
+                    { 'visible':window.innerWidth < 700 ? false : true, 'targets': [2,3] }
                 ],
                 ajax: "{{ route('logbook.all') }}",
                 scrollY:        200,

@@ -33,7 +33,11 @@
                     options: {
                         scales: {
                             y: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                ticks: {
+                                    //option 2, use callback to change labels to empty string
+                                    callback: () => ('')
+                                }
                             }
                         },
                         plugins: {

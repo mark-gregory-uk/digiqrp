@@ -8,8 +8,6 @@
     <meta name="description" content="{{ $page->meta_description }}" />
 @stop
 
-
-
 <style>
     table.dataTable >tbody td {
         background-color: #fcf8e3;
@@ -56,6 +54,7 @@
             </tr>
             </thead>
         </table>
+
     </div>
     </div>
     <style>

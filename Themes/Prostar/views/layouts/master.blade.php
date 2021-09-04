@@ -37,8 +37,10 @@
                 @include('partials.latest-posts')
                 @include('partials.latest-contacts')
                 @include('partials.furthest-contacts')
+                @include('partials.logchart')
                 @include('partials.solar-report')
                 @include('partials.blog-feed')
+
                 <!-- End Right Sidebar -->
             </div>
              <div>@include('partials.footer')</div>

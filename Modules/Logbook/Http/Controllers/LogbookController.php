@@ -100,7 +100,7 @@ class LogbookController extends Controller
      *
      * @return mixed
      */
-    public function status(Request $request)
+    public function regions(Request $request)
     {
         if ($request->ajax()) {
             $logbook = Logbook::where('owner_id', '=', 1)->first();
@@ -143,4 +143,27 @@ class LogbookController extends Controller
         }
     }
 
+    /**
+     * Recover Log Entry Stats
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function stats(Request $request)
+    {
+        if ($request->ajax()) {
+            $logbook = Logbook::where('owner_id', '=', 1)->first();
+
+            $counts = LogbookEntry::where('parent_id', '=', $logbook->id)
+            ->where('country_slug','!=','')
+            ->selectRaw('dxcc_country, count(*) as total')
+            ->groupBy('dxcc_country')
+            ->pluck('total','dxcc_country')->all();
+            $data = [];
+            foreach ($counts as $key => $source){
+                $data += [$key => $source];
+            }
+            return response()->json(['data' => $data]);
+        }
+        return response()->json(['data' => 'Not available']);
+     }
 }

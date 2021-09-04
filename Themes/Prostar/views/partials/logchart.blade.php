@@ -48,7 +48,7 @@
                     }
                 });
                 var data = data || {};
-                $.getJSON("{{ route('logbook.status') }}", data).done(function(response) {
+                $.getJSON("{{ route('logbook.regions') }}", data).done(function(response) {
                     //myChart.data.labels = response.labels;
                     myChart.data.datasets[0].data = response.data; // or you can iterate for multiple datasets
                     myChart.update(); // finally update our chart

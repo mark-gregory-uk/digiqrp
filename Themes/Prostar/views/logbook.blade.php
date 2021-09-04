@@ -114,6 +114,8 @@
                     { 'visible':window.innerWidth < 700 ? false : true, 'targets': [1,2] }
                 ],
                 ajax: "{{ route('logbook.all') }}",
+                scrollY:        200,
+                scrollCollapse: true,
                 columns: [
                     {
                         className:      'details-control',

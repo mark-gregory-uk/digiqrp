@@ -1,7 +1,6 @@
 @if (!empty($furthestContacts))
     <div class="well ">
-        <h3 class="page-header">Countries</h3>
-
+        <h3 class="page-header">Regions</h3>
             <canvas id="countries" width="200" height="200"></canvas>
             <script>
                 var ctx = document.getElementById('countries').getContext('2d');
@@ -44,18 +43,12 @@
                         }
                     }
                 });
-
                 var data = data || {};
-
                 $.getJSON("{{ route('logbook.status') }}", data).done(function(response) {
                     //myChart.data.labels = response.labels;
                     myChart.data.datasets[0].data = response.data; // or you can iterate for multiple datasets
                     myChart.update(); // finally update our chart
                 });
-
-
-
-
             </script>
 
     </div>

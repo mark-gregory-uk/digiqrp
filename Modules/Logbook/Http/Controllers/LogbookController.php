@@ -90,4 +90,57 @@ class LogbookController extends Controller
 
         return json_decode($json, true);
     }
+
+    /**
+     * Ajax Method for displaying the logbook entries.
+     *
+     * @param Request $request
+     *
+     * @throws \Exception
+     *
+     * @return mixed
+     */
+    public function status(Request $request)
+    {
+        if ($request->ajax()) {
+            $logbook = Logbook::where('owner_id', '=', 1)->first();
+            $usa = count(LogbookEntry::where('dxcc_country', '=', 'United States')->get());
+            $russia = count(LogbookEntry::where('dxcc_country', 'like', '%Russia%')->get());
+            $england = count(LogbookEntry::where('dxcc_country', '=', 'England')
+                ->orWhere('dxcc_country', '=', 'Scotland')
+                ->orWhere('dxcc_country', '=', 'Wales')
+                ->orWhere('dxcc_country', '=', 'Ireland')
+                ->orWhere('dxcc_country', '=', 'Northern Island')
+                ->orWhere('dxcc_country', '=', 'Jersey')
+                ->orWhere('dxcc_country', '=', 'Gurnsey')
+                ->get());
+            $eu = count(LogbookEntry::where('country_slug', '=', 'ES')
+                ->orWhere('country_slug', '=', 'IT')
+                ->orWhere('country_slug', '=', 'DE')
+                ->orWhere('country_slug', '=', 'HU')
+                ->orWhere('country_slug', '=', 'PL')
+                ->orWhere('country_slug', '=', 'FR')
+                ->orWhere('country_slug', '=', 'DK')
+                ->get());
+
+            $asia = count(LogbookEntry::where('country_slug', '=', 'JP')
+                ->orWhere('country_slug', '=', 'JA')
+                ->orWhere('country_slug', '=', 'HA')
+                ->get());
+            $all = count(LogbookEntry::all());
+
+            $other = $all - ($russia + $usa + $england + $eu + $asia);
+
+            $data = [];
+            array_push($data, $usa);
+            array_push($data, $russia);
+            array_push($data, $england);
+            array_push($data, $eu);
+            array_push($data, $other);
+            array_push($data, $asia);
+
+            return response()->json(['data' => $data]);
+        }
+    }
+
 }

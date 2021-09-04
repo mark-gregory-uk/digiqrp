@@ -8,10 +8,10 @@
                 var myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ['USA', 'Europe', 'UK', 'Asia', 'Russia', 'Other'],
+                        labels: ['USA', 'Russia', 'UK','EU', 'Other','Asia'],
                         datasets: [{
                             label: 'Worked',
-                            data: [52, 19, 3, 5, 2, 3],
+                            data: [],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
@@ -44,6 +44,18 @@
                         }
                     }
                 });
+
+                var data = data || {};
+
+                $.getJSON("{{ route('logbook.status') }}", data).done(function(response) {
+                    //myChart.data.labels = response.labels;
+                    myChart.data.datasets[0].data = response.data; // or you can iterate for multiple datasets
+                    myChart.update(); // finally update our chart
+                });
+
+
+
+
             </script>
 
     </div>

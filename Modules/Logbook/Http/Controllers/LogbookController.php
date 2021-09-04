@@ -106,6 +106,7 @@ class LogbookController extends Controller
             $logbook = Logbook::where('owner_id', '=', 1)->first();
             $usa = count(LogbookEntry::where('dxcc_country', '=', 'United States')->get());
             $russia = count(LogbookEntry::where('dxcc_country', 'like', '%Russia%')->get());
+            $australia = count(LogbookEntry::where('dxcc_country', 'like', 'Australia')->get());
             $england = count(LogbookEntry::where('dxcc_country', '=', 'England')
                 ->orWhere('dxcc_country', '=', 'Scotland')
                 ->orWhere('dxcc_country', '=', 'Wales')
@@ -129,11 +130,12 @@ class LogbookController extends Controller
                 ->get());
             $all = count(LogbookEntry::all());
 
-            $other = $all - ($russia + $usa + $england + $eu + $asia);
+            $other = $all - ($russia + $usa + $england + $eu + $asia+$australia);
 
             $data = [];
             array_push($data, $usa);
             array_push($data, $russia);
+            array_push($data, $australia+10);
             array_push($data, $england);
             array_push($data, $eu);
             array_push($data, $other);

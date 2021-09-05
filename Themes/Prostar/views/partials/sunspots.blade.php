@@ -1,33 +1,18 @@
-@extends('layouts.master')
-
-@section('title')
-    {{ $page->title }} | @parent
-@stop
-@section('meta')
-    <meta name="title" content="{{ $page->meta_title}}" />
-    <meta name="description" content="{{ $page->meta_description }}" />
-@stop
-
-@section('content')
-    <div class="well">
-    <div>
-        <h3>Current Digital Mode Log Statistics</h3>
-        <p>{!! $page->body !!}</p>
-        <br/>
-    </div>
+<div>
+    <h3>Sunspot Data Over Period</h3>
     <div style="overflow-x:auto;">
-        <canvas id="stats" width="400" height="200"></canvas>
+        <canvas id="sunspots" style="width:100%;max-width:700px"></canvas>
         <script>
-            var ctx = document.getElementById('stats').getContext('2d');
-            var statsChart = new Chart(ctx, {
+            var ctx = document.getElementById('sunspots').getContext('2d');
+            var sChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-
+                    labels: [],
                     datasets: [{
-                        label: 'Worked',
+                        label: 'Sunspots',
                         data: [],
                         lineTension: 0.1,
-                        backgroundColor: "rgba(75,192,192,0.4)",
+                        backgroundColor: "rgba(3,32,234,45.4)",
                         borderColor: "rgba(75,192,192,1)",
                         borderCapStyle: 'butt',
                         borderDash: [],
@@ -55,13 +40,13 @@
                             grid:{
                                 display:false
                             }
-                          },
-                          x: {
-                              grid:{
-                                  display:false
-                              }
-                          }
-                     },
+                        },
+                        x: {
+                            grid:{
+                                display:false
+                            }
+                        }
+                    },
                     plugins: {
                         legend: {
                             display: false
@@ -70,11 +55,12 @@
                 }
             });
             var data = data || {};
-            $.getJSON("{{ route('logbook.stats') }}", data).done(function(response) {
-                statsChart.data.datasets[0].data = response.data; // or you can iterate for multiple datasets
-                statsChart.update(); // finally update our chart
+            $.getJSON("{{ route('solar.sunspots') }}", data).done(function(response) {
+                sChart.data.labels = response.titles;
+                sChart.data.datasets[0].data = response.data; // or you can iterate for multiple datasets
+                sChart.update(); // finally update our chart
             });
         </script>
+
     </div>
-   @include('partials.sunspots')
-@stop
+</div>

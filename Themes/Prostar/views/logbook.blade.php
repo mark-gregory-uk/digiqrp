@@ -26,7 +26,13 @@
         font-size: 13px;
         line-height: 18px;
         color: #333;
-
+    }
+    td.details-control {
+        background: url("{{ Theme::url('/img/system/details_open.png') }}") no-repeat center center;
+        cursor: pointer;
+    }
+    tr.shown td.details-control {
+        background: url("{{ Theme::url('/img/system/details_close.png') }}") no-repeat center center;
     }
 
 </style>
@@ -40,7 +46,7 @@
     </div>
 
     <div style="overflow-x:auto;">
-        <table  id="logbook" class="table table-striped table-bordered table-responsive table-condensed data-table responsive nowrap hover" width="100%!important">
+        <table id="logbook" class="table table-striped table-bordered table-responsive table-condensed data-table responsive nowrap hover" width="100%!important">
             <thead>
             <tr>
                 <th></th>
@@ -50,24 +56,13 @@
                 <th>Band</th>
                 <th>&nbsp;</th>
                 <th>Date</th>
-
             </tr>
             </thead>
         </table>
+      </div>
+    </div>
 
-    </div>
-    </div>
-    <style>
-        td.details-control {
-            background: url("{{ Theme::url('/img/system/details_open.png') }}") no-repeat center center;
-            cursor: pointer;
-        }
-        tr.shown td.details-control {
-            background: url("{{ Theme::url('/img/system/details_close.png') }}") no-repeat center center;
-        }
-    </style>
     <script type="text/javascript">
-
         function format ( d ) {
             // `d` is the original data object for the row
             return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
@@ -168,7 +163,7 @@
                 row.child( format(row.data()) ).show();
                 tr.addClass('shown');
             }
-        } );
+        });
         });
     </script>
 @stop

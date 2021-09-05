@@ -4,6 +4,7 @@ namespace Modules\Logbook\Http\Controllers;
 
 use FloatingPoint\Stylist\Theme\Theme;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
@@ -20,7 +21,7 @@ class LogbookController extends Controller
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request): \Illuminate\Contracts\View\View
     {
         return View::make('logbook');
     }
@@ -47,9 +48,7 @@ class LogbookController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
-
-                    return $btn;
+                    return '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -57,7 +56,7 @@ class LogbookController extends Controller
     }
 
     /**
-     * Show the specified resource.
+     * Show the specified logbook.
      *
      * @param int $id
      *
@@ -65,6 +64,8 @@ class LogbookController extends Controller
      */
     public function show($id)
     {
+        $logbook = Logbook::where('owner_id', '=', $id)->first();
+        $logEntries = LogbookEntry::where('parent_id', '=', $logbook->id)->get();
         return view('logbook::show', compact('logEntries'));
     }
 
@@ -148,13 +149,12 @@ class LogbookController extends Controller
     /**
      * Recover Log Entry Stats
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function stats(Request $request)
+    public function stats(Request $request): JsonResponse
     {
         if ($request->ajax()) {
             $logbook = Logbook::where('owner_id', '=', 1)->first();
-
             $counts = LogbookEntry::where('parent_id', '=', $logbook->id)
             ->where('country_slug','!=','')
             ->selectRaw('dxcc_country, count(*) as total')
@@ -168,4 +168,5 @@ class LogbookController extends Controller
         }
         return response()->json(['data' => 'Not available']);
      }
+
 }

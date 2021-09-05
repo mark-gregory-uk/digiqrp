@@ -38,6 +38,14 @@
                                 beginAtZero: true,
                                 ticks: {
                                     callback: () => ('')
+                                },
+                                grid:{
+                                    display:false
+                                }
+                            },
+                            x: {
+                                grid:{
+                                    display:false
                                 }
                             }
                         },

@@ -16,13 +16,13 @@
         <br/>
     </div>
     <div style="overflow-x:auto;">
-        <canvas id="stats" width="200" height="200"></canvas>
+        <canvas id="stats" width="400" height="200"></canvas>
         <script>
             var ctx = document.getElementById('stats').getContext('2d');
             var statsChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['USA', 'Russia', 'Australia','UK','EU', 'Other','Asia'],
+
                     datasets: [{
                         label: 'Worked',
                         data: [],

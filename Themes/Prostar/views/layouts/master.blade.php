@@ -39,6 +39,7 @@
                 @include('partials.furthest-contacts')
                 @include('partials.logchart')
                 @include('partials.solar-report')
+                @include('partials.sunspot-trend')
                 @include('partials.blog-feed')
 
                 <!-- End Right Sidebar -->

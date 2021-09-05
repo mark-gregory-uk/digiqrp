@@ -1,6 +1,6 @@
 @if (!empty($furthestContacts))
     <div class="well ">
-        <h3 class="page-header">Regions Worked</h3>
+        <a href="{{url("/logbook-stats")}}"> <h3 class="page-header">Regions Worked</h3></a>
             <canvas id="countries" width="200" height="200"></canvas>
             <script>
                 var ctx = document.getElementById('countries').getContext('2d');

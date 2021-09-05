@@ -1,5 +1,5 @@
 <div>
-    <h3>Sunspot Data (30 Days)</h3>
+    <h3>Sunspot Trend (30 Days)</h3>
     <div style="overflow-x:auto;">
         <canvas id="sunspots" style="width:100%;max-width:700px"></canvas>
         <script>

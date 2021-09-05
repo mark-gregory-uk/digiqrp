@@ -1,11 +1,11 @@
 <div>
-    <h3>Sunspot Data Over Period</h3>
+    <h3>Sunspot Data (30 Days)</h3>
     <div style="overflow-x:auto;">
         <canvas id="sunspots" style="width:100%;max-width:700px"></canvas>
         <script>
             var ctx = document.getElementById('sunspots').getContext('2d');
             var sChart = new Chart(ctx, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: [],
                     datasets: [{
@@ -13,12 +13,12 @@
                         data: [],
                         lineTension: 0.1,
                         backgroundColor: "rgba(3,32,234,45.4)",
-                        borderColor: "rgba(75,192,192,1)",
+                        borderColor: "rgba(75,192,92,221)",
                         borderCapStyle: 'butt',
                         borderDash: [],
                         borderDashOffset: 0.0,
                         borderJoinStyle: 'miter',
-                        pointBorderColor: "rgba(75,192,192,1)",
+                        pointBorderColor: "rgba(75,92,192,1)",
                         pointBackgroundColor: "#fff",
                         pointBorderWidth: 1,
                         pointHoverRadius: 5,

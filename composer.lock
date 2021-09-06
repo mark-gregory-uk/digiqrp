@@ -1697,50 +1697,6 @@
             "time": "2018-07-31T19:32:56+00:00"
         },
         {
-            "name": "idavoll/adminlte-theme",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Idavoll/AdminLTE.git",
-                "reference": "bc1507742d90bb928bbc8d656a146a7b6259badc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Idavoll/AdminLTE/zipball/bc1507742d90bb928bbc8d656a146a7b6259badc",
-                "reference": "bc1507742d90bb928bbc8d656a146a7b6259badc",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "~1.0",
-                "php": ">=5.4"
-            },
-            "type": "asgard-theme",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.0.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Widart",
-                    "email": "info@asgardcms.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "An AsgardCMS administration theme",
-            "keywords": [
-                "asgard-cms"
-            ],
-            "support": {
-                "source": "https://github.com/Idavoll/AdminLTE/tree/master"
-            },
-            "time": "2020-11-10T16:52:20+00:00"
-        },
-        {
             "name": "idavoll/core-module",
             "version": "dev-master",
             "source": {

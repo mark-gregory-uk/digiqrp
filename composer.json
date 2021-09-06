@@ -18,7 +18,6 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "idavoll/adminlte-theme": "4.0.x-dev",
         "idavoll/core-module": "4.0.x-dev",
         "idavoll/dashboard-module": "4.0.x-dev",
         "idavoll/flatly-theme": "4.0.x-dev",

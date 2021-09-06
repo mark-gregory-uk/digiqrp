@@ -54,11 +54,17 @@ task('reload:nginx', function () {
 })->desc('Reloading Nginx');
 
 task('udpserver:stop', function () {
-    run('sudo systemctl stop digiudp');
+    $stage = input()->getArgument('stage');
+    if ($stage === 'prod') {
+        run('sudo systemctl stop digiudp');
+    }
 })->desc('Reloading DIGIUdp Server');
 
 task('udpserver:start', function () {
-    run('sudo systemctl start digiudp');
+    $stage = input()->getArgument('stage');
+    if ($stage === 'prod') {
+        run('sudo systemctl start digiudp');
+    }
 })->desc('Starting DIGIUdp Server');
 
 

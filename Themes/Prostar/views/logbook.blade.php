@@ -108,7 +108,7 @@
                     { 'visible':window.innerWidth < 700 ? false : true, 'targets': [2,3] }
                 ],
                 ajax: "{{ route('logbook.all') }}",
-                scrollY:        200,
+                scrollY:        350,
                 scrollCollapse: true,
                 columns: [
                     {
@@ -164,6 +164,6 @@
                 tr.addClass('shown');
             }
         });
-        });
+      });
     </script>
 @stop

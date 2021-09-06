@@ -8,7 +8,8 @@
                 type: 'line',
                 data: {
                     labels: [],
-                    datasets: [{
+                    datasets: [
+                        {
                         label: 'Solar Flux',
                         data: [],
                         lineTension: 0.1,

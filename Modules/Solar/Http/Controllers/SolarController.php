@@ -21,19 +21,21 @@ class SolarController  extends Controller
     public function sunspots(Request $request): JsonResponse
     {
         if ($request->ajax()) {
-            $sunSpots = Solar::whereBetween('created_at', [
+            $entries = Solar::whereBetween('created_at', [
                 Carbon::now()->subdays(30)->format('Y-m-d'),
                 Carbon::now()->subday()->format('Y-m-d')
             ])->get();
 
 
             $data = [];
+            $magfield = [];
             $titles = [];
-            foreach ($sunSpots as $entry){
+            foreach ($entries as $entry){
                 array_push($data,(int)$entry->sunspots);
+                array_push($magfield,(int)$entry->magneticfield);
                 array_push($titles,(int)$entry->created_at->format('d'));
             }
-            return response()->json(['titles'=>$titles,'data' => $data]);
+            return response()->json(['titles'=>$titles,'data' => $data,'magfield'=> $magfield]);
         }
         return response()->json(['data' => 'Not available']);
     }

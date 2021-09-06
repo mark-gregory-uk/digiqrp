@@ -77,5 +77,5 @@
         </script>
     </div>
    @include('partials.sunspots')
-   @include('partials.magnaticfield')
+
 @stop

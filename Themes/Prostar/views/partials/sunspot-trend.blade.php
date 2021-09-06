@@ -1,3 +1,3 @@
 <div class="well ">
-    @include('partials.sunspots')
+    @include('partials.sunspots-well')
 </div>

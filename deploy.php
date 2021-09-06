@@ -54,11 +54,17 @@ task('reload:nginx', function () {
 })->desc('Reloading Nginx');
 
 task('udpserver:stop', function () {
-    run('sudo systemctl stop digiudp');
+    $stage = input()->getArgument('stage');
+    if ($stage === 'prod') {
+        run('sudo systemctl stop digiudp');
+    }
 })->desc('Reloading DIGIUdp Server');
 
 task('udpserver:start', function () {
-    run('sudo systemctl start digiudp');
+    $stage = input()->getArgument('stage');
+    if ($stage === 'prod') {
+        run('sudo systemctl start digiudp');
+    }
 })->desc('Starting DIGIUdp Server');
 
 
@@ -66,11 +72,9 @@ task('reload:supervisor', function () {
     run('sudo /usr/sbin/service supervisor reload');
 })->desc('Reloading Supervisor');
 
-
 task('build', function () {
     run('cd {{release_path}} && build');
 })->desc('Building Application');
-
 
 task('migrate', function () {
         invoke('artisan:migrate');

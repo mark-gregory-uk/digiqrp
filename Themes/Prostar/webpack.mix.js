@@ -14,17 +14,16 @@ mix.scripts([
   'node_modules/jquery/dist/jquery.js',
   'node_modules/bootstrap/dist/js/bootstrap.min.js',
   'node_modules/prismjs/prism.js',
-  'node_modules/chartjs/chart.js',
   'resources/js/bootswatch.js',
 ], 'assets/js/all.js');
 
 /**
  * Copy Font directory https://laravel.com/docs/5.4/mix#url-processing
  */
-mix.copy(
-  'fonts',
-  '../../public/fonts'
-);
+mix.copy([
+  'fonts','../../public/fonts',
+  'node_modules/chart.js/dist/chart.js','assets/js',
+]);
 
 
 /**

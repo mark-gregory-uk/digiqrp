@@ -53,6 +53,14 @@ task('reload:nginx', function () {
     run('sudo /usr/sbin/service nginx reload');
 })->desc('Reloading Nginx');
 
+task('udpserver:stop', function () {
+    run('sudo systemctl stop digiudp');
+})->desc('Reloading DIGIUdp Server');
+
+task('udpserver:start', function () {
+    run('sudo systemctl start digiudp');
+})->desc('Starting DIGIUdp Server');
+
 
 task('reload:supervisor', function () {
     run('sudo /usr/sbin/service supervisor reload');
@@ -112,6 +120,7 @@ host('stage')
 // Rules & Actions
 // **********************************************************************************
 
+after('deploy:prepare', 'udpserver:stop');
 after('success', 'deploy:permissions');
 after('deploy:failed', 'deploy:unlock');
 after('deploy:permissions', 'migrate');
@@ -119,3 +128,4 @@ after('deploy', 'cache-clean');
 after('deploy', 'reload:php-fpm');
 after('deploy', 'reload:nginx');
 after('deploy', 'reload:supervisor');
+after('deploy', 'udpserver:start');

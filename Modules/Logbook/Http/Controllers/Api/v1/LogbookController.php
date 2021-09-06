@@ -3,13 +3,81 @@
 namespace Modules\Logbook\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
+use DateTime;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Log;
 use Modules\Logbook\Entities\Logbook;
 use Modules\Logbook\Entities\LogbookEntry;
+use Modules\Logbook\Libraries\ADIF_Parser;
+use Modules\Setting\Contracts\Setting;
 
 class LogbookController extends Controller
 {
+
+    /**
+     * @var Setting
+     */
+    private $settings;
+
+    public function processADIF(Request $request,Setting $settings)
+    {
+
+        $this->settings = $settings;
+
+        if (in_array($request->method(), ['POST'])){
+            $payload = $request->get('payload');
+            $logbook = Logbook::with('entries')
+                ->where('owner_id', '=', 1)
+                ->where('slug', '=', 'main')->first();
+
+            $preabmle = '<adif_ver:5>3.1.1 <created_timestamp:15>20210518 124425 <programid:6>WSJT-X <programversion:5>2.3.0 <eoh>';
+            $inData = $preabmle . ' ' . $payload;
+            $p = new ADIF_Parser;
+            $p->feed($inData);
+            $p->initialize();
+
+            while ($record = $p->get_record()) {
+                if (count($record) == 0) {
+                    return response()->json(['data' => 'nok', 'state' => 'error']);
+                };
+
+                $data = array();
+                $logEntry = $logbook->entries()->create();
+                $logEntry->call = $record['call'];
+                $logEntry->tx_frequency = $record['freq'];
+                $logEntry->rx_frequency = $record['freq'];
+                $logEntry->rst_received = $record['rst_rcvd'];
+                $logEntry->rst_sent = $record['rst_sent'];
+                $logEntry->band_rx = $record['band'];
+                $logEntry->band_tx = $record['band'];
+                $logEntry->comments = $record['comment'];
+                $logEntry->grid = $record['gridsquare'];
+                $logEntry->mode = $record['mode'];
+                $logEntry->payload = $payload;
+                $startDate = $this->formatDate($record['qso_date']);
+                $startTime = $this->formatTime($record['time_on']);
+                $endDate = $this->formatDate($record['qso_date_off']);
+                $endTime = $this->formatTime($record['time_off']);
+
+
+                $logEntry->qso_start = $startDate .' '. $startTime;
+                $logEntry->qso_end = $endDate .' '. $endTime;
+
+                $response = \Modules\Logbook\Http\Controllers\LogbookController::hamQTH($logEntry->call);
+
+                if ($response['dxcc']['adif'] != '0') {
+                    $logEntry->addCallDetails($this->settings,$response);
+                } else {
+                    $logEntry->save();
+                }
+                return response()->json(['data' => 'ok', 'state' => 'processed']);
+            }
+
+        }
+        return response()->json(['data' => 'nok', 'state' => 'error']);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -113,4 +181,21 @@ class LogbookController extends Controller
             Log::info('New Log Entry Created for '.$data['CALL']);
         }
     }
+
+    private function formatDate($date){
+        $year = substr($date,0,4);
+        $month = substr($date,4,2);
+        $day = substr($date,6,6);
+        return $year.'-'.$month.'-'.$day;
+    }
+
+    private function formatTime($time){
+        $hour = substr($time,0,2);
+        $minutes = substr($time,2,2);
+        $seconds = substr($time,4,4);
+        return $hour.':'.$minutes.':'.$seconds;
+    }
+
+
+
 }

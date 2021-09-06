@@ -1,11 +1,18 @@
 <div aria-label="Breadcrumbs" role="navigation">
     <ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">
-        <li>
-            You are here: &nbsp;
-        </li>
+
+        @if (Route::current()->getName() === 'homepage' )
+            <li>
+                You are here: Home
+            </li>
+        @else
+            <li>
+                You are here:
+            </li>
+        @endif
 
         <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="active">
-            <span class="breadcrumb" id="breadcrumb" itemprop="name"></span>
+            <span style="  padding-left: 0px;" class="breadcrumb" id="breadcrumb" itemprop="name"></span>
             <meta itemprop="position" content="1">
         </li>
     </ul>

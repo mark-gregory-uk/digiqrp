@@ -10,8 +10,7 @@
                     <span itemprop="name">{!! '&nbsp;&nbsp;<span>'.$contact->call.'</span><span>&nbsp;</span><span style="float:right;">'.round($contact->distance_km).' Km</span>' !!}
                 </li>
             @endforeach
-
-
         </ul>
     </div>
+
 @endif

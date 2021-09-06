@@ -16,4 +16,12 @@ class EloquentSolarRepository extends EloquentBaseRepository implements SolarRep
 
         return $latestReport;
     }
+
+    public function all()
+    {
+        $latestReport = $this->with('reports')->orderBy('created_at', 'desc')->get();
+        return $latestReport;
+    }
+
+
 }

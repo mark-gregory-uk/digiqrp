@@ -8,8 +8,6 @@
     <meta name="description" content="{{ $page->meta_description }}" />
 @stop
 
-
-
 <style>
     table.dataTable >tbody td {
         background-color: #fcf8e3;
@@ -28,7 +26,13 @@
         font-size: 13px;
         line-height: 18px;
         color: #333;
-
+    }
+    td.details-control {
+        background: url("{{ Theme::url('/img/system/details_open.png') }}") no-repeat center center;
+        cursor: pointer;
+    }
+    tr.shown td.details-control {
+        background: url("{{ Theme::url('/img/system/details_close.png') }}") no-repeat center center;
     }
 
 </style>
@@ -36,47 +40,83 @@
 @section('content')
     <div class="well">
     <div>
-        <h3>Current Digital Mode Log Entries</h3>
-        <p>These are live multi-band low power log entries for G4LCH using Xeigu G90 and multi-band vertical. </p>
+        <h3>Current Digital Mode Log Entries ({{ count($contacts) }})</h3>
+        <p>{!! $page->body !!}</p>
         <br/>
     </div>
 
     <div style="overflow-x:auto;">
-        <table  id="logbook" class="table table-striped table-bordered table-responsive table-condensed data-table responsive nowrap" width="100%!important">
+        <table id="logbook" class="table table-striped table-bordered table-responsive table-condensed data-table responsive nowrap hover" width="100%!important">
             <thead>
             <tr>
+                <th></th>
                 <th>Call</th>
                 <th>RST</th>
                 <th>Mode</th>
                 <th>Band</th>
                 <th>&nbsp;</th>
                 <th>Date</th>
-                <th>Time</th>
             </tr>
             </thead>
-            <tbody>
-            </tbody>
         </table>
+      </div>
     </div>
-    </div>
+
     <script type="text/javascript">
-        //window.onresize = function(){ location.reload(); }
-        $(function () {
+        function format ( d ) {
+            // `d` is the original data object for the row
+            return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+                '<tr>'+
+                '<td>Call:</td>'+
+                '<td>'+d.call+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                '<td>Country:</td>'+
+                '<td>'+d.dxcc_country+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                '<td>Date:</td>'+
+                '<td>'+d.qso_end+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                '<td>Received RST:</td>'+
+                '<td>'+d.rst_received+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                '<td>Sent RST:</td>'+
+                '<td>'+d.rst_sent+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                '<td>Mode:</td>'+
+                '<td>'+d.mode+'</td>'+
+                '</tr>'+
+                '<td>Band:</td>'+
+                '<td>'+d.band_tx+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                '<td>Distance:</td>'+
+                '<td>'+d.distance_km+'&nbsp;km &nbsp;'+d.distance_miles+'&nbsp;miles</td>'+
+                '</tr>'+
+                '</table>';
+        }
+        $(document).ready(function() {
             var table = $('#logbook').DataTable({
                 ordering: true,
-                'order': [[ 4, "desc" ]],
-                processing: true,
+                'order': [[ 5, "desc" ]],
                 responsive: window.innerWidth < 700 ? true : false,
                 'columnDefs' : [
-                    { 'visible':window.innerWidth < 700 ? false : true, 'targets': [1,2] }
+                    { 'visible':window.innerWidth < 700 ? false : true, 'targets': [2,3] }
                 ],
-                language: {
-                    processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
-                },
-                serverSide: true,
-
                 ajax: "{{ route('logbook.all') }}",
+                scrollY:        350,
+                scrollCollapse: true,
                 columns: [
+                    {
+                        className:      'details-control',
+                        orderable:      false,
+                        data:           null,
+                        defaultContent: ''
+                    },
                     { data: 'call',
                         name: 'call',
                         "searchable": true,
@@ -105,14 +145,25 @@
                         "searchable": true,
                         "orderable": true,
                     },
-                    { data: 'end_time',
-                        name: 'end_time',
-                        "searchable": false
-                    },
-
 
                 ]
             });
+
+        $('#logbook tbody').on('click', 'td.details-control', function () {
+            var tr = $(this).closest('tr');
+            var row = table.row( tr );
+
+            if ( row.child.isShown() ) {
+                // This row is already open - close it
+                row.child.hide();
+                tr.removeClass('shown');
+            }
+            else {
+                // Open this row
+                row.child( format(row.data()) ).show();
+                tr.addClass('shown');
+            }
         });
+      });
     </script>
 @stop

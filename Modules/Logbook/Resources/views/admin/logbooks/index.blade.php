@@ -40,7 +40,7 @@
                             <?php foreach ($logbooks as $logbook) { ?>
                             <tr>
                                 <td>
-                                    <a href="{{ route('admin.logbook.logbook.edit', [$logbook->id]) }}">
+                                    <a href="{{ route('admin.logbook.logbook.view', [$logbook->id]) }}">
                                         {{ $logbook->title }}
                                     </a>
                                 </td>
@@ -56,8 +56,9 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.logbook.logbook.edit', [$logbook->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.logbook.logbook.destroy', [$logbook->id]) }}"><i class="fa fa-trash"></i></button>
+                                        <a href="{{ route('admin.logbook.logbook.view', [$logbook->id]) }}" class="btn btn-default btn-rounded btn-info"><i class="fa fa-book"></i></a>
+                                        <a href="{{ route('admin.logbook.logbook.edit', [$logbook->id]) }}" class="btn btn-default btn-rounded btn-success"><i class="fa fa-pencil"></i></a>
+                                        <button class="btn btn-danger btn-rounded" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.logbook.logbook.destroy', [$logbook->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>

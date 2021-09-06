@@ -1,8 +1,8 @@
 {
     "name": "Solar",
     "alias": "solar",
-    "version": "1.2.0",
-	"description": "",
+    "version": "1.2.1",
+	"description": "Solar Data Reports",
     "keywords": [],
     "priority": 1,
     "providers": [

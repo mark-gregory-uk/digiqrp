@@ -13,25 +13,13 @@
 
 
 @section('content')
-
-    @include('logbook::admin.logbooks.modals.upload-logfile')
-
-
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-
             <li class="active"><a href="#tab_logbook" data-toggle="tab">Logbook</a></li>
             <li class=""><a href="#tab_entries" data-toggle="tab">Entries</a></li>
-
         </ul>
         <div class="tab-content">
-            <div class="row">
-                <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a data-toggle="modal" data-target="#upload-logfile" class="btn btn-success btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-upload"></i>Upload Log File
-                    </a>
-                </div>
-            </div>
+
             <div class="tab-pane active" id="tab_logbook">
                 <div class="box-body">
 

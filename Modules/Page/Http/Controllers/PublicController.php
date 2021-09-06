@@ -12,6 +12,7 @@ use Modules\Menu\Entities\Menu;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Page\Entities\Page;
 use Modules\Page\Repositories\PageRepository;
+use Modules\Setting\Repositories\SettingRepository;
 use Modules\Solar\Repositories\SolarRepository;
 
 class PublicController extends BasePublicController
@@ -41,9 +42,13 @@ class PublicController extends BasePublicController
      */
     private $app;
 
+    private $setting;
+    private $maxCount;
+    private $maxContacts;
+
     private $disabledPage = false;
 
-    public function __construct(PageRepository $page, PostRepository $postsRepository, LogbookRepository $logBookRepository, SolarRepository $solarRepository, Application $app)
+    public function __construct(PageRepository $page, PostRepository $postsRepository, LogbookRepository $logBookRepository, SolarRepository $solarRepository, Application $app,SettingRepository $setting)
     {
         parent::__construct();
         $this->page = $page;
@@ -51,6 +56,9 @@ class PublicController extends BasePublicController
         $this->postRepository = $postsRepository;
         $this->logbookRepository = $logBookRepository;
         $this->solarReportsRepository = $solarRepository;
+        $this->setting=$setting;
+        $this->maxCount = (int)$this->setting->get('logbook::maxcount')->plainValue;
+        $this->maxContacts = (int)$this->setting->get('logbook::maxcontacts')->plainValue;
     }
 
     /**
@@ -60,11 +68,13 @@ class PublicController extends BasePublicController
      */
     public function uri($slug)
     {
+
         $page = $this->findPageForSlug($slug);
         $latestPosts = $this->postRepository->latest();
-        $latestContacts = $this->logbookRepository->latestContacts();
-        $furthestContacts = $this->logbookRepository->longestContacts();
+        $latestContacts = $this->logbookRepository->latestContacts(($this->maxContacts > 0 ? $this->maxCount : 4));
+        $furthestContacts = $this->logbookRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
+        $contacts = $this->logbookRepository->totalContacts();
         $this->throw404IfNotFound($page);
 
         $currentTranslatedPage = $page->getTranslation(locale());
@@ -76,7 +86,7 @@ class PublicController extends BasePublicController
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
+        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts','contacts'));
     }
 
     /**
@@ -85,17 +95,19 @@ class PublicController extends BasePublicController
     public function homepage()
     {
         $page = $this->page->findHomepage();
+        $contacts  = $this->logbookRepository->totalContacts();
         $latestPosts = $this->postRepository->latest();
-        $latestContacts = $this->logbookRepository->latestContacts();
-        $furthestContacts = $this->logbookRepository->longestContacts();
+        $latestContacts = $this->logbookRepository->latestContacts(($this->maxContacts > 0 ? $this->maxContacts : 4));
+        $furthestContacts = $this->logbookRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
+
         $this->throw404IfNotFound($page);
 
         $template = $this->getTemplateForPage($page);
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
+        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts','contacts'));
     }
 
     /**
@@ -108,6 +120,7 @@ class PublicController extends BasePublicController
      */
     private function findPageForSlug($slug)
     {
+
         $menuItem = app(MenuItemRepository::class)->findByUriInLanguage($slug, locale());
 
         if ($menuItem) {

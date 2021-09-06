@@ -7,7 +7,9 @@ use Illuminate\Support\ServiceProvider;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\Core\Events\LoadingBackendTranslations;
 use Modules\Core\Traits\CanPublishConfiguration;
+use Modules\Logbook\Console\CallChecker;
 use Modules\Logbook\Console\ImportMacLogger;
+use Modules\Logbook\Console\UDPServer;
 use Modules\Logbook\Listeners\RegisterLogbookSidebar;
 
 class LogbookServiceProvider extends ServiceProvider
@@ -103,6 +105,10 @@ class LogbookServiceProvider extends ServiceProvider
     private function registerCommands()
     {
         $this->registerRefreshCommand();
+        $this->commands([
+            UDPServer::class,
+            CallChecker::class
+        ]);
     }
 
     /**

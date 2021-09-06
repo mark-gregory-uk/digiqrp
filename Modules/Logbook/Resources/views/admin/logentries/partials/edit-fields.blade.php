@@ -21,10 +21,27 @@
     </div>
 
     <div class='form-group{{ $errors->has("{$lang}.mode") ? ' has-error' : '' }}'>
-        {!! Form::label("{$lang}[mode]", trans('logbook::entry.form.mode')) !!}
-        {!! Form::text("mode", $entry->mode, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('page::pages.slug')]) !!}
+        {!! Form::label("{$lang}[mode]", trans('logbook::entry.title.mode')) !!}
+        {!! Form::text("mode", $entry->mode, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('logbook::entry.form.mode')]) !!}
         {!! $errors->first("{$lang}.mode", '<span class="help-block">:message</span>') !!}
     </div>
 
+    <div class='form-group{{ $errors->has("{$lang}.rst_received") ? ' has-error' : '' }}'>
+        {!! Form::label("{$lang}[rst_received]", trans('logbook::entry.title.rst_received')) !!}
+        {!! Form::text("rst_received", $entry->rst_received, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('logbook::entry.form.rst_received')]) !!}
+        {!! $errors->first("{$lang}.rst_received", '<span class="help-block">:message</span>') !!}
+    </div>
+
+    <div class='form-group{{ $errors->has("{$lang}.rst_sent") ? ' has-error' : '' }}'>
+        {!! Form::label("{$lang}[rst+sent]", trans('logbook::entry.title.rst_sent')) !!}
+        {!! Form::text("rst_sent", $entry->rst_sent, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('logbook::entry.form.rst_sent')]) !!}
+        {!! $errors->first("{$lang}.rst_sent", '<span class="help-block">:message</span>') !!}
+    </div>
+
+    <div class='form-group{{ $errors->has("{$lang}.payload") ? ' has-error' : '' }}'>
+        {!! Form::label("{$lang}[payload]", trans('logbook::entry.title.payload')) !!}
+        {!! Form::text("payload", $entry->payload, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('logbook::entry.form.payload')]) !!}
+        {!! $errors->first("{$lang}.payload", '<span class="help-block">:message</span>') !!}
+    </div>
     </p>
 </div>

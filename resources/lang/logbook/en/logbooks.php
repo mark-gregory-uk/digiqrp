@@ -14,6 +14,7 @@ return [
     'button' => [
         'create logbook' => 'Create a logbook',
         'create country' => 'Create a country',
+        'edit' => 'Edit',
     ],
     'table' => [
         'title' => 'Title',

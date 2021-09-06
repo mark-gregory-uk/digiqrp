@@ -39,7 +39,11 @@
                 @include('partials.furthest-contacts')
                 @include('partials.logchart')
                 @include('partials.solar-report')
-                @include('partials.sunspot-trend')
+
+                @if (Request::path() != 'logbook-stats')
+                    @include('partials.sunspot-trend')
+                @endif
+
                 @include('partials.blog-feed')
 
                 <!-- End Right Sidebar -->

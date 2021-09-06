@@ -4,6 +4,7 @@
 namespace Modules\Solar\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Modules\Solar\Entities\Solar;
@@ -21,8 +22,8 @@ class SolarController  extends Controller
     {
         if ($request->ajax()) {
             $sunSpots = Solar::whereBetween('created_at', [
-                \carbon\Carbon::now()->subdays(30)->format('Y-m-d'),
-                \carbon\Carbon::now()->subday()->format('Y-m-d')
+                Carbon::now()->subdays(30)->format('Y-m-d'),
+                Carbon::now()->subday()->format('Y-m-d')
             ])->get();
 
 
@@ -45,19 +46,21 @@ class SolarController  extends Controller
     public function magneticField(Request $request): JsonResponse
     {
         if ($request->ajax()) {
-            $sunSpots = Solar::whereBetween('created_at', [
-                \carbon\Carbon::now()->subdays(30)->format('Y-m-d'),
-                \carbon\Carbon::now()->subday()->format('Y-m-d')
+            $entries = Solar::whereBetween('created_at', [
+                Carbon::now()->subdays(30)->format('Y-m-d'),
+                Carbon::now()->subday()->format('Y-m-d')
             ])->get();
 
 
             $data = [];
             $titles = [];
-            foreach ($sunSpots as $entry){
+            $sunSpots = [];
+            foreach ($entries as $entry){
                 array_push($data,(int)$entry->magneticfield);
+                array_push($sunSpots,(int)$entry->sunspots);
                 array_push($titles,(int)$entry->created_at->format('d'));
             }
-            return response()->json(['titles'=>$titles,'data' => $data]);
+            return response()->json(['titles'=>$titles,'data' => $data,'spots'=>$sunSpots]);
         }
         return response()->json(['data' => 'Not available']);
     }

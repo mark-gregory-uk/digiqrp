@@ -66,11 +66,9 @@ task('reload:supervisor', function () {
     run('sudo /usr/sbin/service supervisor reload');
 })->desc('Reloading Supervisor');
 
-
 task('build', function () {
     run('cd {{release_path}} && build');
 })->desc('Building Application');
-
 
 task('migrate', function () {
         invoke('artisan:migrate');

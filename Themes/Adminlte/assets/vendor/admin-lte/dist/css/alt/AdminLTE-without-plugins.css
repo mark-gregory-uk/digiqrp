@@ -528,7 +528,6 @@ a:focus {
 }
 .sidebar-menu li > a > .fa-angle-left,
 .sidebar-menu li > a > .pull-right-container > .fa-angle-left {
-  width: auto;
   height: auto;
   padding: 0;
   margin-right: 10px;

@@ -19,6 +19,7 @@
         @endforeach
         <link media="all" type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
         {!! Theme::script('vendor/jquery/jquery.min.js') !!}
+
         @include('partials.asgard-globals')
         @section('styles')
         @show
@@ -40,6 +41,13 @@
         <![endif]-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         @routes
+
+        {!! Theme::script('js/chart.js') !!}
+
+        @if (Request::path() != 'backend')
+           <script src="{{ mix('js/app.js') }}"></script>
+        @endif
+
     </head>
     <body class="{{ config('asgard.core.core.skin', 'skin-blue') }} sidebar-mini" style="padding-bottom: 0 !important;">
         <div class="wrapper" id="app">
@@ -94,7 +102,8 @@
 
         <script src="{{ mix('js/manifest.js') }}"></script>
         <script src="{{ mix('js/vendor.js') }}"></script>
-        <script src="{{ mix('js/app.js') }}"></script>
+
+
 
         @if(is_module_enabled('Notification'))
             <script src="https://js.pusher.com/4.1.0/pusher.min.js" integrity="sha384-e9MoFh6Cw/uluf+NZ6MJwfJ1Dm7UOvJf9oTBxxCYDyStJeeAF0q53ztnEbLLDSQP" crossorigin="anonymous"></script>

@@ -1,5 +1,5 @@
 let mix = require('laravel-mix').mix;
-//const WebpackShellPlugin = require('webpack-shell-plugin');
+const WebpackShellPlugin = require('webpack-shell-plugin');
 const themeInfo = require('./theme.json');
 
 /**

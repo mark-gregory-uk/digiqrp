@@ -15,6 +15,7 @@ mix.scripts([
   'node_modules/bootstrap/dist/js/bootstrap.min.js',
   'node_modules/prismjs/prism.js',
   'resources/js/bootswatch.js',
+  'node_modules/datatables.net/js/jquery.dataTables.min.js',
 ], 'assets/js/all.js');
 
 /**

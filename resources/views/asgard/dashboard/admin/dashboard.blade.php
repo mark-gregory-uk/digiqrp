@@ -117,9 +117,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
                     @if (setting('core::site-name') === '')
                         <div class="box-footer">

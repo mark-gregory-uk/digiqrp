@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "babel-preset-env": "^1.5.2",
-    "bootstrap": "~3.3.2",
+    "bootstrap": "^3.3.7",
     "cross-env": "^3.2.3",
     "font-awesome": "^4.3.0",
     "jquery": ">= 1.9.1",
@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "chart.js": "^3.5.1",
-    "marked": "^0.4.0"
+    "datatables.net": "^1.11.2",
+    "marked": "^0.4.0",
+    "marked-terminal": "^4.1.1"
   }
 }

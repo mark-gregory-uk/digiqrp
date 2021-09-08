@@ -71,7 +71,7 @@ class PublicController extends BasePublicController
 
         $page = $this->findPageForSlug($slug);
         $latestPosts = $this->postRepository->latest();
-        $latestContacts = $this->logbookRepository->latestContacts(($this->maxContacts > 0 ? $this->maxCount : 4));
+        $latestContacts = $this->logbookRepository->latestContacts(($this->maxContacts > 0 ? $this->maxContacts : 4));
         $furthestContacts = $this->logbookRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
         $contacts = $this->logbookRepository->totalContacts();

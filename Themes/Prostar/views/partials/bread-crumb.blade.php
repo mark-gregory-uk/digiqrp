@@ -1,7 +1,7 @@
 
 @switch(basename(\Request::path()))
     @case ('welcome')
-
+      {{ Breadcrumbs::render('home') }}
       @break
     @case ('logbook')
       {{ Breadcrumbs::render('logbook') }}

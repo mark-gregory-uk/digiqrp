@@ -26,6 +26,13 @@ Breadcrumbs::for('blog', function (BreadcrumbTrail $trail) {
 });
 
 // Home > Blog
+Breadcrumbs::for('posts', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Blog Posts', route('en.blog'));
+});
+
+
+// Home > Blog
 Breadcrumbs::for('software', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Software', route('homepage'));
@@ -52,7 +59,7 @@ Breadcrumbs::for('logstats', function (BreadcrumbTrail $trail) {
 });
 
 Breadcrumbs::for('post', function (BreadcrumbTrail $trail) {
-    $trail->parent('blog');
+    $trail->parent('posts');
     $post = \Modules\Blog\Entities\PostTranslation::where('slug','=',basename(Request::url()))->first();
     $trail->push($post->title, route(LaravelLocalization::setLocale() ?: App::getLocale().'.blog'));
 });

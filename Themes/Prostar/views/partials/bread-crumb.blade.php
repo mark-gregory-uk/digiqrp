@@ -3,6 +3,9 @@
     @case ('welcome')
       {{ Breadcrumbs::render('home') }}
       @break
+    @case ('site-news')
+        {{ Breadcrumbs::render('news') }}
+        @break
     @case ('logbook')
       {{ Breadcrumbs::render('logbook') }}
       @break

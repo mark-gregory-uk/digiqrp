@@ -38,6 +38,11 @@ Breadcrumbs::for('software', function (BreadcrumbTrail $trail) {
     $trail->push('Software', route('homepage'));
 });
 
+Breadcrumbs::for('news', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Site News', route('homepage'));
+});
+
 Breadcrumbs::for('xeigu-g90', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Xeigu G90', route('homepage'));

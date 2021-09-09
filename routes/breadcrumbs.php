@@ -35,7 +35,7 @@ Breadcrumbs::for('posts', function (BreadcrumbTrail $trail) {
 // Home > Blog
 Breadcrumbs::for('software', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Software', route('homepage'));
+    $trail->push('Software', route('en.blog.category','software'));
 });
 
 Breadcrumbs::for('news', function (BreadcrumbTrail $trail) {
@@ -64,7 +64,17 @@ Breadcrumbs::for('logstats', function (BreadcrumbTrail $trail) {
 });
 
 Breadcrumbs::for('post', function (BreadcrumbTrail $trail) {
-    $trail->parent('posts');
+
     $post = \Modules\Blog\Entities\PostTranslation::where('slug','=',basename(Request::url()))->first();
-    $trail->push($post->title, route(LaravelLocalization::setLocale() ?: App::getLocale().'.blog'));
+    $sourcePost = \Modules\Blog\Entities\Post::where('id','=',$post->post_id)->first();
+    $category =  \Modules\Blog\Entities\Category::where('id','=',$sourcePost->category_id)->first()->name;
+
+    if ($sourcePost->category_only){
+        $trail->parent('software');
+        $trail->push($post->title, route('en.blog.category',strtolower($category)));
+    } else {
+        $trail->parent('posts');
+        $trail->push($post->title, route(LaravelLocalization::setLocale() ?: App::getLocale().'.blog'));
+    }
+
 });

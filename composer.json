@@ -18,6 +18,7 @@
         "doctrine/dbal": "^2.11",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
+        "gonoware/laravel-maps": "^1.4",
         "guzzlehttp/guzzle": "^7.0.1",
         "idavoll/core-module": "4.0.x-dev",
         "idavoll/dashboard-module": "4.0.x-dev",

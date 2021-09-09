@@ -84,6 +84,8 @@
         div.mod_search87 input[type="search"]{ width:auto; }
     </style>
 
+    @mapstyles
+
     {!! Theme::script('js/all.js') !!}
     @yield('scripts')
 

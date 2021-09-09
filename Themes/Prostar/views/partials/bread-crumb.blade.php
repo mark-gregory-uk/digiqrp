@@ -1,4 +1,4 @@
-
+{{dd(basename(\Request::path()))}}
 @switch(basename(\Request::path()))
     @case ('welcome')
       {{ Breadcrumbs::render('home') }}
@@ -31,7 +31,11 @@
        @if (strpos(basename(Request::url()), 'digiqrp') !== false)
            {{ Breadcrumbs::render('home') }}
        @else
-           {{ Breadcrumbs::render('post') }}
+           @if (strpos(basename(Request::url()), 'stage.digiqrp') !== false)
+               {{ Breadcrumbs::render('home') }}
+           @else
+             {{ Breadcrumbs::render('post') }}
+           @endif
        @endif
 
 @endswitch

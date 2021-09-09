@@ -22,7 +22,7 @@ Breadcrumbs::for('logbook', function (BreadcrumbTrail $trail) {
 // Home > Blog
 Breadcrumbs::for('blog', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Blog', route('homepage'));
+    $trail->push('Blog Posts', route('homepage'));
 });
 
 // Home > Blog

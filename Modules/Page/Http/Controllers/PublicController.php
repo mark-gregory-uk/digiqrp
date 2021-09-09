@@ -75,6 +75,16 @@ class PublicController extends BasePublicController
         $furthestContacts = $this->logbookRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
         $contacts = $this->logbookRepository->totalContacts();
+
+        $markers = [];
+        foreach($contacts as $f)
+        {
+            array_push($markers, array(
+                'title' => $f->call,
+                'lat' => $f->lat,
+                'lng' => $f->lng,
+            ));
+        }
         $this->throw404IfNotFound($page);
 
         $currentTranslatedPage = $page->getTranslation(locale());
@@ -86,7 +96,7 @@ class PublicController extends BasePublicController
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts','contacts'));
+        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts','contacts','markers'));
     }
 
     /**
@@ -101,13 +111,24 @@ class PublicController extends BasePublicController
         $furthestContacts = $this->logbookRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
 
+        $markers = [];
+        foreach($contacts as $f)
+        {
+            array_push($markers, array(
+                'title' => $f->call,
+                'lat' => $f->lat,
+                'lng' => $f->long,
+            ));
+        }
+
+
         $this->throw404IfNotFound($page);
 
         $template = $this->getTemplateForPage($page);
 
         $this->addAlternateUrls($this->getAlternateMetaData($page));
 
-        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts','contacts'));
+        return view($template, compact('page', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts','contacts','markers'));
     }
 
     /**

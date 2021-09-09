@@ -76,6 +76,8 @@
             });
         </script>
     </div>
-   @include('partials.sunspots')
+    </div>
+    <div class="well">
+    @include('partials.sunspots')
 
 @stop

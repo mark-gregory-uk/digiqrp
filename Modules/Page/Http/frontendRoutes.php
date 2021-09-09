@@ -24,6 +24,7 @@ $router->any('{uri}', [
 ])->where('uri', '.*');
 
 
+
 // Home
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
     $trail->push('Home', route('homepage'));

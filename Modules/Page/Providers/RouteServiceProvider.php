@@ -35,4 +35,5 @@ class RouteServiceProvider extends CoreRoutingServiceProvider
     {
         return __DIR__.'/../Http/apiRoutes.php';
     }
+
 }

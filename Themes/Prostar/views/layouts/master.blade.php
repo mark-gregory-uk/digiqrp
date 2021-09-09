@@ -13,7 +13,9 @@
                     @include('cookieConsent::index')
                 </p>
                 @include('partials.navigation')
-
+            <!-- Begin Breadcrumbs -->
+            @include('partials.bread-crumb')
+            <!-- End Breadcrumbs -->
                 <div class="row-fluid">
                     <main id="content" role="main" class="span9">
                     <!-- Begin Content -->
@@ -23,9 +25,7 @@
                        @include('partials.system-messages')
                     </div>
 
-                    <!-- Begin Breadcrumbs -->
-                    @include('partials.bread-crumb')
-                    <!-- End Breadcrumbs -->
+
 
                     <div class="blog" itemscope itemtype="https://schema.org/Blog">
                         @yield('content')

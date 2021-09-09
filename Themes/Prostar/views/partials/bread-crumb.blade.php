@@ -1,19 +1,36 @@
-<div aria-label="Breadcrumbs" role="navigation">
-    <ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">
 
-        @if (Route::current()->getName() === 'homepage' )
-            <li>
-                You are here: Home
-            </li>
-        @else
-            <li>
-                You are here:
-            </li>
-        @endif
+@switch(basename(\Request::path()))
+    @case ('welcome')
+      {{ Breadcrumbs::render('home') }}
+      @break
+    @case ('logbook')
+      {{ Breadcrumbs::render('logbook') }}
+      @break
+    @case ('posts')
+          {{ Breadcrumbs::render('blog') }}
+      @break
+    @case ('blog/posts/category/software')
+      {{ Breadcrumbs::render('software') }}
+      @break
+    @case ('xeigu-g90')
+        {{ Breadcrumbs::render('xeigu-g90') }}
+        @break
+    @case ('blog/posts/about-digiqrp')
+        {{ Breadcrumbs::render('about') }}
+        @break
+    @case ('contact-us')
+        {{ Breadcrumbs::render('contact-us') }}
+        @break
+    @case ('logbook-stats')
+        {{ Breadcrumbs::render('logstats') }}
+        @break
+    @default
+       @if (strpos(basename(Request::url()), 'digiqrp') !== false)
+           {{ Breadcrumbs::render('home') }}
+       @else
+           {{ Breadcrumbs::render('post') }}
+       @endif
 
-        <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="active">
-            <span style="  padding-left: 0px;" class="breadcrumb" id="breadcrumb" itemprop="name"></span>
-            <meta itemprop="position" content="1">
-        </li>
-    </ul>
-</div>
+@endswitch
+
+

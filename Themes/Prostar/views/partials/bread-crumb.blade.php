@@ -24,6 +24,9 @@
     @case ('logbook-stats')
         {{ Breadcrumbs::render('logstats') }}
         @break
+    @case ('software')
+    {{ Breadcrumbs::render('software') }}
+    @break
     @default
        @if (strpos(basename(Request::url()), 'digiqrp') !== false)
            {{ Breadcrumbs::render('home') }}

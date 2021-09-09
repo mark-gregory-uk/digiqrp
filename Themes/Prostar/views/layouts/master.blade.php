@@ -59,6 +59,8 @@
 
        @include('partials.footer-scripts')
 
+       @mapscripts
+
     </body>
 
 </html>

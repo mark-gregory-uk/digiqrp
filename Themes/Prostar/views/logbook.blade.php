@@ -225,5 +225,22 @@
             callsChart.update(); // finally update our chart
         });
     </script>
+    </div>
+    <div class="well">
+
+        @map([
+        'lat' => 52.38475,
+        'lng' => -1.81982,
+        'zoom' => 9,
+        'markers' => [
+        [
+        'title' => 'G4LCH',
+        'lat' => 52.38475,
+        'lng' => -1.81982,
+        ],
+        ],
+        ])
+
+
 
 @stop

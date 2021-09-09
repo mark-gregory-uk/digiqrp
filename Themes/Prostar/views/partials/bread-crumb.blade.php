@@ -1,4 +1,4 @@
-{{dd(basename(\Request::path()))}}
+
 @switch(basename(\Request::path()))
     @case ('welcome')
       {{ Breadcrumbs::render('home') }}

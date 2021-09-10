@@ -87,6 +87,7 @@
     @mapstyles
 
     {!! Theme::script('js/all.js') !!}
+    {!! Theme::script('js/chart.js') !!}
     @yield('scripts')
 
 </head>

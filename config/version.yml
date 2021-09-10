@@ -5,9 +5,9 @@ current:
   major: 1
   minor: 4
   patch: 6
-  prerelease: ''
+  prerelease: 1-gc839a0aa
   buildmetadata: ''
-  commit: 03ec5c
+  commit: c839a0
   timestamp:
     year: 2021
     month: 9

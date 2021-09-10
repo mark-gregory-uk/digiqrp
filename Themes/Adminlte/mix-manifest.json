@@ -1,5 +1,6 @@
 {
-    "/assets/css/asgard.css": "/assets/css/asgard.css",
-    "/assets/js/main.js": "/assets/js/main.js",
-    "/assets/js/chart.js": "/assets/js/chart.js"
+  "/assets/css/asgard.css": "/assets/css/asgard.css",
+  "/assets/js/main.js": "/assets/js/main.js",
+  "/assets/js/chart.js": "/assets/js/chart.js",
+  "/mix.js": "/mix.js"
 }

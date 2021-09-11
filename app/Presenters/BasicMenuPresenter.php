@@ -35,6 +35,20 @@ class BasicMenuPresenter extends Presenter
      */
     public function getActiveState($item, $state = ' class="active"')
     {
+        $urlSegments = \Request::segments();
+        $target = explode('/',$item->url);
+
+        if (count($urlSegments) === 3 and count($target) === 4){
+           if ($target[3] != 'software' and $target[3] == 'software'){
+               return $state;
+           } else {
+               if ($target[3] === 'software' and count($urlSegments) === 3 and $urlSegments[2] != 'about-digiqrp'){
+                   return $state;
+               }
+           }
+
+        }
+
         return $item->isActive() ? $state : null;
     }
 

@@ -12,7 +12,7 @@
             <ul style="margin-left: 40px;">
                 <?php foreach ($posts as $post): ?>
                     <li>
-                        <h3><a href="{{ URL::route($currentLocale . '.blog.slug', [$post->slug]) }}">{{ $post->title }}</a></h3>
+                        <h3><a href="{{ URL::route($currentLocale . '.blog.slugByCategory', [$post->category,$post->slug]) }}">{{ $post->title }}</a></h3>
                         @if(! empty($post))
                             <div class="moduletable">
                                 <div class="custom"  >
@@ -28,7 +28,7 @@
                     </li>
                     <div class="card-body d-flex flex-column align-items-start">
                         <p class="card-text mb-auto">{!! \Illuminate\Support\Str::limit($post->content, 220, $end='...') !!}</p>
-                        <a href="{{ URL::route($currentLocale . '.blog.slug', [$post->slug]) }}">Continue reading</a>
+                        <a href="{{ URL::route($currentLocale . '.blog.slugByCategory', [$post->category,$post->slug]) }}">Continue reading</a>
                     </div>
                     <div class="clearfix"></div>
                 <?php endforeach; ?>

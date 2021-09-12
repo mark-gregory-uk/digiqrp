@@ -69,9 +69,7 @@ class PublicController extends BasePublicController
     public function byCategory($cat)
     {
         $categoryTrans = CategoryTranslation::where('slug', $cat)->first();
-
         $posts = $this->post->findByCategory($categoryTrans->category_id);
-
         $latestPosts = $this->post->latest();
         $latestContacts = $this->logRepository->latestContacts(($this->maxContacts > 0 ? $this->maxContacts : 4));
         $furthestContacts = $this->logRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
@@ -79,4 +77,17 @@ class PublicController extends BasePublicController
 
         return view('blog.category', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }
+
+    public function slugByCategory($cat,$slug)
+    {
+        $post = $this->post->findBySlug($slug);
+        $latestPosts = $this->post->latest();
+        $latestContacts = $this->logRepository->latestContacts(($this->maxContacts > 0 ? $this->maxContacts : 4));
+        $furthestContacts = $this->logRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
+        $latestSolarReports = $this->solarReportsRepository->latestReports();
+
+        return view('blog.show', compact('post', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
+    }
+
+
 }

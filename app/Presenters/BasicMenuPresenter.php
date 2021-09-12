@@ -38,16 +38,22 @@ class BasicMenuPresenter extends Presenter
         $urlSegments = \Request::segments();
         $target = explode('/',$item->url);
 
-        if (count($urlSegments) === 3 and count($target) === 4){
-           if ($target[3] != 'software' and $target[3] == 'software'){
+        if (count($urlSegments) === 3 and count($target) === 2){
                return $state;
-           } else {
-               if ($target[3] === 'software' and count($urlSegments) === 3 and $urlSegments[2] != 'about-digiqrp'){
-                   return $state;
-               }
-           }
-
         }
+
+        if (count($urlSegments) === 1 and count($target) === 1){
+            if ($target[0] === 'welcome' && $urlSegments[0] === 'logbook-stats')
+                return $state;
+        }
+
+        if (count($urlSegments) === 5 and count($target) === 4){
+            if ($target[3] === $urlSegments[3])
+             return $state;
+            if ($urlSegments[3] === '12')
+                return $state;
+        }
+
 
         return $item->isActive() ? $state : null;
     }

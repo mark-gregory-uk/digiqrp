@@ -22,4 +22,9 @@ $router->group(['prefix' => 'blog'], function (Router $router) {
         'uses'       => 'PublicController@byCategory',
         'middleware' => config('asgard.blog.config.middleware'),
     ]);
+    $router->get('posts/category/{cat}/{slug}', [
+        'as'         => $locale.'.blog.slugByCategory',
+        'uses'       => 'PublicController@slugByCategory',
+        'middleware' => config('asgard.blog.config.middleware'),
+    ]);
 });

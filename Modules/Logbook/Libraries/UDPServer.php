@@ -76,8 +76,12 @@ class UDPServer extends Common
 
                 $response = LogbookController::hamQTH($logEntry->call);
 
-                if ($response['dxcc']['adif'] != '0') {
-                    $logEntry->addCallDetails($this->settings,$response);
+                if ($response){
+                    if ($response['dxcc']['adif'] != '0') {
+                        $logEntry->addCallDetails($this->settings,$response);
+                    } else {
+                        $logEntry->save();
+                    }
                 } else {
                     $logEntry->save();
                 }

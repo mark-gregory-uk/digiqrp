@@ -84,6 +84,9 @@ class LogbookController extends Controller
         curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
 
         $response = curl_exec($cURLConnection);
+        if(curl_errno($cURLConnection)){
+            return null;
+        }
         curl_close($cURLConnection);
 
         $xml = simplexml_load_string($response, 'SimpleXMLElement', LIBXML_NOCDATA);
@@ -157,6 +160,8 @@ class LogbookController extends Controller
             $logbook = Logbook::where('owner_id', '=', 1)->first();
             $counts = LogbookEntry::where('parent_id', '=', $logbook->id)
             ->where('country_slug','!=','')
+            ->where('lat','!=',null)
+            ->where('lng','!=',null)
             ->selectRaw('dxcc_country, count(*) as total')
             ->groupBy('dxcc_country')
             ->pluck('total','dxcc_country')->all();

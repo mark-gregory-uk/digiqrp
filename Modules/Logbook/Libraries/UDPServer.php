@@ -71,17 +71,20 @@ class UDPServer extends Common
                 $endDate = $this->formatDate($record['qso_date_off']);
                 $endTime = $this->formatTime($record['time_off']);
 
-
                 $logEntry->qso_start = $startDate . ' ' . $startTime;
                 $logEntry->qso_end = $endDate . ' ' . $endTime;
 
                 $response = LogbookController::hamQTH($logEntry->call);
-
-                if ($response['dxcc']['adif'] != '0') {
-                    $logEntry->addCallDetails($this->settings,$response);
+                if ($response){
+                    if ($response['dxcc']['adif'] != '0') {
+                        $logEntry->addCallDetails($this->settings,$response);
+                    } else {
+                        $logEntry->save();
+                    }
                 } else {
                     $logEntry->save();
                 }
+
                 Log::info("New Log Entry Processed");
             }
         }

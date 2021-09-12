@@ -38,6 +38,10 @@ class BasicMenuPresenter extends Presenter
         $urlSegments = \Request::segments();
         $target = explode('/',$item->url);
 
+        if (count($urlSegments) === 0 and $target[0] === 'welcome'){
+            return $state;
+        }
+
         if (count($urlSegments) === 3 and count($target) === 2){
                return $state;
         }
@@ -45,6 +49,7 @@ class BasicMenuPresenter extends Presenter
         if (count($urlSegments) === 1 and count($target) === 1){
             if ($target[0] === 'welcome' && $urlSegments[0] === 'logbook-stats')
                 return $state;
+
         }
 
         if (count($urlSegments) === 5 and count($target) === 4){

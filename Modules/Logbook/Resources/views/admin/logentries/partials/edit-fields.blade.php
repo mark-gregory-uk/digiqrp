@@ -12,6 +12,20 @@
         {!! $errors->first("{$lang}.dxcc_country", '<span class="help-block">:message</span>') !!}
     </div>
 
+
+    <div class='form-group{{ $errors->has("{$lang}.lng") ? ' has-error' : '' }}'>
+        {!! Form::label("{$lang}[lng]", 'Longitude') !!}
+        {!! Form::text("lng",$entry->lng, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('page::pages.title')]) !!}
+        {!! $errors->first("{$lang}.lng", '<span class="help-block">:message</span>') !!}
+    </div>
+
+    <div class='form-group{{ $errors->has("{$lang}.lat") ? ' has-error' : '' }}'>
+        {!! Form::label("{$lang}[lat]", 'Latitude') !!}
+        {!! Form::text("lat",$entry->lat, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('page::pages.title')]) !!}
+        {!! $errors->first("{$lang}.lat", '<span class="help-block">:message</span>') !!}
+    </div>
+
+
     <div class='form-group{{ $errors->has("{$lang}.country_slug") ? ' has-error' : '' }}'>
         {!! Form::label("{$lang}[country_slug]", trans('logbook::entry.form.country_slug')) !!}
         {!! Form::text("country_slug", $entry->country_slug, ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('page::pages.slug')]) !!}

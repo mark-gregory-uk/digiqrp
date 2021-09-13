@@ -229,9 +229,9 @@
     <div class="well">
 
         @map([
-        'lat' => 52.38475,
-        'lng' => -1.81982,
-        'zoom' => 6,
+        'lat' => 20.00,
+        'lng' => 10.91982,
+        'zoom' => .8,
         $markers,
         ])
 

@@ -45,6 +45,8 @@ class PublicController extends BasePublicController
     private $setting;
     private $maxCount;
     private $maxContacts;
+    private $mapTargets;
+    private $mapMarkers = [];
 
     private $disabledPage = false;
 
@@ -59,6 +61,15 @@ class PublicController extends BasePublicController
         $this->setting=$setting;
         $this->maxCount = (int)$this->setting->get('logbook::maxcount')->plainValue;
         $this->maxContacts = (int)$this->setting->get('logbook::maxcontacts')->plainValue;
+        $this->mapTargets=$this->logbookRepository->longestContacts(40);
+        foreach($this->mapTargets as $marker)
+        {
+            array_push($this->mapMarkers, array(
+                'title' => $marker->call,
+                'lat' => $marker->lat,
+                'lng' => $marker->lng,
+            ));
+        }
     }
 
     /**
@@ -68,23 +79,14 @@ class PublicController extends BasePublicController
      */
     public function uri($slug)
     {
-
         $page = $this->findPageForSlug($slug);
         $latestPosts = $this->postRepository->latest();
         $latestContacts = $this->logbookRepository->latestContacts(($this->maxContacts > 0 ? $this->maxContacts : 4));
         $furthestContacts = $this->logbookRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
         $contacts = $this->logbookRepository->totalContacts();
+        $markers=$this->mapMarkers;
 
-        $markers = [];
-        foreach($contacts as $f)
-        {
-            array_push($markers, array(
-                'title' => $f->call,
-                'lat' => $f->lat,
-                'lng' => $f->lng,
-            ));
-        }
         $this->throw404IfNotFound($page);
 
         $currentTranslatedPage = $page->getTranslation(locale());
@@ -110,17 +112,7 @@ class PublicController extends BasePublicController
         $latestContacts = $this->logbookRepository->latestContacts(($this->maxContacts > 0 ? $this->maxContacts : 4));
         $furthestContacts = $this->logbookRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
-
-        $markers = [];
-        foreach($contacts as $f)
-        {
-            array_push($markers, array(
-                'title' => $f->call,
-                'lat' => $f->lat,
-                'lng' => $f->long,
-            ));
-        }
-
+        $markers=$this->mapMarkers;
 
         $this->throw404IfNotFound($page);
 

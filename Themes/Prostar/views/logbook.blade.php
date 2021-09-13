@@ -108,7 +108,7 @@
                     { 'visible':window.innerWidth < 700 ? false : true, 'targets': [2,3] }
                 ],
                 ajax: "{{ route('logbook.all') }}",
-                scrollY:        350,
+                scrollY:        250,
                 scrollCollapse: true,
                 columns: [
                     {
@@ -167,6 +167,7 @@
       });
     </script>
     <div class="well">
+    <h3>Total Contacts</h3>
     <canvas id="calls" width="400" height="200"></canvas>
     <script>
         var ctx = document.getElementById('calls').getContext('2d');
@@ -227,7 +228,7 @@
     </script>
     </div>
     <div class="well">
-
+<h3>Longest Contacts</h3>
         @map([
         'lat' => 20.00,
         'lng' => 10.91982,

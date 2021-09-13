@@ -74,18 +74,25 @@ class UDPServer extends Common
                 $logEntry->qso_start = $startDate . ' ' . $startTime;
                 $logEntry->qso_end = $endDate . ' ' . $endTime;
 
-                $response = LogbookController::hamQTH($logEntry->call);
+                 $existingEntry = Logbook::where('call','=',$record['call'])->first();
 
-                if ($response){
-                    if ($response['dxcc']['adif'] != '0') {
-                        $logEntry->addCallDetails($this->settings,$response);
-                    } else {
-                        $logEntry->save();
-                    }
-                } else {
-                    $logEntry->save();
-                }
+                 // Check for an existing entry
+                 if ($existingEntry){
+                     $logEntry->addExistingCallDetails($existingEntry);
+                 } else
+                 {
+                     $response = LogbookController::hamQTH($logEntry->call);
 
+                     if ($response){
+                         if ($response['dxcc']['adif'] != '0') {
+                             $logEntry->addCallDetails($this->settings,$response);
+                         } else {
+                             $logEntry->save();
+                         }
+                     } else {
+                         $logEntry->save();
+                     }
+                 }
                 Log::info("New Log Entry Processed");
             }
         }

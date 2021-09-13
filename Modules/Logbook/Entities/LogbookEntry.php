@@ -71,6 +71,22 @@ class LogbookEntry extends Model
     }
 
     /**
+     * populate from exisitng log entry
+     * @param LogbookEntry $existingEntry
+     */
+    public function addExistingCallDetails(LogbookEntry $existingEntry)
+    {
+        $this->dxcc_country = $existingEntry->dxcc_country;
+        $this->lat = $existingEntry->lat;
+        $this->lng = $existingEntry->lng;
+        $this->itu = $existingEntry->itu;
+        $this->country_slug = $existingEntry->country_slug;
+        $this->distance_km = $existingEntry->distance_km;
+        $this->distance_miles = $existingEntry->distance_miles;
+        $this->save();
+    }
+
+    /**
      * Adds new values to key variables.
      *
      * @param $response

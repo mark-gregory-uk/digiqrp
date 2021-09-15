@@ -33,15 +33,15 @@
                 <!-- Begin Right Sidebar -->
                 @include('partials.calllookup')
                 @include('partials.latest-posts')
-                @if (Request::path() != 'welcome')
+                @if (Request::path() != 'welcome' or Request::path() != '/')
                     @include('partials.latest-contacts')
                 @endif
                 @include('partials.furthest-contacts')
-                @if (Request::path() != 'welcome')
+                @if (Request::path() != 'welcome' or Request::path() != '/')
                   @include('partials.logchart')
                   @include('partials.solar-report')
                 @endif
-                @if ( (Request::path() != 'welcome') and (Request::path() != 'logbook-stats'))
+                @if ( (Request::path() != 'welcome') and (Request::path() != 'logbook-stats') and Request::path() != '/')
                     @include('partials.sunspot-trend')
                 @endif
 

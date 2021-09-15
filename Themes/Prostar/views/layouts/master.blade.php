@@ -14,7 +14,7 @@
                 </p>
                 @include('partials.navigation')
             <!-- Begin Breadcrumbs -->
-            @include('partials.bread-crumb')
+              @include('partials.bread-crumb')
             <!-- End Breadcrumbs -->
                 <div class="row-fluid">
                     <main id="content" role="main" class="span9">
@@ -33,11 +33,11 @@
                 <!-- Begin Right Sidebar -->
                 @include('partials.calllookup')
                 @include('partials.latest-posts')
-                @if (Request::path() != 'welcome' or Request::path() != '/')
+                @if (Request::path() != 'welcome' and Request::path() != '/')
                     @include('partials.latest-contacts')
                 @endif
                 @include('partials.furthest-contacts')
-                @if (Request::path() != 'welcome' or Request::path() != '/')
+                @if (Request::path() != 'welcome' and Request::path() != '/')
                   @include('partials.logchart')
                   @include('partials.solar-report')
                 @endif

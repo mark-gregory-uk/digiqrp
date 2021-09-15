@@ -158,8 +158,6 @@ class CallBookController extends Controller
 
     public function getHamQthDetails($call){
 
-        $this->getHamQTHActivity($call);
-
         $sessionId = null;
         $cURLConnection = curl_init();
         if (! Cache::has('hamqth')){
@@ -207,7 +205,7 @@ class CallBookController extends Controller
 
         $call = $request->get('callSign');
 
-        $details = json_decode($this->getHamQthDetails($call,$this->settings));
+        //$details = json_decode($this->getHamQthDetails($call,$this->settings));
 
         if ($call){
             $dataPath = module_path('CallBook').'/Libraries/cty.dat';

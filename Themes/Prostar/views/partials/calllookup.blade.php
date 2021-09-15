@@ -32,7 +32,7 @@
                     jQuery('#call').text(result.call);
                     jQuery('#continent').text(result.continent);
                     jQuery('#timezone').text(result.timezone);
-                    $('#callsign').removeClass("valid").removeClass("invalid")
+                    $('#callsign').removeClass("valid").removeClass("invalid").val('');
                 }
             });
         } else {

@@ -49,10 +49,7 @@ my $lidadditions="^QRP\$|^LGT\$";
 my $csadditions="(^P\$)|(^M{1,2}\$)|(^AM\$)|(^A\$)";
 
 if (!$ARGV[0] || ($ARGV[0] =~ /-[^mg]/)) {
-	print "$credits
-
-Usage:  dxcc <callsign>\n\n";
-
+	print "Usage:  dxcc <callsign>\n\n";
 	exit;
 }
 else {
@@ -62,18 +59,19 @@ else {
 }
 
 unless ($gui) {
+
 	my @dxcc = &dxcc("\U$args");
 
 	my ($bearing, $distance) = &qrbqtf($mylat, $mylon, $dxcc[4], $dxcc[5]);
 
 	print "\U$args\n\n";
-	print "Main Prefix:    $dxcc[7]\n";
+	print "$dxcc[7]\n"; #Main Prefix:
 	print "$dxcc[0]\n";
-	print "WAZ Zone:       $dxcc[1]\n";
-	print "ITU Zone:       $dxcc[2]\n";
+	print "$dxcc[1]\n"; # WAZ Zone:
+	print "$dxcc[2]\n"; #ITU Zone:
 	print "$dxcc[3]\n";
-	print "Latitude:       $dxcc[4]\n";
-	print "Longitude:      $dxcc[5]\n";
+	print "$dxcc[4]\n"; #Latitude:
+	print "$dxcc[5]\n"; #Longitude:
 	print "$dxcc[6]\n";
 }
 

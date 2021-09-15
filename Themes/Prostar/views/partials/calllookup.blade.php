@@ -1,5 +1,13 @@
 
 <script>
+
+    $('#callsign').on('input', function() {
+        var input=$(this);
+        var is_name= $('#callsign').val();
+        if(is_name){ $('#callsign').removeClass("invalid").addClass("valid");}
+        else{ $('#callsign').removeClass("valid").addClass("invalid");}
+    });
+
     $('#btn-save').submit(function(e) {
         e.preventDefault();
         $('#formModal').modal('hide');
@@ -8,22 +16,27 @@
 
     function getMessage(){
         let callsign = $('#callsign').val();
-
-        $.ajax({
-            type:'POST',
-            url:'/callbook/lookup',
-            data:{
-                "_token": "{{ csrf_token() }}",
-                callSign:callsign
-            },
-            success: function(result) {
-                console.log(result);
-                jQuery('#formModal').modal('show');
-                jQuery('#country').text(result.country);
-                jQuery('#call').text(result.call);
-                jQuery('#continent').text(result.continent);
-            }
-        });
+        $('#callsign').removeClass("invalid").addClass("valid")
+        if (callsign.length > 0){
+            $.ajax({
+                type:'POST',
+                url:'/callbook/lookup',
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    callSign:callsign
+                },
+                success: function(result) {
+                    console.log(result);
+                    jQuery('#formModal').modal('show');
+                    jQuery('#country').text(result.country);
+                    jQuery('#call').text(result.call);
+                    jQuery('#continent').text(result.continent);
+                    $('#callsign').removeClass("valid").removeClass("invalid")
+                }
+            });
+        } else {
+            $('#callsign').removeClass("valid").addClass("invalid")
+        }
     }
     $(document).on('click', '#getCall', function(event) {
         event.preventDefault();
@@ -33,13 +46,33 @@
 
 </script>
 
+<style>
+    .error{
+        display: none;
+        margin-left: 10px;
+    }
+
+    .error_show{
+        color: red;
+        margin-left: 10px;
+    }
+    input.invalid, textarea.invalid{
+        border: 2px solid red;
+    }
+
+    input.valid, textarea.valid{
+        border: 2px solid green;
+    }
+</style>
+
 <div class="well">
-    <h3 class="page-header">Call Lookup </h3>
+    <h4 class="page-header">Callsign Country Lookup </h4>
     <form method="post" action="#" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group row">
             <div class="col-sm-2">
-                <input style="width: auto;margin-left: 13px;" id="callsign" name="callsign" maxlength="15" type="text" class="form-control" placeholder="Call Sign">
+                <input style="width: auto;margin-left: 19px;" id="callsign" name="callsign" maxlength="15" type="text" class="form-control" placeholder="Call Sign">
+                <span class="error">A valid callsign is required</span>
             </div>
         </div>
 

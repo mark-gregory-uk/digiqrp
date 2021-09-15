@@ -55,4 +55,24 @@ class EloquentLogbookRepository extends EloquentBaseRepository implements Logboo
 
         return $logEntries;
     }
+
+
+
+    /**
+     * get longest contacts
+     * @param Integer $maxCount
+     * @return mixed
+     */
+    public function contactsForMap()
+    {
+        $user = 1;
+        $defaultLogBook = $this->where('owner_id', $user)->where('default', true)->distinct('call')->first();
+
+        $logEntries = $defaultLogBook->entries()->where('distance_km','>',3000 )->get();
+        $logEntries = $logEntries->unique('call');
+
+        return $logEntries;
+    }
+
+
 }

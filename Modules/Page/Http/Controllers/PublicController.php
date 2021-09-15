@@ -61,7 +61,8 @@ class PublicController extends BasePublicController
         $this->setting=$setting;
         $this->maxCount = (int)$this->setting->get('logbook::maxcount')->plainValue;
         $this->maxContacts = (int)$this->setting->get('logbook::maxcontacts')->plainValue;
-        $this->mapTargets=$this->logbookRepository->longestContacts(40);
+        $this->mapTargets=$this->logbookRepository->contactsForMap();
+
         foreach($this->mapTargets as $marker)
         {
             array_push($this->mapMarkers, array(

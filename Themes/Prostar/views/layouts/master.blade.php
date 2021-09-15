@@ -33,9 +33,8 @@
                 <!-- Begin Right Sidebar -->
                 @include('partials.calllookup')
                 @include('partials.latest-posts')
-                @if (Request::path() != 'welcome' and Request::path() != '/')
-                    @include('partials.latest-contacts')
-                @endif
+                @include('partials.latest-contacts')
+
                 @include('partials.furthest-contacts')
                 @if (Request::path() != 'welcome' and Request::path() != '/')
                   @include('partials.logchart')

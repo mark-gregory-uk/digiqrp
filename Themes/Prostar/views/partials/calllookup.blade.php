@@ -88,13 +88,15 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="formModalLabel">Callsign Details</h4>
+                    <h3>CallSign Country Data</h3>
                 </div>
                 <div class="modal-body">
+
+                    <p>The following information has been recovered for this station.</p>
                         <div class="form-group">
-                           <span id="call"></span>
-                           <span id="country"></span>
-                            <span id="continent"></span>
+                            <span id="call"></span><br>
+                           <span id="country"></span><br>
+                           <span id="continent"></span><br>
                         </div>
                 </div>
                 <div class="modal-footer">

@@ -100,7 +100,6 @@ class CallBookController extends Controller
         //
     }
 
-
     public function getHamQTHActivity($call){
 
         $sessionId = null;
@@ -199,7 +198,6 @@ class CallBookController extends Controller
         $xml = simplexml_load_string($response, 'SimpleXMLElement', LIBXML_NOCDATA);
         return (string) $xml->session[0]->session_id;
     }
-
 
     public function lookup(Request $request){
 

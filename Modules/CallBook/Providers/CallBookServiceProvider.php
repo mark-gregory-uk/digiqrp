@@ -4,9 +4,11 @@ namespace Modules\CallBook\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Modules\Core\Traits\CanPublishConfiguration;
 
 class CallBookServiceProvider extends ServiceProvider
 {
+    use CanPublishConfiguration;
     /**
      * @var string $moduleName
      */
@@ -27,6 +29,7 @@ class CallBookServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
+        $this->publishConfig('CallBook', 'settings');
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
     }
 
@@ -54,6 +57,7 @@ class CallBookServiceProvider extends ServiceProvider
             module_path($this->moduleName, 'Config/config.php'), $this->moduleNameLower
         );
     }
+
 
     /**
      * Register views.

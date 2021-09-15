@@ -5,9 +5,32 @@ namespace Modules\CallBook\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Cache;
+use Modules\Setting\Contracts\Setting;
 
 class CallBookController extends Controller
 {
+
+    /**
+     * @var Setting
+     */
+    private $settings;
+    private $hamQthUserName;
+    private $hamQthPassword;
+    private $hamQthBaseUrl;
+    private $hamQthBioURL;
+    private $hamQthRecentActivityURL;
+
+    public function __construct(Setting $settings)
+    {
+        $this->settings = $settings;
+        $this->hamQthUserName =  $this->settings->get('callbook::username');
+        $this->hamQthPassword = $this->settings->get('callbook::password');;
+        $this->hamQthBaseUrl = $this->settings->get('callbook::base_xml_url');
+        $this->hamQthBioURL = $this->settings->get('callbook::bio_url');
+        $this->hamQthRecentActivityURL = $this->settings->get('callbook::recent_activity_url');
+    }
+
     /**
      * Display a listing of the resource.
      * @return Renderable
@@ -78,9 +101,114 @@ class CallBookController extends Controller
     }
 
 
+    public function getHamQTHActivity($call){
+
+        $sessionId = null;
+        $cURLConnection = curl_init();
+        if (! Cache::has('hamqth')){
+            $sessionId = $this->getHamQthKey();
+            Cache::put('hamqth', $sessionId,3600);
+        } else {
+            $sessionId = Cache::get('hamqth');
+        }
+
+        $targetUrl = "$this->hamQthRecentActivityURL?id=$sessionId&callsign=$call&rec_activity=1&log_activity=1&logbook=1";
+
+        curl_setopt($cURLConnection, CURLOPT_URL, $targetUrl);
+        curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($cURLConnection);
+        if(curl_errno($cURLConnection)){
+            return null;
+        }
+        curl_close($cURLConnection);
+
+        $xml = simplexml_load_string($response, 'SimpleXMLElement', LIBXML_NOCDATA);
+
+        return json_encode($xml);
+
+    }
+
+    public function getHamQTHBio($call){
+
+        $sessionId = null;
+        $cURLConnection = curl_init();
+        if (! Cache::has('hamqth')){
+            $sessionId = $this->getHamQthKey();
+            Cache::put('hamqth', $sessionId,3600);
+        } else {
+            $sessionId = Cache::get('hamqth');
+        }
+
+        $targetUrl = "$this->hamQthBioURL?id=$sessionId&callsign=$call&strip_html=1";
+
+        curl_setopt($cURLConnection, CURLOPT_URL, $targetUrl);
+        curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($cURLConnection);
+        if(curl_errno($cURLConnection)){
+            return null;
+        }
+        curl_close($cURLConnection);
+
+        $xml = simplexml_load_string($response, 'SimpleXMLElement', LIBXML_NOCDATA);
+
+        return json_encode($xml);
+    }
+
+    public function getHamQthDetails($call){
+
+        $this->getHamQTHActivity($call);
+
+        $sessionId = null;
+        $cURLConnection = curl_init();
+        if (! Cache::has('hamqth')){
+            $sessionId = $this->getHamQthKey();
+            Cache::put('hamqth', $sessionId,3600);
+        } else {
+            $sessionId = Cache::get('hamqth');
+        }
+
+        $targetUrl = "$this->hamQthBaseUrl?id=$sessionId&callsign=$call";
+
+        curl_setopt($cURLConnection, CURLOPT_URL, $targetUrl);
+        curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($cURLConnection);
+        if(curl_errno($cURLConnection)){
+            return null;
+        }
+        curl_close($cURLConnection);
+
+        $xml = simplexml_load_string($response, 'SimpleXMLElement', LIBXML_NOCDATA);
+
+        return json_encode($xml);
+
+    }
+
+    private function getHamQthKey(){
+        $cURLConnection = curl_init();
+
+        curl_setopt($cURLConnection, CURLOPT_URL, "$this->hamQthBaseUrl?u=$this->hamQthUserName&p=$this->hamQthPassword");
+        curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($cURLConnection);
+        if(curl_errno($cURLConnection)){
+            return null;
+        }
+        curl_close($cURLConnection);
+
+        $xml = simplexml_load_string($response, 'SimpleXMLElement', LIBXML_NOCDATA);
+        return (string) $xml->session[0]->session_id;
+    }
+
+
     public function lookup(Request $request){
 
         $call = $request->get('callSign');
+
+        $details = json_decode($this->getHamQthDetails($call,$this->settings));
+
         if ($call){
             $dataPath = module_path('CallBook').'/Libraries/cty.dat';
             if (file_exists(module_path('CallBook').'/Libraries/dxcc.pl')){

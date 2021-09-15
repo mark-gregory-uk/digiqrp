@@ -6,6 +6,7 @@ namespace Modules\Logbook\Libraries;
 
 use Illuminate\Support\Facades\Log;
 use Modules\Logbook\Entities\Logbook;
+use Modules\Logbook\Entities\LogbookEntry;
 use Modules\Setting\Support\Settings;
 use Modules\Logbook\Http\Controllers\LogbookController;
 
@@ -74,7 +75,7 @@ class UDPServer extends Common
                 $logEntry->qso_start = $startDate . ' ' . $startTime;
                 $logEntry->qso_end = $endDate . ' ' . $endTime;
 
-                 $existingEntry = Logbook::where('call','=',$record['call'])->first();
+                 $existingEntry = LogbookEntry::where('call','=',$record['call'])->first();
 
                  // Check for an existing entry
                  if ($existingEntry){

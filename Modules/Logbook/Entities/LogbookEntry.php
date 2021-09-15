@@ -80,6 +80,7 @@ class LogbookEntry extends Model
         $this->lat = $existingEntry->lat;
         $this->lng = $existingEntry->lng;
         $this->itu = $existingEntry->itu;
+        $this->grid = $existingEntry->grid;
         $this->country_slug = $existingEntry->country_slug;
         $this->distance_km = $existingEntry->distance_km;
         $this->distance_miles = $existingEntry->distance_miles;

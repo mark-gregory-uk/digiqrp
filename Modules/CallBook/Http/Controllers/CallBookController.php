@@ -82,8 +82,9 @@ class CallBookController extends Controller
 
         $call = $request->get('callSign');
         if ($call){
+            $dataPath = module_path('CallBook').'/Libraries/cty.dat';
             if (file_exists(module_path('CallBook').'/Libraries/dxcc.pl')){
-                exec('/usr/bin/perl '.module_path('CallBook').'/Libraries/dxcc.pl '.$call,$output);
+                exec('/usr/bin/perl '.module_path('CallBook').'/Libraries/dxcc.pl '.$call .' '.$dataPath,$output);
                 return response()->json(['call'=>$output[0],'country'=>$output[3],'continent' => $output[6]]);
             }
         }

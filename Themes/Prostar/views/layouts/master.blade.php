@@ -36,6 +36,7 @@
                 <!-- Begin Right Sidebar -->
                 @include('partials.latest-posts')
                 @include('partials.latest-contacts')
+                @include('partials.calllookup')
                 @include('partials.furthest-contacts')
                 @include('partials.logchart')
                 @include('partials.solar-report')

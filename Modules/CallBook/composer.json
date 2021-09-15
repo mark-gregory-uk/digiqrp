@@ -17,7 +17,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\CallBook\\": ""
+            "Modules\\CallBook\\": "",
+            "Libraries\\": "Libraries/"
         }
     }
 }

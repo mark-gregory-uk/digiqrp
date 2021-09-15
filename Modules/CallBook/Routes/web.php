@@ -12,5 +12,5 @@
 */
 
 Route::prefix('callbook')->group(function() {
-    Route::get('/', 'CallBookController@index');
+    Route::post('/lookup', 'CallBookController@lookup');
 });

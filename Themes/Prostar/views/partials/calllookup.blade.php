@@ -31,6 +31,7 @@
                     jQuery('#country').text(result.country);
                     jQuery('#call').text(result.call);
                     jQuery('#continent').text(result.continent);
+                    jQuery('#timezone').text(result.timezone);
                     $('#callsign').removeClass("valid").removeClass("invalid")
                 }
             });
@@ -79,9 +80,6 @@
         <div style="float: right;margin-right: -14px;" class="col-sm-4">
             <button id="getCall" type="button" class="btn btn-primary">Search</button>
         </div>
-
-
-
     </form>
 
     <div style="width: 240px;" class="modal fade" id="formModal" aria-hidden="true">
@@ -94,9 +92,10 @@
 
                     <p>The following information has been recovered for this station.</p>
                         <div class="form-group">
-                            <span id="call"></span><br>
-                           <span id="country"></span><br>
-                           <span id="continent"></span><br>
+                           <span>Callsign: </span><span id="call"></span><br>
+                           <span>Country:  </span><span id="country"></span><br>
+                           <span>Continent: </span><span id="continent"></span><br>
+                           <span>GMT Offset: </span><span id="timezone"></span><br>
                         </div>
                 </div>
                 <div class="modal-footer">

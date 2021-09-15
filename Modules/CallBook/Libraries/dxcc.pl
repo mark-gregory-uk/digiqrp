@@ -74,7 +74,7 @@ unless ($gui) {
 	print "$dxcc[3]\n";
 	print "Latitude:       $dxcc[4]\n";
 	print "Longitude:      $dxcc[5]\n";
-	print "UTC shift:      $dxcc[6]\n";
+	print "$dxcc[6]\n";
 }
 
 ###############################################################################

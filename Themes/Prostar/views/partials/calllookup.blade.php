@@ -72,7 +72,7 @@
         {{ csrf_field() }}
         <div class="form-group row">
             <div class="col-sm-2">
-                <input style="width: auto;margin-left: 19px;" id="callsign" name="callsign" maxlength="15" type="text" class="form-control" placeholder="Call Sign">
+                <input style="height:auto; width: auto;margin-left: 19px;" id="callsign" name="callsign" maxlength="15" type="text" class="form-control" placeholder="Call Sign">
                 <span class="error">A valid callsign is required</span>
             </div>
         </div>

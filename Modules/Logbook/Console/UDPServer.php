@@ -3,6 +3,7 @@
 namespace Modules\Logbook\Console;
 
 use Illuminate\Console\Command;
+use Modules\Notification\Services\Notification;
 use Modules\Setting\Support\Settings;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -15,6 +16,7 @@ class UDPServer extends Command
      * @var Settings
      */
     private $settings;
+    private $notification;
 
     /**
      * The name and signature of the console command.
@@ -35,9 +37,10 @@ class UDPServer extends Command
      *
      * @return void
      */
-    public function __construct(Settings $settings)
+    public function __construct(Settings $settings, Notification $notification)
     {
         $this->settings = $settings;
+        $this->notification = $notification;
         parent::__construct();
     }
 
@@ -49,7 +52,7 @@ class UDPServer extends Command
     public function handle()
     {
         $server =  new \Modules\Logbook\Libraries\UDPServer();
-        $server->listener($this->settings,false);
+        $server->listener($this->notification,$this->settings,false);
     }
 
     /**

@@ -199,6 +199,32 @@ class CallBookController extends Controller
         return (string) $xml->session[0]->session_id;
     }
 
+    /**
+     * Call to HamQTH for call-sign Data. with DXCC like call
+     *
+     * @param $callsign
+     *
+     * @return mixed
+     */
+    public static function hamQTHLookup($callsign)
+    {
+        $cURLConnection = curl_init();
+
+        curl_setopt($cURLConnection, CURLOPT_URL, 'https://www.hamqth.com/dxcc.php?callsign='.$callsign);
+        curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($cURLConnection);
+        if(curl_errno($cURLConnection)){
+            return null;
+        }
+        curl_close($cURLConnection);
+
+        $xml = simplexml_load_string($response, 'SimpleXMLElement', LIBXML_NOCDATA);
+        $json = json_encode($xml);
+
+        return json_decode($json, true);
+    }
+
     public function lookup(Request $request){
 
         $call = $request->get('callSign');
@@ -213,4 +239,6 @@ class CallBookController extends Controller
             }
         }
     }
+
+
 }

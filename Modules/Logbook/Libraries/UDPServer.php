@@ -5,10 +5,10 @@ namespace Modules\Logbook\Libraries;
 
 
 use Illuminate\Support\Facades\Log;
+use Modules\CallBook\Http\Controllers\CallBookController;
 use Modules\Logbook\Entities\Logbook;
 use Modules\Logbook\Entities\LogbookEntry;
 use Modules\Setting\Support\Settings;
-use Modules\Logbook\Http\Controllers\LogbookController;
 
 class UDPServer extends Common
 {
@@ -82,7 +82,7 @@ class UDPServer extends Common
                      $logEntry->addExistingCallDetails($existingEntry);
                  } else
                  {
-                     $response = LogbookController::hamQTH($logEntry->call);
+                     $response = CallBookController::hamQTHLookup($logEntry->call);
 
                      if ($response){
                          if ($response['dxcc']['adif'] != '0') {

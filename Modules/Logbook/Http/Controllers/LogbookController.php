@@ -70,32 +70,6 @@ class LogbookController extends Controller
     }
 
     /**
-     * Call to HamQTH for call-sign Data.
-     *
-     * @param $callsign
-     *
-     * @return mixed
-     */
-    public static function hamQTH($callsign)
-    {
-        $cURLConnection = curl_init();
-
-        curl_setopt($cURLConnection, CURLOPT_URL, 'https://www.hamqth.com/dxcc.php?callsign='.$callsign);
-        curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
-
-        $response = curl_exec($cURLConnection);
-        if(curl_errno($cURLConnection)){
-            return null;
-        }
-        curl_close($cURLConnection);
-
-        $xml = simplexml_load_string($response, 'SimpleXMLElement', LIBXML_NOCDATA);
-        $json = json_encode($xml);
-
-        return json_decode($json, true);
-    }
-
-    /**
      * Ajax Method for displaying the logbook entries.
      *
      * @param Request $request

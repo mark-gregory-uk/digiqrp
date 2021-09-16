@@ -7,6 +7,7 @@ use DateTime;
 use DateTimeZone;
 use Illuminate\Http\Request;
 use Log;
+use Modules\CallBook\Http\Controllers\CallBookController;
 use Modules\Logbook\Entities\Logbook;
 use Modules\Logbook\Entities\LogbookEntry;
 use Modules\Logbook\Libraries\ADIF_Parser;
@@ -64,7 +65,7 @@ class LogbookController extends Controller
                 $logEntry->qso_start = $startDate .' '. $startTime;
                 $logEntry->qso_end = $endDate .' '. $endTime;
 
-                $response = \Modules\Logbook\Http\Controllers\LogbookController::hamQTH($logEntry->call);
+                $response = CallBookController::hamQTHLookup($logEntry->call);
 
                 if ($response['dxcc']['adif'] != '0') {
                     $logEntry->addCallDetails($this->settings,$response);

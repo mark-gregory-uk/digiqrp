@@ -3,6 +3,7 @@
 namespace Modules\Logbook\Console;
 
 use Illuminate\Console\Command;
+use Modules\CallBook\Http\Controllers\CallBookController;
 use Modules\Logbook\Http\Controllers\LogbookController;
 use Modules\Setting\Support\Settings;
 use Symfony\Component\Console\Input\InputOption;
@@ -50,7 +51,7 @@ class CallChecker extends Command
         $user_lng = $this->settings->get('logbook::longitude');
 
         $callSign = $this->ask('Enter station callsign');
-        $response = LogbookController::hamQTH($callSign);
+        $response = CallBookController::hamQTHLookup($callSign);
         $this->info(var_dump($response));
     }
 

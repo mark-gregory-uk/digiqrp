@@ -32,10 +32,10 @@ class UDPServer extends Common
      * @param bool $debug
      * @return \Illuminate\Http\JsonResponse
      */
-    public function listener( Settings $settings,Notification $notification,bool $debug = false)
+    public function listener( Settings $settings,bool $debug = false)
     {
         $this->settings = $settings;
-        $this->$notification = $notification;
+        //$this->$notification = $notification;
         while (1) {
             $r = socket_recvfrom($this->socket, $buf, 512, 0, $remote_ip, $remote_port);
 
@@ -98,7 +98,7 @@ class UDPServer extends Common
                          $logEntry->save();
                      }
                  }
-                $this->notification->push('New Station Logged', $logEntry->call.' Logged' , 'fa fa-hand-peace-o text-green', route('admin.user.user.index'));
+                //$this->notification->push('New Station Logged', $logEntry->call.' Logged' , 'fa fa-hand-peace-o text-green', route('admin.user.user.index'));
 
                 Log::info("New Log Entry Processed");
             }

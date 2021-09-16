@@ -20,9 +20,9 @@ class UDPServer extends Common
 
     private $notification;
 
-    public function __construct(Notification $notification)
+    public function __construct()
     {
-        $this->$notification = $notification;
+        //$this->$notification = $notification;
         parent::__construct();
 
     }

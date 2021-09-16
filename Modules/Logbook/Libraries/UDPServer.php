@@ -98,7 +98,7 @@ class UDPServer extends Common
                          $logEntry->save();
                      }
                  }
-                $this->notification->push('New Station Logged', $logEntry->call.' Logged' , 'fa fa-hand-peace-o text-green', route('admin.user.user.index'));
+                //$this->notification->push('New Station Logged', $logEntry->call.' Logged' , 'fa fa-hand-peace-o text-green', route('admin.user.user.index'));
 
                 Log::info("New Log Entry Processed");
             }

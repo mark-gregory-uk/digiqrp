@@ -1,42 +1,27 @@
 <?php
 
 use Illuminate\Routing\Router;
-/** @var Router $router */
 
-$router->group(['prefix' =>'/notification'], function (Router $router) {
-    $router->bind('notification', function ($id) {
-        return app('Modules\Notification\Repositories\NotificationRepository')->find($id);
-    });
+/** @var Router $router */
+$router->group(['prefix' => '/notification'], function (Router $router) {
     $router->get('notifications', [
         'as' => 'admin.notification.notification.index',
-        'uses' => 'NotificationController@index',
-        'middleware' => 'can:notification.notifications.index'
+        'uses' => 'NotificationsController@index',
+        'middleware' => 'can:notification.notifications.index',
     ]);
-    $router->get('notifications/create', [
-        'as' => 'admin.notification.notification.create',
-        'uses' => 'NotificationController@create',
-        'middleware' => 'can:notification.notifications.create'
+    $router->get('notifications/markAllAsRead', [
+        'as' => 'admin.notification.notification.markAllAsRead',
+        'uses' => 'NotificationsController@markAllAsRead',
+        'middleware' => 'can:notification.notifications.markAllAsRead',
     ]);
-    $router->post('notifications', [
-        'as' => 'admin.notification.notification.store',
-        'uses' => 'NotificationController@store',
-        'middleware' => 'can:notification.notifications.create'
-    ]);
-    $router->get('notifications/{notification}/edit', [
-        'as' => 'admin.notification.notification.edit',
-        'uses' => 'NotificationController@edit',
-        'middleware' => 'can:notification.notifications.edit'
-    ]);
-    $router->put('notifications/{notification}', [
-        'as' => 'admin.notification.notification.update',
-        'uses' => 'NotificationController@update',
-        'middleware' => 'can:notification.notifications.edit'
+    $router->delete('notifications/destroyAll', [
+        'as' => 'admin.notification.notification.destroyAll',
+        'uses' => 'NotificationsController@destroyAll',
+        'middleware' => 'can:notification.notifications.destroyAll',
     ]);
     $router->delete('notifications/{notification}', [
         'as' => 'admin.notification.notification.destroy',
-        'uses' => 'NotificationController@destroy',
-        'middleware' => 'can:notification.notifications.destroy'
+        'uses' => 'NotificationsController@destroy',
+        'middleware' => 'can:notification.notifications.destroy',
     ]);
-// append
-
 });

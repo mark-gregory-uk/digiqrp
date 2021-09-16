@@ -14,6 +14,8 @@ use Modules\Page\Entities\Page;
 use Modules\Page\Repositories\PageRepository;
 use Modules\Setting\Repositories\SettingRepository;
 use Modules\Solar\Repositories\SolarRepository;
+use Modules\Notification\Services\Notification;
+
 
 class PublicController extends BasePublicController
 {
@@ -37,6 +39,8 @@ class PublicController extends BasePublicController
      */
     private $solarReportsRepository;
 
+    private $notification;
+
     /**
      * @var Application
      */
@@ -50,9 +54,10 @@ class PublicController extends BasePublicController
 
     private $disabledPage = false;
 
-    public function __construct(PageRepository $page, PostRepository $postsRepository, LogbookRepository $logBookRepository, SolarRepository $solarRepository, Application $app,SettingRepository $setting)
+    public function __construct(PageRepository $page, PostRepository $postsRepository, LogbookRepository $logBookRepository, SolarRepository $solarRepository, Application $app,SettingRepository $setting, Notification $notification)
     {
         parent::__construct();
+        $this->notification = $notification;
         $this->page = $page;
         $this->app = $app;
         $this->postRepository = $postsRepository;

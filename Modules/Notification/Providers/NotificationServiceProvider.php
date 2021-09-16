@@ -2,16 +2,22 @@
 
 namespace Modules\Notification\Providers;
 
-use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 use Illuminate\Support\ServiceProvider;
-use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Core\Events\BuildingSidebar;
-use Modules\Core\Events\LoadingBackendTranslations;
-use Modules\Notification\Listeners\RegisterNotificationSidebar;
+use Modules\Core\Traits\CanGetSidebarClassForModule;
+use Modules\Core\Traits\CanPublishConfiguration;
+use Modules\Notification\Composers\NotificationViewComposer;
+use Modules\Notification\Entities\Notification;
+use Modules\Notification\Events\Handlers\RegisterNotificationSidebar;
+use Modules\Notification\Repositories\Cache\CacheNotificationDecorator;
+use Modules\Notification\Repositories\Eloquent\EloquentNotificationRepository;
+use Modules\Notification\Repositories\NotificationRepository;
+use Modules\Notification\Services\AsgardNotification;
+use Modules\User\Contracts\Authentication;
 
 class NotificationServiceProvider extends ServiceProvider
 {
-    use CanPublishConfiguration;
+    use CanPublishConfiguration, CanGetSidebarClassForModule;
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -27,21 +33,18 @@ class NotificationServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerBindings();
-        $this->app['events']->listen(BuildingSidebar::class, RegisterNotificationSidebar::class);
+        $this->registerViewComposers();
 
-        $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
-            $event->load('notifications', array_dot(trans('notification::notifications')));
-            // append translations
-
-        });
-
-
+        $this->app['events']->listen(
+            BuildingSidebar::class,
+            $this->getSidebarClassForModule('blog', RegisterNotificationSidebar::class)
+        );
     }
 
     public function boot()
     {
+        $this->publishConfig('notification', 'config');
         $this->publishConfig('notification', 'permissions');
-
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 
@@ -58,20 +61,25 @@ class NotificationServiceProvider extends ServiceProvider
     private function registerBindings()
     {
         $this->app->bind(
-            'Modules\Notification\Repositories\NotificationRepository',
+            NotificationRepository::class,
             function () {
-                $repository = new \Modules\Notification\Repositories\Eloquent\EloquentNotificationRepository(new \Modules\Notification\Entities\Notification());
+                $repository = new EloquentNotificationRepository(new Notification());
 
                 if (! config('app.cache')) {
                     return $repository;
                 }
 
-                return new \Modules\Notification\Repositories\Cache\CacheNotificationDecorator($repository);
+                return new CacheNotificationDecorator($repository);
             }
         );
-// add bindings
 
+        $this->app->bind(\Modules\Notification\Services\Notification::class, function ($app) {
+            return new AsgardNotification($app[NotificationRepository::class], $app[Authentication::class]);
+        });
     }
 
-
+    private function registerViewComposers()
+    {
+        view()->composer('partials.top-nav', NotificationViewComposer::class);
+    }
 }

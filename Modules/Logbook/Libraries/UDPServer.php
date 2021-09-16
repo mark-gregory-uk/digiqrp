@@ -9,6 +9,7 @@ use Modules\CallBook\Http\Controllers\CallBookController;
 use Modules\Logbook\Entities\Logbook;
 use Modules\Logbook\Entities\LogbookEntry;
 use Modules\Setting\Support\Settings;
+use Modules\Notification\Services\Notification;
 
 class UDPServer extends Common
 {
@@ -17,8 +18,11 @@ class UDPServer extends Common
      */
     private $settings;
 
-    public function __construct()
+    private $notification;
+
+    public function __construct(Notification $notification)
     {
+        $this->$notification = $notification;
         parent::__construct();
 
     }
@@ -94,6 +98,8 @@ class UDPServer extends Common
                          $logEntry->save();
                      }
                  }
+                $this->notification->push('New Station Logged', $logEntry->call.' Logged' , 'fa fa-hand-peace-o text-green', route('admin.user.user.index'));
+
                 Log::info("New Log Entry Processed");
             }
         }

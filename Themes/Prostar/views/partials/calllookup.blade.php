@@ -67,7 +67,8 @@
 </style>
 
 <div class="well">
-    <h4 class="page-header">Callsign Country Lookup </h4>
+    <h4 class="page-header">Country Lookup </h4>
+    <p style="font-size: smaller;">Enter a prefix or a full callsign.</p>
     <form method="post" action="#" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group row">

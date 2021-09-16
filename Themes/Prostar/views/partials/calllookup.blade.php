@@ -45,6 +45,12 @@
         getMessage();
     });
 
+    $(document).ready(function(){
+        $('#callsign').keyup(function(){
+            $(this).val($(this).val().toUpperCase());
+        });
+    });
+
 </script>
 
 <style>

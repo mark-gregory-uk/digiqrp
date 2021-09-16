@@ -8,5 +8,5 @@ return [
     | Setting this to true requires a broadcast setting configured, asgard
     | comes by default with the Pusher integration (js).
     */
-    'real-time' => false,
+    'real-time' => true,
 ];

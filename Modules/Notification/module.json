@@ -1,0 +1,16 @@
+{
+    "name": "Notification",
+    "alias": "notification",
+    "version": "1.0.0",
+	"description": "System Notifications",
+    "keywords": ['Laravel','Notifications'],
+    "priority": 1,
+    "providers": [
+        "Modules\\Notification\\Providers\\NotificationServiceProvider",
+        "Modules\\Notification\\Providers\\EventServiceProvider",
+        "Modules\\Notification\\Providers\\RouteServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

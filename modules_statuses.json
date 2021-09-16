@@ -15,5 +15,6 @@
     "Download": true,
     "Chitchat": true,
     "Forum": true,
-    "CallBook": true
+    "CallBook": true,
+    "Notification": true
 }

@@ -27,7 +27,7 @@ class RegisterSolarSidebar implements \Maatwebsite\Sidebar\SidebarExtender
 
     public function handle(BuildingSidebar $sidebar)
     {
-        $sidebar->add($this->extendWith($sidebar->getMenu()));
+        //$sidebar->add($this->extendWith($sidebar->getMenu()));
     }
 
     /**

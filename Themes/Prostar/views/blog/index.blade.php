@@ -18,7 +18,7 @@
                                 <div class="custom"  >
                                     <p>
                                         @if ($post -> files()->count()>0)
-                                            <img style="width: 40%;" src="{{ $post -> files() -> where("zone", "thumbnail") -> first() -> path }}" alt="{{ $post->title }}" />
+                                            <img class="header-img" style="width: 40%;" src="{{ $post -> files() -> where("zone", "thumbnail") -> first() -> path }}" alt="{{ $post->title }}" />
                                         @endif
 
                                     </p>

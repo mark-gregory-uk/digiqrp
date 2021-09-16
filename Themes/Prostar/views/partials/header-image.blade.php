@@ -3,9 +3,8 @@
         <div class="custom"  >
             <p>
                 @if ($page -> files()->count()>0)
-                    <img src="{{ $page -> files() -> where("zone", "image") -> first() -> path }}" alt="" />
+                    <img class="header-img" src="{{ $page -> files() -> where("zone", "image") -> first() -> path }}" alt="" />
                 @endif
-
             </p>
         </div>
     </div>

@@ -2,7 +2,7 @@
     <div class="well ">
         <a href="#?format=feed&amp;type=rss" class="syndicate-module">
             <img src="{{  asset('/img/system/livemarks.png') }}" alt="feed-image" />
-            <span>My Blog</span>
+            <span>Blog</span>
         </a>
     </div>
 @endif

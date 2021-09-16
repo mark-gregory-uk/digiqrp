@@ -1,6 +1,6 @@
 @if (!empty($latestPosts))
     <div class="well">
-        <h3 class="page-header">Latest Posts</h3>
+        <a href="/blog/posts"><h3 class="page-header">Latest Posts</h3></a>
         <ul class="category-module mod-list">
             @foreach($latestPosts as $post)
                 <li>

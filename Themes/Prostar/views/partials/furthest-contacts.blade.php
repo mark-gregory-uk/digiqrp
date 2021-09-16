@@ -1,6 +1,6 @@
 @if (!empty($furthestContacts))
     <div class="well ">
-        <h3 class="page-header">Longest Distance</h3>
+        <a href="/logbook-stats"><h3 class="page-header">Longest Distance</h3></a>
         <ul class="mostread mod-list">
             @foreach($furthestContacts as $contact)
                 <li itemscope="" itemtype="https://schema.org/Article">

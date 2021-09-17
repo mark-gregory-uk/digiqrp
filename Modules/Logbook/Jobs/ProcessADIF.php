@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Modules\CallBook\Http\Controllers\CallBookController;
 use Modules\Logbook\Entities\Logbook;
+use Modules\Logbook\Entities\LogbookEntry;
 use Modules\Logbook\Libraries\ADIF_Parser;
 
 class ProcessADIF implements ShouldQueue
@@ -46,39 +47,36 @@ class ProcessADIF implements ShouldQueue
         $p->feed($adifContent);
         $p->initialize();
 
-        // Now We clear down the logbook first
-
-        $logEntries = $this->logbook->entries()->get();
-
-        foreach ($logEntries as $logEntry) {
-            $logEntry->delete();
-        }
-
         while ($record = $p->get_record()) {
-            $logEntry = $this->logbook->entries()->create();
-            $logEntry->call = $record['call'];
-            $logEntry->tx_frequency = $record['freq'];
-            $logEntry->rx_frequency = $record['freq'];
-            $logEntry->rst_received = $record['rst_rcvd'];
-            $logEntry->rst_sent = $record['rst_sent'];
-            $logEntry->band_rx = $record['band'];
-            $logEntry->band_tx = $record['band'];
-            $logEntry->grid = $record['gridsquare'];
-            $logEntry->mode = $record['mode'];
-            $startDate = $this->formatDate($record['qso_date']);
-            $startTime = $this->formatTime($record['time_on']);
-            $endDate = $this->formatDate($record['qso_date_off']);
-            $endTime = $this->formatTime($record['time_off']);
+            $existingEntry = LogbookEntry::where('call','=',$record['call'])->first();
+            if (! $existingEntry){
+                $logEntry = $this->logbook->entries()->create();
+                $logEntry->call = $record['call'];
+                $logEntry->tx_frequency = $record['freq'];
+                $logEntry->rx_frequency = $record['freq'];
+                $logEntry->rst_received = $record['rst_rcvd'];
+                $logEntry->rst_sent = $record['rst_sent'];
+                $logEntry->band_rx = $record['band'];
+                $logEntry->band_tx = $record['band'];
+                $logEntry->grid = $record['gridsquare'];
+                $logEntry->mode = $record['mode'];
+                $startDate = $this->formatDate($record['qso_date']);
+                $startTime = $this->formatTime($record['time_on']);
+                $endDate = $this->formatDate($record['qso_date_off']);
+                $endTime = $this->formatTime($record['time_off']);
 
-            $logEntry->qso_start = $startDate . ' ' . $startTime;
-            $logEntry->qso_end = $endDate . ' ' . $endTime;
+                $logEntry->qso_start = $startDate . ' ' . $startTime;
+                $logEntry->qso_end = $endDate . ' ' . $endTime;
 
-            $response = CallBookController::dxccLookup($logEntry->call);
+                $response = CallBookController::dxccLookup($logEntry->call);
 
-            if ($response){
-                $logEntry->addDXCCEntries($response);
-                $logEntry->save();
-                Log::info("Log Entry Created");
+                if ($response){
+                    $logEntry->addDXCCEntries($response);
+                    $logEntry->save();
+                    Log::info("Log Entry Created");
+                }
+            } else {
+                Log::info("Existing Contact Skipped");
             }
         }
         Log::info("ADIF Upload Complete");

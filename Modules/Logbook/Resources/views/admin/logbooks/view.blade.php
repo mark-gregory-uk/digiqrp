@@ -14,7 +14,7 @@
 
 @section('content')
 
-    <!-- include('logbook::admin.logbooks.modals.upload-logfile')-->
+    @include('logbook::admin.logbooks.modals.upload-logfile')
     @include('logbook::admin.logbooks.modals.upload-adif')
 
     <div class="nav-tabs-custom">

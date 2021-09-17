@@ -92,4 +92,8 @@ $router->group(['prefix' =>'/logbook'], function (Router $router) {
 
     Route::get('/upload-file/{owner}/{logbook}', [\Modules\Logbook\Http\Controllers\Admin\LogbookController::class, 'createForm'])->name('logbook.upload');
     Route::post('/upload-file/{owner}/{logbook}', [\Modules\Logbook\Http\Controllers\Admin\LogbookController::class, 'fileUpload'])->name('logbook.uploadlog');
+
+    // ADIF Files
+    Route::post('/upload-adif/{owner}/{logbook}', [\Modules\Logbook\Http\Controllers\Admin\LogbookController::class, 'adifUpload'])->name('logbook.uploadadif');
+
 });

@@ -141,7 +141,6 @@ class LogbookEntry extends Model
     public function addCallNewDetails($response)
     {
 
-
         $default_lat = 52.3848;
         $default_lng = 1.8215;
         $countries = LogbookCountry::all();
@@ -170,6 +169,30 @@ class LogbookEntry extends Model
         $this->save();
     }
 
+    public function addDXCCEntries($response){
+        $default_lat = 52.3848;
+        $default_lng = 1.8215;
+
+        $latitude = $default_lat;
+        $longitude = $default_lng;
+
+        $this->dxcc_country = $response['country'];
+        $this->lat = $response['lat'];
+        $this->lng = $response['lng'];
+
+        if ($slug =  DB::table('logbook__countries')->where('name', $response['country'])->value('code')){
+            $this->country_slug = $slug;
+        } else {
+            $this->country_slug = $response['continent'];
+        }
+
+        $distanceKM = (float) $this->distance($latitude, $longitude, $this->lat, $this->lng);
+        if ($distanceKM > 0) {
+            $distanceMiles = $distanceKM / 1.609;
+            $this->distance_km = $distanceKM;
+            $this->distance_miles = $distanceMiles;
+        }
+    }
 
     /**
      * The logbook that own this item.

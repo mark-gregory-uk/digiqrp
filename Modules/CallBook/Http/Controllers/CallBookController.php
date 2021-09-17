@@ -240,5 +240,20 @@ class CallBookController extends Controller
         }
     }
 
+    static public function dxccLookup($call){
+        if ($call){
+            $dataPath = module_path('CallBook').'/Libraries/cty.dat';
+            if (file_exists(module_path('CallBook').'/Libraries/dxcc.pl')){
+                exec('/usr/bin/perl '.module_path('CallBook').'/Libraries/dxcc.pl '.$call .' '.$dataPath,$output);
+                $response = [];
+                $response += ['country'=>$output[3]];
+                $response += ['continent'=>$output[6]];
+                $response += ['lat'=>$output[7]];
+                $response += ['lng'=>$output[8]];
+                return $response;
+            }
+        }
+    }
+
 
 }

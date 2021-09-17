@@ -2,12 +2,15 @@
 
 namespace Modules\Logbook\Http\Controllers\Admin;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Modules\Blog\Entities\Post;
 use Modules\Blog\Repositories\PostRepository;
+use Modules\CallBook\Http\Controllers\CallBookController;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Logbook\Entities\Logbook;
 use Modules\Logbook\Entities\LogbookCountry;
@@ -15,6 +18,8 @@ use Modules\Logbook\Entities\LogFile;
 use Modules\Logbook\Entities\MacLogger;
 use Modules\Logbook\Http\Requests\CreateLogbookRequest;
 use Modules\Logbook\Http\Requests\UpdateLogbookRequest;
+use Modules\Logbook\Jobs\ProcessADIF;
+use Modules\Logbook\Libraries\ADIF_Parser;
 use Modules\Logbook\Repositories\LogbookRepository;
 use Modules\Setting\Contracts\Setting;
 
@@ -136,14 +141,6 @@ class LogbookController extends AdminBaseController
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('logbook::logbooks.title.logbooks')]));
     }
 
-    /**
-     * Upload a logbook and import into database.
-     * @param Request $request
-     */
-    public function logbookUploader(Request $request)
-    {
-    }
-
     public function createForm($owner, $logbook)
     {
         $latestPosts = $this->postRepository->latest();
@@ -257,6 +254,39 @@ class LogbookController extends AdminBaseController
     }
 
     /**
+     * Upload a adif logbook and import into database.
+     * @param Request $req
+     * @param Setting $settings
+     * @param $owner
+     * @param $logbook
+     */
+    public function adifUpload(Request $request, Setting $settings, $owner, $logbook)
+    {
+
+        $fileModel = new LogFile();
+
+        $logbook = Logbook::with('entries')
+            ->where('owner_id', '=', $owner)
+            ->where('slug', '=', 'main')->first();
+
+        if ($request->file()) {
+            $originalFileName = $request->file->getClientOriginalName();
+            $fileName = time() . '_' . $originalFileName;
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+
+            Storage::move('/storage/app/public/uploads/' . $fileName, '/storage/adif/' . $fileName);
+
+            ProcessADIF::dispatch($logbook,$fileName)->onQueue('adif');;
+
+            return back()
+                ->with('success', 'ADIF has been uploaded and submitted for processing')
+                ->with('file', $fileName);
+        }
+
+    }
+
+
+    /**
      * Calculate the as the crow flies distance in miles and kilometers.
      * @param $lat1
      * @param $lon1
@@ -283,4 +313,5 @@ class LogbookController extends AdminBaseController
 
         return $calculatedDistance;
     }
+
 }

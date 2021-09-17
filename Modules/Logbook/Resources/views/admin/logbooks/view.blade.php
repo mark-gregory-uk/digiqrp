@@ -14,8 +14,8 @@
 
 @section('content')
 
-    @include('logbook::admin.logbooks.modals.upload-logfile')
-
+    <!-- include('logbook::admin.logbooks.modals.upload-logfile')-->
+    @include('logbook::admin.logbooks.modals.upload-adif')
 
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
@@ -29,6 +29,11 @@
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
                     <a data-toggle="modal" data-target="#upload-logfile" class="btn btn-success btn-rounded" style="padding: 4px 10px;">
                         <i class="fa fa-upload"></i>Upload Log File
+                    </a>
+                </div>
+                <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
+                    <a data-toggle="modal" data-target="#upload-adif" class="btn btn-danger btn-rounded" style="padding: 4px 10px;">
+                        <i class="fa fa-upload"></i>Upload ADIF File
                     </a>
                 </div>
             </div>

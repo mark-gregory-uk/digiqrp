@@ -19,6 +19,7 @@ use Modules\Logbook\Entities\MacLogger;
 use Modules\Logbook\Http\Requests\CreateLogbookRequest;
 use Modules\Logbook\Http\Requests\UpdateLogbookRequest;
 use Modules\Logbook\Jobs\ProcessADIF;
+use Modules\Logbook\Jobs\ProcessMacLogger;
 use Modules\Logbook\Libraries\ADIF_Parser;
 use Modules\Logbook\Repositories\LogbookRepository;
 use Modules\Setting\Contracts\Setting;
@@ -195,57 +196,11 @@ class LogbookController extends AdminBaseController
             Storage::move('/storage/app/public/uploads/'.$fileModel->name, '/storage/sqlite/'.$originalFileName);
 
             if ($originalFileName == 'MacLoggerDX.sql') {
-                $logbook = Logbook::with('entries')
-                    ->where('owner_id', '=', $owner)
-                    ->where('slug', '=', 'main')->first();
-
-                $logEntries = $logbook->entries()->get();
-
-                foreach ($logEntries as $logEntry) {
-                    $logEntry->delete();
-                }
-
-                $macLoggerRecords = Maclogger::all();
-
-                foreach ($macLoggerRecords as $row) {
-                    $logEntry = $logbook->entries()->create();
-                    $logEntry->call = $row->call;
-                    $logEntry->first_name = $row->first_name;
-                    $logEntry->last_name = $row->last_name;
-                    $logEntry->dxcc_country = $row->dxcc_country;
-                    $logEntry->grid = $row->grid;
-                    $logEntry->band_rx = $row->band_rx;
-                    $logEntry->band_tx = $row->band_tx;
-                    $logEntry->rst_sent = $row->rst_sent;
-                    $logEntry->rst_received = $row->rst_received;
-                    $logEntry->comments = $row->comments;
-                    $logEntry->qso_start = $row->qso_start;
-                    $logEntry->qso_end = $row->qso_done;
-                    $logEntry->lat = $row->latitude;
-                    $logEntry->lng = $row->longitude;
-                    $logEntry->power = $row->power;
-                    $logEntry->mode = $row->mode;
-                    $logEntry->tx_frequency = $row->tx_frequency;
-                    $logEntry->rx_frequency = $row->rx_frequency;
-                    $logEntry->dxcc_id = $row->dxcc_id;
-                    $country = $countries->firstWhere('name', $row->dxcc_country);
-
-                    if (! empty($country)) {
-                        $logEntry->country_slug = $country->code;
-                    }
-
-                    $distanceKM = (float) $this->distance($latitude, $longitude, $row->latitude, $row->longitude);
-                    if ($distanceKM > 0) {
-                        $distanceMiles = $distanceKM / 1.609;
-                        $logEntry->distance_km = $distanceKM;
-                        $logEntry->distance_miles = $distanceMiles;
-                    }
-                    $logEntry->save();
-                }
-            }
+                ProcessMacLogger::dispatch($owner,$countries,$latitude,$longitude)->onQueue('adif');;
+           }
 
             return back()
-                ->with('success', 'Logfile has been uploaded and imported')
+                ->with('success', 'Maclogger Logfile has been uploaded and importing')
                 ->with('file', $fileName);
         } else {
             return back()

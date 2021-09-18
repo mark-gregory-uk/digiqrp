@@ -17,3 +17,5 @@ yarn.lock
 /storage/backups/
 /docker/db/
 .DS_Store
+/storage/adif/
+/storage/sqlite/

@@ -15,6 +15,8 @@ return [
         'mode' => 'Mode',
         'rst_received' => 'RST Received',
         'rst_sent' => 'RST Sent',
+        'band_rx' => 'Received Band',
+        'band_tx' => 'Transmit Band',
     ],
     'button' => [
         'create entry' => 'Create a log entry',

@@ -53,9 +53,12 @@ class BasicMenuPresenter extends Presenter
         }
 
         if (count($urlSegments) === 5 and count($target) === 4){
+
             if ($target[3] === $urlSegments[3])
              return $state;
-            if ($urlSegments[3] === '12')
+            if ($urlSegments[3] === '12' and $target[3] ==='software')
+              return $state;
+            if ($urlSegments[3] === '21' and $target[3] ==='development')
                 return $state;
         }
 

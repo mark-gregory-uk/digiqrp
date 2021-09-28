@@ -58,6 +58,7 @@ class PublicController extends BasePublicController
     public function show($slug)
     {
         $post = $this->post->findBySlug($slug);
+
         $latestPosts = $this->post->latest();
         $latestContacts = $this->logRepository->latestContacts(($this->maxContacts > 0 ? $this->maxContacts : 4));
         $furthestContacts = $this->logRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
@@ -74,6 +75,12 @@ class PublicController extends BasePublicController
         $latestContacts = $this->logRepository->latestContacts(($this->maxContacts > 0 ? $this->maxContacts : 4));
         $furthestContacts = $this->logRepository->longestContacts(($this->maxCount > 0 ? $this->maxCount : 4));
         $latestSolarReports = $this->solarReportsRepository->latestReports();
+
+        if ($cat === 'development')
+        {
+            return view('blog.development', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
+        }
+
 
         return view('blog.category', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }

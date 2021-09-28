@@ -33,10 +33,19 @@ Breadcrumbs::for('posts', function (BreadcrumbTrail $trail) {
 
 
 // Home > Blog
+Breadcrumbs::for('development', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Development', route('en.blog.category','development'));
+});
+
+
+// Home > Blog
 Breadcrumbs::for('software', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Software', route('en.blog.category','software'));
 });
+
+
 
 Breadcrumbs::for('news', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
@@ -66,15 +75,24 @@ Breadcrumbs::for('logstats', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('post', function (BreadcrumbTrail $trail) {
 
     $post = \Modules\Blog\Entities\PostTranslation::where('slug','=',basename(Request::url()))->first();
-    $sourcePost = \Modules\Blog\Entities\Post::where('id','=',$post->post_id)->first();
-    $category =  \Modules\Blog\Entities\Category::where('id','=',$sourcePost->category_id)->first()->name;
 
-    if ($sourcePost->category_only){
-        $trail->parent('software');
-        $trail->push($post->title, route('en.blog.category',strtolower($category)));
-    } else {
-        $trail->parent('posts');
-        $trail->push($post->title, route(LaravelLocalization::setLocale() ?: App::getLocale().'.blog'));
+    if ($post){
+        $sourcePost = \Modules\Blog\Entities\Post::where('id','=',$post->post_id)->first();
+        $category =  \Modules\Blog\Entities\Category::where('id','=',$sourcePost->category_id)->first()->name;
+
+        if ($sourcePost->category_only){
+            if ($sourcePost->category_id == 21){
+                $trail->parent('development');
+            } else {
+                $trail->parent('software');
+            }
+
+            $trail->push($post->title, route('en.blog.category',strtolower($category)));
+        } else {
+            $trail->parent('posts');
+            $trail->push($post->title, route(LaravelLocalization::setLocale() ?: App::getLocale().'.blog'));
+        }
     }
+
 
 });

@@ -67,7 +67,7 @@ class UDPServer extends Common
                 $logEntry->rst_sent = $record['rst_sent'];
                 $logEntry->band_rx = $record['band'];
                 $logEntry->band_tx = $record['band'];
-                $logEntry->comments = $record['comment'];
+                //$logEntry->comments = $record['comment'];
                 $logEntry->grid = $record['gridsquare'];
                 $logEntry->mode = $record['mode'];
                 $logEntry->payload = $buf;
@@ -98,7 +98,7 @@ class UDPServer extends Common
                          $logEntry->save();
                      }
                  }
-                $this->notification->pushToAdmins('New Station Logged', $logEntry->call.' Logged' , 'fa fa-hand-peace-o text-green');
+               // $this->notification->pushToAdmins('New Station Logged', $logEntry->call.' Logged' , 'fa fa-hand-peace-o text-green');
 
                 Log::info("New Log Entry Processed");
             }

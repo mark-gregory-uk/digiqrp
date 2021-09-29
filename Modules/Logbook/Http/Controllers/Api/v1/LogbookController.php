@@ -48,11 +48,13 @@ class LogbookController extends Controller
                 $logEntry->call = $record['call'];
                 $logEntry->tx_frequency = $record['freq'];
                 $logEntry->rx_frequency = $record['freq'];
-                $logEntry->rst_received = $record['rst_rcvd'];
+                $logEntry->rst_received = ( $record['rst_rcvd'] ? $record['rst_rcvd']:'');
                 $logEntry->rst_sent = $record['rst_sent'];
                 $logEntry->band_rx = $record['band'];
                 $logEntry->band_tx = $record['band'];
-                $logEntry->comments = $record['comment'];
+                if (in_array('comment',$record)){
+                    $logEntry->comments = $record['comment'];
+                }
                 $logEntry->grid = $record['gridsquare'];
                 $logEntry->mode = $record['mode'];
                 $logEntry->payload = $payload;

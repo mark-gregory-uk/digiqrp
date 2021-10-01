@@ -10,5 +10,5 @@ Route::group(['prefix' => '/v1', 'namespace' => 'v1'], function () {
     Route::post('maclogger', 'LogbookController@storeMacLogger')->name('maclogger');
     Route::post('logsync', 'LogbookController@syncLogEntries')->name('sync');
     Route::get('logentries', 'LogbookController@getLogEntries')->name('entries');
-    Route::post('search', 'LogBookController@search')->name('search');
+    Route::post('search', 'LogbookController@search')->name('search');
 });

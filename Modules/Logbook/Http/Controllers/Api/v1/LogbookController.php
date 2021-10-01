@@ -201,4 +201,31 @@ class LogbookController extends Controller
 
 
 
+    public function search(Request $request){
+
+        $call = $request->get('call');
+
+        //$details = json_decode($this->getHamQthDetails($call,$this->settings));
+
+        $logbook = Logbook::where('owner_id', '=', 1)->first();
+
+
+
+        if ($call){
+
+            $callData = LogbookEntry::where('parent_id', '=', $logbook->id)->where('call','=',$call)->orderBy('qso_end', 'desc')->get();
+            if (count($callData)>0){
+                return response()->json(['callsign'=>$callData[0]->call,'date'=>$callData[0]->qso_end,'band'=>$callData[0]->band_rx,'km'=>$callData[0]->distance_km,'count'=>count($callData) ],200);
+            } else{
+                return response()->json([
+                    'success' => 'false',
+                    'errors'  => $call.' not Found in database',
+                ], 400);
+            }
+
+        }
+    }
+
+
+
 }

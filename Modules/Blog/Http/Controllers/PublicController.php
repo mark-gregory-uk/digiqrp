@@ -81,7 +81,6 @@ class PublicController extends BasePublicController
             return view('blog.development', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
         }
 
-
         return view('blog.category', compact('posts', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }
 
@@ -95,6 +94,5 @@ class PublicController extends BasePublicController
 
         return view('blog.show', compact('post', 'latestPosts', 'latestContacts', 'latestSolarReports', 'furthestContacts'));
     }
-
 
 }

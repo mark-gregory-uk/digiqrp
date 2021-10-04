@@ -166,6 +166,6 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
     {
         return $this->model->whereHas('translations', function (Builder $q) use ($category) {
             $q->where('category_id', "$category")->where('category_only', true);
-        })->with('translations')->get();
+        })->with('translations')->orderBy('updated_at','DESC')->get();
     }
 }

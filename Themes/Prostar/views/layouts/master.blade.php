@@ -32,7 +32,7 @@
             <div id="aside" class="span3">
                 <!-- Begin Right Sidebar -->
                 @include('partials.calllookup')
-                @include('partials.logbook-search')
+                
                 @include('partials.latest-posts')
                 @include('partials.latest-contacts')
 

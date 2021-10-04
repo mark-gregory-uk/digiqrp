@@ -34,7 +34,7 @@
                 @include('partials.calllookup')
                 @include('partials.logbook-search')
                 @include('partials.latest-posts')
-                @include('partials.latest-posts')
+                @include('partials.latest-contacts')
 
                 @include('partials.furthest-contacts')
                 @if (Request::path() != 'welcome' and Request::path() != '/')

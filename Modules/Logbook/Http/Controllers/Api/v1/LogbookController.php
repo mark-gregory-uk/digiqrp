@@ -205,11 +205,8 @@ class LogbookController extends Controller
 
         $call = $request->get('call');
 
-        //$details = json_decode($this->getHamQthDetails($call,$this->settings));
 
         $logbook = Logbook::where('owner_id', '=', 1)->first();
-
-
 
         if ($call){
 

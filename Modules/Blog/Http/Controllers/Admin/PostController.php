@@ -2,6 +2,7 @@
 
 namespace Modules\Blog\Http\Controllers\Admin;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Modules\Blog\Entities\Post;
 use Modules\Blog\Entities\Status;
@@ -132,6 +133,8 @@ class PostController extends AdminBaseController
         } else {
             $data['category_only'] = false;
         }
+
+        $post->updated_at=Carbon::now();
 
         $this->post->update($post, $data);
 

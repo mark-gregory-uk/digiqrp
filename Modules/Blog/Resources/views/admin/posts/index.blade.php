@@ -33,7 +33,7 @@
                             <th>{{ trans('blog::post.table.title') }}</th>
                             <th>{{ trans('blog::post.table.slug') }}</th>
                             <th>{{ trans('core::core.table.created at') }}</th>
-                            <th>{{ trans('blog::post.table.sort') }}</th>
+                            <th>{{ trans('core::core.table.updated at') }}</th>
                             <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                         </tr>
                     </thead>
@@ -61,14 +61,15 @@
                                         {{ $post->slug }}
                                     </a>
                                 </td>
+
                                 <td>
-                                    <a href="{{ route('admin.blog.post.edit', [$post->sort]) }}">
-                                        {{ $post->sort }}
+                                    <a href="{{ route('admin.blog.post.edit', [$post->id]) }}">
+                                        {{ date('d-m-Y h:s', strtotime($post->created_at)) }}
                                     </a>
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.blog.post.edit', [$post->id]) }}">
-                                        {{ $post->created_at }}
+                                        {{ date('d-m-Y h:s', strtotime($post->updated_at)) }}
                                     </a>
                                 </td>
                                 <td>

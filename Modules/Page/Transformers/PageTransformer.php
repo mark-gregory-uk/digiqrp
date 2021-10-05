@@ -12,7 +12,7 @@ class PageTransformer extends JsonResource
             'id' => $this->resource->id,
             'is_home' => $this->resource->is_home,
             'template' => $this->resource->template,
-            'created_at' => $this->resource->created_at->format('d-m-Y'),
+            'created_at' => $this->resource->created_at->format('d-m-Y h:s'),
             'translations' => [
                 'title' => optional($this->resource->translate(locale()))->title,
                 'slug' => optional($this->resource->translate(locale()))->slug,

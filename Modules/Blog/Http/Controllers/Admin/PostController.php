@@ -134,6 +134,15 @@ class PostController extends AdminBaseController
             $data['category_only'] = false;
         }
 
+        if (array_key_exists('meta_title', $data)) {
+            $post->meta_title = $data['meta_title'];
+        }
+
+        if (array_key_exists('meta_description', $data)) {
+            $post->meta_title = $data['meta_description'];
+        }
+
+
         $post->updated_at=Carbon::now();
 
         $this->post->update($post, $data);

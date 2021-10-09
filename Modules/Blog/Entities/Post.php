@@ -22,7 +22,13 @@ class Post extends Model implements TaggableInterface
     use NamespacedEntity;
     use TaggableTrait;
 
-    public $translatedAttributes = ['title', 'slug', 'content'];
+    public $translatedAttributes = [
+        'title',
+        'slug',
+        'content',
+        'meta_title',
+        'meta_description',
+        ];
 
     protected $fillable = [
         'category_id',
@@ -34,6 +40,8 @@ class Post extends Model implements TaggableInterface
         'category_only',
         'author_id',
         'editor_id',
+        'meta_title',
+        'meta_description',
     ];
 
     protected $table = 'blog__posts';

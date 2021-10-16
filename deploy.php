@@ -30,6 +30,9 @@ task('deploy:permissions', function () {
     } elseif ('dev' === $stage) {
         desc('Deploying Project Develop ..');
         run("cp {{deploy_path}}/releases/{$releases[0]}/env/.env.dev {{deploy_path}}/releases/{$releases[0]}/.env");
+    } elseif ('tst' === $stage) {
+        desc('Deploying Project to Test Area ..');
+        run("cp {{deploy_path}}/releases/{$releases[0]}/env/.env.tst {{deploy_path}}/releases/{$releases[0]}/.env");
     } else {
         desc('Deploying Project Stage ....');
         run("cp {{deploy_path}}/releases/{$releases[0]}/env/.env.stage {{deploy_path}}/releases/{$releases[0]}/.env");
@@ -45,6 +48,9 @@ task('reload:php-fpm', function () {
         run('sudo /usr/sbin/service php7.4-fpm reload');
     }
     if ($stage === 'prod') {
+        run('sudo /usr/sbin/service php7.4-fpm reload');
+    }
+    if ($stage === 'tst') {
         run('sudo /usr/sbin/service php7.4-fpm reload');
     }
 });
@@ -119,6 +125,22 @@ host('stage')
     ->set('ssh_multiplexing', true)
     ->set('git_tty', false)                         // [Optional] Allocate tty for git clone. Default value is false.
     ->set('ssh_type', 'native');                    // How we communicate with the host system
+
+
+host('tst')
+    ->hostname('digiqrp.tst')
+    ->port(22)
+    ->user('deploy')
+    #->identityFile('~/.ssh/id_rsa_tst_deploy')
+    ->set('writable_use_sudo', true)
+    ->set('http_user', 'www-data')
+    ->set('use_relative_symlink', false)
+    ->set('branch', 'develop')
+    ->set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-interaction')
+    ->set('deploy_path', '/var/www/digiqrp')
+    ->set('ssh_multiplexing', true)
+    ->set('git_tty', false)                         // [Optional] Allocate tty for git clone. Default value is false.
+    ->set('ssh_type', 'native');
 
 // **********************************************************************************
 // Rules & Actions

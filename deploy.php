@@ -100,7 +100,7 @@ host('prod')
     ->hostname('192.168.0.3')
     ->port(22)
     ->user('deploy')
-    ->identityFile('~/.ssh/id_rsa')
+    ->identityFile('~/.ssh/id_rsa_tst_deploy.pub')
     ->set('writable_use_sudo', true)
     ->set('http_user', 'www-data')
     ->set('use_relative_symlink', false)
@@ -149,7 +149,7 @@ host('tst')
 after('deploy:prepare', 'udpserver:stop');
 after('success', 'deploy:permissions');
 after('deploy:failed', 'deploy:unlock');
-after('deploy:permissions', 'migrate');
+//after('deploy:permissions', 'migrate');
 after('deploy', 'cache-clean');
 after('deploy', 'reload:php-fpm');
 after('deploy', 'reload:nginx');

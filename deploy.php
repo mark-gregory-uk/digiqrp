@@ -62,14 +62,14 @@ task('reload:nginx', function () {
 task('udpserver:stop', function () {
     $stage = input()->getArgument('stage');
     if ($stage === 'prod') {
-        run('sudo systemctl stop digiudp');
+        run('sudo systemctl stop digiqrp');
     }
 })->desc('Reloading DIGIUdp Server');
 
 task('udpserver:start', function () {
     $stage = input()->getArgument('stage');
     if ($stage === 'prod') {
-        run('sudo systemctl start digiudp');
+        run('sudo systemctl start digiqrp');
     }
 })->desc('Starting DIGIUdp Server');
 
@@ -97,10 +97,10 @@ task('cache-clean', function () {
 // Host Definitions
 // **********************************************************************************
 host('prod')
-    ->hostname('digiqrp.com')
+    ->hostname('192.168.0.3')
     ->port(22)
-    ->user('root')
-    ->identityFile('~/.ssh/id_rsa_root')
+    ->user('deploy')
+    ->identityFile('~/.ssh/id_rsa')
     ->set('writable_use_sudo', true)
     ->set('http_user', 'www-data')
     ->set('use_relative_symlink', false)

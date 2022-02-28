@@ -27,6 +27,10 @@ task('deploy:permissions', function () {
     if ('prod' === $stage) {
         desc('Deploying Project Production');
         run("cp {{deploy_path}}/releases/{$releases[0]}/env/.env.prod {{deploy_path}}/releases/{$releases[0]}/.env");
+    }
+    elseif ('remote-prod' === $stage) {
+        desc('Deploying Project Production');
+        run("cp {{deploy_path}}/releases/{$releases[0]}/env/.env.prod {{deploy_path}}/releases/{$releases[0]}/.env");
     } elseif ('dev' === $stage) {
         desc('Deploying Project Develop ..');
         run("cp {{deploy_path}}/releases/{$releases[0]}/env/.env.dev {{deploy_path}}/releases/{$releases[0]}/.env");
@@ -48,6 +52,9 @@ task('reload:php-fpm', function () {
         run('sudo /usr/sbin/service php7.4-fpm reload');
     }
     if ($stage === 'prod') {
+        run('sudo /usr/sbin/service php7.4-fpm reload');
+    }
+    if ($stage === 'remote-prod') {
         run('sudo /usr/sbin/service php7.4-fpm reload');
     }
     if ($stage === 'tst') {
@@ -111,36 +118,21 @@ host('prod')
     ->set('git_tty', false)                         // [Optional] Allocate tty for git clone. Default value is false.
     ->set('ssh_type', 'native');                    // How we communicate with the host system
 
-host('stage')
-    ->hostname('stage.digiqrp.com')
+host('remote-prod')
+    ->hostname('g4lch.ddns.net')
     ->port(22)
-    ->user('root')
-    ->identityFile('~/.ssh/id_rsa_root')
+    ->user('deploy')
+    ->identityFile('~/.ssh/id_rsa_tst_deploy.pub')
     ->set('writable_use_sudo', true)
-    ->set('http_user', 'mag')
+    ->set('http_user', 'www-data')
     ->set('use_relative_symlink', false)
-    ->set('branch', 'develop')
-    ->set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-interaction')
-    ->set('deploy_path', '/var/www/digiqrp_dev')
+    ->set('branch', 'master')
+    ->set('composer_options', '{{composer_action}} --verbose --no-dev --prefer-dist --no-interaction')
+    ->set('deploy_path', '/var/www/digiqrp')
     ->set('ssh_multiplexing', true)
     ->set('git_tty', false)                         // [Optional] Allocate tty for git clone. Default value is false.
     ->set('ssh_type', 'native');                    // How we communicate with the host system
 
-
-host('tst')
-    ->hostname('digiqrp.tst')
-    ->port(22)
-    ->user('deploy')
-    ->identityFile('~/.ssh/id_rsa_tst_deploy')
-    ->set('writable_use_sudo', true)
-    ->set('http_user', 'www-data')
-    ->set('use_relative_symlink', false)
-    ->set('branch', 'develop')
-    ->set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-interaction')
-    ->set('deploy_path', '/var/www/digiqrp')
-    ->set('ssh_multiplexing', true)
-    ->set('git_tty', false)                         // [Optional] Allocate tty for git clone. Default value is false.
-    ->set('ssh_type', 'native');
 
 // **********************************************************************************
 // Rules & Actions

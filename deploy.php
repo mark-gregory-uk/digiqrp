@@ -28,19 +28,6 @@ task('deploy:permissions', function () {
         desc('Deploying Project Production');
         run("cp {{deploy_path}}/releases/{$releases[0]}/env/.env.prod {{deploy_path}}/releases/{$releases[0]}/.env");
     }
-    elseif ('remote-prod' === $stage) {
-        desc('Deploying Project Production');
-        run("cp {{deploy_path}}/releases/{$releases[0]}/env/.env.prod {{deploy_path}}/releases/{$releases[0]}/.env");
-    } elseif ('dev' === $stage) {
-        desc('Deploying Project Develop ..');
-        run("cp {{deploy_path}}/releases/{$releases[0]}/env/.env.dev {{deploy_path}}/releases/{$releases[0]}/.env");
-    } elseif ('tst' === $stage) {
-        desc('Deploying Project to Test Area ..');
-        run("cp {{deploy_path}}/releases/{$releases[0]}/env/.env.tst {{deploy_path}}/releases/{$releases[0]}/.env");
-    } else {
-        desc('Deploying Project Stage ....');
-        run("cp {{deploy_path}}/releases/{$releases[0]}/env/.env.stage {{deploy_path}}/releases/{$releases[0]}/.env");
-    }
 })->desc('Set ownership and permissions');
 
 task('reload:php-fpm', function () {
@@ -52,12 +39,6 @@ task('reload:php-fpm', function () {
         run('sudo /usr/sbin/service php7.4-fpm reload');
     }
     if ($stage === 'prod') {
-        run('sudo /usr/sbin/service php7.4-fpm reload');
-    }
-    if ($stage === 'remote-prod') {
-        run('sudo /usr/sbin/service php7.4-fpm reload');
-    }
-    if ($stage === 'tst') {
         run('sudo /usr/sbin/service php7.4-fpm reload');
     }
 });

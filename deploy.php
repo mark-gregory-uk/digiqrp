@@ -104,10 +104,10 @@ task('cache-clean', function () {
 // Host Definitions
 // **********************************************************************************
 host('prod')
-    ->hostname('192.168.0.3')
-    ->port(22)
+    ->hostname('digiqrp.com')
+    ->port(23)
     ->user('deploy')
-    ->identityFile('~/.ssh/id_rsa_tst_deploy.pub')
+    ->identityFile('~/.ssh/digiqrp/id_rsa.pub')
     ->set('writable_use_sudo', true)
     ->set('http_user', 'www-data')
     ->set('use_relative_symlink', false)
@@ -117,22 +117,6 @@ host('prod')
     ->set('ssh_multiplexing', true)
     ->set('git_tty', false)                         // [Optional] Allocate tty for git clone. Default value is false.
     ->set('ssh_type', 'native');                    // How we communicate with the host system
-
-host('remote-prod')
-    ->hostname('g4lch.ddns.net')
-    ->port(22)
-    ->user('deploy')
-    ->identityFile('~/.ssh/id_rsa_tst_deploy.pub')
-    ->set('writable_use_sudo', true)
-    ->set('http_user', 'www-data')
-    ->set('use_relative_symlink', false)
-    ->set('branch', 'master')
-    ->set('composer_options', '{{composer_action}} --verbose --no-dev --prefer-dist --no-interaction')
-    ->set('deploy_path', '/var/www/digiqrp')
-    ->set('ssh_multiplexing', true)
-    ->set('git_tty', false)                         // [Optional] Allocate tty for git clone. Default value is false.
-    ->set('ssh_type', 'native');                    // How we communicate with the host system
-
 
 // **********************************************************************************
 // Rules & Actions

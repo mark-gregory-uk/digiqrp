@@ -5,11 +5,11 @@ namespace Deployer;
 require 'recipe/laravel.php';
 
 set('application', 'G4LCH Larval 6 Digicore Blog Engine'); // The Application Title
-set('repository', 'git@github.com:G4LCH/digiqrp.git');  // The Repository in use
-set('keep_releases', 5);                                  // Number of releases to keep on hosts
+set('repository', 'git@github.com:G4LCH/digiqrp.git');     // The Repository in use
+set('keep_releases', 4);                                   // Number of releases to keep on hosts
 set('default_timeout', 1200);
 
-add('shared_files', ['.env']);                                  // Shared files between deploys
+add('shared_files', ['.env']);                                            // Shared files between deploys
 add('shared_dirs', ['storage', 'vendor', 'node_modules','Laravel']);      // Shared dirs between deploys
 add('writable_dirs', ['storage', 'vendor', 'node_modules'.'Laravel']);    // Writable dirs by web server
 
@@ -41,7 +41,7 @@ task('reload:php-fpm', function () {
     if ($stage === 'prod') {
         run('sudo /usr/sbin/service php7.4-fpm reload');
     }
-});
+})->desc('Reloading PHP-FPM');
 
 task('reload:nginx', function () {
     run('sudo /usr/sbin/service nginx reload');
@@ -106,7 +106,7 @@ host('prod')
 after('deploy:prepare', 'udpserver:stop');
 after('success', 'deploy:permissions');
 after('deploy:failed', 'deploy:unlock');
-//after('deploy:permissions', 'migrate');
+after('deploy:permissions', 'migrate');
 after('deploy', 'cache-clean');
 after('deploy', 'reload:php-fpm');
 after('deploy', 'reload:nginx');

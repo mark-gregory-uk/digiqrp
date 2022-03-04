@@ -18,7 +18,7 @@
     @case ('xeigu-g90')
         {{ Breadcrumbs::render('xeigu-g90') }}
         @break
-    @case ('blog/posts/about-digiqrp')
+    @case ('about-digiqrp')
         {{ Breadcrumbs::render('about') }}
         @break
     @case ('contact-us')

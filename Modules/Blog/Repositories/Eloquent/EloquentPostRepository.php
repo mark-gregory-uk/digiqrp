@@ -24,7 +24,7 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
      */
     public function find($id)
     {
-        return $this->model->with('translations', 'tags')->find($id);
+        return $this->model->with('translations', 'tags','category')->find($id);
     }
 
     /**
@@ -32,7 +32,7 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
      */
     public function all()
     {
-        return $this->model->with('translations', 'tags')->orderBy('created_at', 'DESC')->get();
+        return $this->model->with('translations', 'tags','category')->orderBy('created_at', 'DESC')->get();
     }
 
     /**
@@ -96,7 +96,7 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
             $q->where('locale', "$lang");
             $q->where('title', '!=', '');
             $q->where('category_only', false);
-        })->with('translations')->whereStatus(Status::PUBLISHED)->orderBy('created_at', 'DESC')->get();
+        })->with('translations')->with('category')->whereStatus(Status::PUBLISHED)->orderBy('created_at', 'DESC')->get();
     }
 
     /**
@@ -109,6 +109,8 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
     public function latest($amount = 5)
     {
         return $this->model->whereStatus(Status::PUBLISHED)
+            ->with('translations')
+            ->with('category')
             ->where('category_only', false)
             ->orderBy('created_at', 'desc')
             ->take($amount)
@@ -152,7 +154,7 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
     {
         return $this->model->whereHas('translations', function (Builder $q) use ($slug) {
             $q->where('slug', "$slug");
-        })->with('translations')->whereStatus(Status::PUBLISHED)->firstOrFail();
+        })->with('translations')->with('category')->whereStatus(Status::PUBLISHED)->firstOrFail();
     }
 
     /**
@@ -166,6 +168,6 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
     {
         return $this->model->whereHas('translations', function (Builder $q) use ($category) {
             $q->where('category_id', "$category")->where('category_only', true);
-        })->with('translations')->orderBy('created_at','DESC')->get();
+        })->with(['translations','category'])->orderBy('created_at','DESC')->get();
     }
 }

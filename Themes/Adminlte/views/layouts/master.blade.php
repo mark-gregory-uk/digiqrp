@@ -105,18 +105,7 @@
 
 
 
-        @if(is_module_enabled('Notification'))
-            <script src="https://js.pusher.com/4.1.0/pusher.min.js" integrity="sha384-e9MoFh6Cw/uluf+NZ6MJwfJ1Dm7UOvJf9oTBxxCYDyStJeeAF0q53ztnEbLLDSQP" crossorigin="anonymous"></script>
-            <script src="{{ Module::asset('notification:js/pusherNotifications.js') }}"></script>
-            <script>
-                $('.notifications-list').pusherNotifications({
-                    pusherKey: '{{ config('broadcasting.connections.pusher.key') }}',
-                    pusherCluster: '{{ config('broadcasting.connections.pusher.options.cluster') }}',
-                    pusherEncrypted: {{ config('broadcasting.connections.pusher.options.encrypted') }},
-                    loggedInUserId: {{ $currentUser->id }}
-                });
-            </script>
-        @endif
+        <!-- Notifications Were Here -->
 
         @if(config('asgard.core.core.ckeditor-config-file-path') !== '')
             <script>

@@ -25,7 +25,7 @@ class SentinelRoleRepository implements RoleRepository
     }
 
     /**
-     * Return all the roles.
+     * Return all the roles
      * @return mixed
      */
     public function all()
@@ -34,7 +34,7 @@ class SentinelRoleRepository implements RoleRepository
     }
 
     /**
-     * Paginating, ordering and searching through pages for server side index table.
+     * Paginating, ordering and searching through pages for server side index table
      * @param Request $request
      * @return LengthAwarePaginator
      */
@@ -61,7 +61,7 @@ class SentinelRoleRepository implements RoleRepository
     }
 
     /**
-     * Create a role resource.
+     * Create a role resource
      * @return mixed
      */
     public function create($data)
@@ -75,7 +75,7 @@ class SentinelRoleRepository implements RoleRepository
     }
 
     /**
-     * Find a role by its id.
+     * Find a role by its id
      * @param $id
      * @return mixed
      */
@@ -85,7 +85,7 @@ class SentinelRoleRepository implements RoleRepository
     }
 
     /**
-     * Update a role.
+     * Update a role
      * @param $id
      * @param $data
      * @return mixed
@@ -105,7 +105,7 @@ class SentinelRoleRepository implements RoleRepository
     }
 
     /**
-     * Delete a role.
+     * Delete a role
      * @param $id
      * @return mixed
      */
@@ -117,7 +117,7 @@ class SentinelRoleRepository implements RoleRepository
     }
 
     /**
-     * Find a role by its name.
+     * Find a role by its name
      * @param  string $name
      * @return mixed
      */
@@ -129,7 +129,7 @@ class SentinelRoleRepository implements RoleRepository
     /**
      * @inheritdoc
      */
-    public function allWithBuilder(): Builder
+    public function allWithBuilder() : Builder
     {
         return $this->role->newQuery();
     }

@@ -7,7 +7,7 @@ use Laracasts\Presenter\Presenter;
 class UserPresenter extends Presenter
 {
     /**
-     * Return the gravatar link for the users email.
+     * Return the gravatar link for the users email
      * @param  int $size
      * @return string
      */
@@ -23,6 +23,6 @@ class UserPresenter extends Presenter
      */
     public function fullname()
     {
-        return $this->name ?: $this->first_name.' '.$this->last_name;
+        return $this->name ?: $this->first_name . ' ' . $this->last_name;
     }
 }

@@ -7,7 +7,7 @@ use Cartalyst\Sentinel\Users\UserInterface;
 interface Authentication
 {
     /**
-     * Authenticate a user.
+     * Authenticate a user
      * @param  array $credentials
      * @param  bool  $remember    Remember the user
      * @return mixed
@@ -22,7 +22,7 @@ interface Authentication
     public function register(array $user);
 
     /**
-     * Activate the given used id.
+     * Activate the given used id
      * @param  int    $userId
      * @param  string $code
      * @return mixed
@@ -44,21 +44,21 @@ interface Authentication
     public function logout();
 
     /**
-     * Create an activation code for the given user.
+     * Create an activation code for the given user
      * @param $user
      * @return mixed
      */
     public function createActivation($user);
 
     /**
-     * Create a reminders code for the given user.
+     * Create a reminders code for the given user
      * @param $user
      * @return mixed
      */
     public function createReminderCode($user);
 
     /**
-     * Completes the reset password process.
+     * Completes the reset password process
      * @param $user
      * @param  string $code
      * @param  string $password
@@ -67,34 +67,34 @@ interface Authentication
     public function completeResetPassword($user, $code, $password);
 
     /**
-     * Determines if the current user has access to given permission.
+     * Determines if the current user has access to given permission
      * @param $permission
      * @return bool
      */
     public function hasAccess($permission);
 
     /**
-     * Check if the user is logged in.
+     * Check if the user is logged in
      * @return bool
      */
     public function check();
 
     /**
-     * Get the currently logged in user.
+     * Get the currently logged in user
      * @return \Modules\User\Entities\UserInterface
      */
     public function user();
 
     /**
-     * Get the ID for the currently authenticated user.
+     * Get the ID for the currently authenticated user
      * @return int
      */
     public function id();
 
     /**
-     * Log a user manually in.
+     * Log a user manually in
      * @param UserInterface $user
      * @return UserInterface
      */
-    public function logUserIn(UserInterface $user): UserInterface;
+    public function logUserIn(UserInterface $user) : UserInterface;
 }

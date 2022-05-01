@@ -7,25 +7,26 @@ use Illuminate\Http\Request;
 use Modules\User\Entities\UserInterface;
 
 /**
- * Interface UserRepository.
+ * Interface UserRepository
+ * @package Modules\User\Repositories
  */
 interface UserRepository
 {
     /**
-     * Returns all the users.
+     * Returns all the users
      * @return object
      */
     public function all();
 
     /**
-     * Create a user resource.
+     * Create a user resource
      * @param  array $data
      * @return mixed
      */
     public function create(array $data);
 
     /**
-     * Create a user and assign roles to it.
+     * Create a user and assign roles to it
      * @param array $data
      * @param array $roles
      * @param bool $activated
@@ -34,7 +35,7 @@ interface UserRepository
 
     /**
      * Create a user and assign roles to it
-     * But don't fire the user created event.
+     * But don't fire the user created event
      * @param array $data
      * @param array $roles
      * @param bool $activated
@@ -43,14 +44,14 @@ interface UserRepository
     public function createWithRolesFromCli($data, $roles, $activated = false);
 
     /**
-     * Find a user by its ID.
+     * Find a user by its ID
      * @param $id
      * @return mixed
      */
     public function find($id);
 
     /**
-     * Update a user.
+     * Update a user
      * @param $user
      * @param $data
      * @return mixed
@@ -58,7 +59,7 @@ interface UserRepository
     public function update($user, $data);
 
     /**
-     * Update a user and sync its roles.
+     * Update a user and sync its roles
      * @param  int   $userId
      * @param $data
      * @param $roles
@@ -67,23 +68,23 @@ interface UserRepository
     public function updateAndSyncRoles($userId, $data, $roles);
 
     /**
-     * Deletes a user.
+     * Deletes a user
      * @param $id
      * @return mixed
      */
     public function delete($id);
 
     /**
-     * Find a user by its credentials.
+     * Find a user by its credentials
      * @param  array $credentials
      * @return mixed
      */
     public function findByCredentials(array $credentials);
 
     /**
-     * Paginating, ordering and searching through pages for server side index table.
+     * Paginating, ordering and searching through pages for server side index table
      * @param Request $request
      * @return LengthAwarePaginator
      */
-    public function serverPaginationFilteringFor(Request $request): LengthAwarePaginator;
+    public function serverPaginationFilteringFor(Request $request) : LengthAwarePaginator;
 }

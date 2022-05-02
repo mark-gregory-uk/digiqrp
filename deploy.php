@@ -85,10 +85,10 @@ task('cache-clean', function () {
 // Host Definitions
 // **********************************************************************************
 host('prod')
-    ->hostname('digiqrp.com')
-    ->port(23)
+    ->hostname('192.168.0.3')
+    ->port(22)
     ->user('deploy')
-    ->identityFile('~/.ssh/digiqrp/id_rsa.pub')
+    ->identityFile('~/.ssh/id_rsa_tst_deploy')
     ->set('writable_use_sudo', true)
     ->set('http_user', 'www-data')
     ->set('use_relative_symlink', false)

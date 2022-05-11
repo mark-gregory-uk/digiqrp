@@ -86,7 +86,7 @@ task('cache-clean', function () {
 // **********************************************************************************
 host('prod')
     ->hostname('192.168.0.7')
-    ->port(22)
+    ->port(702)
     ->user('deploy')
     ->identityFile('~/.ssh/id_rsa_pi_deploy')
     ->set('writable_use_sudo', true)

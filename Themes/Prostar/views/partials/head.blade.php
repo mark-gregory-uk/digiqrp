@@ -1,6 +1,6 @@
 <head lang="{{ LaravelLocalization::setLocale() }}">
     <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control:max-age=31536000"/>
+
     <meta name="description" content="@setting('core::site-description')"/>
     <meta name="keywords" content="@setting('core::site-meta-keywords')"/>
     <meta name="theme-color" content="@setting('core::site-theme-color')"/>

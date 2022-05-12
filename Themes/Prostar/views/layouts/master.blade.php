@@ -37,9 +37,9 @@
                   @include('partials.logchart')
                   @include('partials.solar-report')
                 @endif
-                @if ( (Request::path() != 'welcome') and (Request::path() != 'logbook-stats') and Request::path() != '/')
+
                     @include('partials.sunspot-trend')
-                @endif
+
 
                 @include('partials.blog-feed')
 

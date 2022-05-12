@@ -9,7 +9,7 @@ set('repository', 'git@github.com:G4LCH/digiqrp.git');     // The Repository in 
 set('keep_releases', 4);                                   // Number of releases to keep on hosts
 set('default_timeout', 1200);
 
-add('shared_files', ['.env']);                                            // Shared files between deploys
+add('shared_files', ['.env','sitemap.xml']);                                            // Shared files between deploys
 add('shared_dirs', ['storage', 'vendor', 'node_modules','Laravel']);      // Shared dirs between deploys
 add('writable_dirs', ['storage', 'vendor', 'node_modules'.'Laravel']);    // Writable dirs by web server
 

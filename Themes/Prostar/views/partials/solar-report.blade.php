@@ -22,8 +22,8 @@
                     </tbody>
                 </table>
             </div>
+            <!-- <h6 class="page-header">Geomagnetic Field {$latestSolarReports->geomagfield}</h6> -->
         </ul>
-        <h3 class="page-header">Geomagnatic Field</h3>
-        <p>{{$latestSolarReports->geomagfield}}</p>
+
     </div>
 @endif

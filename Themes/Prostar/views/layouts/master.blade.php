@@ -38,8 +38,8 @@
                   @include('partials.solar-report')
                 @endif
 
-                    @include('partials.sunspot-trend')
-
+                @include('partials.sunspots')
+                @include('partials.sunspot-trend')
 
                 @include('partials.blog-feed')
 

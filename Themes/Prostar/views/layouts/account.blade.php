@@ -20,8 +20,8 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" async></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js" async></script>
     <![endif]-->
 </head>
 <body class="hold-transition login-page">
@@ -31,9 +31,9 @@
 </div>
 
 <!-- Bootstrap -->
-<script src="{{ asset('themes/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('themes/adminlte/vendor/iCheck/icheck.min.js') }}"></script>
-<script src="{{ asset('themes/adminlte/js/vendor/alertify/alertify.js') }}"></script>
+<script src="{{ asset('themes/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}" async></script>
+<script src="{{ asset('themes/adminlte/vendor/iCheck/icheck.min.js') }}" async></script>
+<script src="{{ asset('themes/adminlte/js/vendor/alertify/alertify.js') }}" async></script>
 <script>
     $(function () {
         $('input').iCheck({

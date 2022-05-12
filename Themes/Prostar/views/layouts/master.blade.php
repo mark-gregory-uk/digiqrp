@@ -10,13 +10,13 @@
 
                 @include('partials.navigation')
             <!-- Begin Breadcrumbs -->
-              @include('partials.bread-crumb')
+
             <!-- End Breadcrumbs -->
                 <div class="row-fluid">
                     <main id="content" role="main" class="span9">
                     <!-- Begin Content -->
                     @include('partials.header-image')
-
+                    @include('partials.bread-crumb')
                     <div id="system-message-container">
                        @include('partials.system-messages')
                     </div>
@@ -27,7 +27,7 @@
             </main>
             <div id="aside" class="span3">
                 <!-- Begin Right Sidebar -->
-                @include('partials.calllookup')
+                <!-- include('partials.calllookup')-->
 
                 @include('partials.latest-posts')
                 @include('partials.latest-contacts')

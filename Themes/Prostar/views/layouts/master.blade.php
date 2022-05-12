@@ -35,7 +35,7 @@
                 @include('partials.furthest-contacts')
                 @if (Request::path() != 'welcome' and Request::path() != '/')
                   @include('partials.logchart')
-                  @include('partials.solar-report')
+                  <!-- include('partials.solar-report') -->
                 @endif
 
                 @include('partials.solar-report')

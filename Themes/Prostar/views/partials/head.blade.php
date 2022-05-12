@@ -37,11 +37,11 @@
             font-family: 'Open Sans', sans-serif;
         }
         body.site {
-            border-top: 3px solid #0088cc;
+            border-top: 4px solid #FFA500;
             background-color: #f4f6f7;
         }
         a {
-            color: #0088cc;
+            color:  #0088cc;
         }
         .nav-list > .active > a,
         .nav-list > .active > a:hover,
@@ -51,7 +51,7 @@
         .nav-pills > .active > a,
         .nav-pills > .active > a:hover,
         .btn-primary {
-            background: #0088cc;
+            background:  #0088cc;
         }
         div.mod_search87 input[type="search"]{ width:auto; }
     </style>
@@ -65,7 +65,7 @@
             font-family: 'Open Sans', sans-serif;
         }
         body.site {
-            border-top: 3px solid #0088cc;
+            border-top: 4px solid #FFA500;
             background-color: #f4f6f7;
         }
         a {

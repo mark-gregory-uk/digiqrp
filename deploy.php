@@ -9,9 +9,9 @@ set('repository', 'git@github.com:G4LCH/digiqrp.git');     // The Repository in 
 set('keep_releases', 4);                                   // Number of releases to keep on hosts
 set('default_timeout', 1200);
 
-add('shared_files', array('.env','public/sitemap.xml'));                       // Shared files between deploys
-add('shared_dirs', array('storage', 'vendor', 'node_modules','Laravel'));      // Shared dirs between deploys
-add('writable_dirs', array('storage', 'vendor', 'node_modules'.'Laravel'));    // Writable dirs by web server
+add('shared_files', ['.env','sitemap.xml']);                                            // Shared files between deploys
+add('shared_dirs', ['storage', 'vendor', 'node_modules','Laravel']);      // Shared dirs between deploys
+add('writable_dirs', ['storage', 'vendor', 'node_modules'.'Laravel']);    // Writable dirs by web server
 
 // **********************************************************************************
 // Task Definitions
@@ -81,10 +81,6 @@ task('cache-clean', function () {
     run('{{bin/php}} {{release_path}}/artisan config:clear');
 })->desc('Clearing System Config and Cache');
 
-task('sitemap', function () {
-    run('{{bin/php}} {{release_path}}/artisan sitemap:generate');
-})->desc('Generating Sitemap');
-
 // **********************************************************************************
 // Host Definitions
 // **********************************************************************************
@@ -116,4 +112,3 @@ after('deploy', 'reload:php-fpm');
 after('deploy', 'reload:nginx');
 after('deploy', 'reload:supervisor');
 after('deploy', 'udpserver:start');
-after('deploy', 'sitemap');

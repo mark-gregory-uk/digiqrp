@@ -4,7 +4,7 @@
 
 
     <section class="page-error-image page-error-image--404">
-        <img class="header-img" src="/media/banners/keyboard-1385706-1280.jpg" alt="">
+        <img class="header-img" src="/storage/media/banners/keyboard-1385706-1280.jpg" alt="">
     </section>
     <section class="page-error-image page-error-image--404">
         <img class="header-img" src="/storage/media/banners/keyboard-1385706-1280.jpg" alt="">

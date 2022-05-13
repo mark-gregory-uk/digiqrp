@@ -2,11 +2,11 @@
 
 @section('content')
 
-    <!--
+
     <section class="page-error-image page-error-image--404">
-        <img src="/img/bentley404.jpg">
+        <img class="header-img" src="/media/banners/keyboard-1385706-1280.jpg" alt="">
     </section>
-    -->
+
     <section class="page-error">
         <div class="content">
             <div class="col-1-1">

@@ -4,12 +4,12 @@ namespace Deployer;
 
 require 'recipe/laravel.php';
 
-set('application', 'G4LCH Larval 6 Digicore Blog Engine'); // The Application Title
+set('application', 'DigiQRP Laravel 8 Application'); // The Application Title
 set('repository', 'git@github.com:G4LCH/digiqrp.git');     // The Repository in use
 set('keep_releases', 4);                                   // Number of releases to keep on hosts
 set('default_timeout', 1200);
 
-add('shared_files', array('.env','sitemap.xml'));                         // Shared files between deploys
+add('shared_files', array('.env','public/sitemap.xml'));                       // Shared files between deploys
 add('shared_dirs', array('storage', 'vendor', 'node_modules','Laravel'));      // Shared dirs between deploys
 add('writable_dirs', array('storage', 'vendor', 'node_modules'.'Laravel'));    // Writable dirs by web server
 

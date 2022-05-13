@@ -1,47 +1,19 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Be right back.</title>
+@extends('layouts.master')
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+@section('content')
 
-        <style>
-            html, body {
-                height: 100%;
-            }
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                color: #B0BEC5;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
+    <section class="page-error-image page-error-image--404">
+        <img class="header-img" src="/media/banners/keyboard-1385706-1280.jpg" alt="">
+    </section>
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 72px;
-                margin-bottom: 40px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Be right back.</div>
+    <section class="page-error">
+        <div class="content">
+            <div class="col-1-1">
+                <h1 class="header header--one header--strike">503</h1>
+                <p>Sorry there has been an issue we will be right back</p>
             </div>
         </div>
-    </body>
-</html>
+    </section>
+
+@stop

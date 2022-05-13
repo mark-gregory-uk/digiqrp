@@ -81,6 +81,10 @@ task('cache-clean', function () {
     run('{{bin/php}} {{release_path}}/artisan config:clear');
 })->desc('Clearing System Config and Cache');
 
+task('sitemap', function () {
+    run('{{bin/php}} {{release_path}}/artisan sitemap:generate');
+})->desc('Generating Sitemap');
+
 // **********************************************************************************
 // Host Definitions
 // **********************************************************************************
@@ -112,3 +116,4 @@ after('deploy', 'reload:php-fpm');
 after('deploy', 'reload:nginx');
 after('deploy', 'reload:supervisor');
 after('deploy', 'udpserver:start');
+after('deploy', 'sitemap');

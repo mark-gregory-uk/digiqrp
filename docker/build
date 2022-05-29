@@ -1,6 +1,0 @@
-#!/bin/bash
-
-docker build -t digiqrp/app:latest ./app
-docker build -t digiqrp/node:latest ./node
-docker build -t digiqrp/mysql:latest ./mysql
-docker build -t digiqrp/redis:latest ./redis

@@ -48,4 +48,30 @@ class LogBookEntryController extends AdminBaseController
         return redirect()->back()
             ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('logbook::entry.title.entry')]));
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param LogbookEntry       $entry
+     * @param UpdateLogbookEntryRequest $request
+     *
+     * @return Response
+     */
+    public function create(Request $request)
+    {
+        // First we need to get the logbook were dealing with please
+        // this should come from our active logbook that is held against the user
+
+        //$this->logbookEntryRepository->update($entry, $request->all());
+
+        //return redirect()->back()
+        //    ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('logbook::entry.title.entry')]));
+    }
+
+
+    public function delete(){
+
+    }
+
+
 }

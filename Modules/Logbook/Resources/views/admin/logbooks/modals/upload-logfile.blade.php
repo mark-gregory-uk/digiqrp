@@ -1,4 +1,3 @@
-{{-- @if($currentUser->hasAccess('company.companies.upload')) --}}
     <div class="modal fade" id="upload-logfile">
         <div class="modal-dialog">
             <div class="modal-content">

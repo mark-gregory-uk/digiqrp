@@ -9,12 +9,10 @@ return [
         'logbooks'       => 'Logbooks',
         'entries' => 'Logbook Entries',
         'create logbook' => 'Create a logbook',
-        'create logentry' => 'Create a log Entry',
         'edit logbook'   => 'Edit a logbook',
     ],
     'button' => [
         'create logbook' => 'Create a logbook',
-        'create logentry' => 'Create a log Entry',
         'create country' => 'Create a country',
         'edit' => 'Edit',
     ],

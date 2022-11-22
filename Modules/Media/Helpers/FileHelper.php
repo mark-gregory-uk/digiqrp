@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 class FileHelper
 {
     /**
-     * Get first token of string before delimiter
+     * Get first token of string before delimiter.
      * @param $mimetype
      * @return string
      */
@@ -17,7 +17,7 @@ class FileHelper
     }
 
     /**
-     * Get Font Awesome icon for various files
+     * Get Font Awesome icon for various files.
      * @param string $mediaType
      * @return string
      */
@@ -40,11 +40,11 @@ class FileHelper
 
         $name = Str::slug($name);
 
-        return $name . strtolower($extension);
+        return $name.strtolower($extension);
     }
 
     /**
-     * Get the extension from the given name
+     * Get the extension from the given name.
      * @param $name
      * @return string
      */

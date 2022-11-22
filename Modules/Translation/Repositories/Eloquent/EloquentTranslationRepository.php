@@ -27,7 +27,7 @@ class EloquentTranslationRepository extends EloquentBaseRepository implements Tr
 
     public function getTranslationsForGroupAndNamespace($locale, $group, $namespace)
     {
-        $start = $namespace . '::' . $group;
+        $start = $namespace.'::'.$group;
 
         $test = $this->model->where('key', 'LIKE', "{$start}%")->whereHas('translations', function (Builder $query) use ($locale) {
             $query->where('locale', $locale);
@@ -35,7 +35,7 @@ class EloquentTranslationRepository extends EloquentBaseRepository implements Tr
 
         $translations = [];
         foreach ($test as $item) {
-            $key = str_replace($start . '.', '', $item->key);
+            $key = str_replace($start.'.', '', $item->key);
             $translations[$key] = $item->translate($locale)->value;
         }
 
@@ -70,7 +70,7 @@ class EloquentTranslationRepository extends EloquentBaseRepository implements Tr
     }
 
     /**
-     * Update the given translation key with the given data
+     * Update the given translation key with the given data.
      * @param string $key
      * @param array $data
      * @return mixed
@@ -82,7 +82,7 @@ class EloquentTranslationRepository extends EloquentBaseRepository implements Tr
     }
 
     /**
-     * Set the given value on the given TranslationTranslation
+     * Set the given value on the given TranslationTranslation.
      * @param TranslationTranslation $translationTranslation
      * @param string $value
      * @return void

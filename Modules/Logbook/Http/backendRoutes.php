@@ -54,12 +54,6 @@ $router->group(['prefix' =>'/logbook'], function (Router $router) {
         //'middleware' => 'can:logbook.logbooks.edit',
     ]);
 
-    $router->get('logentry/create', [
-        'as'         => 'admin.logbook.logentry.create',
-        'uses'       => 'LogbookControllerEntry@create',
-        //'middleware' => 'can:logbook.logbooks.create',
-    ]);
-
     // Countries
 
     $router->get('countries', [

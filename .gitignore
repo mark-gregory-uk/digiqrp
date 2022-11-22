@@ -15,7 +15,9 @@ yarn.lock
 .idea
 /public/sitemap.xml
 /storage/backups/
-/docker/db/
+/provision/docker/db/
 .DS_Store
 /storage/adif/
 /storage/sqlite/
+/docker/db
+/docker/nginx/log

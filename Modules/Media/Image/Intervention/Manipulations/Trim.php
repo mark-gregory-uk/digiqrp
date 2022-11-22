@@ -14,7 +14,7 @@ class Trim implements ImageHandlerInterface
     ];
 
     /**
-     * Handle the image manipulation request
+     * Handle the image manipulation request.
      * @param  \Intervention\Image\Image $image
      * @param  array                     $options
      * @return \Intervention\Image\Image

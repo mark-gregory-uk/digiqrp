@@ -8,8 +8,7 @@ use Modules\User\Contracts\Authentication;
 
 /**
  * Class Authorization
- * Inspired by : https://github.com/spatie/laravel-authorize
- * @package Modules\Core\Http\Middleware
+ * Inspired by : https://github.com/spatie/laravel-authorize.
  */
 class Authorization
 {

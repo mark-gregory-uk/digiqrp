@@ -53,13 +53,12 @@
                             >
                                 <el-table-column type="selection" width="55">
                                 </el-table-column>
-                                <el-table-column :label="trans('pages.status')" width="100">
+                                <el-table-column :label="trans('pages.status')" width="50">
                                     <template slot-scope="scope">
                                         <i :class="(scope.row.translations.status === true) ? 'text-success':'text-danger'" class="fa fa-circle"></i>
                                     </template>
                                 </el-table-column>
-                                <el-table-column prop="id" label="Id" width="75" sortable="custom">
-                                </el-table-column>
+
                                 <el-table-column :label="trans('pages.title')" prop="translations.title">
                                     <template slot-scope="scope">
                                         <a :href="editRoute(scope)" @click.prevent="goToEdit(scope)">

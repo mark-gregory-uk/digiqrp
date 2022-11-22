@@ -21,7 +21,7 @@ trait Translatable
     }
 
     /**
-     * Create or update the given field name
+     * Create or update the given field name.
      * @param string $fieldName
      * @param string $locale
      * @param string $value
@@ -50,7 +50,7 @@ trait Translatable
     }
 
     /**
-     * Get the translation of the given field name
+     * Get the translation of the given field name.
      * @param  string      $fieldName
      * @param  string|null $locale
      * @return string
@@ -108,7 +108,7 @@ trait Translatable
     }
 
     /**
-     * Get the foreign key for the current class
+     * Get the foreign key for the current class.
      * @return string
      */
     private function getForeignKey()
@@ -120,11 +120,11 @@ trait Translatable
     }
 
     /**
-     * Get the Translations class name
+     * Get the Translations class name.
      * @return string
      */
     private function getTranslationClass()
     {
-        return get_class($this) . 'Translation';
+        return get_class($this).'Translation';
     }
 }

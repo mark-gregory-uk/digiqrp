@@ -31,15 +31,7 @@
         {{ Breadcrumbs::render('software') }}
         @break
     @default
-       //@if (strpos(basename(Request::url()), 'digiqrp') !== false)
-           {{ Breadcrumbs::render('home') }}
-       //@else
-           //@if (strpos(basename(Request::url()), 'stage.digiqrp') !== false)
-         //      {{ Breadcrumbs::render('home') }}
-        //   @else
-       //      {{ Breadcrumbs::render('post') }}
-     //      @endif
-     //  @endif
+        {{ Breadcrumbs::render('home') }}
 
 @endswitch
 

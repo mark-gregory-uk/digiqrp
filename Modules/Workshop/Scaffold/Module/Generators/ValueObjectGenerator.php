@@ -5,7 +5,7 @@ namespace Modules\Workshop\Scaffold\Module\Generators;
 class ValueObjectGenerator extends Generator
 {
     /**
-     * Generate the given files
+     * Generate the given files.
      *
      * @param  array $valueObjects
      * @return void

@@ -34,7 +34,6 @@ return [
         'new password' => 'New password',
         'new password confirmation' => 'New password confirmation',
         'is activated' => 'Activated',
-        'lobook' => 'Active Logbook',
         'roles' => 'Roles',
     ],
     'table' => [

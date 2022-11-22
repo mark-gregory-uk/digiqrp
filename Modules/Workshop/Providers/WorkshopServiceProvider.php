@@ -67,11 +67,11 @@ class WorkshopServiceProvider extends ServiceProvider
     {
         $this->publishConfig('workshop', 'permissions');
         $this->publishConfig('workshop', 'config');
-        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 
     /**
-     * Register artisan commands.
+     * Register artisan commands
      */
     private function registerCommands()
     {
@@ -88,7 +88,7 @@ class WorkshopServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the scaffold command.
+     * Register the scaffold command
      */
     private function registerModuleScaffoldCommand()
     {
@@ -108,7 +108,7 @@ class WorkshopServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the update module command.
+     * Register the update module command
      */
     private function registerUpdateCommand()
     {
@@ -118,7 +118,7 @@ class WorkshopServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the theme scaffold command.
+     * Register the theme scaffold command
      */
     private function registerThemeScaffoldCommand()
     {
@@ -132,7 +132,7 @@ class WorkshopServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bind the theme manager.
+     * Bind the theme manager
      */
     private function bindThemeManager()
     {

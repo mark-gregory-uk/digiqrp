@@ -29,33 +29,33 @@
                         <thead>
                         <tr>
                             <th>Key</th>
-                            <?php foreach (config('laravellocalization.supportedLocales') as $locale => $language) { ?>
+                            <?php foreach (config('laravellocalization.supportedLocales') as $locale => $language): ?>
                                 <th>{{ $locale }}</th>
-                            <?php } ?>
+                            <?php endforeach; ?>
                         </tr>
                         </thead>
                         <tbody>
-                        <?php if (isset($translations)) { ?>
-                        <?php foreach ($translations->all() as $key => $translationGroup) { ?>
+                        <?php if (isset($translations)): ?>
+                        <?php foreach ($translations->all() as $key => $translationGroup): ?>
                         <tr>
                             <td>{{ $key }}</td>
-                            <?php foreach (config('laravellocalization.supportedLocales') as $locale => $language) { ?>
+                            <?php foreach (config('laravellocalization.supportedLocales') as $locale => $language): ?>
                                 <td style="position:relative;">
                                     <a class="translation" data-pk="{{ $locale }}__-__{{ $key }}">{{ is_array(Arr::get($translationGroup, $locale, null)) ?: Arr::get($translationGroup, $locale, null) }}</a>
                                     <a href="" style="position: absolute; right: 5px;" class="openRevisionModal"
                                        data-pk="{{ $locale }}__-__{{ $key }}"><i class="fa fa-search-plus"></i></a>
                                 </td>
-                            <?php } ?>
+                            <?php endforeach; ?>
                         </tr>
-                        <?php } ?>
-                        <?php } ?>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
                         </tbody>
                         <tfoot>
                         <tr>
                             <th>Key</th>
-                            <?php foreach (config('laravellocalization.supportedLocales') as $locale => $language) { ?>
+                            <?php foreach (config('laravellocalization.supportedLocales') as $locale => $language): ?>
                             <th>{{ $locale }}</th>
-                            <?php } ?>
+                            <?php endforeach; ?>
                         </tr>
                         </tfoot>
                     </table>
@@ -122,13 +122,13 @@
 @stop
 
 @push('js-stack')
-    <?php if ($errors->has('file')) { ?>
+    <?php if ($errors->has('file')): ?>
     <script>
         $( document ).ready(function() {
             $('#ImportModal').modal('show');
         });
     </script>
-    <?php } ?>
+    <?php endif; ?>
     <script>
         $( document ).ready(function() {
             $('.openRevisionModal').on('click', function (event) {

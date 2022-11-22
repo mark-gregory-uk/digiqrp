@@ -10,7 +10,7 @@ use Modules\Core\Sidebar\AbstractAdminSidebar;
 class RegisterTagSidebar extends AbstractAdminSidebar
 {
     /**
-     * Method used to define your sidebar menu groups and items.
+     * Method used to define your sidebar menu groups and items
      * @param Menu $menu
      * @return Menu
      */

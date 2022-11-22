@@ -32,7 +32,7 @@ class MenuItemController extends Controller
     }
 
     /**
-     * Update all menu items.
+     * Update all menu items
      * @param Request $request
      */
     public function update(Request $request)
@@ -43,7 +43,7 @@ class MenuItemController extends Controller
     }
 
     /**
-     * Delete a menu item.
+     * Delete a menu item
      * @param Request $request
      * @return mixed
      */

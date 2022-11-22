@@ -52,10 +52,6 @@
                                         <el-checkbox v-model="user.is_activated">Activated</el-checkbox>
                                         <div v-if="form.errors.has('activated')" class="el-form-item__error" v-text="form.errors.first('activated')"></div>
                                     </el-form-item>
-                                    <el-form-item :label="trans('users.form.logbook')" :class="{'el-form-item is-error': form.errors.has('active_logbook_idd') }">
-                                        <el-input-number v-model="user.active_logbook_id">Active Logbook</el-input-number>
-                                        <div v-if="form.errors.has('active_logbook_id')" class="el-form-item__error" v-text="form.errors.first('active_logbook_id')"></div>
-                                    </el-form-item>
                                     <div v-if="user.is_new">
                                         <el-form-item :label="trans('users.form.password')" :class="{'el-form-item is-error': form.errors.has('password') }">
                                             <el-input v-model="user.password" type="password"></el-input>

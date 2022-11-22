@@ -53,7 +53,7 @@ abstract class ProviderInstaller implements SetupScript
     }
 
     /**
-     * Fire the install script.
+     * Fire the install script
      * @param  Command $command
      * @return mixed
      */
@@ -81,7 +81,7 @@ abstract class ProviderInstaller implements SetupScript
         $this->createFirstUser();
 
         if ($this->command->option('verbose')) {
-            $command->info($this->driver.' succesfully configured');
+            $command->info($this->driver . ' succesfully configured');
         }
     }
 
@@ -153,7 +153,7 @@ abstract class ProviderInstaller implements SetupScript
     }
 
     /**
-     * Set the correct repository binding on the fly for the current request.
+     * Set the correct repository binding on the fly for the current request
      *
      * @param $driver
      */
@@ -174,7 +174,7 @@ abstract class ProviderInstaller implements SetupScript
     }
 
     /**
-     * Create a first admin user.
+     * Create a first admin user
      */
     protected function createFirstUser()
     {

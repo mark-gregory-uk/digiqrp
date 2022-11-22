@@ -20,7 +20,7 @@ class AssetServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bind classes related to assets.
+     * Bind classes related to assets
      */
     private function bindAssetClasses()
     {

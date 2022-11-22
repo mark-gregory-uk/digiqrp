@@ -24,7 +24,7 @@ class BaseUrlResolver
     }
 
     /**
-     * Resolve the given path based on the set filesystem.
+     * Resolve the given path based on the set filesystem
      * @param string $path
      * @return string
      */

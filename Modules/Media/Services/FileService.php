@@ -50,7 +50,7 @@ class FileService
     }
 
     /**
-     * Create the necessary thumbnails for the given file.
+     * Create the necessary thumbnails for the given file
      * @param $savedFile
      */
     private function createThumbnails(File $savedFile)
@@ -65,7 +65,7 @@ class FileService
     private function getDestinationPath($path)
     {
         if ($this->getConfiguredFilesystem() === 'local') {
-            return basename(public_path()).$path;
+            return basename(public_path()) . $path;
         }
 
         return $path;

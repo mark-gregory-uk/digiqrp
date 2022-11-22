@@ -7,10 +7,10 @@ use Modules\Core\Console\Installers\SetupScript;
 
 class UnignoreComposerLock implements SetupScript
 {
-    const COMPOSER_LOCK = 'composer.lock';
+    const COMPOSER_LOCK = "composer.lock";
 
     /**
-     * Fire the install script.
+     * Fire the install script
      *
      * @param  Command $command
      * @return mixed
@@ -19,7 +19,7 @@ class UnignoreComposerLock implements SetupScript
     {
         $gitignorePath = base_path('.gitignore');
 
-        if (! $this->gitignoreContainsComposerLock($gitignorePath)) {
+        if (!$this->gitignoreContainsComposerLock($gitignorePath)) {
             return;
         }
 
@@ -62,7 +62,7 @@ class UnignoreComposerLock implements SetupScript
      */
     private function writeNewGitignore($gitignorePath, $out)
     {
-        $fp = fopen($gitignorePath, 'w+');
+        $fp = fopen($gitignorePath, "w+");
         flock($fp, LOCK_EX);
         foreach ($out as $line) {
             fwrite($fp, $line);

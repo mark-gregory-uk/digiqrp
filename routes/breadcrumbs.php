@@ -87,8 +87,12 @@ Breadcrumbs::for('post', function (BreadcrumbTrail $trail) {
     $post = PostTranslation::where('slug','=',basename(Request::url()))->first();
 
     if ($post){
+
         $sourcePost = \Modules\Blog\Entities\Post::where('id','=',$post->post_id)->first();
-        $category =  \Modules\Blog\Entities\Category::where('id','=',$sourcePost->category_id)->first()->name;
+
+        if ($sourcePost->category_id){
+            $category =  \Modules\Blog\Entities\Category::where('id','=',$sourcePost->category_id)->first()->name;
+        }
 
         if ($sourcePost->category_only){
             if ($sourcePost->category_id == 21){

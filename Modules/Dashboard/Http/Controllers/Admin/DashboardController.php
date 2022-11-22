@@ -39,7 +39,7 @@ class DashboardController extends AdminBaseController
     }
 
     /**
-     * Display the dashboard with its widgets.
+     * Display the dashboard with its widgets
      * @return \Illuminate\View\View
      */
     public function index()
@@ -57,7 +57,7 @@ class DashboardController extends AdminBaseController
     }
 
     /**
-     * Save the current state of the widgets.
+     * Save the current state of the widgets
      * @param Request $request
      * @return mixed
      */
@@ -75,13 +75,13 @@ class DashboardController extends AdminBaseController
     }
 
     /**
-     * Reset the grid for the current user.
+     * Reset the grid for the current user
      */
     public function reset()
     {
         $widget = $this->widget->findForUser($this->auth->id());
 
-        if (! $widget) {
+        if (!$widget) {
             return redirect()->route('dashboard.index')->with('warning', trans('dashboard::dashboard.reset not needed'));
         }
 
@@ -91,7 +91,7 @@ class DashboardController extends AdminBaseController
     }
 
     /**
-     * Boot widgets for all enabled modules.
+     * Boot widgets for all enabled modules
      * @param RepositoryInterface $modules
      */
     private function bootWidgets(RepositoryInterface $modules)
@@ -107,7 +107,7 @@ class DashboardController extends AdminBaseController
     }
 
     /**
-     * Require necessary assets.
+     * Require necessary assets
      */
     private function requireAssets()
     {

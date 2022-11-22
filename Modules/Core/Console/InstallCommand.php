@@ -47,7 +47,7 @@ class InstallCommand extends Command
     }
 
     /**
-     * Execute the actions.
+     * Execute the actions
      *
      * @return mixed
      */

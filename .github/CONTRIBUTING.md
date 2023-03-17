@@ -1,1 +1,0 @@
-Please see the contributing guidelines [here](https://asgardcms.com/docs/v3/getting-started/contributing)

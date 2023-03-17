@@ -60,6 +60,23 @@ return [
             'visibility' => 'public',
         ],
 
+    'data' => [
+            'driver'      => 'local',
+            'root'        => '/data',
+            'permissions' => [
+                'file' => [
+                    'public'  => 0777,
+                    'private' => 0700,
+                ],
+                'dir' => [
+                    'public'  => 0777,
+                    'private' => 0700,
+                ],
+            ],
+            'url'        => env('APP_URL'),
+            'visibility' => 'public',
+        ],
+
         'public' => [
             'driver'     => 'local',
             'root'       => storage_path('app/public'),

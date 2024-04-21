@@ -58,7 +58,7 @@ class PageServiceProvider extends ServiceProvider
         $this->publishConfig('page', 'permissions');
 
         $this->app[TagManager::class]->registerNamespace(new Page());
-        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
         $this->handleAssets();
 
@@ -93,7 +93,7 @@ class PageServiceProvider extends ServiceProvider
     }
 
     /**
-     * Require iCheck on edit and create pages.
+     * Require iCheck on edit and create pages
      */
     private function handleAssets()
     {

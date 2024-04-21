@@ -39,7 +39,7 @@ class NavigationViewComposer
     }
 
     /**
-     * Add a menu item to the menu.
+     * Add a menu item to the menu
      * @param MenuitemEntity $item
      * @param Builder $menu
      */
@@ -58,7 +58,7 @@ class NavigationViewComposer
     }
 
     /**
-     * Add children to menu under the give name.
+     * Add children to menu under the give name
      *
      * @param string $name
      * @param object $children
@@ -74,7 +74,7 @@ class NavigationViewComposer
     }
 
     /**
-     * Add children to the given menu recursively.
+     * Add children to the given menu recursively
      *
      * @param MenuitemEntity   $child
      * @param MenuItem $sub
@@ -89,7 +89,7 @@ class NavigationViewComposer
     }
 
     /**
-     * Check if the given menu item has children.
+     * Check if the given menu item has children
      *
      * @param  object $item
      * @return bool

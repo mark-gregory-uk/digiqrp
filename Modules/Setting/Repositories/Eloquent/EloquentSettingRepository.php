@@ -14,7 +14,7 @@ use Modules\Setting\Repositories\SettingRepository;
 class EloquentSettingRepository extends EloquentBaseRepository implements SettingRepository
 {
     /**
-     * Update a resource.
+     * Update a resource
      * @param $id
      * @param $data
      * @return mixed
@@ -24,7 +24,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     }
 
     /**
-     * Return all settings, with the setting name as key.
+     * Return all settings, with the setting name as key
      * @return array
      */
     public function all()
@@ -40,7 +40,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     }
 
     /**
-     * Create or update the settings.
+     * Create or update the settings
      * @param $settings
      * @return mixed|void
      */
@@ -53,7 +53,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
             if ($settingName == 'medias_single') {
                 // Get first key of values (Original settingName)
                 foreach ($settingValues as $key => $value) {
-                    $normalisedValue = [$settingName => [$key => $value]];
+                    $normalisedValue = [ $settingName => [$key => $value] ];
                     $settingName = $key;
                     break;
                 }
@@ -68,7 +68,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     }
 
     /**
-     * Remove the token from the input array.
+     * Remove the token from the input array
      * @param $settings
      */
     private function removeTokenKey(&$settings)
@@ -77,7 +77,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     }
 
     /**
-     * Find a setting by its name.
+     * Find a setting by its name
      * @param $settingName
      * @return mixed
      */
@@ -87,7 +87,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     }
 
     /**
-     * Create a setting with the given name.
+     * Create a setting with the given name
      * @param string $settingName
      * @param $settingValues
      * @return Setting
@@ -115,7 +115,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     }
 
     /**
-     * Update the given setting.
+     * Update the given setting
      * @param object setting
      * @param $settingValues
      */
@@ -149,19 +149,19 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
 
     /**
      * Return all modules that have settings
-     * with its settings.
+     * with its settings
      * @param  array|string $modules
      * @return array
      */
     public function moduleSettings($modules)
     {
         if (is_string($modules)) {
-            return config('asgard.'.strtolower($modules).'.settings');
+            return config('asgard.' . strtolower($modules) . ".settings");
         }
 
         $modulesWithSettings = [];
         foreach ($modules as $module) {
-            if ($moduleSettings = config('asgard.'.strtolower($module->getName()).'.settings')) {
+            if ($moduleSettings = config('asgard.' . strtolower($module->getName()) . ".settings")) {
                 $modulesWithSettings[$module->getName()] = $moduleSettings;
             }
         }
@@ -170,7 +170,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     }
 
     /**
-     * Return the saved module settings.
+     * Return the saved module settings
      * @param $module
      * @return mixed
      */
@@ -185,17 +185,17 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     }
 
     /**
-     * Find settings by module name.
+     * Find settings by module name
      * @param  string $module Module name
      * @return mixed
      */
     public function findByModule($module)
     {
-        return $this->model->where('name', 'LIKE', $module.'::%')->get();
+        return $this->model->where('name', 'LIKE', $module . '::%')->get();
     }
 
     /**
-     * Find the given setting name for the given module.
+     * Find the given setting name for the given module
      * @param  string $settingName
      * @return mixed
      */
@@ -205,7 +205,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     }
 
     /**
-     * Return the translatable module settings.
+     * Return the translatable module settings
      * @param $module
      * @return mixed
      */
@@ -217,31 +217,31 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     }
 
     /**
-     * Return the non translatable module settings.
+     * Return the non translatable module settings
      * @param $module
      * @return array
      */
     public function plainModuleSettings($module)
     {
         return array_filter($this->moduleSettings($module), function ($setting) {
-            return ! isset($setting['translatable']) || $setting['translatable'] === false;
+            return !isset($setting['translatable']) || $setting['translatable'] === false;
         });
     }
 
     /**
-     * Return a setting name using dot notation: asgard.{module}.settings.{settingName}.
+     * Return a setting name using dot notation: asgard.{module}.settings.{settingName}
      * @param string $settingName
      * @return string
      */
     private function getConfigSettingName($settingName)
     {
-        [$module, $setting] = explode('::', $settingName);
+        list($module, $setting) = explode('::', $settingName);
 
         return "asgard.{$module}.settings.{$setting}";
     }
 
     /**
-     * Check if the given setting name is translatable.
+     * Check if the given setting name is translatable
      * @param string $settingName
      * @return bool
      */
@@ -255,7 +255,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     }
 
     /**
-     * Return the setting value(s). If values are ann array, json_encode them.
+     * Return the setting value(s). If values are ann array, json_encode them
      * @param string|array $settingValues
      * @return string
      */

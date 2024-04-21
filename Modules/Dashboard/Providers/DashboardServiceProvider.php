@@ -55,18 +55,18 @@ class DashboardServiceProvider extends ServiceProvider
     public function boot(StylistThemeManager $theme)
     {
         $this->publishes([
-            __DIR__.'/../Resources/views' => base_path('resources/views/asgard/dashboard'),
+            __DIR__ . '/../Resources/views' => base_path('resources/views/asgard/dashboard'),
         ], 'views');
 
         $this->app['view']->prependNamespace(
             'dashboard',
-            $theme->find(config('asgard.core.core.admin-theme'))->getPath().'/views/modules/dashboard'
+            $theme->find(config('asgard.core.core.admin-theme'))->getPath() . '/views/modules/dashboard'
         );
 
         $this->publishConfig('dashboard', 'permissions');
         $this->publishConfig('dashboard', 'config');
         $this->publishConfig('dashboard', 'settings');
-        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 
     /**

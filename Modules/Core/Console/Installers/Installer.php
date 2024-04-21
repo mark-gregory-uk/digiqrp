@@ -38,7 +38,7 @@ class Installer
     }
 
     /**
-     * Fire install scripts.
+     * Fire install scripts
      * @param  Command $command
      * @return bool
      */

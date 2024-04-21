@@ -54,7 +54,7 @@ class TagWidget
     }
 
     /**
-     * Extract the possible arguments as class properties.
+     * Extract the possible arguments as class properties
      * @param array $arguments
      */
     private function extractArguments(array $arguments)
@@ -66,7 +66,7 @@ class TagWidget
     }
 
     /**
-     * Get the available tags, if an entity is available from that.
+     * Get the available tags, if an entity is available from that
      * @return array
      */
     private function getTags()

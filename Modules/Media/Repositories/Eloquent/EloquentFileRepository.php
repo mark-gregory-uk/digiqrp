@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class EloquentFileRepository extends EloquentBaseRepository implements FileRepository
 {
     /**
-     * Update a resource.
+     * Update a resource
      * @param  File  $file
      * @param $data
      * @return mixed
@@ -38,7 +38,7 @@ class EloquentFileRepository extends EloquentBaseRepository implements FileRepos
     }
 
     /**
-     * Create a file row from the given file.
+     * Create a file row from the given file
      * @param  UploadedFile $file
      * @param int $parentId
      * @return mixed
@@ -76,11 +76,11 @@ class EloquentFileRepository extends EloquentBaseRepository implements FileRepos
         if ($folderId !== 0) {
             $parent = app(FolderRepository::class)->findFolder($folderId);
             if ($parent !== null) {
-                return $parent->path->getRelativeUrl().'/'.$filename;
+                return $parent->path->getRelativeUrl() . '/' . $filename;
             }
         }
 
-        return config('asgard.media.config.files-path').$filename;
+        return config('asgard.media.config.files-path') . $filename;
     }
 
     public function destroy($file)
@@ -89,7 +89,7 @@ class EloquentFileRepository extends EloquentBaseRepository implements FileRepos
     }
 
     /**
-     * Find a file for the entity by zone.
+     * Find a file for the entity by zone
      * @param $zone
      * @param object $entity
      * @return object
@@ -106,7 +106,7 @@ class EloquentFileRepository extends EloquentBaseRepository implements FileRepos
     }
 
     /**
-     * Find multiple files for the given zone and entity.
+     * Find multiple files for the given zone and entity
      * @param zone $zone
      * @param object $entity
      * @return object
@@ -141,12 +141,12 @@ class EloquentFileRepository extends EloquentBaseRepository implements FileRepos
                 return $carry;
             }
 
-            $version = (int) $matches[1];
+            $version = (int)$matches[1];
 
             return ($version > $carry) ? $version : $carry;
         }, 0);
 
-        return $fileNameOnly.'_'.($versionCurrent + 1).'.'.$extension;
+        return $fileNameOnly . '_' . ($versionCurrent+1) . '.' . $extension;
     }
 
     /**
@@ -189,7 +189,7 @@ class EloquentFileRepository extends EloquentBaseRepository implements FileRepos
     {
         $prefix = config('asgard.media.config.files-path');
 
-        return $this->model->where('path', $prefix.$path)->first();
+        return $this->model->where('path', $prefix . $path)->first();
     }
 
     public function allForGrid(): Collection
@@ -197,7 +197,7 @@ class EloquentFileRepository extends EloquentBaseRepository implements FileRepos
         return $this->model->where('is_folder', 0)->get();
     }
 
-    public function move(File $file, File $destination): File
+    public function move(File $file, File $destination) : File
     {
         $previousData = [
             'filename' => $file->filename,

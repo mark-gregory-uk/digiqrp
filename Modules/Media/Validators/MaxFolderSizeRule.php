@@ -39,11 +39,11 @@ class MaxFolderSizeRule implements Rule
     }
 
     /**
-     * Get the directory size.
+     * Get the directory size
      * @param string $directory
      * @return int
      */
-    public function getDirSize($directory): int
+    public function getDirSize($directory) : int
     {
         $size = 0;
         foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory, FilesystemIterator::SKIP_DOTS)) as $file) {
@@ -69,6 +69,6 @@ class MaxFolderSizeRule implements Rule
 
         $bytes /= pow(1024, $pow);
 
-        return round($bytes, $precision).' '.$units[$pow];
+        return round($bytes, $precision) . ' ' . $units[$pow];
     }
 }

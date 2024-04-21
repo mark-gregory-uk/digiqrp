@@ -12,7 +12,7 @@ class EnvFileWriter
     private $finder;
 
     /**
-     * Whitelist of variables in .env.example that can be written by the installer when it creates the .env file.
+     * Whitelist of variables in .env.example that can be written by the installer when it creates the .env file
      *
      * @var array
      */
@@ -46,7 +46,7 @@ class EnvFileWriter
     }
 
     /**
-     * Create a new .env file using the contents of .env.example.
+     * Create a new .env file using the contents of .env.example
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      * @return void
@@ -59,7 +59,7 @@ class EnvFileWriter
     }
 
     /**
-     * Update the .env file.
+     * Update the .env file
      *
      * @param array $vars
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
@@ -67,14 +67,14 @@ class EnvFileWriter
      */
     public function write($vars)
     {
-        if (! empty($vars)) {
+        if (!empty($vars)) {
             $environmentFile = $this->finder->get($this->file);
 
             foreach ($vars as $key => $value) {
                 if (isset($this->setable_variables[$key])) {
                     $env_var_name = explode('=', $this->setable_variables[$key])[0];
 
-                    $value = $env_var_name.'='.$value;
+                    $value = $env_var_name . '=' . $value;
 
                     $environmentFile = str_replace($this->setable_variables[$key], $value, $environmentFile);
                 }

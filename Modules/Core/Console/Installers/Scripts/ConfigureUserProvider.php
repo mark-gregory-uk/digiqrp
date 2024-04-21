@@ -29,7 +29,7 @@ class ConfigureUserProvider implements SetupScript
     }
 
     /**
-     * Fire the install script.
+     * Fire the install script
      * @param  Command $command
      * @return mixed
      */
@@ -58,7 +58,7 @@ class ConfigureUserProvider implements SetupScript
      */
     protected function factory($driver)
     {
-        $class = __NAMESPACE__."\\UserProviders\\{$driver}Installer";
+        $class = __NAMESPACE__ . "\\UserProviders\\{$driver}Installer";
 
         return $this->application->make($class);
     }

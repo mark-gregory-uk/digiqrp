@@ -35,7 +35,7 @@ class PartialAssetComposer
     }
 
     /**
-     * Add the assets from the config file on the asset manager.
+     * Add the assets from the config file on the asset manager
      */
     private function addAssets()
     {
@@ -46,18 +46,18 @@ class PartialAssetComposer
     }
 
     /**
-     * Require assets from asset manager.
+     * Require assets from asset manager
      */
     private function requireAssets()
     {
         $css = config('asgard.media.assets.media-partial-required-assets.css');
-        $js = config('asgard.media.assets.media-partial-required-assets.js');
+        $js  = config('asgard.media.assets.media-partial-required-assets.js');
 
-        if (! empty($css)) {
+        if (!empty($css)) {
             $this->assetPipeline->requireCss($css);
         }
 
-        if (! empty($js)) {
+        if (!empty($js)) {
             $this->assetPipeline->requireJs($js);
         }
     }

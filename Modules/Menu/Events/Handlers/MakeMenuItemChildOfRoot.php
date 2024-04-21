@@ -27,7 +27,7 @@ class MakeMenuItemChildOfRoot
     }
 
     /**
-     * Check if the given menu item is not already a root menu item.
+     * Check if the given menu item is not already a root menu item
      * @param  object $menuItem
      * @return bool
      */

@@ -34,7 +34,7 @@ class TranslationGroup
     }
 
     /**
-     * Return the translations.
+     * Return the translations
      * @return Collection
      */
     public function all()
@@ -43,7 +43,7 @@ class TranslationGroup
     }
 
     /**
-     * Return the raw translations.
+     * Return the raw translations
      * @return array
      */
     public function allRaw()

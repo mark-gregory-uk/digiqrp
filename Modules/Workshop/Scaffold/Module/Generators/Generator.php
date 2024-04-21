@@ -33,14 +33,14 @@ abstract class Generator
     }
 
     /**
-     * Generate the given files.
+     * Generate the given files
      * @param  array $files
      * @return void
      */
     abstract public function generate(array $files);
 
     /**
-     * Set the module name.
+     * Set the module name
      * @param  string $moduleName
      * @return $this
      */
@@ -52,9 +52,9 @@ abstract class Generator
     }
 
     /**
-     * Set the entity type on the class.
-     *
-     *
+     * Set the entity type on the class
+
+
      *
      *@param  string $entityType
      * @return EntityGenerator
@@ -67,17 +67,17 @@ abstract class Generator
     }
 
     /**
-     * Return the current module path.
+     * Return the current module path
      * @param  string $path
      * @return string
      */
     protected function getModulesPath($path = '')
     {
-        return $this->config->get('modules.paths.modules')."/{$this->name}/$path";
+        return $this->config->get('modules.paths.modules') . "/{$this->name}/$path";
     }
 
     /**
-     * Get the path the stubs for the given filename.
+     * Get the path the stubs for the given filename
      *
      * @param $filename
      * @return string
@@ -87,17 +87,17 @@ abstract class Generator
         $folder = $this->config->get('asgard.workshop.config.custom-stubs-folder');
 
         if ($folder !== null) {
-            $file = realpath($folder.'/'.$filename);
+            $file = realpath($folder . '/' . $filename);
             if ($file !== false) {
                 return $file;
             }
         }
 
-        return __DIR__."/../stubs/$filename";
+        return __DIR__ . "/../stubs/$filename";
     }
 
     /**
-     * Write the given content to the given file.
+     * Write the given content to the given file
      * @param string $path
      * @param string $content
      */

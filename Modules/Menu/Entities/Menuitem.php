@@ -32,7 +32,7 @@ class Menuitem extends Model
     protected $table = 'menu__menuitems';
 
     /**
-     * For nested collection.
+     * For nested collection
      *
      * @var array
      */
@@ -44,7 +44,7 @@ class Menuitem extends Model
     }
 
     /**
-     * Make the current menu item child of the given root item.
+     * Make the current menu item child of the given root item
      * @param Menuitem $rootItem
      */
     public function makeChildOf(Menuitem $rootItem)
@@ -54,7 +54,7 @@ class Menuitem extends Model
     }
 
     /**
-     * Check if the current menu item is the root.
+     * Check if the current menu item is the root
      * @return bool
      */
     public function isRoot()
@@ -63,7 +63,7 @@ class Menuitem extends Model
     }
 
     /**
-     * Check if page_id is empty and returning null instead empty string.
+     * Check if page_id is empty and returning null instead empty string
      * @return number
      */
     public function setPageIdAttribute($value)
@@ -72,7 +72,7 @@ class Menuitem extends Model
     }
 
     /**
-     * Check if parent_id is empty and returning null instead empty string.
+     * Check if parent_id is empty and returning null instead empty string
      * @return number
      */
     public function setParentIdAttribute($value)

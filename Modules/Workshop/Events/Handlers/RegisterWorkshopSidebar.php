@@ -10,7 +10,7 @@ use Modules\Core\Sidebar\AbstractAdminSidebar;
 class RegisterWorkshopSidebar extends AbstractAdminSidebar
 {
     /**
-     * Method used to define your sidebar menu groups and items.
+     * Method used to define your sidebar menu groups and items
      * @param Menu $menu
      * @return Menu
      */
@@ -37,16 +37,6 @@ class RegisterWorkshopSidebar extends AbstractAdminSidebar
                     $this->auth->hasAccess('workshop.themes.index')
                 );
             });
-
-            $group->item(trans('solar::solars.title.solars'), function (Item $item) {
-                $item->icon('fa fa-sun-o');
-                $item->weight(65);
-                $item->route('admin.solar.solar.index');
-                $item->authorize(
-                    $this->auth->hasAccess('solar.solars.sidebar')
-                );
-            });
-
         });
 
         return $menu;

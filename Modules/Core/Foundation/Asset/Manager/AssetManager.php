@@ -5,7 +5,7 @@ namespace Modules\Core\Foundation\Asset\Manager;
 interface AssetManager
 {
     /**
-     * Add a possible asset.
+     * Add a possible asset
      * @param string $dependency
      * @param string $path
      * @return void
@@ -13,20 +13,20 @@ interface AssetManager
     public function addAsset($dependency, $path);
 
     /**
-     * Add an array of possible assets.
+     * Add an array of possible assets
      * @param array $assets
      * @return void
      */
     public function addAssets(array $assets);
 
     /**
-     * Return all css files to include.
+     * Return all css files to include
      * @return \Illuminate\Support\Collection
      */
     public function allCss();
 
     /**
-     * Return all js files to include.
+     * Return all js files to include
      * @return \Illuminate\Support\Collection
      */
     public function allJs();

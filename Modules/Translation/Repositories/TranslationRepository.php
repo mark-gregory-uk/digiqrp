@@ -34,7 +34,7 @@ interface TranslationRepository extends BaseRepository
     public function findTranslationByKey($key);
 
     /**
-     * Update the given translation key with the given data.
+     * Update the given translation key with the given data
      * @param string $key
      * @param array $data
      * @return mixed
@@ -42,7 +42,7 @@ interface TranslationRepository extends BaseRepository
     public function updateFromImport($key, array $data);
 
     /**
-     * Set the given value on the given TranslationTranslation.
+     * Set the given value on the given TranslationTranslation
      * @param TranslationTranslation $translationTranslation
      * @param string $value
      * @return void

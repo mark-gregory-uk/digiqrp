@@ -38,7 +38,7 @@
     "font-awesome": "^4.7.0",
     "form-backend-validation": "^2.3.3",
     "lodash": "^4.17.11",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "typy": "^2.0.1",
     "vue": "^2.6.10",
     "vue-data-tables": "^3.4.0",

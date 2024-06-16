@@ -27,7 +27,7 @@
     "resolve-url-loader": "2.3.2",
     "sass": "^1.15.2",
     "sass-loader": "7.*",
-    "webpack": "^4.0.0"
+    "webpack": "^5.92.0"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
